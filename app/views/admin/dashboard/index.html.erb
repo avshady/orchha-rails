@@ -1,0 +1,23 @@
+<h2 class="adm-page-title">Content</h2>
+
+<div class="adm-card">
+  <table class="adm-table">
+    <thead>
+      <tr><th>Section</th><th>Last updated</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% @blocks.each do |block| %>
+      <tr>
+        <td><strong><%= block.key %></strong></td>
+        <td class="adm-muted"><%= block.updated_at.strftime("%d %b %Y, %H:%M") %></td>
+        <td class="adm-muted">Editor coming in the next phase</td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<p class="adm-muted">
+  <%= @blocks.size %> content sections stored in the database. Edits made here
+  survive deploys; content.json is only the initial seed.
+</p>

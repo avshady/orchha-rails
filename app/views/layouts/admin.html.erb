@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Orchha CMS</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <style>
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: #e7ded5; color: #1a0a00; min-height: 100vh;
+      }
+      .adm-topbar {
+        background: #6e1603; color: #fff;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 14px 28px;
+      }
+      .adm-topbar h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.03em; }
+      .adm-topbar .adm-top-right { display: flex; align-items: center; gap: 18px; }
+      .adm-topbar a, .adm-topbar button {
+        color: #f3d9a4; font-size: 14px; text-decoration: none;
+        background: none; border: none; cursor: pointer; font-family: inherit;
+      }
+      .adm-topbar a:hover, .adm-topbar button:hover { text-decoration: underline; }
+      .adm-main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+      .adm-flash { border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 14px; }
+      .adm-flash-notice { background: #e3efdd; color: #2c5424; border: 1px solid #9dc18f; }
+      .adm-flash-alert  { background: #f6e0dc; color: #8a1f0e; border: 1px solid #d9a196; }
+      h2.adm-page-title { font-size: 26px; margin-bottom: 20px; color: #6e1603; }
+      .adm-card {
+        background: #fff; border: 1px solid #d8cbbc; border-radius: 10px;
+        padding: 20px 22px; margin-bottom: 16px;
+      }
+      table.adm-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+      table.adm-table th, table.adm-table td {
+        text-align: left; padding: 10px 12px; border-bottom: 1px solid #e8ddcf;
+      }
+      table.adm-table th { color: #6e1603; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+      table.adm-table tr:last-child td { border-bottom: none; }
+      .adm-btn {
+        display: inline-block; background: #6e1603; color: #fff !important;
+        border: none; border-radius: 8px; padding: 9px 18px; font-size: 14px;
+        cursor: pointer; text-decoration: none !important; font-family: inherit;
+      }
+      .adm-btn:hover { background: #571102; text-decoration: none; }
+      .adm-btn-outline {
+        background: transparent; color: #6e1603 !important;
+        border: 1.5px solid #6e1603;
+      }
+      .adm-btn-outline:hover { background: rgba(110,22,3,0.07); }
+      .adm-muted { color: #7a6a58; font-size: 13px; }
+    </style>
+  </head>
+  <body>
+    <div class="adm-topbar">
+      <h1>ORCHHA CMS</h1>
+      <div class="adm-top-right">
+        <a href="/" target="_blank">View site ↗</a>
+        <%= button_to "Sign out", session_path, method: :delete %>
+      </div>
+    </div>
+    <div class="adm-main">
+      <% if flash[:notice] %><div class="adm-flash adm-flash-notice"><%= flash[:notice] %></div><% end %>
+      <% if flash[:alert] %><div class="adm-flash adm-flash-alert"><%= flash[:alert] %></div><% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>

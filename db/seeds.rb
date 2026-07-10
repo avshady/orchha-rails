@@ -3,6 +3,16 @@
 # overwritten — only missing keys are created.
 path = Rails.root.join("content.json")
 
+# Ensure the admin user exists (credentials from Railway env vars).
+if ENV["ADMIN_EMAIL"].present? && ENV["ADMIN_PASSWORD"].present?
+  user = User.find_or_initialize_by(email_address: ENV["ADMIN_EMAIL"])
+  if user.new_record?
+    user.password = ENV["ADMIN_PASSWORD"]
+    user.save!
+    puts "Created admin user #{user.email_address}."
+  end
+end
+
 if File.exist?(path)
   data = JSON.parse(File.read(path, encoding: "UTF-8"))
   created = 0

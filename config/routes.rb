@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resource :session
+
+  namespace :admin do
+    root "dashboard#index"
+  end
+
   root "home#index"
   get "/history", to: "pages#history"
   get "/monuments", to: "pages#monuments"

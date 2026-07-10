@@ -1,0 +1,49 @@
+<div class="login-wrap">
+  <div class="login-card">
+    <h1 class="login-title">ORCHHA CMS</h1>
+    <p class="login-sub">Sign in to manage site content</p>
+
+    <% if flash[:alert] %><div class="login-alert"><%= flash[:alert] %></div><% end %>
+    <% if flash[:notice] %><div class="login-notice"><%= flash[:notice] %></div><% end %>
+
+    <%= form_with url: session_path do |form| %>
+      <label class="login-label" for="email_address">Email</label>
+      <%= form.email_field :email_address, id: "email_address", required: true, autofocus: true, autocomplete: "username", class: "login-input", value: params[:email_address] %>
+
+      <label class="login-label" for="password">Password</label>
+      <%= form.password_field :password, id: "password", required: true, autocomplete: "current-password", maxlength: 72, class: "login-input" %>
+
+      <%= form.submit "Sign in", class: "login-btn" %>
+    <% end %>
+  </div>
+</div>
+
+<style>
+  .login-wrap {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: #e7ded5; padding: 24px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  .login-card {
+    background: #fff; border: 1px solid #d8cbbc; border-radius: 12px;
+    padding: 36px 32px; width: 100%; max-width: 380px;
+    box-shadow: 0 4px 24px rgba(26, 10, 0, 0.08);
+  }
+  .login-title { color: #6e1603; font-size: 22px; letter-spacing: 0.04em; margin: 0 0 4px; }
+  .login-sub { color: #7a6a58; font-size: 14px; margin: 0 0 24px; }
+  .login-alert, .login-notice { border-radius: 8px; padding: 10px 14px; font-size: 13px; margin-bottom: 16px; }
+  .login-alert  { background: #f6e0dc; color: #8a1f0e; border: 1px solid #d9a196; }
+  .login-notice { background: #e3efdd; color: #2c5424; border: 1px solid #9dc18f; }
+  .login-label { display: block; font-size: 13px; font-weight: 600; color: #1a0a00; margin: 14px 0 6px; }
+  .login-input {
+    width: 100%; padding: 10px 12px; font-size: 15px;
+    border: 1px solid #c9b9a6; border-radius: 8px; background: #faf7f2;
+  }
+  .login-input:focus { outline: 2px solid #6e1603; border-color: #6e1603; }
+  .login-btn {
+    width: 100%; margin-top: 22px; padding: 12px;
+    background: #6e1603; color: #fff; font-size: 15px; font-weight: 600;
+    border: none; border-radius: 8px; cursor: pointer;
+  }
+  .login-btn:hover { background: #571102; }
+</style>
