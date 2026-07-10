@@ -224,10 +224,18 @@
       "year": "17th Century",
       "detailImage": "/images/ct_main_overlay.jpg",
       "detailDescriptionHtml": "<p>When Maharni Kunwar Ganesh set out for Ayodhya to bring Ram Lalla to Orchha, her husband Maharaja Madhukar Shah began building a temple worthy of a god. The Chaturbhuj Temple - named after the four-armed form of Vishnu Ji - rose in the heart of Orchha as a grand act of faith and anticipation.</p><p>Its spire reaches skyward in a style that blends Rajput structure with striking Catholic influences, its domed interiors shaped into mandapa halls with carved torans arching overhead. Palanquin-shaped balconies were carved inside the domes so that royal women, observing the strictures of purdah, could witness the ceremonies below without being seen. It was built to receive a king. But when Ram Ji arrived in Orchha in 1631 CE and was seated - even temporarily - in the queen's own palace, he would not be moved. He had made his condition clear before the journey began, and the condition held. Maharaja Madhukar Shah, heartbroken, left the Chaturbhuj Temple unfinished.</p><p>Decades passed. It was Madhukar Shah's son, Raja Vir Singh Deo, who finally completed the temple in 1664 CE and placed a gold finial - weighing one and a quarter maund - atop its spire. A deity was eventually installed: Lord Chaturbhuj, the four-armed Vishnu Ji, whose name the temple had always carried. The finial was stolen in 1971. The sanctum now stands quietly, without the god it was first built to welcome.</p>",
-      "galleryImages": ["/images/ct_night.jpg"],
+      "galleryImages": [
+        "/images/ct_night.jpg"
+      ],
       "didYouKnow": "Maharaja Madhukar Shah designed the Chaturbhuj Temple's sanctum so that it could be seen directly through a window of the neighbouring Raja Mahal - so that the royal family could have darshan of Ram Ji without leaving the palace. To this day, you can stand at that window in Raja Mahal and look straight into the Chaturbhuj sanctum, just as Madhukar Shah had intended.",
-      "dykImages": ["/images/ct_interior.jpg", "/images/ct_steps.jpg"],
-      "closeUpImages": ["/images/ct_entrance.jpg", "/images/ct_aerial_night.jpg"],
+      "dykImages": [
+        "/images/ct_interior.jpg",
+        "/images/ct_steps.jpg"
+      ],
+      "closeUpImages": [
+        "/images/ct_entrance.jpg",
+        "/images/ct_aerial_night.jpg"
+      ],
       "detailPage": "monument-detail.html",
       "visible": true,
       "filterCategory": "temple"
@@ -245,11 +253,22 @@
       "year": "1501",
       "detailImage": "/images/rm_info_main_d.jpg",
       "detailDescriptionHtml": "<p>Around 1501 CE, Bundela Raja Rudra Pratap Singh left Garh Kundar, chose the banks of the Betwa River as the seat of his new capital, and laid the foundation of Raja Mahal — Orchha's first palace. His son, Maharaja Madhukar Shah, completed the construction in 1530 CE, giving the palace the five-storey square form it holds today. The building is divided into two sections — a Diwan-e-Aam for public audience and a Diwan-e-Khas for private court — arranged around a square plan that became the architectural grammar of Orchha.</p><p>What makes Raja Mahal extraordinary is not its age — it is the murals painted on its ceilings. The frescoes span a range few palace interiors in India can match: all twenty-four avatars of Vishnu, Jal Vihar, Krishna with Radha and the gopis, Bundeli women in ghaghra and lungra wearing nose rings, playing chaugan; court processions; foreign soldiers with fixed bayonets; a king's retinue in full ceremonial splendour.</p><p>Among the oldest surviving murals in Orchha, they have endured nearly five centuries — and they still speak.</p>",
-      "galleryImages": ["/images/rm_info_sec.jpg"],
+      "galleryImages": [
+        "/images/rm_info_sec.jpg"
+      ],
       "didYouKnow": "Among the murals in Raja Mahal, the most striking one is an illustration of a young woman forming the various body parts and limbs of an elephant-shaped figure.",
-      "dykImages": ["/images/rm_painting1.jpg", "/images/rm_painting2.jpg"],
-      "closeUpImages": ["/images/rm_closeup_main.jpg", "/images/rm_info_sec.jpg"],
-      "paintingImages": ["/images/rm_painting1.jpg", "/images/rm_painting2.jpg"],
+      "dykImages": [
+        "/images/rm_painting1.jpg",
+        "/images/rm_painting2.jpg"
+      ],
+      "closeUpImages": [
+        "/images/rm_closeup_main.jpg",
+        "/images/rm_info_sec.jpg"
+      ],
+      "paintingImages": [
+        "/images/rm_painting1.jpg",
+        "/images/rm_painting2.jpg"
+      ],
       "detailPage": "monument-detail.html",
       "visible": true,
       "filterCategory": "fort-complex"
@@ -267,10 +286,18 @@
       "year": "1602",
       "detailImage": "/images/jm_info_main.jpg",
       "detailDescriptionHtml": "<p>In the closing years of Akbar's reign, a dangerous rivalry was brewing between the emperor and his own son, Prince Salim. Akbar's commander and trusted chronicler Abul Fazl was widely seen as the man stoking tension between them — and Salim wanted him removed. He turned to Bir Singh Deo, a Bundela Raja from Orchha who had his own reasons to prove his loyalty to the prince. Raja Bir Singh Deo ambushed and killed Abul Fazl on the road in 1602 CE. The act was decisive, and the bond between the two men was cemented in blood.</p><p>When Salim ascended the Mughal throne as Emperor Jahangir, he did not forget. He displaced the sitting ruler of Orchha and installed Bir Singh Deo as Raja — and when he came to Orchha to formally honour the coronation, Raja Bir Singh Deo built him a palace worthy of an emperor. The Jahangir Mahal was raised in 1605 CE as a gesture of welcome — and of gratitude. Its five storeys and 236 rooms spread across a square plan, its facade a confident blend of Mughal arches and Rajput projecting balconies, its interiors once carrying murals of hunting scenes, dancers, and court life, now faded but still legible.</p><p>The palace's symmetry is not purely aesthetic; it also serves functional purposes, with aligned corridors and chambers that allow for breeze while maintaining the security and privacy expected by royalty.</p>",
-      "galleryImages": ["/images/jm_info_sec.jpg"],
+      "galleryImages": [
+        "/images/jm_info_sec.jpg"
+      ],
       "didYouKnow": "The two stone elephants flanking the entrance of Jahangir Mahal are among the most recognised images in Orchha — but they are more than decorative. One holds a bell and one holds a chain. Together, they represent the duality of the Bundela rulers: the power to protect their kingdom (the chain) and the grace to welcome their allies (the bell).",
-      "dykImages": ["/images/jm_dyk2.jpg", "/images/jm_dyk1.jpg"],
-      "closeUpImages": ["/images/jm_closeup_main.jpg", "/images/jm_closeup_side.jpg"],
+      "dykImages": [
+        "/images/jm_dyk2.jpg",
+        "/images/jm_dyk1.jpg"
+      ],
+      "closeUpImages": [
+        "/images/jm_closeup_main.jpg",
+        "/images/jm_closeup_side.jpg"
+      ],
       "detailPage": "monument-detail.html",
       "visible": true,
       "filterCategory": "fort-complex"
@@ -301,11 +328,22 @@
       "year": "1622",
       "detailImage": "/images/lnt_info_main.jpg",
       "detailDescriptionHtml": "<p>Perched on a hill above Orchha, the Lakshmi Narayan Temple was built in Vikram Samvat 1675, by Maharaja Vir Singh Deo. The temple was consecrated to Devi Lakshmi Ji and Narayan Ji, and its design was not incidental. The garuda — Vishnu Ji's vaahana — was the governing idea: the temple's outer form echoes the spread of Garuda's wings, and the hilltop itself suggests flight, as though the structure might lift off the earth and carry the gods skyward. The influence of the Sri Yantra, the sacred geometric diagram of Lakshmi Ji's worship, is said to have shaped the inner layout.</p><p>Step inside, and the stone gives way to something else entirely. In 1743 CE, Maharaja Prithvi Singh commissioned a complete cycle of Bundeli murals across the temple's corridors and halls — and what remains is extraordinary. The walls carry the full arc of devotion: Krishna in tribhanga posture, flute raised, flanked by gopis; the Ras Leela unfolding across entire panels; the ten avatars of Vishnu; Durga, Hanuman, Panchmukhi Shiva. Elsewhere, warrior kings ride into battle, courtly life plays out in vivid detail, and a rare panel depicts Rani Lakshmibai leading her army during the uprising of 1857 — a reminder that these walls were still being painted as the colonial era arrived.</p><p>The colours — deep reds, sharp blacks, brilliant yellows, and a restrained green — were mixed from natural minerals and have endured nearly three centuries of light, weather, and time. Some have faded where sunlight reaches; others remain as vivid as the day they were applied.</p>",
-      "galleryImages": ["/images/lnt_info_sec.jpg"],
+      "galleryImages": [
+        "/images/lnt_info_sec.jpg"
+      ],
       "didYouKnow": "Built like a rectangle, the structure of Lakshmi Temple reveals a fascinating illusion: from every corner, it appears triangular — giving the monument a striking geometric presence against the sky.",
-      "dykImages": ["/images/lnt_dyk1.jpg", "/images/lnt_dyk2.jpg"],
-      "closeUpImages": ["/images/lnt_closeup_main.jpg", "/images/lnt_closeup_side.jpg"],
-      "paintingImages": ["/images/lnt_painting1.jpg", "/images/lnt_painting2.jpg"],
+      "dykImages": [
+        "/images/lnt_dyk1.jpg",
+        "/images/lnt_dyk2.jpg"
+      ],
+      "closeUpImages": [
+        "/images/lnt_closeup_main.jpg",
+        "/images/lnt_closeup_side.jpg"
+      ],
+      "paintingImages": [
+        "/images/lnt_painting1.jpg",
+        "/images/lnt_painting2.jpg"
+      ],
       "visible": true,
       "filterCategory": "temple"
     },
@@ -323,10 +361,18 @@
       "outroImage": "/images/ch_info_main.jpg",
       "detailImage": "/images/ch_info_main.jpg",
       "detailDescriptionHtml": "<p>The Orchha Chhatris are a complex of royal cenotaphs built along the Betwa River to honour the rulers of the Bundela dynasty. Their architecture bears the clear influence of Gupta-era temple designs.</p><p>In front of the chhatris, mandaps were constructed as pavilions for music gatherings, spaces where the departed could be honoured not just in stone but in song. Gardens were laid out between the structures, and many of the chhatris were grouped into a single complex with a garden at its centre.</p><p>The most prominent among them are the chhatris of Madhukar Shah, Vir Singh Deo, and Uddat Singh — three rulers whose reigns shaped Orchha at its greatest. Together they form a skyline unlike any other in Bundelkhand: soaring spires reflected in the Betwa, a kingdom's memory made permanent in the landscape it once ruled.</p>",
-      "galleryImages": ["/images/ch_info_sec.jpg"],
+      "galleryImages": [
+        "/images/ch_info_sec.jpg"
+      ],
       "didYouKnow": "The Orchha Chhatris were designed like temples, not tombs — reflecting a Hindu belief that ancestors are revered like gods, shaping their memorials to resemble sacred places of worship and not mourning.",
-      "dykImages": ["/images/ch_dyk1.jpg", "/images/ch_dyk2.jpg"],
-      "closeUpImages": ["/images/ch_info_main.jpg", "/images/ch_info_sec.jpg"],
+      "dykImages": [
+        "/images/ch_dyk1.jpg",
+        "/images/ch_dyk2.jpg"
+      ],
+      "closeUpImages": [
+        "/images/ch_info_main.jpg",
+        "/images/ch_info_sec.jpg"
+      ],
       "visible": true,
       "filterCategory": "cenotaphs"
     },
@@ -356,10 +402,18 @@
       "outroImage": "/images/rpm_outro.jpg",
       "detailImage": "/images/rpm_info_main.jpg",
       "detailDescriptionHtml": "<p>Rai Praveen was the court dancer and beloved of Maharaja Indrajit Singh of Orchha — gifted in music, literature, and verse, and trained in Sanskrit and Braj Bhasha poetry under the great Kavi Keshavdas. In 1618 CE, Indrajit Singh built a three-storey palace, set within a garden called Anand Mandal Baag — the Garden of Joy. It was a private world, built around her, for her.</p><p>Word of her beauty and brilliance eventually reached the court of Emperor Akbar in Delhi. Akbar summoned her to his court, and when Indrajit Singh resisted, Akbar first cut Orchha's imperial allowance and then levied a fine. Reluctantly, and only on the condition that the great poet Keshavdas accompany her, Maharaja Indrajit Singh agreed to send Rai Praveen to Delhi.</p><p>At Akbar's court, the emperor was captivated. He offered her a place of honour — as his chief consort, or among his navratnas. Rai Praveen, instead of refusing, asked permission to respond with a doha first. She spoke verses whose meaning was unmistakable: in Bundelkhand, only three creatures eat from a plate already tasted by another — the person who clears it, the crow, and the dog. A silence fell over the court. Then Akbar applauded. He sent her home with gifts and honours, the fine cancelled, the allowance restored. She returned to Orchha, to Indrajit Singh, with full honours, owing to her exceptional poetic skill.</p>",
-      "galleryImages": ["/images/rpm_info_sec.jpg"],
+      "galleryImages": [
+        "/images/rpm_info_sec.jpg"
+      ],
       "dykHtml": "<p>The doha that impressed Akbar and eventually made him send Rai Praveen back to Orchha with gifts and honours was</p><p class=\"mdet-dyk-doha-verse\">विनती रायप्रवीण की सुनिए शाह सुजान।।<br>जूठी पातर भखत हैं बारी वायस श्वान।।</p><p>Meaning: In Bundelkhand, only three creatures eat from a plate already tasted by another — the person who clears it, the crow, and the dog.</p>",
-      "dykImages": ["/images/rpm_dyk2.jpg", "/images/rpm_dyk1.jpg"],
-      "closeUpImages": ["/images/rpm_closeup_main.jpg", "/images/rpm_closeup_side.jpg"],
+      "dykImages": [
+        "/images/rpm_dyk2.jpg",
+        "/images/rpm_dyk1.jpg"
+      ],
+      "closeUpImages": [
+        "/images/rpm_closeup_main.jpg",
+        "/images/rpm_closeup_side.jpg"
+      ],
       "visible": true,
       "filterCategory": "fort-complex"
     },
@@ -376,10 +430,18 @@
       "outroImage": "/images/tdkh_outro.jpg",
       "detailImage": "/images/tdkh_info_main.jpg",
       "detailDescriptionHtml": "<p>Some monuments remember kings. This one remembers three women who served them. Within the ancient fort complex, nestled on the banks of the Betwa, stands a modest haveli that carries one of Orchha's most affecting stories. It was the residence of three dasis — attendants of the Orchha royal household — who were not merely servants but the most trusted companions of the Bundela queens. They lived alongside the maharanis, shared their private world, and remained devoted to them through the entirety of their lives.</p><p>That devotion was tested — and proved — in the most final way possible. When the Mughal emperor Shah Jahan moved against Orchha following Maharaja Jujhar Singh's defiance, the kingdom fell swiftly. Jujhar Singh was captured and executed, his severed head displayed in the public square as a warning. When word reached his queen, she made her way to a sandbar at the confluence of the Betwa and Ghurar rivers, lit a pyre, and performed jauhar — choosing death over captivity. Her samadhi stands at that riverbank to this day, known as Bhavji Zuki Madiya.</p><p>The three dasis did not have to follow. No duty bound them to that fire. Yet they walked into it alongside their queen, and gave their lives as they had given everything else — without hesitation. Their samadhi was built inside the fort complex, close to the haveli where they had lived. It is still there.</p>",
-      "galleryImages": ["/images/tdkh_info_sec.jpg"],
+      "galleryImages": [
+        "/images/tdkh_info_sec.jpg"
+      ],
       "didYouKnow": "The three dasis who performed jauhar alongside Maharani Jujhar Singh were under no obligation to do so. They chose to enter the fire of their own will, out of a bond forged through a lifetime of service and closeness, which earned them a samadhi of their own, inside the very fort they had called home.",
-      "dykImages": ["/images/tdkh_dyk2.jpg", "/images/tdkh_dyk1.jpg"],
-      "closeUpImages": ["/images/tdkh_closeup_main.jpg", "/images/tdkh_closeup_side.jpg"],
+      "dykImages": [
+        "/images/tdkh_dyk2.jpg",
+        "/images/tdkh_dyk1.jpg"
+      ],
+      "closeUpImages": [
+        "/images/tdkh_closeup_main.jpg",
+        "/images/tdkh_closeup_side.jpg"
+      ],
       "visible": true,
       "filterCategory": "fort-complex"
     },
@@ -409,10 +471,18 @@
       "outroImage": "/images/st_outro.jpg",
       "detailImage": "/images/st_info_main.jpg",
       "detailDescriptionHtml": "<p>Within the walls of Orchha's fort complex stands a temple built not for one Shiva — but for five. The Shiva Temple was constructed between the 16th and 17th centuries, its small clustered domes rising quietly within the fort's perimeter — a place of devotion set inside a place of power. The structure is understated against the grandeur of the palaces around it, but its interior held something extraordinary: five Panchmukhi Shivalingas, installed side by side through special Vedic rites. The intention behind their consecration was precise — a devotee who came here to worship would receive the spiritual merit of visiting all twelve Jyotirlingas, the most sacred Shiva shrines across India, in a single act of prayer.</p><p>To have five such Shivalingas installed with Vedic precision within the walls of a fort was a rare and deliberate act. It made this modest temple one of the most spiritually significant sites in the entire Orchha complex — not because of its scale, but because of what had been placed within it and the care with which that had been done.</p><p>The temple's small domes are simple and inward-focused. It was built for worship, not display — and for centuries, that is precisely what it served.</p>",
-      "galleryImages": ["/images/st_info_sec.jpg"],
+      "galleryImages": [
+        "/images/st_info_sec.jpg"
+      ],
       "didYouKnow": "The five Panchmukhi Shivalingas installed here through special Vedic rites were believed to grant a devotee the spiritual merit of visiting all twelve Jyotirlingas across India in a single act of prayer — making this modest fort temple one of the most spiritually potent sites in the entire Orchha complex.",
-      "dykImages": ["/images/st_dyk2.jpg", "/images/st_dyk1.jpg"],
-      "closeUpImages": ["/images/st_closeup_main.jpg", "/images/st_closeup_side.jpg"],
+      "dykImages": [
+        "/images/st_dyk2.jpg",
+        "/images/st_dyk1.jpg"
+      ],
+      "closeUpImages": [
+        "/images/st_closeup_main.jpg",
+        "/images/st_closeup_side.jpg"
+      ],
       "visible": true,
       "filterCategory": "temple"
     },
@@ -429,10 +499,18 @@
       "outroImage": "/images/bkh_outro.jpg",
       "detailImage": "/images/bkh_info_main.jpg",
       "detailDescriptionHtml": "<p>When Rudra Pratap Singh founded Orchha in 1531 CE, the first thing he built was a palace. The second was this. The Baroodkhana, the royal armoury, was constructed at the same time as Raja Mahal, as Orchha was being established as the new Bundela capital. Its placement was deliberate: inside the fort complex, at some distance from the palace, and close to the Betwa River.</p><p>A kingdom being built from the ground up could not afford to be undefended, and the armoury was as much a statement of intent as the palace itself. The building stored weapons and gunpowder — the materials of war and the means of a kingdom's survival.</p><p>It is a small detail, a single window in a fort wall, but it speaks to something larger: the care and foresight that went into building Orchha from its very first days. Power needed to be protected, and protection needed to be planned for.</p>",
-      "galleryImages": ["/images/bkh_info_sec.jpg"],
+      "galleryImages": [
+        "/images/bkh_info_sec.jpg"
+      ],
       "didYouKnow": "In an era before organised fire-fighting, a window was specially built into the fort's outer wall facing the Betwa River with the purpose of fetching water if a fire broke out in the armoury.",
-      "dykImages": ["/images/bkh_dyk1.jpg", "/images/bkh_dyk2.jpg"],
-      "closeUpImages": ["/images/bkh_closeup_main.jpg", "/images/bkh_closeup_side.jpg"],
+      "dykImages": [
+        "/images/bkh_dyk1.jpg",
+        "/images/bkh_dyk2.jpg"
+      ],
+      "closeUpImages": [
+        "/images/bkh_closeup_main.jpg",
+        "/images/bkh_closeup_side.jpg"
+      ],
       "visible": true,
       "filterCategory": "fort-complex"
     },
@@ -449,16 +527,42 @@
       "outroImage": "/images/ws_outro.jpg",
       "detailImage": "/images/ws_info_main.jpg",
       "detailDescriptionHtml": "<p>Orchha Wildlife Sanctuary, also known as the Orchha Nature Reserve, is a wildlife sanctuary located in Niwari district of Madhya Pradesh. It was established in 1994.</p><p>The sanctuary is spread over an area of 46 km² on the banks of the Betwa and Jamni rivers — a landscape of tropical dry broadleaf forests, rocky outcrops, and seasonal water bodies that together support a remarkable range of life.</p><p>Around 200 species of birds have been recorded here, including the Indian vulture, woodpecker, kingfisher, peafowl, and Collared scops owl. Deer, nilgai, monkeys, wild boar, jackal and sloth bear can also be seen. The forests contain 42 recorded angiosperm species, and 33 genera of fungi have been isolated from within the sanctuary.</p>",
-      "galleryImages": ["/images/ws_info_sec.jpg"],
-      "didYouKnow": "In March 2024, the National Green Tribunal received complaints that stone crushers and mining quarries were operating illegally within the Orchha Wildlife Sanctuary — an ecologically sensitive area — posing a threat to its flora and fauna. The NGT appointed a two-member joint committee to examine the complaint and directed it to submit an actionable report within six weeks.",
-      "dykImages": ["/images/ws_dyk1.jpg", "/images/ws_dyk2.jpg"],
-      "experiences": [
-        {"title": "Nature Walks", "description": "Walk through forest trails and discover the wilderness at a gentle pace.", "icon": "/images/ws_exp_icon1.svg"},
-        {"title": "Bird Watching", "description": "Spot a variety of resident and migratory birds across seasons.", "icon": "/images/ws_exp_icon2.svg"},
-        {"title": "Riverside Trails", "description": "Enjoy peaceful trails along the Betwa with scenic natural views.", "icon": "/images/ws_exp_icon3.svg"},
-        {"title": "Sunrise Photography", "description": "Capture the golden mornings and the untouched beauty of Orchha.", "icon": "/images/ws_exp_icon4.svg"}
+      "galleryImages": [
+        "/images/ws_info_sec.jpg"
       ],
-      "experiencePhotos": ["/images/ws_exp_photo1.jpg", "/images/ws_exp_photo2.jpg", "/images/ws_exp_photo3.jpg", "/images/ws_exp_photo4.jpg"],
+      "didYouKnow": "In March 2024, the National Green Tribunal received complaints that stone crushers and mining quarries were operating illegally within the Orchha Wildlife Sanctuary — an ecologically sensitive area — posing a threat to its flora and fauna. The NGT appointed a two-member joint committee to examine the complaint and directed it to submit an actionable report within six weeks.",
+      "dykImages": [
+        "/images/ws_dyk1.jpg",
+        "/images/ws_dyk2.jpg"
+      ],
+      "experiences": [
+        {
+          "title": "Nature Walks",
+          "description": "Walk through forest trails and discover the wilderness at a gentle pace.",
+          "icon": "/images/ws_exp_icon1.svg"
+        },
+        {
+          "title": "Bird Watching",
+          "description": "Spot a variety of resident and migratory birds across seasons.",
+          "icon": "/images/ws_exp_icon2.svg"
+        },
+        {
+          "title": "Riverside Trails",
+          "description": "Enjoy peaceful trails along the Betwa with scenic natural views.",
+          "icon": "/images/ws_exp_icon3.svg"
+        },
+        {
+          "title": "Sunrise Photography",
+          "description": "Capture the golden mornings and the untouched beauty of Orchha.",
+          "icon": "/images/ws_exp_icon4.svg"
+        }
+      ],
+      "experiencePhotos": [
+        "/images/ws_exp_photo1.jpg",
+        "/images/ws_exp_photo2.jpg",
+        "/images/ws_exp_photo3.jpg",
+        "/images/ws_exp_photo4.jpg"
+      ],
       "visible": true,
       "filterCategory": "wildlife"
     }
@@ -1266,37 +1370,131 @@
     "heading": "Experiences and Trails",
     "subheading": "Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.",
     "filterCategories": [
-      {"label": "ALL",                  "value": "all"},
-      {"label": "WALKS",                "value": "walks"},
-      {"label": "TRAILS",               "value": "trails"},
-      {"label": "EVENING EXPERIENCES",  "value": "evening-experiences"},
-      {"label": "ADVENTURE",            "value": "adventure"}
+      {
+        "label": "ALL",
+        "value": "all"
+      },
+      {
+        "label": "WALKS",
+        "value": "walks"
+      },
+      {
+        "label": "TRAILS",
+        "value": "trails"
+      },
+      {
+        "label": "EVENING EXPERIENCES",
+        "value": "evening-experiences"
+      },
+      {
+        "label": "ADVENTURE",
+        "value": "adventure"
+      }
     ]
   },
   "experienceItems": [
-    {"id": "art-walk",         "name": "Art Walk",              "image": "/images/exp_art_walk.jpg",        "category": "walks"},
-    {"id": "eco-trail",        "name": "Eco Trail",             "image": "/images/ws_exp_photo1.jpg",       "category": "trails"},
-    {"id": "river-kayaking",   "name": "River Kayaking",        "image": "/images/exp_river_kayaking.jpg",  "category": "adventure"},
-    {"id": "sunset-betwa",     "name": "Sunset at Betwa",       "image": "/images/exp_sunset_betwa.jpg",    "category": "evening-experiences"},
-    {"id": "religious-trail",  "name": "Religious Trail",       "image": "/images/exp_religious_trail.jpg", "category": "trails"},
-    {"id": "citadel-walk",     "name": "Citadel Walk",          "image": "/images/ct_entrance.jpg",         "category": "walks"},
-    {"id": "sound-light-show", "name": "Sound and Light Show",  "image": "/images/exp_light_sound.jpg",     "category": "evening-experiences"},
-    {"id": "night-walk",       "name": "Night Walk",            "image": "/images/ct_night.jpg",            "category": "evening-experiences"}
+    {
+      "id": "art-walk",
+      "name": "Art Walk",
+      "image": "/images/exp_art_walk.jpg",
+      "category": "walks"
+    },
+    {
+      "id": "eco-trail",
+      "name": "Eco Trail",
+      "image": "/images/ws_exp_photo1.jpg",
+      "category": "trails"
+    },
+    {
+      "id": "river-kayaking",
+      "name": "River Kayaking",
+      "image": "/images/exp_river_kayaking.jpg",
+      "category": "adventure"
+    },
+    {
+      "id": "sunset-betwa",
+      "name": "Sunset at Betwa",
+      "image": "/images/exp_sunset_betwa.jpg",
+      "category": "evening-experiences"
+    },
+    {
+      "id": "religious-trail",
+      "name": "Religious Trail",
+      "image": "/images/exp_religious_trail.jpg",
+      "category": "trails"
+    },
+    {
+      "id": "citadel-walk",
+      "name": "Citadel Walk",
+      "image": "/images/ct_entrance.jpg",
+      "category": "walks"
+    },
+    {
+      "id": "sound-light-show",
+      "name": "Sound and Light Show",
+      "image": "/images/exp_light_sound.jpg",
+      "category": "evening-experiences"
+    },
+    {
+      "id": "night-walk",
+      "name": "Night Walk",
+      "image": "/images/ct_night.jpg",
+      "category": "evening-experiences"
+    }
   ],
   "cuisineItems": [
-    {"name": "Tawa Roti",                   "image": "/images/cuisine_tawa_roti.jpg"},
-    {"name": "Johar Roti",                  "image": "/images/cuisine_johar_roti.jpg"},
-    {"name": "Bazra & Makka Roti",          "image": "/images/cuisine_bazra_roti.jpg"},
-    {"name": "Tikkar with Desi Ghee Rice",  "image": "/images/cuisine_tikkar.jpg"},
-    {"name": "Kadi Pakoda",                 "image": "/images/cuisine_kadi_pakoda.jpg"},
-    {"name": "Baigan Bharta",               "image": "/images/cuisine_baigan_bharta.jpg"},
-    {"name": "Sarso Ka Sag",                "image": "/images/cuisine_sarso_sag.jpg"},
-    {"name": "Amla Chutni",                 "image": "/images/cuisine_amla_chutni.jpg"},
-    {"name": "Tamatar and Dhaniya Chutney", "image": "/images/cuisine_tamatar_chutney.jpg"},
-    {"name": "Gur",                         "image": "/images/cuisine_gur.jpg"},
-    {"name": "Bundi Raita",                 "image": "/images/cuisine_bundi_raita.jpg"},
-    {"name": "Maheri",                      "image": "/images/cuisine_maheri.jpg"},
-    {"name": "Malpua",                      "image": "/images/cuisine_malpua.jpg"}
+    {
+      "name": "Tawa Roti",
+      "image": "/images/cuisine_tawa_roti.jpg"
+    },
+    {
+      "name": "Johar Roti",
+      "image": "/images/cuisine_johar_roti.jpg"
+    },
+    {
+      "name": "Bazra & Makka Roti",
+      "image": "/images/cuisine_bazra_roti.jpg"
+    },
+    {
+      "name": "Tikkar with Desi Ghee Rice",
+      "image": "/images/cuisine_tikkar.jpg"
+    },
+    {
+      "name": "Kadi Pakoda",
+      "image": "/images/cuisine_kadi_pakoda.jpg"
+    },
+    {
+      "name": "Baigan Bharta",
+      "image": "/images/cuisine_baigan_bharta.jpg"
+    },
+    {
+      "name": "Sarso Ka Sag",
+      "image": "/images/cuisine_sarso_sag.jpg"
+    },
+    {
+      "name": "Amla Chutni",
+      "image": "/images/cuisine_amla_chutni.jpg"
+    },
+    {
+      "name": "Tamatar and Dhaniya Chutney",
+      "image": "/images/cuisine_tamatar_chutney.jpg"
+    },
+    {
+      "name": "Gur",
+      "image": "/images/cuisine_gur.jpg"
+    },
+    {
+      "name": "Bundi Raita",
+      "image": "/images/cuisine_bundi_raita.jpg"
+    },
+    {
+      "name": "Maheri",
+      "image": "/images/cuisine_maheri.jpg"
+    },
+    {
+      "name": "Malpua",
+      "image": "/images/cuisine_malpua.jpg"
+    }
   ],
   "monumentsPage": {
     "heading": "Reflection of Heritage",
@@ -1319,5 +1517,135 @@
         "value": "cenotaphs"
       }
     ]
-  }
+  },
+  "accommodationPage": {
+    "heading": "Hotel and Homestay",
+    "subheading": "Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.",
+    "filterCategories": [
+      {
+        "label": "ALL",
+        "value": "all"
+      },
+      {
+        "label": "PRIVATE",
+        "value": "private"
+      },
+      {
+        "label": "HOMESTAYS",
+        "value": "homestays"
+      }
+    ]
+  },
+  "accommodations": [
+    {
+      "id": "mpt-betwa-retreat",
+      "name": "MPT Betwa Retreat, Orchha",
+      "category": "private",
+      "rating": 5.0,
+      "phone": "+91 8349 10 2398",
+      "email": "betwa@mpstdc.com",
+      "address": "Ram Mandir Rd, near Betwa River, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_mpt_betwa.jpg"
+    },
+    {
+      "id": "mpt-sheesh-mahal",
+      "name": "MPT Sheesh Mahal, Orchha",
+      "category": "private",
+      "rating": 5.0,
+      "phone": "+91 9424 79 6770",
+      "email": "smorchha@mpstdc.com",
+      "address": "Opposite Ramraja Mandir, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_mpt_sheesh_mahal.jpg"
+    },
+    {
+      "id": "orchha-palace",
+      "name": "Orchha Palace",
+      "category": "private",
+      "rating": 5.0,
+      "phone": "+91 9516 00 6201",
+      "email": "reservation@orchhapalace.com",
+      "address": "Sawant Nagar, Distt. near Ramraja Temple, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_orchha_palace.jpg"
+    },
+    {
+      "id": "orchha-resort",
+      "name": "Orchha Resort",
+      "category": "private",
+      "rating": 4.0,
+      "phone": "+91 8871 88 4037",
+      "email": "orchha@orchharesort.com",
+      "address": "Kanchanghat, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_orchha_resort.jpg"
+    },
+    {
+      "id": "hotel-bundelkhand",
+      "name": "Hotel Bundelkhand",
+      "category": "homestays",
+      "rating": 3.0,
+      "phone": "+91 9009 74 9630",
+      "email": "info@bundelkhandriverside.com",
+      "address": "Kothi Ghat, MP SH 37, Kothi Ghat, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_bundelkhand.jpg"
+    },
+    {
+      "id": "raj-vilas-palace",
+      "name": "Raj Vilas Palace Orchha",
+      "category": "private",
+      "rating": 4.0,
+      "phone": "+91 6387 56 8718",
+      "email": "reservations@rajvilasorchha.com",
+      "address": "Near Chandra Shekhar Azad Park, Beside Hotel Raj Mahal, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_raj_vilas.jpg"
+    },
+    {
+      "id": "amar-mahal",
+      "name": "Amar Mahal",
+      "category": "private",
+      "rating": 3.0,
+      "phone": "+91 7007 42 6150",
+      "email": "reservation@amarmahal.com",
+      "address": "Near Betwa River, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_amar_mahal.jpg"
+    },
+    {
+      "id": "hotel-rajmahal-1",
+      "name": "Hotel Rajmahal",
+      "category": "private",
+      "rating": 4.0,
+      "phone": "+91 7747 06 5402",
+      "email": "rajmahalorchha@gmail.com",
+      "address": "Orchha Jhansi Rd, near Chandra Shekhar Azad Park, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_rajmahal1.jpg"
+    },
+    {
+      "id": "chander-kothi",
+      "name": "Chander Kothi",
+      "category": "homestays",
+      "rating": 4.0,
+      "phone": "+91 9820 62 7469",
+      "email": "chanderkothi@gmail.com",
+      "address": "Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_chander_kothi.jpg"
+    },
+    {
+      "id": "hotel-rajmahal-2",
+      "name": "Hotel Rajmahal",
+      "category": "private",
+      "rating": 3.0,
+      "phone": "+91 9415 59 0203",
+      "email": "",
+      "address": "Opposite court, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_rajmahal2.jpg"
+    },
+    {
+      "id": "ratangarhi-by-richa",
+      "name": "Ratangarhi by Richa",
+      "category": "homestays",
+      "rating": 3.0,
+      "phone": "+91 9340 85 5417",
+      "email": "reservations@ratangarhibyricha.com",
+      "address": "Ward no.12, Gundrai, Bagan, Orchha, Madhya Pradesh 472246",
+      "image": "/images/acc_ratangarhi.jpg"
+    }
+  ]
 }

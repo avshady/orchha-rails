@@ -14,11 +14,6 @@
           Discover Orchha
           <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </button>
-        <div class="mdet-nav-dropdown" role="menu">
-          <% dd.each do |item| %>
-          <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
-          <% end %>
-        </div>
       </div>
       <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
       <a href="/news"            class="mdet-nav-link">News</a>
@@ -45,6 +40,14 @@
       <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
     </div>
     <a href="/book-tickets" class="mdet-nav-mobile-book-btn">Book Tickets</a>
+  </div>
+
+  <%# Discover dropdown — kept outside .mdet-navbar because its backdrop-filter
+      creates a new containing block for position:fixed descendants %>
+  <div class="mdet-nav-dropdown" role="menu">
+    <% dd.each do |item| %>
+    <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+    <% end %>
   </div>
 </div>
 
