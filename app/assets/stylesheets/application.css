@@ -2402,11 +2402,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   bottom: -8%;
   left: 50%;
   transform: translateX(-50%);
-  width: 88%;
   z-index: 1;
 }
 .aw-vignette-img {
-  width: 100%;
-  height: auto;
+  width: 569px;
+  height: 711px;
+  aspect-ratio: 565 / 706;
+  object-fit: contain;
   display: block;
 }
