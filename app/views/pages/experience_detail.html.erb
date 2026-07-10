@@ -29,7 +29,7 @@
   </nav>
 </div>
 
-<div class="mdet-wrapper aw-wrapper" data-panels="4">
+<div class="mdet-wrapper aw-wrapper" data-panels="5">
   <div class="mdet-sticky">
     <div class="mdet-track" id="mdet-track">
 
@@ -145,6 +145,33 @@
         </div>
         <img src="/images/aw_mural_large.jpg" class="aw-mural-large" alt="Orchha mural — Krishna">
       </section>
+
+      <%# ══ PANEL 5 — MONUMENT STOPS (4 cards) ══════════════════ %>
+      <section class="mdet-panel aw-stops-panel">
+        <div class="aw-stops-row">
+          <% [
+            { num: 1, img: 'rm_closeup_main.jpg',  name: 'Raja Mahal',        id: 'raja-mahal' },
+            { num: 2, img: 'jm_closeup_main.jpg',  name: 'Jahangir Mahal',    id: 'jahangir-mahal' },
+            { num: 3, img: 'rpm_closeup_main.jpg', name: 'Rai Praveen Mahal', id: 'rai-praveen-mahal' },
+            { num: 4, img: 'lnt_closeup_main.jpg', name: 'Lakshmi Temple',    id: 'lakshmi-narayan-temple' },
+          ].each do |stop| %>
+          <div class="aw-stop-card">
+            <div class="aw-stop-num"><%= stop[:num] %></div>
+            <div class="aw-stop-photo">
+              <img src="/images/<%= stop[:img] %>" alt="<%= stop[:name] %>">
+              <div class="aw-stop-logos">
+                <img src="/images/mpt_logo.png"         class="aw-slogo-mpt" alt="MPT">
+                <img src="/images/incredible_india.png" class="aw-slogo-ii"  alt="Incredible India">
+              </div>
+            </div>
+            <div class="aw-stop-info">
+              <h3 class="aw-stop-name"><%= stop[:name] %></h3>
+              <a href="/monuments/<%= stop[:id] %>" class="aw-stop-btn">View Monument</a>
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </section><%# /aw-stops-panel %>
 
     </div><%# /mdet-track %>
   </div><%# /mdet-sticky %>
