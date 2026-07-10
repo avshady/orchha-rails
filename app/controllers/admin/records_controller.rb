@@ -12,9 +12,16 @@ module Admin
 
     def create
       shape = @records.first.is_a?(Hash) ? @records.first : {}
-      @records << apply_fields(shape, {}, submitted_fields)
+      record = apply_fields(shape, {}, submitted_fields)
+      @records << record
       save_collection
-      redirect_to admin_collection_path(@key), notice: "Record added to #{@key}."
+      live = helpers.live_path_for(@key, record)
+      notice = if live
+        "Record added — its page is live at <a href=\"#{live}\" target=\"_blank\">#{live}</a> and its card is on the listing page."
+      else
+        "Record added."
+      end
+      redirect_to admin_collection_path(@key), notice: notice
     rescue JSON::ParserError => e
       redirect_to admin_new_collection_record_path(@key),
         alert: "Invalid JSON in a structured field — nothing saved. #{e.message.truncate(120)}"

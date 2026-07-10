@@ -42,6 +42,17 @@ class PagesController < ApplicationController
     @page = {}; @items = []; @home = {}
   end
 
+  def event
+    raw = ContentStore.raw
+    all = raw['events'] || []
+    @event = all.find { |ev| ev['id'] == params[:id] }
+    redirect_to '/events' and return unless @event
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    redirect_to '/events'
+  end
+
   def sabhyata
     raw = ContentStore.raw
     @home = raw['homePage'] || {}

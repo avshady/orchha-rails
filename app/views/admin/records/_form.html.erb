@@ -1,4 +1,5 @@
 <%# Auto-derived form: field types come from the record's current values. %>
+<% new_record = local_assigns.fetch(:new_record, false) %>
 <%= form_with url: url, method: method, local: true do %>
   <% record.each do |field, value| %>
     <div style="margin-bottom:16px;">
@@ -21,9 +22,17 @@
         <% str = value.to_s %>
         <% if str.length > 90 || str.include?("\n") %>
           <textarea name="record[<%= field %>]" rows="4" class="adm-input"><%= str %></textarea>
+        <% elsif media_field?(field) %>
+          <input type="text" name="record[<%= field %>]" value="<%= str %>" class="adm-input" data-image-field="1">
+        <% elsif field == "id" %>
+          <input type="text" name="record[<%= field %>]" value="<%= str %>" class="adm-input" id="adm-id-field"
+                 <%= "readonly" unless new_record %> style="<%= 'background:#eee6da; color:#7a6a58;' unless new_record %>">
+          <span class="adm-muted" style="font-size:12px;">
+            <%= new_record ? "Auto-filled from the name — this becomes the page URL." : "The record's URL identifier — locked after creation." %>
+          </span>
         <% else %>
           <input type="text" name="record[<%= field %>]" value="<%= str %>" class="adm-input"
-                 <%= 'data-image-field="1"'.html_safe if field.downcase.include?("image") || field.downcase.include?("photo") %>>
+                 <%= 'id="adm-name-field"'.html_safe if field == "name" || field == "title" %>>
         <% end %>
       <% end %>
     </div>
@@ -35,43 +44,21 @@
   </div>
 <% end %>
 
-<div class="adm-card" style="margin-top:18px;">
-  <strong style="color:#6e1603; font-size:14px;">Upload an image</strong>
-  <p class="adm-muted" style="margin:6px 0 12px;">Upload, then copy the URL into an image field above.</p>
-  <input type="file" id="adm-upload-input" accept="image/*,video/*">
-  <button type="button" class="adm-btn adm-btn-outline" id="adm-upload-btn" style="margin-left:8px;">Upload</button>
-  <div id="adm-upload-result" style="margin-top:10px; font-size:13px; word-break:break-all;"></div>
-</div>
-
-<style>
-  .adm-input {
-    width: 100%; padding: 9px 11px; font-size: 14px; font-family: inherit;
-    border: 1px solid #c9b9a6; border-radius: 8px; background: #faf7f2;
-  }
-  .adm-input:focus { outline: 2px solid #6e1603; border-color: #6e1603; }
-</style>
-
+<% if new_record %>
 <script>
-  document.getElementById('adm-upload-btn').addEventListener('click', async () => {
-    const input = document.getElementById('adm-upload-input');
-    const result = document.getElementById('adm-upload-result');
-    if (!input.files.length) { result.textContent = 'Choose a file first.'; return; }
-    const fd = new FormData();
-    fd.append('file', input.files[0]);
-    result.textContent = 'Uploading…';
-    try {
-      const resp = await fetch('<%= admin_uploads_path %>', {
-        method: 'POST',
-        headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content },
-        body: fd
-      });
-      const data = await resp.json();
-      if (!resp.ok) throw new Error(data.error || resp.statusText);
-      result.innerHTML = 'Uploaded: <code>' + data.url + '</code> ' +
-        '<button type="button" class="adm-btn adm-btn-outline" style="padding:3px 10px; font-size:12px;" ' +
-        'onclick="navigator.clipboard.writeText(\'' + data.url + '\')">Copy</button>';
-    } catch (e) {
-      result.textContent = 'Upload failed: ' + e.message;
-    }
-  });
+  // Auto-slug: typing the name fills the id until the id is edited by hand.
+  (function() {
+    const nameField = document.getElementById('adm-name-field');
+    const idField = document.getElementById('adm-id-field');
+    if (!nameField || !idField) return;
+    let idTouched = idField.value.length > 0;
+    idField.addEventListener('input', () => { idTouched = idField.value.length > 0; });
+    nameField.addEventListener('input', () => {
+      if (idTouched) return;
+      idField.value = nameField.value.toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, '').trim().replace(/[\s_]+/g, '-').replace(/-+/g, '-');
+    });
+    nameField.addEventListener('change', () => { if (!idTouched) idTouched = false; });
+  })();
 </script>
+<% end %>

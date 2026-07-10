@@ -1,4 +1,4 @@
-<h2 class="adm-page-title">New record in <%= @key %></h2>
+<h2 class="adm-page-title">New record in <%= key_label(@key) %></h2>
 <div class="adm-card">
-  <%= render "form", record: @record, key: @key, url: admin_collection_records_path(@key), method: :post %>
+  <%= render "form", record: @record, key: @key, url: admin_collection_records_path(@key), method: :post, new_record: true %>
 </div>

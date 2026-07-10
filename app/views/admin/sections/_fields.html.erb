@@ -42,6 +42,8 @@
       <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;"><%= field %></label>
       <% if str.length > 90 || str.include?("\n") %>
         <textarea name="<%= name %>" rows="4" class="adm-input"><%= str %></textarea>
+      <% elsif media_field?(field) %>
+        <input type="text" name="<%= name %>" value="<%= str %>" class="adm-input" data-image-field="1">
       <% else %>
         <input type="text" name="<%= name %>" value="<%= str %>" class="adm-input">
       <% end %>

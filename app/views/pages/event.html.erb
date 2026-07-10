@@ -1,0 +1,161 @@
+<%# Event detail page — auto-created for every event record %>
+<% nav = (@home['nav'] || {})
+   dd  = nav['discoverDropdown'] || []
+%>
+
+<div class="sticky-hoho"><a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a></div>
+
+<div class="mdet-nav-wrap">
+  <nav class="mdet-navbar">
+    <div class="mdet-nav-links">
+      <div class="mdet-nav-discover">
+        <a href="/" class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
+      <a href="/news"            class="mdet-nav-link">News</a>
+      <a href="/support-us"      class="mdet-nav-link">Support Us</a>
+      <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
+    </div>
+    <button class="mdet-nav-hamburger" id="mdet-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-book-btn">Book Tickets</a>
+  </nav>
+
+  <div class="mdet-nav-mobile-menu" id="mdet-nav-mobile-menu">
+    <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mdet-nav-mobile-links">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="mdet-nav-mobile-link"><%= item['label'] %></a>
+      <% end %>
+      <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
+      <a href="/news" class="mdet-nav-mobile-link">News</a>
+      <a href="/support-us" class="mdet-nav-mobile-link">Support Us</a>
+      <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
+    </div>
+    <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-nav-mobile-book-btn">Book Tickets</a>
+  </div>
+
+  <div class="mdet-nav-dropdown" role="menu">
+    <% dd.each do |item| %>
+    <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+    <% end %>
+  </div>
+</div>
+
+<div class="evd-wrap">
+  <div class="evd-hero">
+    <img src="<%= @event['image'] %>" alt="<%= @event['name'] %>">
+    <div class="evd-hero-logos">
+      <img src="/images/mpt_logo.png" class="aw-logo-mpt" alt="MPT">
+      <img src="/images/incredible_india.png" class="aw-logo-ii" alt="Incredible India">
+    </div>
+  </div>
+
+  <div class="evd-body">
+    <div class="evd-meta">
+      <% if @event['category'].present? %><span class="evd-chip"><%= @event['category'].capitalize %></span><% end %>
+      <% if @event['month'].present? %><span class="evd-chip evd-chip-light"><%= @event['month'].capitalize %></span><% end %>
+    </div>
+    <h1 class="evd-title"><%= @event['name'] %></h1>
+    <% if @event['date'].present? %><p class="evd-date"><%= @event['date'] %></p><% end %>
+
+    <% if @event['description'].present? %>
+      <div class="evd-desc"><%= simple_format(@event['description']) %></div>
+    <% end %>
+
+    <div class="evd-actions">
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="evd-book">Book Tickets</a>
+      <a href="/events" class="evd-back">← All Events</a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .evd-wrap { max-width: 1000px; margin: 0 auto; padding: 140px 24px 100px; min-height: 70vh; }
+  .evd-hero { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 8; }
+  .evd-hero > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .evd-hero-logos { position: absolute; top: 14px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 18px; }
+  .evd-body { padding-top: 30px; }
+  .evd-meta { display: flex; gap: 10px; margin-bottom: 14px; }
+  .evd-chip {
+    display: inline-block; background: #6e1603; color: #fff; border-radius: 16px;
+    padding: 5px 14px; font-family: 'Chivo', sans-serif; font-size: 12px;
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .evd-chip-light { background: rgba(110,22,3,0.12); color: #6e1603; }
+  .evd-title {
+    font-family: 'Scotch Display', serif; font-weight: 600; font-size: 54px;
+    line-height: 1.08; color: #6e1603; margin: 0 0 8px; text-transform: capitalize;
+  }
+  .evd-date { font-family: 'Chivo', sans-serif; font-size: 17px; font-weight: 600; color: #1a0a00; margin: 0 0 20px; }
+  .evd-desc { font-family: 'Gambetta', serif; font-size: 17px; line-height: 1.7; color: #1a0e06; max-width: 760px; }
+  .evd-actions { display: flex; gap: 16px; align-items: center; margin-top: 32px; }
+  .evd-book {
+    display: inline-block; padding: 12px 28px; background: #6e1603; color: #fff;
+    border-radius: 24px; font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 16px;
+  }
+  .evd-book:hover { background: #571102; }
+  .evd-back { font-family: 'Chivo', sans-serif; font-size: 15px; color: #6e1603; font-weight: 600; }
+  @media (max-width: 900px) {
+    .evd-wrap { padding: 110px 20px 70px; }
+    .evd-hero { aspect-ratio: 4 / 3; }
+    .evd-title { font-size: 36px; }
+  }
+</style>
+
+<script>
+(function() {
+  const navBtn = document.querySelector('.mdet-discover-btn');
+  const navDd  = document.querySelector('.mdet-nav-dropdown');
+  if (navBtn && navDd) {
+    let navDdCloseTimer;
+    function openDd() {
+      clearTimeout(navDdCloseTimer);
+      const r = navBtn.getBoundingClientRect();
+      navDd.style.top  = (r.bottom + 8) + 'px';
+      navDd.style.left = r.left + 'px';
+      navDd.classList.add('open');
+      navBtn.classList.add('open');
+      navBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDd() {
+      navDd.classList.remove('open');
+      navBtn.classList.remove('open');
+      navBtn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleCloseDd() { navDdCloseTimer = setTimeout(closeDd, 200); }
+    navBtn.addEventListener('mouseenter', openDd);
+    navBtn.addEventListener('mouseleave', scheduleCloseDd);
+    navDd.addEventListener('mouseenter', () => clearTimeout(navDdCloseTimer));
+    navDd.addEventListener('mouseleave', scheduleCloseDd);
+    navBtn.addEventListener('click', e => { if (navDd.classList.contains('open')) return; e.preventDefault(); openDd(); });
+    document.addEventListener('click', closeDd);
+    navDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
+  const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
+  const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
+  if (mdetHamburgerBtn && mdetMobileMenu) {
+    function openMdetMobileMenu() {
+      mdetMobileMenu.classList.add('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMdetMobileMenu() {
+      mdetMobileMenu.classList.remove('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    mdetHamburgerBtn.addEventListener('click', openMdetMobileMenu);
+    if (mdetMobileClose) mdetMobileClose.addEventListener('click', closeMdetMobileMenu);
+    mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
+  }
+})();
+</script>

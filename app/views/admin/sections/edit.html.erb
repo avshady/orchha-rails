@@ -1,8 +1,7 @@
 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
-  <h2 class="adm-page-title" style="margin-bottom:0;">Edit: <%= @block.key %></h2>
+  <h2 class="adm-page-title" style="margin-bottom:0;">Edit: <%= key_label(@block.key) %></h2>
   <div style="display:flex; gap:10px;">
     <a href="<%= edit_admin_content_block_path(@block.key) %>" class="adm-btn adm-btn-outline">Raw JSON</a>
-    <a href="<%= admin_root_path %>" class="adm-btn adm-btn-outline">Back</a>
   </div>
 </div>
 
@@ -16,43 +15,4 @@
   <% end %>
 </div>
 
-<div class="adm-card">
-  <strong style="color:#6e1603; font-size:14px;">Upload an image</strong>
-  <p class="adm-muted" style="margin:6px 0 12px;">Upload, then copy the URL into an image field above.</p>
-  <input type="file" id="adm-upload-input" accept="image/*,video/*">
-  <button type="button" class="adm-btn adm-btn-outline" id="adm-upload-btn" style="margin-left:8px;">Upload</button>
-  <div id="adm-upload-result" style="margin-top:10px; font-size:13px; word-break:break-all;"></div>
-</div>
-
-<style>
-  .adm-input {
-    width: 100%; padding: 9px 11px; font-size: 14px; font-family: inherit;
-    border: 1px solid #c9b9a6; border-radius: 8px; background: #faf7f2;
-  }
-  .adm-input:focus { outline: 2px solid #6e1603; border-color: #6e1603; }
-</style>
-
-<script>
-  document.getElementById('adm-upload-btn').addEventListener('click', async () => {
-    const input = document.getElementById('adm-upload-input');
-    const result = document.getElementById('adm-upload-result');
-    if (!input.files.length) { result.textContent = 'Choose a file first.'; return; }
-    const fd = new FormData();
-    fd.append('file', input.files[0]);
-    result.textContent = 'Uploading…';
-    try {
-      const resp = await fetch('<%= admin_uploads_path %>', {
-        method: 'POST',
-        headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content },
-        body: fd
-      });
-      const data = await resp.json();
-      if (!resp.ok) throw new Error(data.error || resp.statusText);
-      result.innerHTML = 'Uploaded: <code>' + data.url + '</code> ' +
-        '<button type="button" class="adm-btn adm-btn-outline" style="padding:3px 10px; font-size:12px;" ' +
-        'onclick="navigator.clipboard.writeText(\'' + data.url + '\')">Copy</button>';
-    } catch (e) {
-      result.textContent = 'Upload failed: ' + e.message;
-    }
-  });
-</script>
+<p class="adm-muted">Image fields have a <strong>Browse…</strong> button that opens the media library.</p>

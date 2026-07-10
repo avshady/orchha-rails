@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     root "dashboard#index"
     resources :content_blocks, param: :key, only: [ :edit, :update ]
     resources :uploads, only: [ :create ]
+    resources :media, only: [ :index, :create, :destroy ]
     resources :pages, except: [ :show ]
     get "export", to: "exports#show", defaults: { format: :json }
 
@@ -26,6 +27,7 @@ Rails.application.routes.draw do
   get "/monuments/:id", to: "pages#monument"
   get "/accommodation", to: "pages#accommodation"
   get "/events", to: "pages#events"
+  get "/events/:id", to: "pages#event"
   get "/sabhyata", to: "pages#sabhyata"
   get "/experiences", to: "pages#experiences"
   get "/experiences/eco-trail", to: "pages#eco_trail"

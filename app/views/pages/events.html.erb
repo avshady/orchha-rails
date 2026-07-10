@@ -105,7 +105,7 @@
     <%# Cards grid %>
     <div class="evt-cards" id="evt-cards">
       <% @items.each do |ev| %>
-      <a href="<%= ev['detailPage'] || '#' %>" class="evt-card"
+      <a href="/events/<%= ev['id'] %>" class="evt-card"
          data-cat="<%= ev['category'] || 'upcoming' %>"
          data-month="<%= ev['month'] %>">
         <div class="evt-card-photo">

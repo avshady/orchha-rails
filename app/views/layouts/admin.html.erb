@@ -10,32 +10,54 @@
       * { box-sizing: border-box; margin: 0; padding: 0; }
       body {
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        background: #e7ded5; color: #1a0a00; min-height: 100vh;
+        background: #f2ece3; color: #1a0a00; min-height: 100vh;
       }
-      .adm-topbar {
-        background: #6e1603; color: #fff;
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 14px 28px;
+      .adm-shell { display: flex; min-height: 100vh; }
+
+      /* ── Sidebar ─────────────────────────────── */
+      .adm-sidebar {
+        width: 240px; flex-shrink: 0; background: #6e1603; color: #fff;
+        display: flex; flex-direction: column; position: sticky; top: 0;
+        height: 100vh; overflow-y: auto;
       }
-      .adm-topbar h1 { font-size: 18px; font-weight: 700; letter-spacing: 0.03em; }
-      .adm-topbar .adm-top-right { display: flex; align-items: center; gap: 18px; }
-      .adm-topbar a, .adm-topbar button {
-        color: #f3d9a4; font-size: 14px; text-decoration: none;
-        background: none; border: none; cursor: pointer; font-family: inherit;
+      .adm-logo { padding: 22px 22px 18px; font-size: 17px; font-weight: 800; letter-spacing: 0.05em; }
+      .adm-logo span { color: #f3d9a4; }
+      .adm-nav { flex: 1; padding-bottom: 20px; }
+      .adm-nav-group { margin-top: 14px; }
+      .adm-nav-group-label {
+        padding: 6px 22px; font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em;
+        text-transform: uppercase; color: rgba(255,255,255,0.45);
       }
-      .adm-topbar a:hover, .adm-topbar button:hover { text-decoration: underline; }
-      .adm-main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 80px; }
+      .adm-nav a {
+        display: block; padding: 8px 22px; color: rgba(255,255,255,0.88);
+        font-size: 14px; text-decoration: none;
+      }
+      .adm-nav a:hover { background: rgba(255,255,255,0.08); }
+      .adm-nav a.active { background: rgba(255,255,255,0.16); color: #fff; font-weight: 600; border-right: 3px solid #f3d9a4; }
+      .adm-nav .adm-subnav a { padding-left: 40px; font-size: 13px; color: rgba(255,255,255,0.75); }
+      .adm-nav .adm-subnav a.active { color: #fff; }
+      .adm-sidebar-foot { padding: 16px 22px; border-top: 1px solid rgba(255,255,255,0.15); display: flex; flex-direction: column; gap: 8px; }
+      .adm-sidebar-foot a, .adm-sidebar-foot button {
+        color: #f3d9a4; font-size: 13px; text-decoration: none; background: none;
+        border: none; cursor: pointer; font-family: inherit; text-align: left; padding: 0;
+      }
+      .adm-sidebar-foot a:hover, .adm-sidebar-foot button:hover { text-decoration: underline; }
+
+      /* ── Main ────────────────────────────────── */
+      .adm-content { flex: 1; min-width: 0; }
+      .adm-main { max-width: 1060px; margin: 0 auto; padding: 32px 32px 90px; }
       .adm-flash { border-radius: 8px; padding: 12px 16px; margin-bottom: 20px; font-size: 14px; }
       .adm-flash-notice { background: #e3efdd; color: #2c5424; border: 1px solid #9dc18f; }
       .adm-flash-alert  { background: #f6e0dc; color: #8a1f0e; border: 1px solid #d9a196; }
-      h2.adm-page-title { font-size: 26px; margin-bottom: 20px; color: #6e1603; }
+      .adm-flash a { color: inherit; font-weight: 700; }
+      h2.adm-page-title { font-size: 25px; margin-bottom: 20px; color: #6e1603; }
       .adm-card {
-        background: #fff; border: 1px solid #d8cbbc; border-radius: 10px;
+        background: #fff; border: 1px solid #ddd0bf; border-radius: 12px;
         padding: 20px 22px; margin-bottom: 16px;
       }
       table.adm-table { width: 100%; border-collapse: collapse; font-size: 14px; }
       table.adm-table th, table.adm-table td {
-        text-align: left; padding: 10px 12px; border-bottom: 1px solid #e8ddcf;
+        text-align: left; padding: 10px 12px; border-bottom: 1px solid #ece2d2;
       }
       table.adm-table th { color: #6e1603; font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
       table.adm-table tr:last-child td { border-bottom: none; }
@@ -44,27 +66,214 @@
         border: none; border-radius: 8px; padding: 9px 18px; font-size: 14px;
         cursor: pointer; text-decoration: none !important; font-family: inherit;
       }
-      .adm-btn:hover { background: #571102; text-decoration: none; }
-      .adm-btn-outline {
-        background: transparent; color: #6e1603 !important;
-        border: 1.5px solid #6e1603;
-      }
+      .adm-btn:hover { background: #571102; }
+      .adm-btn-outline { background: transparent; color: #6e1603 !important; border: 1.5px solid #6e1603; }
       .adm-btn-outline:hover { background: rgba(110,22,3,0.07); }
       .adm-muted { color: #7a6a58; font-size: 13px; }
+      .adm-input {
+        width: 100%; padding: 9px 11px; font-size: 14px; font-family: inherit;
+        border: 1px solid #c9b9a6; border-radius: 8px; background: #faf7f2;
+      }
+      .adm-input:focus { outline: 2px solid #6e1603; border-color: #6e1603; }
+
+      /* ── Media picker modal ──────────────────── */
+      .adm-modal-backdrop {
+        display: none; position: fixed; inset: 0; background: rgba(26,10,0,0.55); z-index: 900;
+        align-items: center; justify-content: center; padding: 30px;
+      }
+      .adm-modal-backdrop.open { display: flex; }
+      .adm-modal {
+        background: #fff; border-radius: 14px; width: 100%; max-width: 860px;
+        max-height: 85vh; display: flex; flex-direction: column; overflow: hidden;
+      }
+      .adm-modal-head {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 16px 20px; border-bottom: 1px solid #ece2d2;
+      }
+      .adm-modal-head strong { color: #6e1603; font-size: 16px; }
+      .adm-modal-tools { display: flex; gap: 10px; align-items: center; }
+      .adm-modal-body { overflow-y: auto; padding: 18px 20px; }
+      .adm-media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+      .adm-media-item {
+        border: 2px solid #ece2d2; border-radius: 10px; overflow: hidden; cursor: pointer;
+        background: #faf7f2; transition: border-color 0.1s;
+      }
+      .adm-media-item:hover { border-color: #6e1603; }
+      .adm-media-item img { width: 100%; aspect-ratio: 1; object-fit: cover; display: block; }
+      .adm-media-item .adm-media-name {
+        font-size: 11px; padding: 6px 8px; color: #5a4a38;
+        white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      }
+      .adm-media-kind { font-size: 10px; color: #a08d76; padding: 0 8px 6px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+      /* image-field row */
+      .adm-imgfield { display: flex; gap: 8px; align-items: center; }
+      .adm-imgfield .adm-input { flex: 1; }
+      .adm-imgfield-thumb { width: 38px; height: 38px; border-radius: 6px; object-fit: cover; border: 1px solid #ddd0bf; flex-shrink: 0; }
+
+      @media (max-width: 900px) {
+        .adm-shell { flex-direction: column; }
+        .adm-sidebar { width: 100%; height: auto; position: static; }
+        .adm-main { padding: 22px 16px 70px; }
+      }
     </style>
   </head>
   <body>
-    <div class="adm-topbar">
-      <h1>ORCHHA CMS</h1>
-      <div class="adm-top-right">
-        <a href="/" target="_blank">View site ↗</a>
-        <%= button_to "Sign out", session_path, method: :delete %>
+    <div class="adm-shell">
+      <aside class="adm-sidebar">
+        <div class="adm-logo">ORCHHA <span>CMS</span></div>
+        <nav class="adm-nav">
+          <% admin_nav.each do |group| %>
+            <div class="adm-nav-group">
+              <div class="adm-nav-group-label"><%= group[:group] %></div>
+              <% group[:items].each do |item| %>
+                <% active = request.fullpath.match?(item[:match]) %>
+                <a href="<%= item[:path] %>" class="<%= 'active' if active && item[:children].blank? %>"><%= item[:label] %></a>
+                <% if item[:children].present? && active %>
+                  <div class="adm-subnav">
+                    <% item[:children].each do |child| %>
+                      <a href="<%= child[:path] %>" class="<%= 'active' if request.fullpath.match?(child[:match]) %>"><%= child[:label] %></a>
+                    <% end %>
+                  </div>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        </nav>
+        <div class="adm-sidebar-foot">
+          <a href="/" target="_blank">View site ↗</a>
+          <%= button_to "Sign out", session_path, method: :delete %>
+        </div>
+      </aside>
+
+      <div class="adm-content">
+        <div class="adm-main">
+          <% if flash[:notice] %><div class="adm-flash adm-flash-notice"><%= sanitize flash[:notice], tags: %w[a strong], attributes: %w[href target] %></div><% end %>
+          <% if flash[:alert] %><div class="adm-flash adm-flash-alert"><%= sanitize flash[:alert], tags: %w[a strong], attributes: %w[href target] %></div><% end %>
+          <%= yield %>
+        </div>
       </div>
     </div>
-    <div class="adm-main">
-      <% if flash[:notice] %><div class="adm-flash adm-flash-notice"><%= flash[:notice] %></div><% end %>
-      <% if flash[:alert] %><div class="adm-flash adm-flash-alert"><%= flash[:alert] %></div><% end %>
-      <%= yield %>
+
+    <%# ── Shared media picker modal ─────────────────────────── %>
+    <div class="adm-modal-backdrop" id="adm-media-modal">
+      <div class="adm-modal">
+        <div class="adm-modal-head">
+          <strong>Choose media</strong>
+          <div class="adm-modal-tools">
+            <input type="text" id="adm-media-search" class="adm-input" placeholder="Search…" style="width:180px; padding:6px 10px;">
+            <label class="adm-btn adm-btn-outline" style="padding:6px 14px; font-size:13px;">
+              Upload new
+              <input type="file" id="adm-media-upload" accept="image/*,video/*" style="display:none;">
+            </label>
+            <button type="button" class="adm-btn adm-btn-outline" style="padding:6px 14px; font-size:13px;" onclick="admCloseMediaModal()">Close</button>
+          </div>
+        </div>
+        <div class="adm-modal-body">
+          <div class="adm-media-grid" id="adm-media-grid"><span class="adm-muted">Loading…</span></div>
+        </div>
+      </div>
     </div>
+
+    <script>
+      // ── Media picker (shared) ──────────────────────────────
+      let admMediaTarget = null;
+      let admMediaItems = null;
+
+      function admOpenMediaModal(targetInput) {
+        admMediaTarget = targetInput;
+        document.getElementById('adm-media-modal').classList.add('open');
+        if (admMediaItems) { admRenderMedia(); } else { admLoadMedia(); }
+      }
+      function admCloseMediaModal() {
+        document.getElementById('adm-media-modal').classList.remove('open');
+        admMediaTarget = null;
+      }
+      async function admLoadMedia() {
+        try {
+          const resp = await fetch('<%= admin_media_path %>.json');
+          const data = await resp.json();
+          admMediaItems = data.items;
+          admRenderMedia();
+        } catch (e) {
+          document.getElementById('adm-media-grid').innerHTML = '<span class="adm-muted">Failed to load media.</span>';
+        }
+      }
+      function admRenderMedia() {
+        const q = (document.getElementById('adm-media-search').value || '').toLowerCase();
+        const grid = document.getElementById('adm-media-grid');
+        const items = admMediaItems.filter(it => it.name.toLowerCase().includes(q));
+        if (!items.length) { grid.innerHTML = '<span class="adm-muted">No media found.</span>'; return; }
+        grid.innerHTML = items.map((it, i) => `
+          <div class="adm-media-item" data-url="${it.url}">
+            ${it.image ? `<img src="${it.url}" loading="lazy" alt="">` : `<div style="aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-size:24px;">🎞</div>`}
+            <div class="adm-media-name" title="${it.name}">${it.name}</div>
+            <div class="adm-media-kind">${it.kind === 'upload' ? 'Uploaded' : 'Site image'}</div>
+          </div>`).join('');
+        grid.querySelectorAll('.adm-media-item').forEach(el => {
+          el.addEventListener('click', () => {
+            if (admMediaTarget) {
+              admMediaTarget.value = el.dataset.url;
+              admMediaTarget.dispatchEvent(new Event('input', { bubbles: true }));
+            }
+            admCloseMediaModal();
+          });
+        });
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        const search = document.getElementById('adm-media-search');
+        if (search) search.addEventListener('input', () => admMediaItems && admRenderMedia());
+
+        const upload = document.getElementById('adm-media-upload');
+        if (upload) upload.addEventListener('change', async () => {
+          if (!upload.files.length) return;
+          const fd = new FormData();
+          fd.append('file', upload.files[0]);
+          const grid = document.getElementById('adm-media-grid');
+          grid.innerHTML = '<span class="adm-muted">Uploading…</span>';
+          try {
+            const resp = await fetch('<%= admin_media_path %>', {
+              method: 'POST',
+              headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content },
+              body: fd
+            });
+            const item = await resp.json();
+            if (!resp.ok) throw new Error(item.error || resp.statusText);
+            admMediaItems = [item].concat(admMediaItems || []);
+            admRenderMedia();
+          } catch (e) {
+            grid.innerHTML = '<span class="adm-muted">Upload failed: ' + e.message + '</span>';
+          }
+          upload.value = '';
+        });
+
+        // Enhance image fields: Browse button + live thumbnail
+        document.querySelectorAll('input[data-image-field]').forEach(input => {
+          const row = document.createElement('div');
+          row.className = 'adm-imgfield';
+          input.parentNode.insertBefore(row, input);
+          const thumb = document.createElement('img');
+          thumb.className = 'adm-imgfield-thumb';
+          function syncThumb() {
+            if (input.value) { thumb.src = input.value; thumb.style.display = ''; }
+            else { thumb.style.display = 'none'; }
+          }
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'adm-btn adm-btn-outline';
+          btn.style.cssText = 'padding:7px 14px; font-size:13px; white-space:nowrap;';
+          btn.textContent = 'Browse…';
+          btn.addEventListener('click', () => admOpenMediaModal(input));
+          row.appendChild(thumb);
+          row.appendChild(input);
+          row.appendChild(btn);
+          input.addEventListener('input', syncThumb);
+          syncThumb();
+        });
+      });
+      document.getElementById('adm-media-modal').addEventListener('click', e => {
+        if (e.target.id === 'adm-media-modal') admCloseMediaModal();
+      });
+    </script>
   </body>
 </html>

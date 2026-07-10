@@ -1,0 +1,66 @@
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+  <h2 class="adm-page-title" style="margin-bottom:0;">Media</h2>
+  <label class="adm-btn">
+    Upload new
+    <input type="file" id="adm-page-upload" accept="image/*,video/*" style="display:none;">
+  </label>
+</div>
+
+<div class="adm-card">
+  <h3 style="color:#6e1603; font-size:15px; margin-bottom:14px;">Uploaded files (<%= @uploads.size %>)</h3>
+  <% if @uploads.any? %>
+  <div class="adm-media-grid">
+    <% @uploads.each do |blob| %>
+    <div class="adm-media-item" style="cursor:default;">
+      <% if blob.content_type.to_s.start_with?("image/") %>
+        <img src="<%= rails_storage_proxy_path(blob) %>" loading="lazy" alt="">
+      <% else %>
+        <div style="aspect-ratio:1; display:flex; align-items:center; justify-content:center; font-size:24px;">🎞</div>
+      <% end %>
+      <div class="adm-media-name" title="<%= blob.filename %>"><%= blob.filename %></div>
+      <div style="display:flex; gap:6px; padding:0 8px 8px;">
+        <button type="button" class="adm-btn adm-btn-outline" style="padding:3px 9px; font-size:11px;"
+          onclick="navigator.clipboard.writeText('<%= rails_storage_proxy_path(blob) %>'); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy URL',1200)">Copy URL</button>
+        <%= button_to "Delete", admin_medium_path(blob.signed_id), method: :delete,
+              form: { onsubmit: "return confirm('Delete #{blob.filename}? Content still pointing at it will break.')", style: "display:inline;" },
+              class: "adm-btn adm-btn-outline", style: "padding:3px 9px; font-size:11px;" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <% else %>
+  <p class="adm-muted">Nothing uploaded yet. Files you upload here (or from any image field) appear in this library.</p>
+  <% end %>
+</div>
+
+<div class="adm-card">
+  <h3 style="color:#6e1603; font-size:15px; margin-bottom:14px;">Site images (<%= @site_images.size %>)</h3>
+  <p class="adm-muted" style="margin-bottom:14px;">Bundled with the site design. Available in every image picker; cannot be deleted from here.</p>
+  <div class="adm-media-grid">
+    <% @site_images.each do |path| %>
+    <div class="adm-media-item" style="cursor:default;">
+      <img src="<%= path %>" loading="lazy" alt="">
+      <div class="adm-media-name" title="<%= File.basename(path) %>"><%= File.basename(path) %></div>
+      <div style="padding:0 8px 8px;">
+        <button type="button" class="adm-btn adm-btn-outline" style="padding:3px 9px; font-size:11px;"
+          onclick="navigator.clipboard.writeText('<%= path %>'); this.textContent='Copied!'; setTimeout(()=>this.textContent='Copy URL',1200)">Copy URL</button>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  document.getElementById('adm-page-upload').addEventListener('change', async function() {
+    if (!this.files.length) return;
+    const fd = new FormData();
+    fd.append('file', this.files[0]);
+    const resp = await fetch('<%= admin_media_path %>', {
+      method: 'POST',
+      headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content },
+      body: fd
+    });
+    if (resp.ok) { window.location.reload(); }
+    else { alert('Upload failed'); }
+  });
+</script>
