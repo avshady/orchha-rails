@@ -1,11 +1,10 @@
 class HomeController < ApplicationController
-  CMS_CONTENT_PATH = Rails.root.join('content.json').freeze
 
   def index
-    raw = JSON.parse(File.read(CMS_CONTENT_PATH))
+    raw = ContentStore.raw
     @page = raw['homePage'] || {}
   rescue => e
-    Rails.logger.error "CMS content.json read failed: #{e.message}"
+    Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}
   end
 end

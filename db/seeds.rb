@@ -1,9 +1,17 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+# Imports content.json into content_blocks, one row per top-level key.
+# Idempotent and non-destructive: existing rows (i.e. admin edits) are never
+# overwritten — only missing keys are created.
+path = Rails.root.join("content.json")
+
+if File.exist?(path)
+  data = JSON.parse(File.read(path, encoding: "UTF-8"))
+  created = 0
+  data.each do |key, value|
+    next if ContentBlock.exists?(key: key)
+    ContentBlock.create!(key: key, data: value)
+    created += 1
+  end
+  puts "Seeded #{created} content block(s); #{ContentBlock.count} total."
+else
+  puts "content.json not found — skipping content seed."
+end
