@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "orchha-rails",
+      "runtimeExecutable": "/opt/homebrew/opt/ruby/bin/ruby",
+      "runtimeArgs": ["/opt/homebrew/lib/ruby/gems/4.0.0/bin/rails", "server", "-p", "3001"],
+      "port": 3001
+    }
+  ]
+}

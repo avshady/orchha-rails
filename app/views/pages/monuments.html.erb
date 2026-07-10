@@ -1,0 +1,208 @@
+<%# Monuments & Heritage page %>
+<% ft       = (@home['footer'] || {})
+   ft_links = ft['links'] || []
+   vs       = @home['visit'] || {}
+   nav      = @home['nav']   || {}
+   dd       = nav['discoverDropdown'] || []
+   cats     = @page['filterCategories'] || [
+     {'label'=>'ALL','value'=>'all'},
+     {'label'=>'FORT COMPLEX','value'=>'fort-complex'},
+     {'label'=>'TEMPLE','value'=>'temple'},
+     {'label'=>'CENOTAPHS','value'=>'cenotaphs'}
+   ]
+%>
+
+<%# Sticky HOHO button %>
+<div class="sticky-hoho">
+  <a href="/hoho">HOHO Service</a>
+</div>
+
+<div class="mon-page">
+
+  <%# ── NAVBAR ─────────────────────────────────────────── %>
+  <div class="mon-nav-wrap">
+    <nav class="hist-navbar">
+      <div class="nav-links">
+        <div class="nav-discover">
+          <button class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+            Discover Orchha
+            <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="hist-nav-dropdown" role="menu">
+            <% dd.each do |item| %>
+            <a href="<%= item['url'] %>" class="hist-nav-dropdown-item" role="menuitem"><%= item['label'] %></a>
+            <% end %>
+          </div>
+        </div>
+        <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
+        <a href="/sabhyata" class="hist-nav-link">Sabhyata</a>
+        <a href="/news" class="hist-nav-link">News</a>
+        <a href="/support-us" class="hist-nav-link">Support Us</a>
+      </div>
+      <a href="/book-tickets" class="hist-book-btn">Book Tickets</a>
+    </nav>
+  </div>
+
+  <%# ── HEADER ─────────────────────────────────────────── %>
+  <header class="mon-header">
+    <h1 class="mon-heading">Reflection of Heritage</h1>
+    <p class="mon-subheading"><%= @page['subheading'] || 'Each Monument in Orchha is a Chapter. Together, they tell the Story of a Kingdom.' %></p>
+  </header>
+
+  <%# ── MONUMENT SECTION ──────────────────────────────── %>
+  <section class="mon-section">
+
+    <%# Filter row %>
+    <div class="mon-filter-row">
+      <div class="mon-filter-tabs" role="tablist">
+        <% cats.each_with_index do |cat, i| %>
+        <button class="mon-tab <%= i == 0 ? 'active' : '' %>"
+                data-cat="<%= cat['value'] %>"
+                role="tab"
+                aria-selected="<%= i == 0 ? 'true' : 'false' %>">
+          <%= cat['label'] %>
+        </button>
+        <% end %>
+      </div>
+      <div class="mon-search">
+        <input class="mon-search-input" type="text" id="mon-search-input" placeholder="Search monuments...">
+        <svg class="mon-search-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="9" cy="9" r="6" stroke="#6e1603" stroke-width="2"/>
+          <path d="M13.5 13.5L17 17" stroke="#6e1603" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <%# Cards grid %>
+    <div class="mon-cards" id="mon-cards">
+      <% @monuments.each do |m| %>
+      <div class="mon-card"
+           data-cat="<%= m['filterCategory'] || 'all' %>"
+           data-name="<%= m['name'].downcase %>">
+        <div class="mon-card-img">
+          <img src="<%= m['image'] %>" alt="<%= m['name'] %>" loading="lazy">
+          <img src="/images/mpt_logo.png" class="mon-card-mpt" alt="MPT">
+          <img src="/images/incredible_india.png" class="mon-card-ii" alt="Incredible India">
+        </div>
+        <div class="mon-card-info">
+          <h3 class="mon-card-name"><%= m['name'] %></h3>
+          <a href="/monuments/<%= m['id'] %>" class="mon-card-explore">
+            Explore
+            <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 5h13M10 1l4 4-4 4" stroke="#535353" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <% end %>
+    </div>
+
+    <%# Empty state %>
+    <p class="mon-empty" id="mon-empty" style="display:none">No monuments found.</p>
+
+  </section>
+
+  <%# ── VISIT ORCHHA (reused) ──────────────────────────── %>
+  <div class="visit-wrap">
+    <div class="visit-section">
+      <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
+      <div class="visit-content">
+        <h2 class="visit-heading"><em>Visit</em> Orchha</h2>
+        <div class="visit-links">
+          <% (vs['links'] || [{'label'=>'How to Reach Orchha','url'=>'/reach'},{'label'=>'Travel Options','url'=>'/travel'},{'label'=>'Stay Options','url'=>'/stay'}]).each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="visit-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# ── FOOTER ─────────────────────────────────────────── %>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <% ft_links.each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="footer-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+        <div class="footer-logos">
+          <img src="/images/incredible_india.png" alt="Incredible India" class="footer-logo-ii">
+          <img src="/images/mpt_logo.png" alt="MPTDC" class="footer-logo-mptdc">
+          <img src="/images/footer_logo_sabhyata.png" alt="Sabhyata Foundation" class="footer-logo-sabhyata">
+        </div>
+        <div class="footer-map">
+          <img src="/images/footer_map.jpg" alt="Orchha map">
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span class="footer-copy"><%= ft['copyright'] || '@2026ORCHHA' %></span>
+        <span class="footer-copy"><%= ft['org'] || 'SABHYATA Foundation' %></span>
+      </div>
+    </div>
+  </footer>
+
+</div><%# /.mon-page %>
+
+<script>
+  // ── Navbar dropdown ───────────────────────────────────────
+  const monBtn = document.querySelector('.hist-nav-discover-btn');
+  const monDd  = document.querySelector('.hist-nav-dropdown');
+  if (monBtn && monDd) {
+    function openMonDd() {
+      const r = monBtn.getBoundingClientRect();
+      monDd.style.top  = (r.bottom + 8) + 'px';
+      monDd.style.left = r.left + 'px';
+      monDd.classList.add('open');
+      monBtn.classList.add('open');
+      monBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeMonDd() {
+      monDd.classList.remove('open');
+      monBtn.classList.remove('open');
+      monBtn.setAttribute('aria-expanded', 'false');
+    }
+    monBtn.addEventListener('click', e => { e.stopPropagation(); monDd.classList.contains('open') ? closeMonDd() : openMonDd(); });
+    document.addEventListener('click', closeMonDd);
+    monDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Filter + Search ───────────────────────────────────────
+  const cards   = Array.from(document.querySelectorAll('.mon-card'));
+  const tabs    = Array.from(document.querySelectorAll('.mon-tab'));
+  const empty   = document.getElementById('mon-empty');
+  let activeCat = 'all';
+  let searchVal = '';
+
+  function applyFilter() {
+    let visible = 0;
+    cards.forEach(card => {
+      const cat  = card.dataset.cat;
+      const name = card.dataset.name;
+      const catOk  = activeCat === 'all' || cat === activeCat;
+      const nameOk = name.includes(searchVal.toLowerCase());
+      const show = catOk && nameOk;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    empty.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      activeCat = tab.dataset.cat;
+      applyFilter();
+    });
+  });
+
+  document.getElementById('mon-search-input').addEventListener('input', e => {
+    searchVal = e.target.value;
+    applyFilter();
+  });
+</script>

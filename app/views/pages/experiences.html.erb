@@ -1,0 +1,240 @@
+<%# Experiences & Trails page %>
+<% ft       = (@home['footer'] || {})
+   ft_links = ft['links'] || []
+   vs       = @home['visit'] || {}
+   nav      = @home['nav']   || {}
+   dd       = nav['discoverDropdown'] || []
+   cats     = @page['filterCategories'] || [
+     {'label'=>'ALL','value'=>'all'},
+     {'label'=>'WALKS','value'=>'walks'},
+     {'label'=>'TRAILS','value'=>'trails'},
+     {'label'=>'EVENING EXPERIENCES','value'=>'evening-experiences'},
+     {'label'=>'ADVENTURE','value'=>'adventure'}
+   ]
+%>
+
+<%# Sticky HOHO button %>
+<div class="sticky-hoho">
+  <a href="/hoho">HOHO Service</a>
+</div>
+
+<div class="exp-page">
+
+  <%# ── NAVBAR ─────────────────────────────────────────── %>
+  <div class="mon-nav-wrap">
+    <nav class="hist-navbar">
+      <div class="nav-links">
+        <div class="nav-discover">
+          <button class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+            Discover Orchha
+            <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="hist-nav-dropdown" role="menu">
+            <% dd.each do |item| %>
+            <a href="<%= item['url'] %>" class="hist-nav-dropdown-item" role="menuitem"><%= item['label'] %></a>
+            <% end %>
+          </div>
+        </div>
+        <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
+        <a href="/sabhyata" class="hist-nav-link">Sabhyata</a>
+        <a href="/news" class="hist-nav-link">News</a>
+        <a href="/support-us" class="hist-nav-link">Support Us</a>
+      </div>
+      <a href="/book-tickets" class="hist-book-btn">Book Tickets</a>
+    </nav>
+  </div>
+
+  <%# ── HEADER ─────────────────────────────────────────── %>
+  <header class="exp-header">
+    <h1 class="exp-heading"><%= @page['heading'] || 'Experiences and Trails' %></h1>
+    <p class="exp-subheading"><%= @page['subheading'] || 'Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.' %></p>
+  </header>
+
+  <%# ── FILTER + SEARCH ────────────────────────────────── %>
+  <div class="exp-filter-row">
+    <div class="exp-filter-tabs" role="tablist">
+      <% cats.each_with_index do |cat, i| %>
+      <button class="exp-tab <%= i == 0 ? 'active' : '' %>"
+              data-cat="<%= cat['value'] %>"
+              role="tab"
+              aria-selected="<%= i == 0 ? 'true' : 'false' %>">
+        <%= cat['label'] %>
+      </button>
+      <% end %>
+    </div>
+    <div class="exp-search">
+      <input class="exp-search-input" type="text" id="exp-search-input" placeholder="Search experiences...">
+      <svg class="exp-search-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="9" cy="9" r="6" stroke="#6e1603" stroke-width="2"/>
+        <path d="M13.5 13.5L17 17" stroke="#6e1603" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <%# ── EXPERIENCE CARDS GRID ──────────────────────────── %>
+  <section class="exp-section">
+    <div class="exp-cards" id="exp-cards">
+      <% @items.each do |item| %>
+      <div class="exp-card"
+           data-cat="<%= item['category'] || 'all' %>"
+           data-name="<%= item['name'].downcase %>">
+        <div class="exp-card-photo">
+          <img src="<%= item['image'] %>" alt="<%= item['name'] %>" loading="lazy">
+          <img src="/images/mpt_logo.png" class="exp-card-mpt" alt="MPT">
+          <img src="/images/incredible_india.png" class="exp-card-ii" alt="Incredible India">
+        </div>
+        <div class="exp-card-bottom">
+          <h3 class="exp-card-title"><%= item['name'] %></h3>
+          <a href="/experiences/<%= item['id'] %>" class="exp-card-explore">
+            Explore
+            <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 5h13M10 1l4 4-4 4" stroke="#535353" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <% end %>
+    </div>
+    <p class="exp-empty" id="exp-empty" style="display:none">No experiences found.</p>
+  </section>
+
+  <%# ── CUISINE STRIP ──────────────────────────────────── %>
+  <section class="exp-cuisine">
+    <h2 class="exp-cuisine-heading">Must Try Bundelkhand Cuisine</h2>
+    <div class="exp-cuisine-track-wrap">
+      <div class="exp-cuisine-track" id="exp-cuisine-track">
+        <% (@cuisine + @cuisine).each do |c| %>
+        <div class="exp-cuisine-card">
+          <img src="<%= c['image'] %>" alt="<%= c['name'] %>" loading="lazy">
+          <div class="exp-cuisine-overlay">
+            <span class="exp-cuisine-name"><%= c['name'] %></span>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <%# ── VISIT ORCHHA ────────────────────────────────────── %>
+  <div class="visit-wrap">
+    <div class="visit-section">
+      <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
+      <div class="visit-content">
+        <h2 class="visit-heading"><em>Visit</em> Orchha</h2>
+        <div class="visit-links">
+          <% (vs['links'] || [{'label'=>'How to Reach Orchha','url'=>'/reach'},{'label'=>'Travel Options','url'=>'/travel'},{'label'=>'Stay Options','url'=>'/stay'}]).each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="visit-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# ── FOOTER ─────────────────────────────────────────── %>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <% ft_links.each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="footer-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+        <div class="footer-logos">
+          <img src="/images/incredible_india.png" alt="Incredible India" class="footer-logo-ii">
+          <img src="/images/mpt_logo.png" alt="MPTDC" class="footer-logo-mptdc">
+          <img src="/images/footer_logo_sabhyata.png" alt="Sabhyata Foundation" class="footer-logo-sabhyata">
+        </div>
+        <div class="footer-map">
+          <img src="/images/footer_map.jpg" alt="Orchha map">
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span class="footer-copy"><%= ft['copyright'] || '@2026ORCHHA' %></span>
+        <span class="footer-copy"><%= ft['org'] || 'SABHYATA Foundation' %></span>
+      </div>
+    </div>
+  </footer>
+
+</div><%# /.exp-page %>
+
+<script>
+  // ── Navbar dropdown ───────────────────────────────────────
+  const expNavBtn = document.querySelector('.hist-nav-discover-btn');
+  const expNavDd  = document.querySelector('.hist-nav-dropdown');
+  if (expNavBtn && expNavDd) {
+    function openExpDd() {
+      const r = expNavBtn.getBoundingClientRect();
+      expNavDd.style.top  = (r.bottom + 8) + 'px';
+      expNavDd.style.left = r.left + 'px';
+      expNavDd.classList.add('open');
+      expNavBtn.classList.add('open');
+      expNavBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeExpDd() {
+      expNavDd.classList.remove('open');
+      expNavBtn.classList.remove('open');
+      expNavBtn.setAttribute('aria-expanded', 'false');
+    }
+    expNavBtn.addEventListener('click', e => { e.stopPropagation(); expNavDd.classList.contains('open') ? closeExpDd() : openExpDd(); });
+    document.addEventListener('click', closeExpDd);
+    expNavDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Filter + Search ───────────────────────────────────────
+  const expCards   = Array.from(document.querySelectorAll('.exp-card'));
+  const expTabs    = Array.from(document.querySelectorAll('.exp-tab'));
+  const expEmpty   = document.getElementById('exp-empty');
+  let expActiveCat = 'all';
+  let expSearchVal = '';
+
+  function applyExpFilter() {
+    let visible = 0;
+    expCards.forEach(card => {
+      const catOk  = expActiveCat === 'all' || card.dataset.cat === expActiveCat;
+      const nameOk = card.dataset.name.includes(expSearchVal.toLowerCase());
+      const show   = catOk && nameOk;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    expEmpty.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  expTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      expTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      expActiveCat = tab.dataset.cat;
+      applyExpFilter();
+    });
+  });
+
+  document.getElementById('exp-search-input').addEventListener('input', e => {
+    expSearchVal = e.target.value;
+    applyExpFilter();
+  });
+
+  // ── Cuisine auto-scroll ───────────────────────────────────
+  (function() {
+    const track = document.getElementById('exp-cuisine-track');
+    if (!track) return;
+    let pos = 0;
+    const speed = 0.6;
+    let raf;
+    const half = track.scrollWidth / 2;
+
+    function tick() {
+      pos += speed;
+      if (pos >= half) pos = 0;
+      track.style.transform = 'translateX(-' + pos + 'px)';
+      raf = requestAnimationFrame(tick);
+    }
+
+    track.addEventListener('mouseenter', () => cancelAnimationFrame(raf));
+    track.addEventListener('mouseleave', () => { raf = requestAnimationFrame(tick); });
+    raf = requestAnimationFrame(tick);
+  })();
+</script>

@@ -1,0 +1,586 @@
+<%# Sticky HOHO button %>
+<div class="sticky-hoho">
+  <a href="/hoho">HOHO Service</a>
+</div>
+
+<%# ── HERO ───────────────────────────────────────────── %>
+<% hero   = @page['hero'] || {}
+   slides = hero['slides'] || []
+   slides = [{'type'=>'image','src'=>'/images/hero_bg.jpg'}] if slides.empty? %>
+<section class="hero">
+  <%# Carousel slides — stacked, crossfade via opacity %>
+  <div class="hero-slides" data-slide-count="<%= slides.size %>">
+    <% slides.each_with_index do |slide, i| %>
+    <div class="hero-slide<%= i == 0 ? ' active' : '' %>" data-index="<%= i %>">
+      <% if slide['type'] == 'video' %>
+      <video class="hero-slide-media" autoplay muted playsinline preload="auto">
+        <source src="<%= slide['src'] %>" type="video/<%= File.extname(slide['src'].to_s).delete('.') %>">
+      </video>
+      <% else %>
+      <img class="hero-slide-media" src="<%= slide['src'] %>" alt="Orchha">
+      <% end %>
+    </div>
+    <% end %>
+  </div>
+  <div class="hero-overlay"></div>
+
+  <%# Dot indicators — only shown when more than one slide %>
+  <% if slides.size > 1 %>
+  <div class="hero-dots">
+    <% slides.each_with_index do |_, i| %>
+    <button class="hero-dot<%= i == 0 ? ' active' : '' %>" data-target="<%= i %>" aria-label="Slide <%= i + 1 %>"></button>
+    <% end %>
+  </div>
+  <% end %>
+
+  <div class="hero-wrap">
+    <%# Nav %>
+    <% nav = @page['nav'] || {}; dd = nav['discoverDropdown'] || [] %>
+    <nav class="navbar">
+      <div class="nav-links">
+        <div class="nav-discover">
+          <button class="nav-link nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+            Discover Orchha
+            <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="nav-dropdown" role="menu">
+            <% dd.each do |item| %>
+            <a href="<%= item['url'] %>" class="nav-dropdown-item" role="menuitem"><%= item['label'] %></a>
+            <% end %>
+          </div>
+        </div>
+        <a href="/plan-your-visit" class="nav-link">Plan Your Visit</a>
+        <a href="/sabhyata" class="nav-link">Sabhyata</a>
+        <a href="/news" class="nav-link">News</a>
+        <a href="/support-us" class="nav-link">Support Us</a>
+      </div>
+      <a href="/book-tickets" class="nav-book-btn">Book Tickets</a>
+    </nav>
+
+    <%# Hero Content %>
+    <div class="hero-content">
+      <div class="hero-content-glow"></div>
+      <div class="hero-title-row">
+        <h1 class="hero-title"><%= hero['heading'].present? ? hero['heading'] : 'Orchha' %></h1>
+        <div class="hero-subtitle-block">
+          <div class="hero-divider"></div>
+          <p class="hero-subtitle"><%= hero['subtitle'].present? ? hero['subtitle'] : 'A Living Heritage of Madhya Pradesh, Where History Breathes in Every Stone' %></p>
+        </div>
+      </div>
+    </div>
+
+    <%# Hero Footer %>
+    <div class="hero-footer">
+      <div class="hero-mpt-wrap">
+        <img src="/images/mpt_logo.png" alt="MPT" class="hero-mpt-logo">
+      </div>
+      <div class="hero-btn-group">
+        <a href="<%= hero['ctaLink'].present? ? hero['ctaLink'] : '/monuments' %>" class="hero-explore-btn"><%= hero['ctaText'].present? ? hero['ctaText'] : 'Explore Monuments' %></a>
+      </div>
+      <div class="hero-india-wrap">
+        <img src="/images/incredible_india.png" alt="Incredible India" class="hero-india-logo">
+      </div>
+    </div>
+  </div>
+
+  <%# Bouncing chevron scroll indicator %>
+  <div class="hero-chevron">
+    <svg xmlns="http://www.w3.org/2000/svg" width="77" height="82" viewBox="0 0 77 82" fill="none">
+      <path d="M20 26L39 39L58 26" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path opacity="0.41" d="M29 16L39 23L49 16" stroke="white" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
+
+  <%# Wave transition to next section %>
+  <div class="hero-wave-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
+      <path d="M0,0 L520,0 C580,0 660,80 720,80 C780,80 860,0 920,0 L1440,0 L1440,100 L0,100 Z" fill="#e7ded5"/>
+    </svg>
+  </div>
+</section>
+
+<% if slides.size > 1 %>
+<script>
+(function() {
+  const IMAGE_DURATION = 6000;
+  const FADE_MS        = 900;
+
+  const slideEls = Array.from(document.querySelectorAll('.hero-slide'));
+  const dotEls   = Array.from(document.querySelectorAll('.hero-dot'));
+  let current    = 0;
+  let timer      = null;
+
+  function goTo(idx) {
+    slideEls[current].classList.remove('active');
+    if (dotEls[current]) dotEls[current].classList.remove('active');
+    current = (idx + slideEls.length) % slideEls.length;
+    slideEls[current].classList.add('active');
+    if (dotEls[current]) dotEls[current].classList.add('active');
+    scheduleNext();
+  }
+
+  function scheduleNext() {
+    clearTimeout(timer);
+    const media = slideEls[current].querySelector('video');
+    if (media) {
+      media.currentTime = 0;
+      media.play().catch(() => {});
+      media.onended = () => goTo(current + 1);
+      timer = setTimeout(() => goTo(current + 1), 30000); // safety cap 30s
+    } else {
+      timer = setTimeout(() => goTo(current + 1), IMAGE_DURATION);
+    }
+  }
+
+  dotEls.forEach((dot, i) => dot.addEventListener('click', () => goTo(i)));
+
+  // Pause on first video if already loaded
+  const firstVideo = slideEls[0].querySelector('video');
+  if (firstVideo) {
+    firstVideo.onended = () => goTo(1);
+    timer = setTimeout(() => goTo(1), 30000);
+  } else {
+    timer = setTimeout(() => goTo(1), IMAGE_DURATION);
+  }
+})();
+</script>
+<% end %>
+
+<%# ── JOURNEY THROUGH TIME ─────────────────────────── %>
+<% j = @page['journey'] || {}; jc = j['cards'] || [] %>
+<section class="journey-section">
+  <div class="journey-inner">
+    <div class="journey-left">
+      <h2 class="journey-heading"><%= raw((j['heading'] || "A Journey\nthrough Time").gsub("\n", "<br>")) %></h2>
+      <p class="journey-desc"><%= j['description'] || "Explore the 500-year Legacy of the Bundela Dynasty through Historical Monuments, Sacred Temples, and Breathtaking Artistry that brings Orchha's Legends to Life." %></p>
+    </div>
+    <div class="journey-cards">
+      <% (jc[0] || {'name'=>'Events','image'=>'/images/card_events.jpg','link'=>'/events'}).tap do |c| %>
+      <a href="<%= c['link'] %>" class="journey-card">
+        <div class="jcard-bg" aria-hidden="true">
+          <img src="<%= c['image'] %>" alt="">
+          <div class="jcard-overlay"></div>
+        </div>
+        <div class="jcard-logos">
+          <div class="jcard-mpt"><img src="/images/mpt_logo.png" alt="MPT"></div>
+          <div class="jcard-india"><img src="/images/incredible_india.png" alt="Incredible India"></div>
+        </div>
+        <div class="jcard-bottom"><p class="jcard-name"><%= c['name'] %></p></div>
+      </a>
+      <% end %>
+      <% (jc[1] || {'name'=>'Monuments','image'=>'/images/heritage_jahangir.jpg','link'=>'/monuments'}).tap do |c| %>
+      <a href="<%= c['link'] %>" class="journey-card">
+        <div class="jcard-bg" aria-hidden="true">
+          <img src="<%= c['image'] %>" alt="">
+          <div class="jcard-overlay"></div>
+        </div>
+        <div class="jcard-logos">
+          <div class="jcard-mpt"><img src="/images/mpt_logo.png" alt="MPT"></div>
+          <div class="jcard-india"><img src="/images/incredible_india.png" alt="Incredible India"></div>
+        </div>
+        <div class="jcard-bottom"><p class="jcard-name"><%= c['name'] %></p></div>
+      </a>
+      <% end %>
+      <% (jc[2] || {'name'=>'Experience','image'=>'/images/exp_rafting.jpg','link'=>'/experiences'}).tap do |c| %>
+      <a href="<%= c['link'] %>" class="journey-card">
+        <div class="jcard-bg" aria-hidden="true">
+          <img src="<%= c['image'] %>" alt="">
+          <div class="jcard-overlay"></div>
+        </div>
+        <div class="jcard-logos">
+          <div class="jcard-mpt"><img src="/images/mpt_logo.png" alt="MPT"></div>
+          <div class="jcard-india"><img src="/images/incredible_india.png" alt="Incredible India"></div>
+        </div>
+        <div class="jcard-bottom"><p class="jcard-name"><%= c['name'] %></p></div>
+      </a>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ── REFLECTION OF HERITAGE ──────────────────────── %>
+<% h = @page['heritage'] || {}
+   hbig = h['bigCard'] || {}
+   hgrid = h['gridCards'] || []
+   hg = [
+     {'name'=>'Wildlife Sanctuary','date'=>'Est. 1994','image'=>'/images/heritage_wildlife.jpg','link'=>'/monuments/wildlife-sanctuary','gradient'=>'52.909%'},
+     {'name'=>'Jahangir Mahal','date'=>'Est. 1605 CE','image'=>'/images/heritage_jahangir.jpg','link'=>'/monuments/jahangir-mahal','gradient'=>'52.673%'},
+     {'name'=>'Raja Mahal','date'=>'Est. 1531 CE','image'=>'/images/heritage_raj_mahal.jpg','link'=>'/monuments/raja-mahal','gradient'=>'53.306%'},
+     {'name'=>"Lakshmi Narayan\nTemple",'date'=>'Est. 1618 CE','image'=>'/images/heritage_lakshmi.jpg','link'=>'/monuments/lakshmi-narayan','gradient'=>'37.015%'}
+   ]
+   gradients = ['52.909%','52.673%','53.306%','37.015%']
+%>
+<section class="heritage-section">
+  <div class="heritage-header">
+    <h2 class="heritage-title"><%= h['heading'] || 'Reflection of Heritage' %></h2>
+    <p class="heritage-subtitle"><%= h['subtitle'] || 'Each Monument in Orchha is a Chapter. Together, they tell the Story of a Kingdom.' %></p>
+  </div>
+  <div class="heritage-cards-row">
+    <a href="<%= hbig['link'] || '/monuments/raja-ram-temple' %>" class="heritage-big-card">
+      <div class="hcard-bg" aria-hidden="true">
+        <img src="<%= hbig['image'] || '/images/heritage_raja_ram.jpg' %>" alt="">
+        <div class="hcard-overlay" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 55.634%, rgba(0,0,0,0.9) 100%)"></div>
+      </div>
+      <div class="hcard-logos">
+        <div class="jcard-mpt"><img src="/images/mpt_logo.png" alt="MPT"></div>
+        <div class="jcard-india"><img src="/images/incredible_india.png" alt="Incredible India"></div>
+      </div>
+      <div class="hcard-info">
+        <p class="hcard-name"><%= hbig['name'] || 'Raja Ram Temple' %></p>
+        <p class="hcard-date"><%= hbig['date'] || 'Est. 1589 CE' %></p>
+        <p class="hcard-desc"><%= hbig['description'] || "The only temple in India where Ram is worshipped as a king — and where a queen's devotion became a timeless tale." %></p>
+      </div>
+    </a>
+    <div class="heritage-grid">
+      <% 4.times do |i|
+           c  = hgrid[i] || hg[i]
+           gd = gradients[i]
+      %>
+      <a href="<%= c['link'] %>" class="heritage-small-card">
+        <div class="hcard-bg" aria-hidden="true">
+          <img src="<%= c['image'] %>" alt="">
+          <div class="hcard-overlay" style="background: linear-gradient(to bottom, rgba(0,0,0,0) <%= gd %>, black 100%)"></div>
+        </div>
+        <div class="hcard-logos">
+          <div class="jcard-mpt"><img src="/images/mpt_logo.png" alt="MPT"></div>
+          <div class="jcard-india"><img src="/images/incredible_india.png" alt="Incredible India"></div>
+        </div>
+        <div class="hcard-info">
+          <p class="hcard-name"><%= raw(c['name'].gsub("\n","<br>")) %></p>
+          <p class="hcard-date"><%= c['date'] %></p>
+        </div>
+      </a>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ── WALK THROUGH TIMELESS ORCHHA ───────────────── %>
+<% t = @page['trails'] || {}; tc = t['cards'] || []
+   td = [
+     {'name'=>'Citadel Walk',   'image'=>'/images/aerial_orchha.jpg',      'link'=>'/trails/citadel'},
+     {'name'=>'Religious Trail','image'=>'/images/heritage_raja_ram.jpg',   'link'=>'/trails/religious'},
+     {'name'=>'Ecological Walk','image'=>'/images/heritage_wildlife2.jpg',  'link'=>'/trails/ecological'},
+     {'name'=>'Art Walk',       'image'=>'/images/art_walk.jpg',            'link'=>'/trails/art'}
+   ]
+%>
+<section class="trails-section">
+  <div class="trails-header">
+    <h2 class="trails-title"><%= t['heading'] || 'Walk Through Timeless Orchha' %></h2>
+    <p class="trails-subtitle"><%= t['subtitle'] || "Follow thoughtfully curated walking trails that reveal Orchha's iconic landmarks, hidden gems, riverside views, and centuries of living heritage." %></p>
+  </div>
+  <div class="trails-cards-row">
+    <% 4.times do |i|
+         c = tc[i] || td[i]
+    %>
+    <a href="<%= c['link'] %>" class="trails-card">
+      <div class="hcard-bg" aria-hidden="true">
+        <img src="<%= c['image'] %>" alt="">
+        <div class="hcard-overlay" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 51.754%, rgba(0,0,0,1) 100%)"></div>
+      </div>
+      <div class="hcard-logos">
+        <div class="jcard-mpt"><img src="/images/mpt_logo.png" alt="MPT"></div>
+        <div class="jcard-india"><img src="/images/incredible_india.png" alt="Incredible India"></div>
+      </div>
+      <div class="hcard-info">
+        <p class="hcard-name"><%= c['name'] %></p>
+      </div>
+    </a>
+    <% end %>
+  </div>
+  <a href="<%= t['ctaLink'] || '/trails' %>" class="trails-explore-btn">Explore More</a>
+</section>
+
+<%# ── WHERE HISTORY BECOMES AN EXPERIENCE ────────── %>
+<% ex = @page['experiences'] || {}; exc = ex['cards'] || []
+   exd = [
+     {'name'=>'River Rafting/Kayaking','image'=>'/images/exp_rafting.jpg',    'link'=>'/experiences/river-rafting','tall'=>true},
+     {'name'=>'Sunset at Betwa',        'image'=>'/images/exp_sunset.jpg',     'link'=>'/experiences/sunset-betwa', 'tall'=>false},
+     {'name'=>'Light &amp; Sound Show', 'image'=>'/images/exp_light_sound.jpg','link'=>'/experiences/light-sound',  'tall'=>false}
+   ]
+   ex_gradients = [
+     'linear-gradient(to bottom, rgba(0,0,0,0) 51.754%, rgba(0,0,0,1) 100%)',
+     'linear-gradient(180deg, rgba(0,0,0,0) 57.185%, rgba(0,0,0,1) 110.27%)',
+     'linear-gradient(to bottom, rgba(0,0,0,0) 51.754%, rgba(0,0,0,1) 100%)'
+   ]
+%>
+<section class="exp-section">
+  <div class="exp-header">
+    <h2 class="exp-title"><%= ex['heading'] || 'Where History Becomes an Experience' %></h2>
+    <p class="exp-subtitle"><%= ex['subtitle'] || 'From adventures on the Betwa River to spectacular sunsets, heritage light shows, and immersive cultural moments, discover experiences that reveal the timeless charm of Orchha beyond its monuments.' %></p>
+  </div>
+  <div class="exp-grid">
+    <% 3.times do |i|
+         c    = exc[i] || exd[i]
+         tall = (c['tall'] == true) || (i == 0)
+    %>
+    <a href="<%= c['link'] %>" class="exp-card<%= tall ? ' exp-card-tall' : '' %>">
+      <div class="hcard-bg" aria-hidden="true">
+        <img src="<%= c['image'] %>" alt="">
+        <div class="hcard-overlay" style="background: <%= ex_gradients[i] %>"></div>
+      </div>
+      <div class="hcard-logos">
+        <div class="jcard-mpt"><img src="/images/mpt_logo.png" alt="MPT"></div>
+        <div class="jcard-india"><img src="/images/incredible_india.png" alt="Incredible India"></div>
+      </div>
+      <div class="hcard-info">
+        <p class="hcard-name"><%= raw(c['name']) %></p>
+      </div>
+    </a>
+    <% end %>
+  </div>
+  <a href="<%= ex['ctaLink'] || '/experiences' %>" class="trails-explore-btn">Explore More</a>
+</section>
+
+<%# ── MUST TRY BUNDELKHAND CUISINE ───────────────── %>
+<% cu = @page['cuisine'] || {}
+   cu_default = [
+     {'name'=>'Tawa Roti',                    'image'=>'/images/cuisine_tawa_roti.jpg',      'link'=>'/cuisine/tawa-roti'},
+     {'name'=>'Johar Roti',                   'image'=>'/images/cuisine_johar_roti.jpg',     'link'=>'/cuisine/johar-roti'},
+     {'name'=>'Bazra &amp; Makka Roti',       'image'=>'/images/cuisine_bazra_roti.jpg',     'link'=>'/cuisine/bazra-roti'},
+     {'name'=>'Tikkar with Desi Ghee Rice',   'image'=>'/images/cuisine_tikkar.jpg',         'link'=>'/cuisine/tikkar'},
+     {'name'=>'Kadi Pakoda',                  'image'=>'/images/cuisine_kadi_pakoda.jpg',    'link'=>'/cuisine/kadi-pakoda'},
+     {'name'=>'Baigan Bharta',                'image'=>'/images/cuisine_baigan_bharta.jpg',  'link'=>'/cuisine/baigan-bharta'},
+     {'name'=>'Sarso Ka Sag',                 'image'=>'/images/cuisine_sarso_sag.jpg',      'link'=>'/cuisine/sarso-sag'},
+     {'name'=>'Amla Chutni',                  'image'=>'/images/cuisine_amla_chutni.jpg',    'link'=>'/cuisine/amla-chutni'},
+     {'name'=>'Tamatar and Dhaniya Chutney',  'image'=>'/images/cuisine_tamatar_chutney.jpg','link'=>'/cuisine/tamatar-chutney'},
+     {'name'=>'Gur',                          'image'=>'/images/cuisine_gur.jpg',            'link'=>'/cuisine/gur'},
+     {'name'=>'Bundi Raita',                  'image'=>'/images/cuisine_bundi_raita.jpg',    'link'=>'/cuisine/bundi-raita'},
+     {'name'=>'Maheri',                       'image'=>'/images/cuisine_maheri.jpg',         'link'=>'/cuisine/maheri'},
+     {'name'=>'Malpua',                       'image'=>'/images/cuisine_malpua.jpg',         'link'=>'/cuisine/malpua'}
+   ]
+   cu_cards = (cu['cards'] && cu['cards'].length > 0) ? cu['cards'] : cu_default
+%>
+<section class="cuisine-section">
+  <h2 class="cuisine-title"><%= cu['heading'] || 'Must Try Bundelkhand Cuisine' %></h2>
+  <div class="cuisine-scroll-wrapper">
+    <div class="cuisine-scroll-track">
+      <% (cu_cards + cu_cards).each do |c| %>
+      <a href="<%= c['link'] %>" class="cuisine-card">
+        <div class="hcard-bg" aria-hidden="true">
+          <img src="<%= c['image'] %>" alt="">
+          <div class="hcard-overlay" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 51.754%, rgba(0,0,0,1) 100%)"></div>
+        </div>
+        <div class="cuisine-card-info">
+          <p class="cuisine-card-name"><%= raw(c['name']) %></p>
+        </div>
+      </a>
+      <% end %>
+    </div>
+  </div>
+</section>
+
+<%# ── CELEBRATE WITH US ───────────────────────────── %>
+<% cb = @page['celebrate'] || {}; cbc = cb['cards'] || []
+   cbd = [
+     {'name'=>'Vivaha Panchami', 'image'=>'/images/celebrate_vivaha.jpg',     'link'=>'/events/vivaha-panchami',
+      'gradient'=>'linear-gradient(to bottom, rgba(0,0,0,0) 51.754%, rgba(0,0,0,1) 100%)'},
+     {'name'=>'Sawan Teej',      'image'=>'/images/celebrate_sawan_teej.jpg', 'link'=>'/events/sawan-teej',
+      'gradient'=>'linear-gradient(180deg, rgba(0,0,0,0) 61.251%, rgba(0,0,0,0.9) 102.08%)'},
+     {'name'=>'Makar Sankranti', 'image'=>'/images/celebrate_makar.jpg',      'link'=>'/events/makar-sankranti',
+      'gradient'=>'linear-gradient(180deg, rgba(0,0,0,0) 61.251%, rgba(0,0,0,0.9) 102.08%)'}
+   ]
+%>
+<section class="celebrate-section">
+  <div class="celebrate-inner">
+    <div class="celebrate-text">
+      <h2 class="celebrate-title"><%= raw(cb['heading'] || "Celebrate<br>With Us") %></h2>
+      <p class="celebrate-subtitle"><%= cb['subtitle'] || 'Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.' %></p>
+    </div>
+    <% 3.times do |i|
+         c    = cbc[i] || cbd[i]
+         grad = cbd[i]['gradient']
+    %>
+    <a href="<%= c['link'] %>" class="celebrate-card">
+      <div class="hcard-bg" aria-hidden="true">
+        <img src="<%= c['image'] %>" alt="">
+        <div class="hcard-overlay" style="background: <%= grad %>"></div>
+      </div>
+      <div class="hcard-logos">
+        <div class="jcard-mpt"><img src="/images/mpt_logo.png" alt="MPT"></div>
+        <div class="jcard-india"><img src="/images/incredible_india.png" alt="Incredible India"></div>
+      </div>
+      <div class="celebrate-card-info">
+        <p class="celebrate-card-name"><%= c['name'] %></p>
+      </div>
+    </a>
+    <% end %>
+  </div>
+</section>
+
+<%# ── ORCHHA IN NEWS ──────────────────────────────── %>
+<% nw = @page['news'] || {}
+   nw_cards = nw['cards'] || []
+   nw_default = [
+     {'tag'=>'Heritage','date'=>'20 May 2024','image'=>'/images/news_revival.jpg',
+      'title'=>"The Revival of Orchha's Historic Monuments",
+      'excerpt'=>"The Modern Day Revival of Orchha is Not Accidental - It is the Result of Deliberate, Careful Stewardship. Sabhyata Foundation's Work in Orchha is Built on a Single Conviction: That India's Heritage Sites Deserve to be Experienced, Not just Preserved.",
+      'link'=>'/news/revival'},
+     {'tag'=>'Heritage','date'=>'20 May 2024','image'=>'/images/news_unesco.jpg',
+      'title'=>"UNESCO Nomination: Orchha's Living Heritage",
+      'excerpt'=>"The Modern Day Revival of Orchha is Not Accidental - It is the Result of Deliberate, Careful Stewardship. Sabhyata Foundation's Work in Orchha is Built on a Single Conviction: That India's Heritage Sites Deserve to be Experienced, Not just Preserved.",
+      'link'=>'/news/unesco'},
+     {'tag'=>'Event','date'=>'20 May 2024','image'=>'/images/news_ram_navami.jpg',
+      'title'=>'Ram Navmi Celebrations Light Up Orchha',
+      'excerpt'=>"The Modern Day Revival of Orchha is Not Accidental - It is the Result of Deliberate, Careful Stewardship. Sabhyata Foundation's Work in Orchha is Built on a Single Conviction: That India's Heritage Sites Deserve to be Experienced, Not just Preserved.",
+      'link'=>'/news/ram-navami'},
+     {'tag'=>'Heritage','date'=>'20 May 2024','image'=>'/images/news_card1.jpg',
+      'title'=>"The Revival of Orchha's Historic Monuments",
+      'excerpt'=>"The Modern Day Revival of Orchha is Not Accidental - It is the Result of Deliberate, Careful Stewardship. Sabhyata Foundation's Work in Orchha is Built on a Single Conviction: That India's Heritage Sites Deserve to be Experienced, Not just Preserved.",
+      'link'=>'/news/revival-2'}
+   ]
+   nw_items = (nw_cards.length > 0) ? nw_cards : nw_default
+%>
+<section class="news-section">
+  <h2 class="news-title"><%= nw['heading'] || 'Orchha in News' %></h2>
+  <div class="news-controls">
+    <div class="news-filters">
+      <button class="news-filter-btn active" data-filter="all">All</button>
+      <button class="news-filter-btn" data-filter="heritage">Heritage</button>
+      <button class="news-filter-btn" data-filter="tourism">Tourism</button>
+      <button class="news-filter-btn" data-filter="events">Events</button>
+    </div>
+    <div class="news-chevrons">
+      <button class="news-chevron" id="news-prev" aria-label="Previous">
+        <svg viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg" style="transform:scaleX(-1)">
+          <rect x="1" y="1" width="33" height="32" rx="16" stroke="#6E1603" stroke-width="2"/>
+          <path d="M15 24L22 17L15 10" stroke="#6E1603" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <button class="news-chevron" id="news-next" aria-label="Next">
+        <svg viewBox="0 0 35 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="33" height="32" rx="16" stroke="#6E1603" stroke-width="2"/>
+          <path d="M15 24L22 17L15 10" stroke="#6E1603" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+  <div class="news-track-wrap">
+    <div class="news-track">
+      <% nw_items.each do |c| %>
+      <a href="<%= c['link'] %>" class="news-card">
+        <div class="news-card-body">
+          <div class="news-card-img">
+            <img src="<%= c['image'] %>" alt="">
+            <div class="hcard-logos">
+              <div class="jcard-mpt"><img src="/images/mpt_logo.png" alt="MPT"></div>
+              <div class="jcard-india"><img src="/images/incredible_india.png" alt="Incredible India"></div>
+            </div>
+          </div>
+          <div class="news-card-text">
+            <div class="news-card-meta">
+              <span class="news-card-tag"><%= c['tag'] %></span>
+              <span class="news-dot"></span>
+              <span class="news-card-date"><%= c['date'] %></span>
+            </div>
+            <p class="news-card-title"><%= c['title'] %></p>
+            <p class="news-card-excerpt"><%= c['excerpt'] %></p>
+          </div>
+        </div>
+        <div class="news-read-more">
+          <span>Read more</span>
+          <svg width="5" height="9" viewBox="5 5 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 24L22 17L15 10" stroke="#6E1603" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </a>
+      <% end %>
+    </div>
+  </div>
+  <a href="<%= nw['ctaLink'] || '/news' %>" class="trails-explore-btn">View More</a>
+</section>
+
+<%# ── VISIT ORCHHA ─────────────────────────────────── %>
+<% vs = @page['visit'] || {}
+   vs_links = vs['links'] || [
+     {'label'=>'How to Reach Orchha', 'url'=>'/plan-your-visit#how-to-reach'},
+     {'label'=>'Travel Options',      'url'=>'/plan-your-visit#travel'},
+     {'label'=>'Stay Options',        'url'=>'/accommodation'}
+   ]
+%>
+<div class="visit-wrap">
+  <div class="visit-section">
+    <div class="visit-content">
+      <h2 class="visit-heading"><em>Visit</em> Orchha</h2>
+      <nav class="visit-links">
+        <% vs_links.each do |lnk| %>
+        <a href="<%= lnk['url'] %>" class="visit-link"><%= lnk['label'] %></a>
+        <% end %>
+      </nav>
+    </div>
+    <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
+  </div>
+</div>
+
+<%# ── FOOTER ──────────────────────────────────────── %>
+<% ft = @page['footer'] || {}
+   ft_links = ft['links'] || [
+     {'label'=>'Media & News',                 'url'=>'/news'},
+     {'label'=>'Privacy Policy',               'url'=>'/privacy-policy'},
+     {'label'=>'Refund & Cancellation Policy', 'url'=>'/refund-policy'},
+     {'label'=>'Disclaimer & Credits',         'url'=>'/disclaimer'},
+     {'label'=>'Contact Us',                   'url'=>'/contact'},
+     {'label'=>'Terms & Conditions',           'url'=>'/terms'},
+     {'label'=>'Accessibility Statement',      'url'=>'/accessibility'}
+   ]
+%>
+<footer class="footer">
+  <div class="footer-container">
+  <div class="footer-inner">
+    <div class="footer-links">
+      <% ft_links.each do |lnk| %>
+      <a href="<%= lnk['url'] %>" class="footer-link"><%= lnk['label'] %></a>
+      <% end %>
+    </div>
+    <div class="footer-logos">
+      <img src="/images/incredible_india.png" alt="Incredible India" class="footer-logo-ii">
+      <img src="/images/mpt_logo.png" alt="MPTDC" class="footer-logo-mptdc">
+      <img src="/images/footer_logo_sabhyata.png" alt="Sabhyata Foundation" class="footer-logo-sabhyata">
+    </div>
+    <div class="footer-map">
+      <img src="/images/footer_map.jpg" alt="Orchha map">
+    </div>
+  </div>
+  <hr class="footer-divider">
+  <div class="footer-bottom">
+    <span class="footer-copy"><%= ft['copyright'] || '@2026ORCHHA' %></span>
+    <span class="footer-copy"><%= ft['org'] || 'SABHYATA Foundation' %></span>
+  </div>
+  </div><!-- /.footer-container -->
+</footer>
+
+<script>
+  document.querySelectorAll('.news-filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // Discover Orchha dropdown — position: fixed so it escapes all stacking contexts
+  const discoverBtn = document.querySelector('.nav-discover-btn');
+  const discoverDropdown = document.querySelector('.nav-dropdown');
+  if (discoverBtn && discoverDropdown) {
+    function openDropdown() {
+      const r = discoverBtn.getBoundingClientRect();
+      discoverDropdown.style.top  = (r.bottom + 8) + 'px';
+      discoverDropdown.style.left = r.left + 'px';
+      discoverDropdown.classList.add('open');
+      discoverBtn.classList.add('open');
+      discoverBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDropdown() {
+      discoverDropdown.classList.remove('open');
+      discoverBtn.classList.remove('open');
+      discoverBtn.setAttribute('aria-expanded', 'false');
+    }
+    discoverBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      discoverDropdown.classList.contains('open') ? closeDropdown() : openDropdown();
+    });
+    document.addEventListener('click', closeDropdown);
+    discoverDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
+</script>

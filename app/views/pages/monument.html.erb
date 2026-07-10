@@ -1,0 +1,411 @@
+<%# Individual monument detail page — horizontal scroll panels %>
+<% nav      = (@home['nav'] || {})
+   dd       = nav['discoverDropdown'] || []
+   subs     = @monument['subMonuments'] || []
+   gallery  = @monument['galleryImages'] || []
+   closeup       = @monument['closeUpImages'] || []
+   dyk_imgs      = @monument['dykImages'] || []
+   paintings_imgs = @monument['paintingImages'] || []
+   experiences   = @monument['experiences'] || []
+   exp_photos    = @monument['experiencePhotos'] || []
+   arti     = @monument['artiSchedule']
+   hero_img    = @monument['heroImage']   || @monument['image'] || '/images/aerial_orchha.jpg'
+   hero_video  = @monument['heroVideo'].presence
+   outro_video = @monument['outroVideo'].presence
+   main_img    = @monument['detailImage'] || @monument['image'] || '/images/history_new_orchha.jpg'
+   detail_desc = @monument['detailDescriptionHtml'] || h(@monument['detailDescription'] || @monument['description'] || '')
+   has_subs = subs.any?
+   # panelCount override allows per-monument control when DYK or Experiences panel widths differ
+   panel_count = @monument['panelCount'] || (3 + (@monument['didYouKnow'] || @monument['dykHtml'] ? 0.5 : 0) + (arti ? 2 : 0) + (has_subs ? 1.5 : 0) + (closeup.any? ? 1 : 0) + (paintings_imgs.any? ? 0.879 : 0) + (experiences.any? ? 1 : 0))
+%>
+
+<%# HOHO sticky tab %>
+<div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
+
+<%# Fixed nav — outside the scroll wrapper so position:fixed is viewport-relative %>
+<div class="mdet-nav-wrap">
+  <nav class="mdet-navbar">
+    <div class="mdet-nav-links">
+      <div class="mdet-nav-discover">
+        <button class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mdet-nav-dropdown" role="menu">
+          <% dd.each do |item| %>
+          <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
+      <a href="/news"            class="mdet-nav-link">News</a>
+      <a href="/support-us"      class="mdet-nav-link">Support Us</a>
+      <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
+    </div>
+    <a href="/book-tickets" class="mdet-book-btn">Book Tickets</a>
+  </nav>
+</div>
+
+<div class="mdet-wrapper" data-panels="<%= panel_count %>" data-monument="<%= @monument['id'] %>">
+  <div class="mdet-sticky">
+    <div class="mdet-track" id="mdet-track">
+
+      <%# ══ PANEL 1: HERO (full-bleed cinematic) ════════════ %>
+      <section class="mdet-panel mdet-hero">
+        <div class="mdet-hero-bg">
+          <% if hero_video.present? %>
+            <video autoplay muted loop playsinline>
+              <source src="<%= hero_video %>" type="video/mp4">
+            </video>
+          <% else %>
+            <img src="<%= hero_img %>" alt="<%= @monument['name'] %>">
+          <% end %>
+          <div class="mdet-hero-overlay"></div>
+        </div>
+
+        <%# Scroll hint %>
+        <div class="mdet-scroll-hint" id="mdet-scroll-hint">
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </section>
+
+      <%# ══ PANEL 2: INFO ════════════════════════════════════ %>
+      <section class="mdet-panel mdet-info">
+        <div class="mdet-info-inner">
+          <%# Col 1: main photo + Book Tickets %>
+          <div class="mdet-info-col1">
+            <div class="mdet-photo-card mdet-photo-main">
+              <img src="<%= main_img %>" alt="<%= @monument['name'] %>">
+              <div class="mdet-card-logos">
+                <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+                <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+              </div>
+            </div>
+            <a href="/book-tickets" class="mdet-outline-btn">Book Tickets</a>
+          </div>
+          <%# Col 2: year + name (above), second photo (below) %>
+          <div class="mdet-info-col2">
+            <div class="mdet-info-meta">
+              <% if @monument['year'] %>
+              <p class="mdet-year"><%= @monument['year'] %></p>
+              <% end %>
+              <h1 class="mdet-name"><%= @monument['name'] %><% if @monument['nameSubtitle'] %><span class="mdet-name-subtitle"> <%= @monument['nameSubtitle'] %></span><% end %></h1>
+            </div>
+            <% if gallery.length > 0 %>
+            <div class="mdet-photo-card mdet-photo-second">
+              <img src="<%= gallery[0] %>" alt="">
+              <div class="mdet-card-logos">
+                <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+                <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <%# Col 3: description %>
+          <div class="mdet-info-col3">
+            <div class="mdet-desc"><%= raw(detail_desc) %></div>
+          </div>
+        </div>
+      </section>
+
+      <%# ══ PANEL 3: ARTI & BHOG SCHEDULE (2 viewports wide) ══ %>
+      <% if arti %>
+      <section class="mdet-panel mdet-arti">
+        <div class="mdet-arti-inner">
+          <h2 class="mdet-arti-heading">Daily Arti &amp; Bhog Schedule</h2>
+          <div class="mdet-arti-tables">
+            <% arti['seasons'].each do |season| %>
+            <div class="mdet-arti-season">
+              <p class="mdet-arti-season-label">
+                <span class="mdet-arti-season-name"><%= season['name'] %></span>
+                <span class="mdet-arti-season-sub">(<%= season['subtitle'] %>)</span>
+              </p>
+              <div class="mdet-arti-card">
+                <table class="mdet-arti-table">
+                  <thead>
+                    <tr>
+                      <th>Time</th>
+                      <th>Arti</th>
+                      <th>Bhog</th>
+                      <th>Pooja / Donation</th>
+                      <th>Remark</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% season['rows'].each do |row| %>
+                    <tr>
+                      <td><%= row['time'] %></td>
+                      <td><%= row['arti'] %></td>
+                      <td><%= row['bhog'] %></td>
+                      <td><%= row['donation'] %></td>
+                      <td><%= row['remark'] %></td>
+                    </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+      <% end %>
+
+      <%# ══ PANEL 4: DID YOU KNOW? ══════════════════════════ %>
+      <% if @monument['didYouKnow'] || @monument['dykHtml'] %>
+      <section class="mdet-panel mdet-dyk">
+        <div class="mdet-dyk-inner">
+          <h2 class="mdet-dyk-heading">Did you<br>Know?</h2>
+          <div class="mdet-dyk-card1"<% if dyk_imgs[0] %> style="background-image: url('<%= dyk_imgs[0] %>')"<% end %>>
+            <div class="mdet-dyk-card-logos">
+              <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+            </div>
+            <div></div>
+          </div>
+          <div class="mdet-dyk-card2"<% if dyk_imgs[1] %> style="background-image: url('<%= dyk_imgs[1] %>')"<% end %>>
+            <div class="mdet-dyk-card-logos">
+              <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+            </div>
+            <div></div>
+          </div>
+          <% if @monument['dykHtml'] %>
+            <div class="mdet-dyk-text"><%= raw @monument['dykHtml'] %></div>
+          <% else %>
+            <p class="mdet-dyk-text"><%= @monument['didYouKnow'] %></p>
+          <% end %>
+        </div>
+      </section>
+      <% end %>
+
+      <%# ══ PANEL: EXPERIENCES ═════════════════════════════ %>
+      <% if experiences.any? %>
+      <section class="mdet-panel mdet-experiences">
+        <div class="mdet-experiences-inner">
+          <div class="mdet-exp-card">
+            <span class="mdet-exp-label">Experiences</span>
+            <% experiences.each do |exp| %>
+            <div class="mdet-exp-item">
+              <% if exp['icon'] %>
+              <img src="<%= exp['icon'] %>" alt="" class="mdet-exp-icon">
+              <% end %>
+              <div class="mdet-exp-text">
+                <p class="mdet-exp-title"><%= exp['title'] %></p>
+                <p class="mdet-exp-desc"><%= exp['description'] %></p>
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <% if exp_photos.any? %>
+          <div class="mdet-exp-photos">
+            <% exp_photos.each do |photo| %>
+            <div class="mdet-exp-photo mdet-photo-card">
+              <img src="<%= photo %>" alt="">
+              <div class="mdet-card-logos">
+                <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+                <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+              </div>
+            </div>
+            <% end %>
+          </div>
+          <% end %>
+        </div>
+      </section>
+      <% end %>
+
+      <%# ══ PANEL 4: SUB-MONUMENTS ══════════════════════════ %>
+      <% if has_subs %>
+      <section class="mdet-panel mdet-sub">
+        <div class="mdet-sub-inner">
+          <div class="mdet-sub-cards">
+            <% subs.each_with_index do |sub, i| %>
+            <div class="mdet-sub-card">
+              <div class="mdet-sub-num"><span><%= i + 1 %></span></div>
+              <div class="mdet-sub-card-body">
+                <div class="mdet-photo-card mdet-sub-photo">
+                  <img src="<%= sub['image'] %>" alt="<%= sub['name'] %>">
+                  <div class="mdet-card-logos">
+                    <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+                    <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+                  </div>
+                </div>
+                <h3 class="mdet-sub-name"><%= sub['name'] %></h3>
+                <a href="/monuments/<%= sub['id'] %>" class="mdet-outline-btn">View Monument</a>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+      </section>
+      <% end %>
+
+      <%# ══ PANEL 5: CLOSE-UP DETAIL ════════════════════════ %>
+      <% if closeup.any? %>
+      <section class="mdet-panel mdet-closeup">
+        <div class="mdet-closeup-inner">
+          <h2 class="mdet-closeup-heading">Close-Up<br>Detail</h2>
+          <a href="#" class="mdet-outline-btn mdet-closeup-view360">View 360</a>
+          <div class="mdet-photo-card mdet-closeup-main">
+            <img src="<%= closeup[0] %>" alt="">
+            <div class="mdet-card-logos">
+              <img src="/images/mpt_logo.png"         alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png"  alt="Incredible India" class="mdet-logo-ii">
+            </div>
+          </div>
+          <% if closeup.length > 1 %>
+          <div class="mdet-photo-card mdet-closeup-side">
+            <img src="<%= closeup[1] %>" alt="">
+            <div class="mdet-card-logos">
+              <img src="/images/mpt_logo.png"         alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png"  alt="Incredible India" class="mdet-logo-ii">
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </section>
+      <% end %>
+
+      <%# ══ PANEL: PAINTINGS ═══════════════════════════════════ %>
+      <% if paintings_imgs.any? %>
+      <section class="mdet-panel mdet-paintings">
+        <div class="mdet-paintings-inner">
+          <h2 class="mdet-paintings-heading">Paintings</h2>
+          <div class="mdet-photo-card mdet-paintings-card1">
+            <img src="<%= paintings_imgs[0] %>" alt="">
+            <div class="mdet-card-logos">
+              <img src="/images/mpt_logo.png"         alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png"  alt="Incredible India" class="mdet-logo-ii">
+            </div>
+          </div>
+          <% if paintings_imgs.length > 1 %>
+          <div class="mdet-photo-card mdet-paintings-card2">
+            <img src="<%= paintings_imgs[1] %>" alt="">
+            <div class="mdet-card-logos">
+              <img src="/images/mpt_logo.png"         alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png"  alt="Incredible India" class="mdet-logo-ii">
+            </div>
+          </div>
+          <% end %>
+          <a href="#" class="mdet-outline-btn mdet-paintings-view-more">View more</a>
+        </div>
+      </section>
+      <% end %>
+
+      <%# ══ PANEL 6: OUTRO — VIEW ALL MONUMENTS ══════════════ %>
+      <section class="mdet-panel mdet-outro">
+        <div class="mdet-outro-bg">
+          <% if outro_video.present? %>
+            <video autoplay muted loop playsinline>
+              <source src="<%= outro_video %>" type="video/mp4">
+            </video>
+          <% else %>
+            <img src="<%= @monument['outroImage'] || '/images/aerial_orchha.jpg' %>" alt="Orchha">
+          <% end %>
+          <div class="mdet-outro-overlay"></div>
+        </div>
+        <a href="/monuments" class="mdet-outro-btn">View All Monuments</a>
+      </section>
+
+    </div><%# /mdet-track %>
+  </div><%# /mdet-sticky %>
+</div><%# /mdet-wrapper %>
+
+<%# Fixed bottom-right action tabs %>
+<div class="mdet-action-tabs" id="mdet-action-tabs">
+
+  <%# Audio Guide — expandable player %>
+  <div class="mdet-audio-wrap">
+    <div class="mdet-audio-panel" id="mdet-audio-panel">
+      <button class="mdet-audio-play" id="mdet-audio-play-btn" aria-label="Play">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="white"/>
+          <polygon points="13,10 13,22 23,16" fill="#6e1603"/>
+        </svg>
+      </button>
+      <span class="mdet-audio-track"><%= @monument['name'] || 'Audio Guide' %></span>
+      <div class="mdet-audio-wave">
+        <svg viewBox="0 0 434 28" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <rect y="8" width="434" height="7" rx="3.5" fill="white" fill-opacity="0.4"/>
+          <rect x="2" y="10" width="47" height="3" rx="1.5" fill="white"/>
+          <circle cx="55.5" cy="11.5" r="9.5" fill="white"/>
+          <circle cx="55.5" cy="11.5" r="8.5" stroke="rgba(102,18,0,0.6)" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="mdet-audio-time">0:00 / 3:00</span>
+    </div>
+    <button class="mdet-action-tab" id="mdet-audio-btn">Audio Guide</button>
+  </div>
+
+  <button class="mdet-action-tab">Virtual Tour</button>
+  <button class="mdet-action-tab">Translate</button>
+</div>
+
+
+<script>
+(function() {
+  // ── Horizontal scroll-jacking ─────────────────────────────
+  const wrapper = document.querySelector('.mdet-wrapper');
+  const sticky  = document.querySelector('.mdet-sticky');
+  const hint    = document.getElementById('mdet-scroll-hint');
+  const tabs    = document.querySelector('.mdet-action-tabs');
+
+  if (wrapper && sticky) {
+    const panels = parseFloat(wrapper.dataset.panels || '5');
+    wrapper.style.height = (panels * 100) + 'vh';
+
+    function updateHoriz() {
+      const wrapperTop  = wrapper.offsetTop;
+      const totalScroll = wrapper.offsetHeight - window.innerHeight;
+      const progress    = Math.max(0, Math.min(1, (window.scrollY - wrapperTop) / totalScroll));
+      const maxScroll   = sticky.scrollWidth - window.innerWidth;
+      sticky.scrollLeft = progress * maxScroll;
+
+      // Hide scroll hint after first movement
+      if (hint) hint.style.opacity = progress > 0.01 ? '0' : '1';
+
+      // Hide action tabs when past the horizontal section
+      const isPast = window.scrollY > wrapper.offsetTop + wrapper.offsetHeight;
+      if (tabs) tabs.style.display = isPast ? 'none' : 'flex';
+    }
+
+    window.addEventListener('scroll', updateHoriz, { passive: true });
+    updateHoriz();
+  }
+
+  // ── Audio Guide toggle ────────────────────────────────────
+  const audioBtn   = document.getElementById('mdet-audio-btn');
+  const audioPanel = document.getElementById('mdet-audio-panel');
+  if (audioBtn && audioPanel) {
+    audioBtn.addEventListener('click', () => {
+      audioPanel.classList.toggle('open');
+    });
+  }
+
+  // ── Navbar dropdown ───────────────────────────────────────
+  const btn = document.querySelector('.mdet-discover-btn');
+  const dd  = document.querySelector('.mdet-nav-dropdown');
+  if (btn && dd) {
+    function openDd()  {
+      const r = btn.getBoundingClientRect();
+      dd.style.top  = (r.bottom + 8) + 'px';
+      dd.style.left = r.left + 'px';
+      dd.classList.add('open');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDd() {
+      dd.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      dd.classList.contains('open') ? closeDd() : openDd();
+    });
+    document.addEventListener('click', closeDd);
+    dd.addEventListener('click', e => e.stopPropagation());
+  }
+})();
+</script>

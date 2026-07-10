@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Orchha CMS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #6b200b;
+      --primary-light: #8a3520;
+      --bg: #efebe1;
+      --bg2: #e3d5c5;
+      --card: #faf7f2;
+      --border: rgba(107,32,11,0.15);
+      --text: #3a1a0a;
+      --muted: #9a7a6a;
+      --success: #2d6a4f;
+      --danger: #c0392b;
+      --font-h: 'Cormorant Garamond', serif;
+      --font-b: 'Inter', sans-serif;
+      --shadow: 0 4px 24px rgba(107,32,11,0.10);
+      --radius: 12px;
+      --transition: all 0.25s ease;
+    }
+    body { font-family: var(--font-b); background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ── LOGIN ── */
+    #login-screen {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      background: var(--bg); position: relative; overflow: hidden;
+    }
+    #login-screen::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(107,32,11,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 20%, rgba(107,32,11,0.05) 0%, transparent 50%);
+    }
+    .login-card {
+      position: relative; z-index: 1;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 3rem 3.5rem;
+      width: 420px; box-shadow: 0 20px 60px rgba(107,32,11,0.15);
+      text-align: center;
+    }
+    .login-logo { font-family: var(--font-h); font-size: 2.8rem; font-weight: 600; color: var(--primary); line-height: 1; }
+    .login-logo span { font-style: italic; font-weight: 400; }
+    .login-sub { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-top: 0.4rem; margin-bottom: 2.5rem; }
+    .login-card label { display: block; text-align: left; font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 0.5rem; }
+    .login-card input[type=password] {
+      width: 100%; padding: 0.85rem 1.2rem; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: 1rem; font-family: var(--font-b);
+      background: var(--bg); color: var(--text); outline: none;
+      transition: var(--transition); margin-bottom: 1.5rem;
+    }
+    .login-card input[type=password]:focus { border-color: var(--primary); }
+    .btn-primary {
+      width: 100%; padding: 0.9rem; background: var(--primary); color: #fff;
+      border: none; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+      letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+      transition: var(--transition); font-family: var(--font-b);
+    }
+    .btn-primary:hover { background: var(--primary-light); transform: translateY(-1px); }
+    .login-error { color: var(--danger); font-size: 0.82rem; margin-top: 0.8rem; min-height: 1.2rem; }
+
+    /* ── APP SHELL ── */
+    #app { display: none; min-height: 100vh; }
+    .topbar {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 64px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+    }
+    .topbar-brand { font-family: var(--font-h); font-size: 1.5rem; font-weight: 600; }
+    .topbar-brand span { font-style: italic; font-weight: 400; }
+    .topbar-user { display: flex; align-items: center; gap: 1rem; font-size: 0.8rem; }
+    .badge { background: rgba(255,255,255,0.2); padding: 0.4rem 1rem; border-radius: 50px; font-weight: 600; letter-spacing: 1px; }
+    .btn-logout { background: transparent; border: 1.5px solid rgba(255,255,255,0.4); color: #fff; padding: 0.4rem 1.2rem; border-radius: 50px; cursor: pointer; font-size: 0.78rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; transition: var(--transition); font-family: var(--font-b); }
+    .btn-logout:hover { background: rgba(255,255,255,0.15); }
+
+    /* ── LAYOUT ── */
+    .layout { display: flex; min-height: calc(100vh - 64px); }
+    .sidebar {
+      width: 230px; flex-shrink: 0; background: var(--card);
+      border-right: 1px solid var(--border); padding: 2rem 0;
+    }
+    .sidebar-section { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); padding: 0 1.5rem; margin-bottom: 0.5rem; }
+    .sidebar-item {
+      display: flex; align-items: center; gap: 0.8rem;
+      padding: 0.7rem 1.5rem; font-size: 0.88rem; font-weight: 500;
+      cursor: pointer; transition: var(--transition); color: var(--text);
+      border-left: 3px solid transparent; margin-bottom: 0.1rem;
+    }
+    .sidebar-item:hover { background: rgba(107,32,11,0.05); color: var(--primary); }
+    .sidebar-item.active { background: rgba(107,32,11,0.08); color: var(--primary); border-left-color: var(--primary); font-weight: 600; }
+    .sidebar-icon { width: 18px; text-align: center; font-size: 1rem; }
+
+    .main { flex: 1; padding: 2.5rem; overflow-y: auto; background: var(--bg); }
+    .page-header { margin-bottom: 2rem; }
+    .page-title { font-family: var(--font-h); font-size: 2.8rem; font-weight: 600; color: var(--primary); line-height: 1; }
+    .page-title span { font-style: italic; }
+    .page-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* ── SETTINGS CARDS ── */
+    .settings-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; margin-bottom: 1.5rem; }
+    .settings-card-title { font-family: var(--font-h); font-size: 1.3rem; font-weight: 600; color: var(--primary); margin-bottom: 1.5rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-label { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+    .form-input, .form-select, .form-textarea {
+      padding: 0.75rem 1rem; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: 0.9rem; font-family: var(--font-b);
+      background: var(--bg); color: var(--text); outline: none; transition: var(--transition);
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--primary); }
+    .form-textarea { resize: vertical; min-height: 90px; }
+
+    /* ── BUTTONS ── */
+    .btn-save { background: var(--primary); color: #fff; border: none; padding: 0.65rem 2rem; border-radius: 50px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: var(--transition); font-family: var(--font-b); }
+    .btn-save:hover { background: var(--primary-light); }
+    .btn-add { background: var(--primary); color: #fff; border: none; padding: 0.65rem 1.5rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; transition: var(--transition); font-family: var(--font-b); }
+    .btn-add:hover { background: var(--primary-light); }
+
+    /* ── TOAST ── */
+    #toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+      background: var(--success); color: #fff; padding: 1rem 1.8rem;
+      border-radius: 12px; font-size: 0.88rem; font-weight: 600;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      transform: translateY(100px); opacity: 0; transition: all 0.35s cubic-bezier(.25,.8,.25,1);
+      pointer-events: none;
+    }
+    #toast.show { transform: translateY(0); opacity: 1; }
+    #toast.error { background: var(--danger); }
+
+    /* ── SAVE BAR ── */
+    .save-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+      background: var(--primary); color: #fff;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2.5rem;
+      transform: translateY(100%); transition: var(--transition);
+    }
+    .save-bar.visible { transform: translateY(0); }
+    .save-bar-msg { font-size: 0.88rem; font-weight: 500; }
+    .btn-publish { background: #fff; color: var(--primary); border: none; padding: 0.6rem 1.8rem; border-radius: 50px; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: var(--transition); font-family: var(--font-b); }
+    .btn-publish:hover { background: var(--bg2); }
+  </style>
+</head>
+<body>
+
+<!-- ── LOGIN ── -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">Visit <span>Orchha</span></div>
+    <div class="login-sub">Content Management System</div>
+    <label for="password-input">Admin Password</label>
+    <input type="password" id="password-input" placeholder="Enter password" autocomplete="current-password">
+    <button class="btn-primary" onclick="doLogin()">Sign In</button>
+    <div class="login-error" id="login-error"></div>
+  </div>
+</div>
+
+<!-- ── APP ── -->
+<div id="app">
+  <header class="topbar">
+    <div class="topbar-brand">Visit <span>Orchha</span> CMS</div>
+    <div class="topbar-user">
+      <span class="badge">Admin</span>
+      <button class="btn-logout" onclick="logout()">Logout</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <nav class="sidebar">
+      <div class="sidebar-section">Pages</div>
+      <div class="sidebar-item active" onclick="switchTab('homepage', this)">
+        <span class="sidebar-icon">🏠</span> Home Page
+      </div>
+      <div class="sidebar-item" onclick="switchTab('history', this)">
+        <span class="sidebar-icon">📜</span> History Page
+      </div>
+      <div class="sidebar-item" onclick="switchTab('monuments', this)">
+        <span class="sidebar-icon">🏛️</span> Monuments
+      </div>
+    </nav>
+
+    <main class="main">
+
+      <!-- ── HOME PAGE TAB ── -->
+      <div id="tab-homepage" class="tab-content active">
+        <div class="page-header">
+          <h1 class="page-title">Home <span>Page</span></h1>
+          <p class="page-sub">Edit all sections of the main homepage</p>
+        </div>
+
+        <!-- Hero -->
+        <div class="settings-card">
+          <div class="settings-card-title">Hero Section</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Background Video</label>
+              <div style="display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap;">
+                <input class="form-input" id="hp-hero-bgvideo" type="text" placeholder="/videos/hero_bg.mp4 — leave blank to use image instead" style="flex:1;min-width:240px;">
+                <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('hp-hero-bgvideo-file').click()">Upload Video</button>
+                <input type="file" id="hp-hero-bgvideo-file" accept="video/mp4,video/webm,video/quicktime" style="display:none" onchange="heroVideoUpload(this)">
+              </div>
+              <div id="hp-hero-video-preview" style="margin-top:0.6rem;display:none;">
+                <video id="hp-hero-video-el" controls muted style="max-width:100%;max-height:180px;border-radius:8px;border:1px solid var(--border);"></video>
+                <button onclick="clearHeroVideo()" style="display:block;margin-top:0.4rem;font-size:0.78rem;color:var(--danger);background:none;border:none;cursor:pointer;padding:0;">✕ Remove video (use image instead)</button>
+              </div>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Background Image <span style="font-weight:400;text-transform:none;letter-spacing:0;">(fallback when no video)</span></label>
+              <div style="display:flex;gap:0.5rem;align-items:center;">
+                <input class="form-input" id="hp-hero-bgimage" type="text" placeholder="/images/hero_bg.jpg" style="flex:1">
+                <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('hp-hero-bgimage-file').click()">Upload Image</button>
+                <input type="file" id="hp-hero-bgimage-file" accept="image/*" style="display:none" onchange="histImgUpload(this,'hp-hero-bgimage')">
+              </div>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Heading</label>
+              <input class="form-input" id="hp-hero-heading" type="text" placeholder="Orchha">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Subtitle</label>
+              <textarea class="form-textarea" id="hp-hero-subtitle" rows="2" placeholder="A Living Heritage of Madhya Pradesh..."></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CTA Button Text</label>
+              <input class="form-input" id="hp-hero-cta-text" type="text" placeholder="Explore Monuments">
+            </div>
+            <div class="form-group">
+              <label class="form-label">CTA Button Link</label>
+              <input class="form-input" id="hp-hero-cta-link" type="text" placeholder="/monuments">
+            </div>
+          </div>
+          <div id="hp-hero-upload-progress" style="display:none;margin-top:0.8rem;">
+            <div style="background:var(--bg2);border-radius:50px;height:6px;overflow:hidden;">
+              <div id="hp-hero-progress-bar" style="background:var(--primary);height:100%;width:0;transition:width 0.2s;"></div>
+            </div>
+            <div id="hp-hero-progress-label" style="font-size:0.78rem;color:var(--muted);margin-top:0.3rem;">Uploading…</div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('hero')">Save Hero</button>
+          </div>
+        </div>
+
+        <!-- Where History Becomes an Experience -->
+        <div class="settings-card">
+          <div class="settings-card-title">Where History Becomes an Experience</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Heading</label>
+              <input class="form-input" id="hp-ex-heading" type="text">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Subtitle</label>
+              <textarea class="form-textarea" id="hp-ex-subtitle" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CTA Button Link</label>
+              <input class="form-input" id="hp-ex-cta" type="text" placeholder="/experiences">
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;"><div id="hp-ex-cards"></div></div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('experiences')">Save Section</button>
+          </div>
+        </div>
+
+        <!-- Journey Through Time -->
+        <div class="settings-card">
+          <div class="settings-card-title">Journey Through Time</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Section Heading</label>
+              <input class="form-input" id="hp-j-heading" type="text">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Description</label>
+              <textarea class="form-textarea" id="hp-j-desc" rows="3"></textarea>
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;"><div id="hp-j-cards"></div></div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('journey')">Save Section</button>
+          </div>
+        </div>
+
+        <!-- Reflection of Heritage -->
+        <div class="settings-card">
+          <div class="settings-card-title">Reflection of Heritage</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Heading</label>
+              <input class="form-input" id="hp-h-heading" type="text">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Subtitle</label>
+              <input class="form-input" id="hp-h-subtitle" type="text">
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;">
+            <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin-bottom:0.8rem;">Big Card</div>
+            <div id="hp-h-bigcard"></div>
+            <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin:1.2rem 0 0.8rem;">Grid Cards</div>
+            <div id="hp-h-gridcards"></div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('heritage')">Save Section</button>
+          </div>
+        </div>
+
+        <!-- Walk Through Timeless Orchha -->
+        <div class="settings-card">
+          <div class="settings-card-title">Walk Through Timeless Orchha</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Heading</label>
+              <input class="form-input" id="hp-t-heading" type="text">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Subtitle</label>
+              <textarea class="form-textarea" id="hp-t-subtitle" rows="2"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">CTA Button Link</label>
+              <input class="form-input" id="hp-t-cta" type="text" placeholder="/trails">
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;"><div id="hp-t-cards"></div></div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('trails')">Save Section</button>
+          </div>
+        </div>
+
+        <!-- Visit Orchha -->
+        <div class="settings-card">
+          <div class="settings-card-title">Visit Orchha</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Background Image</label>
+              <div style="display:flex;gap:0.5rem;align-items:center;">
+                <input class="form-input" id="hp-vs-bgimage" type="text" placeholder="/images/visit_orchha_bg.jpg" style="flex:1">
+                <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('hp-vs-bgfile').click()">Upload</button>
+                <input type="file" id="hp-vs-bgfile" accept="image/*" style="display:none" onchange="hpUploadImage(this,'hp-vs-bg')">
+                <input type="hidden" id="hp-vs-bg-image">
+              </div>
+            </div>
+            <div class="form-group full"><label class="form-label">Links</label></div>
+            <div class="form-group">
+              <input class="form-input" id="hp-vs-link-0-label" type="text" placeholder="Link label">
+            </div>
+            <div class="form-group">
+              <input class="form-input" id="hp-vs-link-0-url" type="text" placeholder="/url">
+            </div>
+            <div class="form-group">
+              <input class="form-input" id="hp-vs-link-1-label" type="text" placeholder="Link label">
+            </div>
+            <div class="form-group">
+              <input class="form-input" id="hp-vs-link-1-url" type="text" placeholder="/url">
+            </div>
+            <div class="form-group">
+              <input class="form-input" id="hp-vs-link-2-label" type="text" placeholder="Link label">
+            </div>
+            <div class="form-group">
+              <input class="form-input" id="hp-vs-link-2-url" type="text" placeholder="/url">
+            </div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('visit')">Save Section</button>
+          </div>
+        </div>
+
+        <!-- Orchha in News -->
+        <div class="settings-card">
+          <div class="settings-card-title">Orchha in News</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Heading</label>
+              <input class="form-input" id="hp-nw-heading" type="text">
+            </div>
+            <div class="form-group">
+              <label class="form-label">CTA Link</label>
+              <input class="form-input" id="hp-nw-cta" type="text" placeholder="/news">
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;"><div id="hp-nw-cards"></div></div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('news')">Save Section</button>
+          </div>
+        </div>
+
+        <!-- Celebrate With Us -->
+        <div class="settings-card">
+          <div class="settings-card-title">Celebrate With Us</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Subtitle</label>
+              <textarea class="form-textarea" id="hp-cb-subtitle" rows="2"></textarea>
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;"><div id="hp-cb-cards"></div></div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('celebrate')">Save Section</button>
+          </div>
+        </div>
+
+        <!-- Must Try Bundelkhand Cuisine -->
+        <div class="settings-card">
+          <div class="settings-card-title">Must Try Bundelkhand Cuisine</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Heading</label>
+              <input class="form-input" id="hp-cu-heading" type="text">
+            </div>
+          </div>
+          <div style="margin-top:1.2rem;"><div id="hp-cu-cards"></div></div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('cuisine')">Save Section</button>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="settings-card">
+          <div class="settings-card-title">Footer</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Copyright Text</label>
+              <input class="form-input" id="hp-ft-copyright" type="text" placeholder="@2026ORCHHA">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Organisation Name</label>
+              <input class="form-input" id="hp-ft-org" type="text" placeholder="SABHYATA Foundation">
+            </div>
+          </div>
+          <div style="margin-top:1rem;">
+            <label class="form-label" style="margin-bottom:0.6rem;display:block;">Footer Links</label>
+            <div style="display:flex;flex-direction:column;gap:0.6rem;" id="hp-ft-links"></div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHomepageSection('footer')">Save Footer</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── HISTORY PAGE TAB ── -->
+      <div id="tab-history" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">History <span>of Orchha</span></h1>
+          <p class="page-sub">Edit all sections of the /history page</p>
+        </div>
+
+        <!-- Hero -->
+        <div class="settings-card">
+          <div class="settings-card-title">Hero Section</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Heading Line 1</label>
+              <input class="form-input" id="hist-hero-h1" type="text" placeholder="A Kingdom Built">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Heading Line 2</label>
+              <input class="form-input" id="hist-hero-h2" type="text" placeholder="on the Betwa">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Subtitle</label>
+              <textarea class="form-textarea" id="hist-hero-subtitle" rows="3"></textarea>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Hero Image</label>
+              <div style="display:flex;gap:0.5rem;align-items:center;">
+                <input class="form-input" id="hist-hero-image" type="text" placeholder="/images/history_hero.jpg" style="flex:1">
+                <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('hist-hero-image-file').click()">Upload</button>
+                <input type="file" id="hist-hero-image-file" accept="image/*" style="display:none" onchange="histImgUpload(this,'hist-hero-image')">
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHistorySection('hero')">Save Hero</button>
+          </div>
+        </div>
+
+        <!-- Page Title -->
+        <div class="settings-card">
+          <div class="settings-card-title">Page Title</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Title Text</label>
+              <input class="form-input" id="hist-page-title" type="text" placeholder="History of Orchha">
+            </div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHistorySection('pageTitle')">Save Title</button>
+          </div>
+        </div>
+
+        <!-- Timeline -->
+        <div class="settings-card">
+          <div class="settings-card-title">Timeline Entries</div>
+          <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;">7 fixed entries displayed as an alternating timeline.</p>
+          <div id="hist-timeline-entries"></div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHistorySection('timeline')">Save Timeline</button>
+          </div>
+        </div>
+
+        <!-- The New Orchha -->
+        <div class="settings-card">
+          <div class="settings-card-title">The New Orchha (Full-width Banner)</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Heading</label>
+              <input class="form-input" id="hist-no-heading" type="text" placeholder="The New Orchha">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Year</label>
+              <input class="form-input" id="hist-no-year" type="text" placeholder="2026">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Background Image</label>
+              <div style="display:flex;gap:0.5rem;align-items:center;">
+                <input class="form-input" id="hist-no-image" type="text" placeholder="/images/history_new_orchha.jpg" style="flex:1">
+                <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('hist-no-image-file').click()">Upload</button>
+                <input type="file" id="hist-no-image-file" accept="image/*" style="display:none" onchange="histImgUpload(this,'hist-no-image')">
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHistorySection('newOrchha')">Save</button>
+          </div>
+        </div>
+
+        <!-- A New Chapter -->
+        <div class="settings-card">
+          <div class="settings-card-title">A New Chapter</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Heading Line 1</label>
+              <input class="form-input" id="hist-nc-h1" type="text" placeholder="A New">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Heading Line 2</label>
+              <input class="form-input" id="hist-nc-h2" type="text" placeholder="Chapter for an">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Heading Line 3</label>
+              <input class="form-input" id="hist-nc-h3" type="text" placeholder="Ancient Kingdom">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Paragraph 1</label>
+              <textarea class="form-textarea" id="hist-nc-p1" rows="3"></textarea>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Paragraph 2</label>
+              <textarea class="form-textarea" id="hist-nc-p2" rows="3"></textarea>
+            </div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHistorySection('newChapter')">Save</button>
+          </div>
+        </div>
+
+        <!-- Quote -->
+        <div class="settings-card">
+          <div class="settings-card-title">Quote Section</div>
+          <div class="form-grid">
+            <div class="form-group full">
+              <label class="form-label">Quote Text</label>
+              <textarea class="form-textarea" id="hist-quote-text" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Button Label</label>
+              <input class="form-input" id="hist-quote-btn-label" type="text" placeholder="About Sabhyata">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Button URL</label>
+              <input class="form-input" id="hist-quote-btn-url" type="text" placeholder="/sabhyata">
+            </div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHistorySection('quote')">Save</button>
+          </div>
+        </div>
+
+        <!-- MPTB -->
+        <div class="settings-card">
+          <div class="settings-card-title">MPTB Section</div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label">Acronym</label>
+              <input class="form-input" id="hist-mptb-acronym" type="text" placeholder="MPTB">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input class="form-input" id="hist-mptb-fullname" type="text" placeholder="Madhya Pradesh Tourism Board">
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Paragraph 1</label>
+              <textarea class="form-textarea" id="hist-mptb-p1" rows="3"></textarea>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Paragraph 2</label>
+              <textarea class="form-textarea" id="hist-mptb-p2" rows="3"></textarea>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Photo 1</label>
+              <div style="display:flex;gap:0.5rem;align-items:center;">
+                <input class="form-input" id="hist-mptb-img1" type="text" placeholder="/images/history_mptb_1.jpg" style="flex:1">
+                <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('hist-mptb-img1-file').click()">Upload</button>
+                <input type="file" id="hist-mptb-img1-file" accept="image/*" style="display:none" onchange="histImgUpload(this,'hist-mptb-img1')">
+              </div>
+            </div>
+            <div class="form-group full">
+              <label class="form-label">Photo 2</label>
+              <div style="display:flex;gap:0.5rem;align-items:center;">
+                <input class="form-input" id="hist-mptb-img2" type="text" placeholder="/images/history_mptb_2.jpg" style="flex:1">
+                <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('hist-mptb-img2-file').click()">Upload</button>
+                <input type="file" id="hist-mptb-img2-file" accept="image/*" style="display:none" onchange="histImgUpload(this,'hist-mptb-img2')">
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+            <button class="btn-save" onclick="saveHistorySection('mptb')">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── MONUMENTS TAB ── -->
+      <div id="tab-monuments" class="tab-content">
+        <div class="page-header">
+          <h1 class="page-title">Monuments <span>& Heritage</span></h1>
+          <p class="page-sub">Edit monument detail pages — select a monument below</p>
+        </div>
+
+        <!-- Monument selector -->
+        <div class="settings-card">
+          <div class="settings-card-title">Select Monument</div>
+          <select class="form-input" id="mon-select" onchange="renderMonumentEditor()" style="max-width:400px;">
+          </select>
+        </div>
+
+        <!-- Monument detail editor (populated dynamically) -->
+        <div id="mon-editor" style="display:none;">
+
+          <!-- Basic info -->
+          <div class="settings-card">
+            <div class="settings-card-title">Basic Info</div>
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Name</label>
+                <input class="form-input" id="mon-name" type="text">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Year Founded</label>
+                <input class="form-input" id="mon-year" type="text" placeholder="e.g. 1501">
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Short Description (listing cards)</label>
+                <textarea class="form-textarea" id="mon-desc" rows="3"></textarea>
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Detail Description (monument page — Panel 2)</label>
+                <textarea class="form-textarea" id="mon-detail-desc" rows="5"></textarea>
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Did You Know? (Panel 3)</label>
+                <textarea class="form-textarea" id="mon-dyk" rows="4"></textarea>
+              </div>
+            </div>
+            <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+              <button class="btn-save" onclick="saveMonumentSection('info')">Save Info</button>
+            </div>
+          </div>
+
+          <!-- Images -->
+          <div class="settings-card">
+            <div class="settings-card-title">Images</div>
+            <div class="form-grid">
+              <div class="form-group full">
+                <label class="form-label">Hero Image (Panel 1 — full-bleed cinematic)</label>
+                <div style="display:flex;gap:0.5rem;align-items:center;">
+                  <input class="form-input" id="mon-hero-image" type="text" placeholder="/images/aerial_orchha.jpg" style="flex:1" oninput="document.getElementById('mon-hero-img-prev').src=this.value">
+                  <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('mon-hero-image-file').click()">Upload</button>
+                  <input type="file" id="mon-hero-image-file" accept="image/*" style="display:none" onchange="monImgUpload(this,'mon-hero-image','mon-hero-img-prev')">
+                </div>
+                <img id="mon-hero-img-prev" src="" style="margin-top:0.5rem;width:100%;max-height:160px;object-fit:cover;border-radius:8px;border:1px solid var(--border);" onerror="this.style.opacity='0.15'">
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Main Photo (Panel 2 — large card)</label>
+                <div style="display:flex;gap:0.5rem;align-items:center;">
+                  <input class="form-input" id="mon-main-image" type="text" placeholder="/images/heritage_fort.jpg" style="flex:1" oninput="document.getElementById('mon-main-img-prev').src=this.value">
+                  <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('mon-main-image-file').click()">Upload</button>
+                  <input type="file" id="mon-main-image-file" accept="image/*" style="display:none" onchange="monImgUpload(this,'mon-main-image','mon-main-img-prev')">
+                </div>
+                <img id="mon-main-img-prev" src="" style="margin-top:0.5rem;width:100%;max-height:160px;object-fit:cover;border-radius:8px;border:1px solid var(--border);" onerror="this.style.opacity='0.15'">
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Gallery Images (Panel 2 small cards + Panel 3)</label>
+                <div id="mon-gallery-inputs"></div>
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Close-Up Images (Panel 5)</label>
+                <div id="mon-closeup-inputs"></div>
+              </div>
+            </div>
+            <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+              <button class="btn-save" onclick="saveMonumentSection('images')">Save Images</button>
+            </div>
+          </div>
+
+          <!-- Videos -->
+          <div class="settings-card">
+            <div class="settings-card-title">Videos</div>
+            <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;">Upload MP4/WebM videos for the hero and outro panels. Leave blank to use the fallback image instead.</p>
+            <div class="form-grid">
+              <div class="form-group full">
+                <label class="form-label">Hero Video (Panel 1 — cinematic intro)</label>
+                <div style="display:flex;gap:0.5rem;align-items:center;">
+                  <input class="form-input" id="mon-hero-video" type="text" placeholder="/videos/rrm_hero.mp4 — leave blank for image fallback" style="flex:1" oninput="updateMonVideoPreview('mon-hero-video','mon-hero-video-el','mon-hero-video-wrap')">
+                  <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('mon-hero-video-file').click()">Upload Video</button>
+                  <input type="file" id="mon-hero-video-file" accept="video/mp4,video/webm,video/quicktime" style="display:none" onchange="monVideoUpload(this,'mon-hero-video','mon-hero-video-el','mon-hero-video-wrap')">
+                </div>
+                <div id="mon-hero-video-wrap" style="margin-top:0.5rem;display:none;">
+                  <video id="mon-hero-video-el" controls muted style="max-width:100%;max-height:160px;border-radius:8px;border:1px solid var(--border);"></video>
+                  <button onclick="clearMonVideo('mon-hero-video','mon-hero-video-el','mon-hero-video-wrap')" style="display:block;margin-top:0.3rem;font-size:0.78rem;color:var(--danger);background:none;border:none;cursor:pointer;padding:0;">✕ Remove video</button>
+                </div>
+              </div>
+              <div class="form-group full">
+                <label class="form-label">Outro Video (last panel — aerial/cinematic close)</label>
+                <div style="display:flex;gap:0.5rem;align-items:center;">
+                  <input class="form-input" id="mon-outro-video" type="text" placeholder="/videos/rrm_outro.mp4 — leave blank for image fallback" style="flex:1" oninput="updateMonVideoPreview('mon-outro-video','mon-outro-video-el','mon-outro-video-wrap')">
+                  <button class="btn-add" style="white-space:nowrap;" onclick="document.getElementById('mon-outro-video-file').click()">Upload Video</button>
+                  <input type="file" id="mon-outro-video-file" accept="video/mp4,video/webm,video/quicktime" style="display:none" onchange="monVideoUpload(this,'mon-outro-video','mon-outro-video-el','mon-outro-video-wrap')">
+                </div>
+                <div id="mon-outro-video-wrap" style="margin-top:0.5rem;display:none;">
+                  <video id="mon-outro-video-el" controls muted style="max-width:100%;max-height:160px;border-radius:8px;border:1px solid var(--border);"></video>
+                  <button onclick="clearMonVideo('mon-outro-video','mon-outro-video-el','mon-outro-video-wrap')" style="display:block;margin-top:0.3rem;font-size:0.78rem;color:var(--danger);background:none;border:none;cursor:pointer;padding:0;">✕ Remove video</button>
+                </div>
+              </div>
+            </div>
+            <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+              <button class="btn-save" onclick="saveMonumentSection('videos')">Save Videos</button>
+            </div>
+          </div>
+
+          <!-- Sub-monuments -->
+          <div class="settings-card">
+            <div class="settings-card-title">Sub-Monuments (Panel 4)</div>
+            <p style="font-size:0.82rem;color:var(--muted);margin-bottom:1.5rem;">Structures within this monument complex shown as numbered cards.</p>
+            <div id="mon-subs-container"></div>
+            <div style="margin-top:1rem;display:flex;justify-content:flex-end;">
+              <button class="btn-save" onclick="saveMonumentSection('subs')">Save Sub-Monuments</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<div id="toast"></div>
+<div class="save-bar" id="save-bar">
+  <span class="save-bar-msg">&#9888;&#65039; You have unsaved changes</span>
+  <button class="btn-publish" onclick="publishAll()">Publish Changes</button>
+</div>
+
+<script>
+  let TOKEN = '';
+  let content = null;
+  let isDirty = false;
+
+  // ── AUTH ──────────────────────────────────────────────────────────
+  async function doLogin() {
+    const pw = document.getElementById('password-input').value;
+    try {
+      const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({password: pw})
+      });
+      const data = await res.json();
+      if (data.success) {
+        TOKEN = data.token;
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('app').style.display = 'block';
+        loadContent();
+      } else {
+        document.getElementById('login-error').textContent = 'Incorrect password.';
+      }
+    } catch(e) {
+      document.getElementById('login-error').textContent = 'Cannot connect to server.';
+    }
+  }
+
+  document.getElementById('password-input').addEventListener('keydown', e => {
+    if (e.key === 'Enter') doLogin();
+  });
+
+  function logout() {
+    TOKEN = ''; content = null;
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('login-screen').style.display = 'flex';
+    document.getElementById('password-input').value = '';
+  }
+
+  // ── DATA ──────────────────────────────────────────────────────────
+  async function loadContent() {
+    try {
+      const res = await fetch('/api/content');
+      content = await res.json();
+      renderHomepageSections();
+      renderHistoryPage();
+      renderMonumentsTab();
+    } catch(e) {
+      showToast('Failed to load content', true);
+    }
+  }
+
+  // ── TABS ──────────────────────────────────────────────────────────
+  function switchTab(name, el) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.sidebar-item').forEach(i => i.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    el.classList.add('active');
+  }
+
+  // ── PUBLISH ───────────────────────────────────────────────────────
+  function markDirty() {
+    isDirty = true;
+    document.getElementById('save-bar').classList.add('visible');
+  }
+
+  async function publishAll() {
+    try {
+      const res = await fetch('/api/content', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json','x-cms-token': TOKEN},
+        body: JSON.stringify(content)
+      });
+      const data = await res.json();
+      if (data.success) {
+        isDirty = false;
+        document.getElementById('save-bar').classList.remove('visible');
+        showToast('✓ Changes published successfully');
+      } else { showToast('Failed to save: ' + data.error, true); }
+    } catch(e) { showToast('Save error — is the server running?', true); }
+  }
+
+  function showToast(msg, isError = false) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.className = 'show' + (isError ? ' error' : '');
+    setTimeout(() => t.className = '', 3500);
+  }
+
+  window.addEventListener('beforeunload', e => { if (isDirty) { e.preventDefault(); e.returnValue = ''; } });
+
+  // ── HERO VIDEO UPLOAD ─────────────────────────────────────────────
+  async function heroVideoUpload(input) {
+    if (!input.files[0]) return;
+    const file = input.files[0];
+    const fd = new FormData();
+    fd.append('video', file);
+
+    const prog = document.getElementById('hp-hero-upload-progress');
+    const bar  = document.getElementById('hp-hero-progress-bar');
+    const lbl  = document.getElementById('hp-hero-progress-label');
+    prog.style.display = 'block';
+    bar.style.width = '0%';
+    lbl.textContent = 'Uploading ' + file.name + '…';
+
+    try {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/upload-rails-video');
+      xhr.setRequestHeader('x-cms-token', TOKEN);
+      xhr.upload.onprogress = e => {
+        if (e.lengthComputable) {
+          const pct = Math.round(e.loaded / e.total * 100);
+          bar.style.width = pct + '%';
+          lbl.textContent = 'Uploading… ' + pct + '%';
+        }
+      };
+      xhr.onload = () => {
+        prog.style.display = 'none';
+        const data = JSON.parse(xhr.responseText);
+        if (data.success) {
+          document.getElementById('hp-hero-bgvideo').value = data.url;
+          setHeroVideoPreview(data.url);
+          showToast('Video uploaded ✓');
+        } else {
+          showToast('Upload failed: ' + data.error, true);
+        }
+      };
+      xhr.onerror = () => { prog.style.display = 'none'; showToast('Upload error', true); };
+      xhr.send(fd);
+    } catch(e) { prog.style.display = 'none'; showToast('Upload error', true); }
+  }
+
+  function setHeroVideoPreview(url) {
+    const wrap = document.getElementById('hp-hero-video-preview');
+    const el   = document.getElementById('hp-hero-video-el');
+    if (url) {
+      el.src = url;
+      wrap.style.display = 'block';
+    } else {
+      el.src = '';
+      wrap.style.display = 'none';
+    }
+  }
+
+  function clearHeroVideo() {
+    document.getElementById('hp-hero-bgvideo').value = '';
+    setHeroVideoPreview('');
+  }
+
+  // ── HOMEPAGE SECTIONS ─────────────────────────────────────────────
+  function renderHomepageSections() {
+    const hp = content.homePage || {};
+
+    const hero = hp.hero || {};
+    document.getElementById('hp-hero-bgvideo').value   = hero.bgVideo  || '';
+    document.getElementById('hp-hero-bgimage').value   = hero.bgImage  || '';
+    document.getElementById('hp-hero-heading').value   = hero.heading  || '';
+    document.getElementById('hp-hero-subtitle').value  = hero.subtitle || '';
+    document.getElementById('hp-hero-cta-text').value  = hero.ctaText  || '';
+    document.getElementById('hp-hero-cta-link').value  = hero.ctaLink  || '';
+    setHeroVideoPreview(hero.bgVideo || '');
+
+    const ex = hp.experiences || {};
+    document.getElementById('hp-ex-heading').value  = ex.heading  || '';
+    document.getElementById('hp-ex-subtitle').value = ex.subtitle || '';
+    document.getElementById('hp-ex-cta').value      = ex.ctaLink  || '/experiences';
+    renderHpCards('hp-ex-cards', ex.cards || [], false);
+
+    const j = hp.journey || {};
+    document.getElementById('hp-j-heading').value = j.heading     || '';
+    document.getElementById('hp-j-desc').value    = j.description || '';
+    renderHpCards('hp-j-cards', j.cards || [], false);
+
+    const h = hp.heritage || {};
+    document.getElementById('hp-h-heading').value  = h.heading  || '';
+    document.getElementById('hp-h-subtitle').value = h.subtitle || '';
+    document.getElementById('hp-h-bigcard').innerHTML = hpCardRow('hp-hb', h.bigCard || {}, true);
+    let gc = '';
+    for (let i = 0; i < 4; i++) gc += hpCardRow('hp-hg-' + i, (h.gridCards || [])[i] || {}, false);
+    document.getElementById('hp-h-gridcards').innerHTML = gc;
+
+    const t = hp.trails || {};
+    document.getElementById('hp-t-heading').value  = t.heading  || '';
+    document.getElementById('hp-t-subtitle').value = t.subtitle || '';
+    document.getElementById('hp-t-cta').value      = t.ctaLink  || '/trails';
+    renderHpCards('hp-t-cards', t.cards || [], false);
+
+    const vs = hp.visit || {};
+    document.getElementById('hp-vs-bgimage').value = vs.bgImage || '';
+    const vsLinks = vs.links || [];
+    for (let i = 0; i < 3; i++) {
+      document.getElementById('hp-vs-link-' + i + '-label').value = (vsLinks[i] || {}).label || '';
+      document.getElementById('hp-vs-link-' + i + '-url').value   = (vsLinks[i] || {}).url   || '';
+    }
+
+    const nw = hp.news || {};
+    document.getElementById('hp-nw-heading').value = nw.heading || '';
+    document.getElementById('hp-nw-cta').value     = nw.ctaLink || '/news';
+    renderHpCards('hp-nw-cards', nw.cards || [], false);
+
+    const cb = hp.celebrate || {};
+    document.getElementById('hp-cb-subtitle').value = cb.subtitle || '';
+    renderHpCards('hp-cb-cards', cb.cards || [], false);
+
+    const cu = hp.cuisine || {};
+    document.getElementById('hp-cu-heading').value = cu.heading || '';
+    renderHpCards('hp-cu-cards', cu.cards || [], false);
+
+    const ft = hp.footer || {};
+    document.getElementById('hp-ft-copyright').value = ft.copyright || '';
+    document.getElementById('hp-ft-org').value        = ft.org       || '';
+    const ftLinksEl = document.getElementById('hp-ft-links');
+    ftLinksEl.innerHTML = (ft.links || []).map((l, i) => `
+      <div style="display:flex;gap:0.6rem;">
+        <input class="form-input" id="hp-ft-link-${i}-label" type="text" value="${escVal(l.label)}" placeholder="Link label" style="flex:2">
+        <input class="form-input" id="hp-ft-link-${i}-url"   type="text" value="${escVal(l.url)}"   placeholder="/url" style="flex:1">
+      </div>`).join('');
+  }
+
+  function escVal(s) { return (s || '').replace(/"/g, '&quot;'); }
+
+  function hpCardRow(id, card, withDesc) {
+    const img = card.image || '';
+    return `
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;display:flex;gap:1rem;align-items:flex-start;flex-wrap:wrap;margin-bottom:0.8rem;">
+        <div style="flex-shrink:0;display:flex;flex-direction:column;gap:0.5rem;align-items:center;">
+          <img id="${id}-preview" src="${escVal(img)}" onerror="this.style.opacity='0.2'" style="width:110px;height:80px;object-fit:cover;border-radius:6px;border:1px solid var(--border);">
+          <button class="btn-add" style="font-size:0.72rem;padding:0.3rem 0.7rem;" onclick="document.getElementById('${id}-file').click()">Upload</button>
+          <input type="file" id="${id}-file" accept="image/*" style="display:none" onchange="hpUploadImage(this,'${id}')">
+        </div>
+        <div style="flex:1;min-width:180px;display:flex;flex-direction:column;gap:0.5rem;">
+          <input class="form-input" id="${id}-name"  type="text" value="${escVal(card.name)}"  placeholder="Card name">
+          <input class="form-input" id="${id}-image" type="text" value="${escVal(img)}"         placeholder="Image path" oninput="document.getElementById('${id}-preview').src=this.value">
+          <input class="form-input" id="${id}-link"  type="text" value="${escVal(card.link)}"  placeholder="Link URL">
+          ${card.date !== undefined ? `<input class="form-input" id="${id}-date" type="text" value="${escVal(card.date)}" placeholder="Date">` : ''}
+          ${withDesc ? `<textarea class="form-textarea" id="${id}-desc" rows="2" placeholder="Description">${(card.description||'').replace(/</g,'&lt;')}</textarea>` : ''}
+        </div>
+      </div>`;
+  }
+
+  function renderHpCards(containerId, cards, withDesc) {
+    let html = '';
+    const count = Math.max(cards.length, containerId.includes('-j-') || containerId.includes('-ex-') ? 3 : 4);
+    for (let i = 0; i < count; i++) {
+      html += hpCardRow(containerId + '-' + i, cards[i] || {}, withDesc);
+    }
+    document.getElementById(containerId).innerHTML = html;
+  }
+
+  function readHpCards(prefix, count) {
+    const cards = [];
+    for (let i = 0; i < count; i++) {
+      const p = prefix + '-' + i;
+      const card = {
+        name:  (document.getElementById(p+'-name')  || {}).value || '',
+        image: (document.getElementById(p+'-image') || {}).value || '',
+        link:  (document.getElementById(p+'-link')  || {}).value || ''
+      };
+      const dateEl = document.getElementById(p+'-date');
+      const descEl = document.getElementById(p+'-desc');
+      if (dateEl) card.date = dateEl.value;
+      if (descEl) card.description = descEl.value;
+      cards.push(card);
+    }
+    return cards;
+  }
+
+  async function hpUploadImage(input, id) {
+    if (!input.files[0]) return;
+    const fd = new FormData();
+    fd.append('image', input.files[0]);
+    try {
+      const res = await fetch('/api/upload-rails', { method:'POST', headers:{'x-cms-token':TOKEN}, body:fd });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById(id + '-image').value = data.url;
+        const prev = document.getElementById(id + '-preview');
+        if (prev) prev.src = data.url;
+        showToast('Image saved ✓');
+      } else showToast('Upload failed', true);
+    } catch(e) { showToast('Upload error', true); }
+  }
+
+  async function saveHomepageSection(section) {
+    if (!content.homePage) content.homePage = {};
+    const hp = content.homePage;
+
+    if (section === 'hero') {
+      hp.hero = {
+        bgVideo:  document.getElementById('hp-hero-bgvideo').value,
+        bgImage:  document.getElementById('hp-hero-bgimage').value,
+        heading:  document.getElementById('hp-hero-heading').value,
+        subtitle: document.getElementById('hp-hero-subtitle').value,
+        ctaText:  document.getElementById('hp-hero-cta-text').value,
+        ctaLink:  document.getElementById('hp-hero-cta-link').value
+      };
+    } else if (section === 'experiences') {
+      hp.experiences = {
+        heading: document.getElementById('hp-ex-heading').value,
+        subtitle: document.getElementById('hp-ex-subtitle').value,
+        ctaLink: document.getElementById('hp-ex-cta').value,
+        cards: readHpCards('hp-ex-cards', 3)
+      };
+    } else if (section === 'journey') {
+      hp.journey = {
+        heading: document.getElementById('hp-j-heading').value,
+        description: document.getElementById('hp-j-desc').value,
+        cards: readHpCards('hp-j-cards', 3)
+      };
+    } else if (section === 'heritage') {
+      hp.heritage = {
+        heading: document.getElementById('hp-h-heading').value,
+        subtitle: document.getElementById('hp-h-subtitle').value,
+        bigCard: {
+          name:        (document.getElementById('hp-hb-name')  || {}).value || '',
+          image:       (document.getElementById('hp-hb-image') || {}).value || '',
+          link:        (document.getElementById('hp-hb-link')  || {}).value || '',
+          date:        (document.getElementById('hp-hb-date')  || {}).value || '',
+          description: (document.getElementById('hp-hb-desc')  || {}).value || ''
+        },
+        gridCards: readHpCards('hp-hg', 4)
+      };
+    } else if (section === 'trails') {
+      hp.trails = {
+        heading: document.getElementById('hp-t-heading').value,
+        subtitle: document.getElementById('hp-t-subtitle').value,
+        ctaLink: document.getElementById('hp-t-cta').value,
+        cards: readHpCards('hp-t-cards', 4)
+      };
+    } else if (section === 'visit') {
+      const links = [];
+      for (let i = 0; i < 3; i++) {
+        links.push({
+          label: (document.getElementById('hp-vs-link-'+i+'-label')||{}).value || '',
+          url:   (document.getElementById('hp-vs-link-'+i+'-url')  ||{}).value || ''
+        });
+      }
+      hp.visit = { bgImage: document.getElementById('hp-vs-bgimage').value, links };
+    } else if (section === 'news') {
+      hp.news = {
+        heading: document.getElementById('hp-nw-heading').value,
+        ctaLink: document.getElementById('hp-nw-cta').value,
+        cards: readHpCards('hp-nw-cards', 4)
+      };
+    } else if (section === 'celebrate') {
+      hp.celebrate = {
+        heading: 'Celebrate<br>With Us',
+        subtitle: document.getElementById('hp-cb-subtitle').value,
+        cards: readHpCards('hp-cb-cards', 3)
+      };
+    } else if (section === 'cuisine') {
+      hp.cuisine = {
+        heading: document.getElementById('hp-cu-heading').value,
+        cards: readHpCards('hp-cu-cards', 13)
+      };
+    } else if (section === 'footer') {
+      const ftLinks = [];
+      document.querySelectorAll('#hp-ft-links > div').forEach((_, i) => {
+        ftLinks.push({
+          label: (document.getElementById('hp-ft-link-'+i+'-label')||{}).value || '',
+          url:   (document.getElementById('hp-ft-link-'+i+'-url')  ||{}).value || ''
+        });
+      });
+      hp.footer = {
+        copyright: document.getElementById('hp-ft-copyright').value,
+        org:       document.getElementById('hp-ft-org').value,
+        links:     ftLinks
+      };
+    }
+
+    await publishAll();
+  }
+
+  // ── HISTORY PAGE ──────────────────────────────────────────────────
+  function renderHistoryPage() {
+    const hp = content.historyPage || {};
+
+    const hero = hp.hero || {};
+    document.getElementById('hist-hero-h1').value       = hero.heading1 || '';
+    document.getElementById('hist-hero-h2').value       = hero.heading2 || '';
+    document.getElementById('hist-hero-subtitle').value = hero.subtitle  || '';
+    document.getElementById('hist-hero-image').value    = hero.image     || '';
+
+    document.getElementById('hist-page-title').value = hp.pageTitle || '';
+
+    const tl = hp.timeline || [];
+    const tlContainer = document.getElementById('hist-timeline-entries');
+    tlContainer.innerHTML = '';
+    const count = Math.max(tl.length, 7);
+    for (let i = 0; i < count; i++) {
+      const e = tl[i] || {};
+      const card = document.createElement('div');
+      card.style.cssText = 'background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.2rem;margin-bottom:1rem;';
+      card.innerHTML = `
+        <div style="font-weight:700;font-size:0.8rem;text-transform:uppercase;letter-spacing:1px;color:var(--primary);margin-bottom:0.8rem;">Entry ${i + 1}</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Year</label>
+            <input class="form-input" id="hist-tl-${i}-year" type="text" value="${escVal(e.year)}" placeholder="e.g. 1501">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Heading</label>
+            <input class="form-input" id="hist-tl-${i}-heading" type="text" value="${escVal(e.heading)}" placeholder="e.g. The Foundation">
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Body Text</label>
+            <textarea class="form-textarea" id="hist-tl-${i}-body" rows="3">${(e.body||'').replace(/</g,'&lt;')}</textarea>
+          </div>
+          <div class="form-group full">
+            <label class="form-label">Image</label>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <input class="form-input" id="hist-tl-${i}-image" type="text" value="${escVal(e.image)}" placeholder="/images/history_tl_${escVal(e.year)}.jpg" style="flex:1">
+              <button class="btn-add" style="white-space:nowrap;font-size:0.75rem;padding:0.4rem 0.8rem;" onclick="document.getElementById('hist-tl-${i}-file').click()">Upload</button>
+              <input type="file" id="hist-tl-${i}-file" accept="image/*" style="display:none" onchange="histTlUpload(this,${i})">
+            </div>
+          </div>
+        </div>`;
+      tlContainer.appendChild(card);
+    }
+
+    const no = hp.newOrchha || {};
+    document.getElementById('hist-no-heading').value = no.heading || '';
+    document.getElementById('hist-no-year').value    = no.year    || '';
+    document.getElementById('hist-no-image').value   = no.image   || '';
+
+    const nc = hp.newChapter || {};
+    document.getElementById('hist-nc-h1').value = nc.heading1 || '';
+    document.getElementById('hist-nc-h2').value = nc.heading2 || '';
+    document.getElementById('hist-nc-h3').value = nc.heading3 || '';
+    const paras = nc.paragraphs || [];
+    document.getElementById('hist-nc-p1').value = paras[0] || '';
+    document.getElementById('hist-nc-p2').value = paras[1] || '';
+
+    const qt = hp.quote || {};
+    document.getElementById('hist-quote-text').value      = qt.text        || '';
+    document.getElementById('hist-quote-btn-label').value = qt.buttonLabel || '';
+    document.getElementById('hist-quote-btn-url').value   = qt.buttonUrl   || '';
+
+    const mp = hp.mptb || {};
+    document.getElementById('hist-mptb-acronym').value  = mp.acronym  || '';
+    document.getElementById('hist-mptb-fullname').value = mp.fullName || '';
+    const mparas = mp.paragraphs || [];
+    document.getElementById('hist-mptb-p1').value   = mparas[0] || '';
+    document.getElementById('hist-mptb-p2').value   = mparas[1] || '';
+    document.getElementById('hist-mptb-img1').value = mp.image1  || '';
+    document.getElementById('hist-mptb-img2').value = mp.image2  || '';
+  }
+
+  async function histImgUpload(input, targetId) {
+    if (!input.files[0]) return;
+    const fd = new FormData();
+    fd.append('image', input.files[0]);
+    try {
+      const res = await fetch('/api/upload-rails', { method:'POST', headers:{'x-cms-token':TOKEN}, body:fd });
+      const data = await res.json();
+      if (data.success) { document.getElementById(targetId).value = data.url; showToast('Image saved ✓'); }
+      else showToast('Upload failed', true);
+    } catch(e) { showToast('Upload error', true); }
+  }
+
+  async function histTlUpload(input, i) {
+    if (!input.files[0]) return;
+    const fd = new FormData();
+    fd.append('image', input.files[0]);
+    try {
+      const res = await fetch('/api/upload-rails', { method:'POST', headers:{'x-cms-token':TOKEN}, body:fd });
+      const data = await res.json();
+      if (data.success) { document.getElementById('hist-tl-' + i + '-image').value = data.url; showToast('Image saved ✓'); }
+      else showToast('Upload failed', true);
+    } catch(e) { showToast('Upload error', true); }
+  }
+
+  async function saveHistorySection(section) {
+    if (!content.historyPage) content.historyPage = {};
+    const hp = content.historyPage;
+
+    if (section === 'hero') {
+      hp.hero = {
+        heading1: document.getElementById('hist-hero-h1').value,
+        heading2: document.getElementById('hist-hero-h2').value,
+        subtitle: document.getElementById('hist-hero-subtitle').value,
+        image:    document.getElementById('hist-hero-image').value
+      };
+    } else if (section === 'pageTitle') {
+      hp.pageTitle = document.getElementById('hist-page-title').value;
+    } else if (section === 'timeline') {
+      const entries = [];
+      const cnt = document.querySelectorAll('#hist-timeline-entries > div').length;
+      for (let i = 0; i < cnt; i++) {
+        entries.push({
+          year:    document.getElementById('hist-tl-'+i+'-year').value,
+          heading: document.getElementById('hist-tl-'+i+'-heading').value,
+          body:    document.getElementById('hist-tl-'+i+'-body').value,
+          image:   document.getElementById('hist-tl-'+i+'-image').value
+        });
+      }
+      hp.timeline = entries;
+    } else if (section === 'newOrchha') {
+      hp.newOrchha = {
+        heading: document.getElementById('hist-no-heading').value,
+        year:    document.getElementById('hist-no-year').value,
+        image:   document.getElementById('hist-no-image').value
+      };
+    } else if (section === 'newChapter') {
+      hp.newChapter = {
+        heading1:   document.getElementById('hist-nc-h1').value,
+        heading2:   document.getElementById('hist-nc-h2').value,
+        heading3:   document.getElementById('hist-nc-h3').value,
+        paragraphs: [document.getElementById('hist-nc-p1').value, document.getElementById('hist-nc-p2').value].filter(p => p)
+      };
+    } else if (section === 'quote') {
+      hp.quote = {
+        text:        document.getElementById('hist-quote-text').value,
+        buttonLabel: document.getElementById('hist-quote-btn-label').value,
+        buttonUrl:   document.getElementById('hist-quote-btn-url').value
+      };
+    } else if (section === 'mptb') {
+      hp.mptb = {
+        acronym:    document.getElementById('hist-mptb-acronym').value,
+        fullName:   document.getElementById('hist-mptb-fullname').value,
+        paragraphs: [document.getElementById('hist-mptb-p1').value, document.getElementById('hist-mptb-p2').value].filter(p => p),
+        image1:     document.getElementById('hist-mptb-img1').value,
+        image2:     document.getElementById('hist-mptb-img2').value
+      };
+    }
+
+    await publishAll();
+  }
+
+  // ── MONUMENTS ─────────────────────────────────────────────────────
+  function renderMonumentsTab() {
+    const monuments = content.monuments || [];
+    const sel = document.getElementById('mon-select');
+    sel.innerHTML = monuments.map((m, i) => `<option value="${i}">${m.name || m.id || 'Monument ' + (i+1)}</option>`).join('');
+    if (monuments.length) renderMonumentEditor();
+  }
+
+  function renderMonumentEditor() {
+    const monuments = content.monuments || [];
+    const idx = parseInt(document.getElementById('mon-select').value, 10);
+    const m = monuments[idx] || {};
+    document.getElementById('mon-editor').style.display = 'block';
+
+    document.getElementById('mon-name').value        = m.name || '';
+    document.getElementById('mon-year').value        = m.year || '';
+    document.getElementById('mon-desc').value        = m.description || '';
+    document.getElementById('mon-detail-desc').value = m.detailDescription || '';
+    document.getElementById('mon-dyk').value         = m.didYouKnow || '';
+    document.getElementById('mon-hero-image').value  = m.heroImage || '';
+    document.getElementById('mon-main-image').value  = m.image || '';
+    document.getElementById('mon-hero-img-prev').src = m.heroImage || '';
+    document.getElementById('mon-main-img-prev').src = m.image || '';
+
+    document.getElementById('mon-hero-video').value  = m.heroVideo  || '';
+    document.getElementById('mon-outro-video').value = m.outroVideo || '';
+    updateMonVideoPreview('mon-hero-video',  'mon-hero-video-el',  'mon-hero-video-wrap');
+    updateMonVideoPreview('mon-outro-video', 'mon-outro-video-el', 'mon-outro-video-wrap');
+
+    // Gallery images
+    const gallery = m.galleryImages || ['', '', ''];
+    document.getElementById('mon-gallery-inputs').innerHTML = [0,1,2].map(i => `
+      <div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
+        <span style="font-size:0.75rem;color:var(--muted);width:20px;flex-shrink:0;">${i+1}</span>
+        <input class="form-input" id="mon-gallery-${i}" type="text" value="${escVal(gallery[i]||'')}" placeholder="/images/..." style="flex:1" oninput="document.getElementById('mon-gallery-prev-${i}').src=this.value">
+        <button class="btn-add" style="white-space:nowrap;font-size:0.72rem;padding:0.3rem 0.7rem;" onclick="document.getElementById('mon-gallery-${i}-file').click()">Upload</button>
+        <input type="file" id="mon-gallery-${i}-file" accept="image/*" style="display:none" onchange="monImgUpload(this,'mon-gallery-${i}','mon-gallery-prev-${i}')">
+        <img id="mon-gallery-prev-${i}" src="${escVal(gallery[i]||'')}" style="width:60px;height:45px;object-fit:cover;border-radius:4px;border:1px solid var(--border);" onerror="this.style.opacity='0.15'">
+      </div>`).join('');
+
+    // Close-up images
+    const closeup = m.closeUpImages || ['', ''];
+    document.getElementById('mon-closeup-inputs').innerHTML = [0,1].map(i => `
+      <div style="display:flex;gap:0.5rem;align-items:center;margin-bottom:0.5rem;">
+        <span style="font-size:0.75rem;color:var(--muted);width:20px;flex-shrink:0;">${i+1}</span>
+        <input class="form-input" id="mon-closeup-${i}" type="text" value="${escVal(closeup[i]||'')}" placeholder="/images/..." style="flex:1" oninput="document.getElementById('mon-closeup-prev-${i}').src=this.value">
+        <button class="btn-add" style="white-space:nowrap;font-size:0.72rem;padding:0.3rem 0.7rem;" onclick="document.getElementById('mon-closeup-${i}-file').click()">Upload</button>
+        <input type="file" id="mon-closeup-${i}-file" accept="image/*" style="display:none" onchange="monImgUpload(this,'mon-closeup-${i}','mon-closeup-prev-${i}')">
+        <img id="mon-closeup-prev-${i}" src="${escVal(closeup[i]||'')}" style="width:60px;height:45px;object-fit:cover;border-radius:4px;border:1px solid var(--border);" onerror="this.style.opacity='0.15'">
+      </div>`).join('');
+
+    // Sub-monuments
+    const subs = m.subMonuments || [];
+    const container = document.getElementById('mon-subs-container');
+    container.innerHTML = subs.map((sub, i) => `
+      <div style="background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:0.8rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap;">
+        <img id="mon-sub-${i}-prev" src="${escVal(sub.image||'')}" style="width:80px;height:60px;object-fit:cover;border-radius:6px;border:1px solid var(--border);flex-shrink:0;" onerror="this.style.opacity='0.15'">
+        <div style="flex:1;min-width:200px;display:flex;flex-direction:column;gap:0.5rem;">
+          <input class="form-input" id="mon-sub-${i}-name"  type="text" value="${escVal(sub.name||'')}"  placeholder="Sub-monument name">
+          <input class="form-input" id="mon-sub-${i}-id"    type="text" value="${escVal(sub.id||'')}"    placeholder="URL id (e.g. jahangir-mahal)">
+          <div style="display:flex;gap:0.5rem;align-items:center;">
+            <input class="form-input" id="mon-sub-${i}-image" type="text" value="${escVal(sub.image||'')}" placeholder="Image path" style="flex:1" oninput="document.getElementById('mon-sub-${i}-prev').src=this.value">
+            <button class="btn-add" style="white-space:nowrap;font-size:0.72rem;padding:0.3rem 0.7rem;" onclick="document.getElementById('mon-sub-${i}-file').click()">Upload</button>
+            <input type="file" id="mon-sub-${i}-file" accept="image/*" style="display:none" onchange="monImgUpload(this,'mon-sub-${i}-image','mon-sub-${i}-prev')">
+          </div>
+        </div>
+      </div>`).join('');
+  }
+
+  async function monImgUpload(input, fieldId, prevId) {
+    if (!input.files[0]) return;
+    const fd = new FormData();
+    fd.append('image', input.files[0]);
+    try {
+      const res = await fetch('/api/upload-rails', { method:'POST', headers:{'x-cms-token':TOKEN}, body:fd });
+      const data = await res.json();
+      if (data.success) {
+        document.getElementById(fieldId).value = data.url;
+        const prev = document.getElementById(prevId);
+        if (prev) { prev.src = data.url; prev.style.opacity = '1'; }
+        showToast('Image saved ✓');
+      } else showToast('Upload failed', true);
+    } catch(e) { showToast('Upload error', true); }
+  }
+
+  function updateMonVideoPreview(fieldId, elId, wrapId) {
+    const url  = document.getElementById(fieldId).value.trim();
+    const wrap = document.getElementById(wrapId);
+    const el   = document.getElementById(elId);
+    if (url) {
+      el.src = url;
+      wrap.style.display = 'block';
+    } else {
+      el.src = '';
+      wrap.style.display = 'none';
+    }
+  }
+
+  function clearMonVideo(fieldId, elId, wrapId) {
+    document.getElementById(fieldId).value = '';
+    updateMonVideoPreview(fieldId, elId, wrapId);
+    markDirty();
+  }
+
+  async function monVideoUpload(input, fieldId, elId, wrapId) {
+    if (!input.files[0]) return;
+    const fd = new FormData();
+    fd.append('video', input.files[0]);
+    showToast('Uploading video…');
+    try {
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', '/api/upload-rails-video');
+      xhr.setRequestHeader('x-cms-token', TOKEN);
+      xhr.onload = () => {
+        const data = JSON.parse(xhr.responseText);
+        if (data.success) {
+          document.getElementById(fieldId).value = data.url;
+          updateMonVideoPreview(fieldId, elId, wrapId);
+          markDirty();
+          showToast('Video uploaded ✓');
+        } else {
+          showToast('Upload failed: ' + (data.error || 'unknown'), true);
+        }
+      };
+      xhr.onerror = () => showToast('Upload error', true);
+      xhr.send(fd);
+    } catch(e) { showToast('Upload error', true); }
+  }
+
+  async function saveMonumentSection(section) {
+    if (!content.monuments) content.monuments = [];
+    const idx = parseInt(document.getElementById('mon-select').value, 10);
+    const m = content.monuments[idx];
+    if (!m) return;
+
+    if (section === 'info') {
+      m.name              = document.getElementById('mon-name').value;
+      m.year              = document.getElementById('mon-year').value;
+      m.description       = document.getElementById('mon-desc').value;
+      m.detailDescription = document.getElementById('mon-detail-desc').value;
+      m.didYouKnow        = document.getElementById('mon-dyk').value;
+    } else if (section === 'images') {
+      m.heroImage     = document.getElementById('mon-hero-image').value;
+      m.image         = document.getElementById('mon-main-image').value;
+      m.galleryImages = [0,1,2].map(i => (document.getElementById('mon-gallery-'+i)||{}).value || '').filter(Boolean);
+      m.closeUpImages = [0,1].map(i => (document.getElementById('mon-closeup-'+i)||{}).value || '').filter(Boolean);
+    } else if (section === 'videos') {
+      m.heroVideo  = document.getElementById('mon-hero-video').value.trim();
+      m.outroVideo = document.getElementById('mon-outro-video').value.trim();
+    } else if (section === 'subs') {
+      const cnt = document.querySelectorAll('#mon-subs-container > div').length;
+      m.subMonuments = [];
+      for (let i = 0; i < cnt; i++) {
+        m.subMonuments.push({
+          name:  (document.getElementById('mon-sub-'+i+'-name') ||{}).value || '',
+          id:    (document.getElementById('mon-sub-'+i+'-id')   ||{}).value || '',
+          image: (document.getElementById('mon-sub-'+i+'-image')||{}).value || ''
+        });
+      }
+    }
+
+    // Also update the dropdown label if name changed
+    if (section === 'info') {
+      const sel = document.getElementById('mon-select');
+      sel.options[idx].text = m.name || m.id;
+    }
+
+    await publishAll();
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<%# History of Orchha page %>
+<% hero  = @page['hero']       || {}
+   tl    = @page['timeline']   || []
+   no    = @page['newOrchha']  || {}
+   nc    = @page['newChapter'] || {}
+   qt    = @page['quote']      || {}
+   mp    = @page['mptb']       || {}
+   ft    = (@home['footer']    || {})
+   ft_links = ft['links'] || []
+   vs    = @home['visit']      || {}
+%>
+
+<%# Sticky HOHO button %>
+<div class="sticky-hoho">
+  <a href="/hoho">HOHO Service</a>
+</div>
+
+<%# ── PAGE WRAPPER ──────────────────────────────────── %>
+<div class="hist-page">
+
+  <%# ── HERO ──────────────────────────────────────────── %>
+  <section class="hist-hero">
+    <div class="hist-hero-inner">
+      <%# Navbar %>
+      <% nav = @home['nav'] || {}; dd = nav['discoverDropdown'] || [] %>
+      <nav class="hist-navbar">
+        <div class="nav-links">
+          <div class="nav-discover">
+            <button class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+              Discover Orchha
+              <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <div class="hist-nav-dropdown" role="menu">
+              <% dd.each do |item| %>
+              <a href="<%= item['url'] %>" class="hist-nav-dropdown-item" role="menuitem"><%= item['label'] %></a>
+              <% end %>
+            </div>
+          </div>
+          <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
+          <a href="/sabhyata" class="hist-nav-link">Sabhyata</a>
+          <a href="/news" class="hist-nav-link">News</a>
+          <a href="/support-us" class="hist-nav-link">Support Us</a>
+        </div>
+        <a href="/book-tickets" class="hist-book-btn">Book Tickets</a>
+      </nav>
+
+      <%# Hero content: left text + right image %>
+      <div class="hist-hero-content">
+        <div class="hist-hero-text">
+          <h1 class="hist-hero-heading">
+            <%= hero['heading1'] || 'A Kingdom Built' %><br>
+            <%= hero['heading2'] || 'on the Betwa' %>
+          </h1>
+          <p class="hist-hero-subtitle"><%= hero['subtitle'] || '' %></p>
+        </div>
+        <div class="hist-hero-image">
+          <img src="<%= hero['image'] || '/images/history_hero.jpg' %>" alt="Orchha Heritage">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%# ── PAGE TITLE ─────────────────────────────────────── %>
+  <h2 class="hist-page-title"><%= @page['pageTitle'] || 'History of Orchha' %></h2>
+
+  <%# ── TIMELINE ───────────────────────────────────────── %>
+  <section class="hist-timeline-section">
+    <div class="hist-timeline-line"></div>
+    <div class="hist-timeline-entries">
+      <% tl.each_with_index do |entry, i| %>
+      <div class="hist-tl-entry <%= i.even? ? 'hist-tl-ltr' : 'hist-tl-rtl' %>">
+        <% if i.even? %>
+          <%# text | year | image %>
+          <div class="hist-tl-text">
+            <h3 class="hist-tl-heading"><%= entry['heading'] %></h3>
+            <p class="hist-tl-body"><%= entry['body'] %></p>
+          </div>
+          <div class="hist-tl-year-badge"><%= entry['year'] %></div>
+          <div class="hist-tl-img">
+            <img src="<%= entry['image'] %>" alt="<%= entry['heading'] %>">
+          </div>
+        <% else %>
+          <%# image | year | text %>
+          <div class="hist-tl-img">
+            <img src="<%= entry['image'] %>" alt="<%= entry['heading'] %>">
+          </div>
+          <div class="hist-tl-year-badge"><%= entry['year'] %></div>
+          <div class="hist-tl-text">
+            <h3 class="hist-tl-heading"><%= entry['heading'] %></h3>
+            <p class="hist-tl-body"><%= entry['body'] %></p>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </section>
+
+  <%# ── THE NEW ORCHHA ─────────────────────────────────── %>
+  <section class="hist-new-orchha">
+    <div class="hist-new-orchha-img" style="background-image: url('<%= no['image'] || '/images/history_new_orchha.jpg' %>')">
+      <div class="hist-new-orchha-overlay">
+        <p class="hist-new-orchha-heading"><%= no['heading'] || 'The New Orchha' %></p>
+        <p class="hist-new-orchha-year"><%= no['year'] || '2026' %></p>
+      </div>
+    </div>
+    <%# New Chapter text below %>
+    <div class="hist-new-chapter">
+      <div class="hist-nc-left">
+        <h2 class="hist-nc-heading">
+          <%= nc['heading1'] || 'A New' %><br>
+          <%= nc['heading2'] || 'Chapter for an' %><br>
+          <%= nc['heading3'] || 'Ancient Kingdom' %>
+        </h2>
+      </div>
+      <div class="hist-nc-right">
+        <% (nc['paragraphs'] || []).each do |para| %>
+        <p><%= para %></p>
+        <% end %>
+      </div>
+    </div>
+  </section>
+
+  <%# ── QUOTE ──────────────────────────────────────────── %>
+  <section class="hist-quote-section">
+    <div class="hist-quote-mark">&ldquo;</div>
+    <p class="hist-quote-text"><%= qt['text'] || '' %></p>
+    <a href="<%= qt['buttonUrl'] || '/sabhyata' %>" class="hist-quote-btn"><%= qt['buttonLabel'] || 'About Sabhyata' %></a>
+  </section>
+
+  <%# ── MPTB ───────────────────────────────────────────── %>
+  <section class="hist-mptb-section">
+    <div class="hist-mptb-inner">
+      <div class="hist-mptb-header">
+        <span class="hist-mptb-acronym"><%= mp['acronym'] || 'MPTB' %></span>
+        <div class="hist-mptb-divider"></div>
+        <span class="hist-mptb-fullname"><%= mp['fullName'] || 'Madhya Pradesh Tourism Board' %></span>
+      </div>
+      <div class="hist-mptb-body">
+        <div class="hist-mptb-text">
+          <% (mp['paragraphs'] || []).each do |para| %>
+          <p><%= para %></p>
+          <% end %>
+        </div>
+        <div class="hist-mptb-images">
+          <div class="hist-mptb-img1">
+            <img src="<%= mp['image1'] || '/images/history_mptb_1.jpg' %>" alt="MPTB">
+          </div>
+          <div class="hist-mptb-img2">
+            <img src="<%= mp['image2'] || '/images/history_mptb_2.jpg' %>" alt="MPTB">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <%# ── VISIT ORCHHA (reused) ──────────────────────────── %>
+  <div class="visit-wrap">
+    <div class="visit-section">
+      <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
+      <div class="visit-content">
+        <h2 class="visit-heading"><em>Visit</em> Orchha</h2>
+        <div class="visit-links">
+          <% (vs['links'] || [{'label'=>'How to Reach Orchha','url'=>'/reach'},{'label'=>'Travel Options','url'=>'/travel'},{'label'=>'Stay Options','url'=>'/stay'}]).each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="visit-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# ── FOOTER (reused) ────────────────────────────────── %>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <% ft_links.each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="footer-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+        <div class="footer-logos">
+          <img src="/images/incredible_india.png" alt="Incredible India" class="footer-logo-ii">
+          <img src="/images/mpt_logo.png" alt="MPTDC" class="footer-logo-mptdc">
+          <img src="/images/footer_logo_sabhyata.png" alt="Sabhyata Foundation" class="footer-logo-sabhyata">
+        </div>
+        <div class="footer-map">
+          <img src="/images/footer_map.jpg" alt="Orchha map">
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span class="footer-copy"><%= ft['copyright'] || '@2026ORCHHA' %></span>
+        <span class="footer-copy"><%= ft['org'] || 'SABHYATA Foundation' %></span>
+      </div>
+    </div>
+  </footer>
+
+</div><%# /.hist-page %>
+
+<script>
+  // History page nav dropdown
+  const histBtn = document.querySelector('.hist-nav-discover-btn');
+  const histDd  = document.querySelector('.hist-nav-dropdown');
+  if (histBtn && histDd) {
+    function openHistDd() {
+      const r = histBtn.getBoundingClientRect();
+      histDd.style.top  = (r.bottom + 8) + 'px';
+      histDd.style.left = r.left + 'px';
+      histDd.classList.add('open');
+      histBtn.classList.add('open');
+      histBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeHistDd() {
+      histDd.classList.remove('open');
+      histBtn.classList.remove('open');
+      histBtn.setAttribute('aria-expanded', 'false');
+    }
+    histBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      histDd.classList.contains('open') ? closeHistDd() : openHistDd();
+    });
+    document.addEventListener('click', closeHistDd);
+    histDd.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
+</script>

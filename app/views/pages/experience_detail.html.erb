@@ -1,0 +1,219 @@
+<%# Experience detail page — Art Walk (horizontal scroll-jacking, 3 panels) %>
+<% nav = (@home['nav'] || {})
+   dd  = nav['discoverDropdown'] || []
+%>
+
+<div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
+
+<%# Fixed nav — outside scroll wrapper %>
+<div class="mdet-nav-wrap">
+  <nav class="mdet-navbar">
+    <div class="mdet-nav-links">
+      <div class="mdet-nav-discover">
+        <button class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mdet-nav-dropdown" role="menu">
+          <% dd.each do |item| %>
+          <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
+      <a href="/news"            class="mdet-nav-link">News</a>
+      <a href="/support-us"      class="mdet-nav-link">Support Us</a>
+      <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
+    </div>
+    <a href="/book-tickets" class="mdet-book-btn">Book Tickets</a>
+  </nav>
+</div>
+
+<div class="mdet-wrapper aw-wrapper" data-panels="3">
+  <div class="mdet-sticky">
+    <div class="mdet-track" id="mdet-track">
+
+      <%# ══ PANEL 1 — HERO (full-bleed mural) ═════════════════ %>
+      <section class="mdet-panel aw-hero-panel">
+        <div class="aw-hero-bg">
+          <img src="/images/aw_hero.jpg" alt="Art Walk — Bundela fresco mural">
+          <div class="aw-hero-overlay"></div>
+        </div>
+        <p class="aw-video-label">Art walk video</p>
+        <div class="mdet-scroll-hint" id="mdet-scroll-hint">
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </section>
+
+      <%# ══ PANEL 2 — CONTENT (text left + cards right) ══════ %>
+      <section class="mdet-panel aw-content-panel">
+
+        <%# Left — heading, body, stats %>
+        <div class="aw-left">
+          <h1 class="aw-heading">Four Monuments.<br>Centuries of Colour.</h1>
+          <p class="aw-body">
+            Step inside the walls where Orchha's greatest artists left their mark.
+            The Art Walk takes you through four monuments — Raja Mahal, Jahangir Mahal,
+            Rai Praveen Mahal, and Lakshmi Narayan Temple — each carrying a distinct
+            chapter of Bundela artistic tradition. From 16th-century murals believed to
+            have been painted by Kashmiri artists, to the vivid Bundeli frescoes of
+            Lakshmi Narayan Temple, to the palace built for a poet-dancer whose verses
+            silenced an emperor — this is Orchha read not through its history, but
+            through its art.
+          </p>
+
+          <div class="aw-stats">
+            <div class="aw-stat">
+              <svg class="aw-stat-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="20.5" stroke="#6e1603" stroke-width="1.5"/>
+                <path d="M22 13v9l5.5 5.5" stroke="#6e1603" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="aw-stat-text">
+                <span class="aw-stat-lbl">Duration</span>
+                <span class="aw-stat-num">2 Hours</span>
+              </div>
+            </div>
+            <div class="aw-stat">
+              <svg class="aw-stat-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="20.5" stroke="#6e1603" stroke-width="1.5"/>
+                <circle cx="22" cy="17" r="5" stroke="#6e1603" stroke-width="1.5"/>
+                <path d="M11 34c0-6.075 4.925-11 11-11s11 4.925 11 11" stroke="#6e1603" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <div class="aw-stat-text">
+                <span class="aw-stat-lbl">Guided</span>
+                <span class="aw-stat-num">Heritage Walk</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <%# Right — three mural cards + View Art Gallery button %>
+        <div class="aw-right-cards">
+          <div class="aw-cards-grid">
+            <div class="aw-mcard aw-gc1">
+              <img src="/images/aw_card1.jpg" alt="Orchha fresco — elephant panel">
+              <div class="aw-mcard-logos">
+                <img src="/images/mpt_logo.png"        class="aw-logo-mpt" alt="MPT">
+                <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+              </div>
+            </div>
+            <div class="aw-mcard aw-gc2">
+              <img src="/images/aw_card2.jpg" alt="Orchha fresco — court scene">
+              <div class="aw-mcard-logos">
+                <img src="/images/mpt_logo.png"        class="aw-logo-mpt" alt="MPT">
+                <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+              </div>
+            </div>
+            <div class="aw-mcard aw-gc3">
+              <img src="/images/aw_mural_large.jpg" alt="Orchha fresco — Krishna">
+              <div class="aw-mcard-logos">
+                <img src="/images/mpt_logo.png"        class="aw-logo-mpt" alt="MPT">
+                <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+              </div>
+            </div>
+          </div>
+          <a href="/experiences" class="mdet-outline-btn aw-gallery-btn">View Art Gallery</a>
+        </div>
+
+      </section><%# /aw-content-panel %>
+
+      <%# ══ PANEL 3 — "THE WALK THROUGH TIME" (dark) ════════ %>
+      <section class="mdet-panel aw-walk-panel">
+        <div class="aw-walk-bg">
+          <img src="/images/aw_bg2.jpg" alt="Orchha palace">
+          <div class="aw-walk-overlay"></div>
+        </div>
+        <div class="aw-walk-content">
+          <h2 class="aw-walk-heading">The Walk<br>Through Time</h2>
+          <p class="aw-walk-sub">A journey through four iconic monuments.<br>One artistic legacy.</p>
+          <a href="/experiences" class="mdet-dark-btn">View All Experiences &amp; Trails</a>
+        </div>
+        <img src="/images/aw_mural_large.jpg" class="aw-mural-large" alt="Orchha mural — Krishna">
+      </section>
+
+    </div><%# /mdet-track %>
+  </div><%# /mdet-sticky %>
+</div><%# /mdet-wrapper %>
+
+<%# Fixed bottom action bar %>
+<div class="mdet-action-tabs" id="mdet-action-tabs">
+  <div class="mdet-audio-wrap">
+    <div class="mdet-audio-panel" id="mdet-audio-panel">
+      <button class="mdet-audio-play" id="mdet-audio-play-btn" aria-label="Play">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="white"/>
+          <polygon points="13,10 13,22 23,16" fill="#6e1603"/>
+        </svg>
+      </button>
+      <span class="mdet-audio-track">Art Walk</span>
+      <div class="mdet-audio-wave">
+        <svg viewBox="0 0 434 28" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <rect y="8" width="434" height="7" rx="3.5" fill="white" fill-opacity="0.4"/>
+          <rect x="2" y="10" width="47" height="3" rx="1.5" fill="white"/>
+          <circle cx="55.5" cy="11.5" r="9.5" fill="white"/>
+          <circle cx="55.5" cy="11.5" r="8.5" stroke="rgba(102,18,0,0.6)" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="mdet-audio-time">0:00 / 3:00</span>
+    </div>
+    <button class="mdet-action-tab" id="mdet-audio-btn">Audio Guide</button>
+  </div>
+  <button class="mdet-action-tab">Virtual Tour</button>
+  <button class="mdet-action-tab">Translate</button>
+</div>
+
+<script>
+(function() {
+  const wrapper = document.querySelector('.aw-wrapper');
+  const sticky  = document.querySelector('.mdet-sticky');
+  const hint    = document.getElementById('mdet-scroll-hint');
+  const tabs    = document.getElementById('mdet-action-tabs');
+
+  if (wrapper && sticky) {
+    const panels = parseFloat(wrapper.dataset.panels || '3');
+    wrapper.style.height = (panels * 100) + 'vh';
+
+    function updateHoriz() {
+      const wrapperTop  = wrapper.offsetTop;
+      const totalScroll = wrapper.offsetHeight - window.innerHeight;
+      const progress    = Math.max(0, Math.min(1, (window.scrollY - wrapperTop) / totalScroll));
+      const maxScroll   = sticky.scrollWidth - window.innerWidth;
+      sticky.scrollLeft = progress * maxScroll;
+      if (hint) hint.style.opacity = progress > 0.01 ? '0' : '1';
+      const isPast = window.scrollY > wrapper.offsetTop + wrapper.offsetHeight;
+      if (tabs) tabs.style.display = isPast ? 'none' : 'flex';
+    }
+
+    window.addEventListener('scroll', updateHoriz, { passive: true });
+    updateHoriz();
+  }
+
+  const audioBtn   = document.getElementById('mdet-audio-btn');
+  const audioPanel = document.getElementById('mdet-audio-panel');
+  if (audioBtn && audioPanel) {
+    audioBtn.addEventListener('click', () => audioPanel.classList.toggle('open'));
+  }
+
+  const navBtn = document.querySelector('.mdet-discover-btn');
+  const navDd  = document.querySelector('.mdet-nav-dropdown');
+  if (navBtn && navDd) {
+    function openDd() {
+      const r = navBtn.getBoundingClientRect();
+      navDd.style.top  = (r.bottom + 8) + 'px';
+      navDd.style.left = r.left + 'px';
+      navDd.classList.add('open');
+      navBtn.classList.add('open');
+      navBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDd() {
+      navDd.classList.remove('open');
+      navBtn.classList.remove('open');
+      navBtn.setAttribute('aria-expanded', 'false');
+    }
+    navBtn.addEventListener('click', e => { e.stopPropagation(); navDd.classList.contains('open') ? closeDd() : openDd(); });
+    document.addEventListener('click', closeDd);
+    navDd.addEventListener('click', e => e.stopPropagation());
+  }
+})();
+</script>
