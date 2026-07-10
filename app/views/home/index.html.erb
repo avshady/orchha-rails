@@ -180,7 +180,7 @@
       <p class="journey-desc"><%= j['description'] || "Explore the 500-year Legacy of the Bundela Dynasty through Historical Monuments, Sacred Temples, and Breathtaking Artistry that brings Orchha's Legends to Life." %></p>
     </div>
     <div class="journey-cards">
-      <% (jc[0] || {'name'=>'Events','image'=>'/images/card_events.jpg','link'=>'/events'}).tap do |c| %>
+      <% (jc[0] || {'name'=>'Monuments','image'=>'/images/heritage_jahangir.jpg','link'=>'/monuments'}).tap do |c| %>
       <a href="<%= c['link'] %>" class="journey-card">
         <div class="jcard-bg" aria-hidden="true">
           <img src="<%= c['image'] %>" alt="">
@@ -193,7 +193,7 @@
         <div class="jcard-bottom"><p class="jcard-name"><%= c['name'] %></p></div>
       </a>
       <% end %>
-      <% (jc[1] || {'name'=>'Monuments','image'=>'/images/heritage_jahangir.jpg','link'=>'/monuments'}).tap do |c| %>
+      <% (jc[1] || {'name'=>'Experience','image'=>'/images/exp_rafting.jpg','link'=>'/experiences'}).tap do |c| %>
       <a href="<%= c['link'] %>" class="journey-card">
         <div class="jcard-bg" aria-hidden="true">
           <img src="<%= c['image'] %>" alt="">
@@ -206,7 +206,7 @@
         <div class="jcard-bottom"><p class="jcard-name"><%= c['name'] %></p></div>
       </a>
       <% end %>
-      <% (jc[2] || {'name'=>'Experience','image'=>'/images/exp_rafting.jpg','link'=>'/experiences'}).tap do |c| %>
+      <% (jc[2] || {'name'=>'Events','image'=>'/images/card_events.jpg','link'=>'/events'}).tap do |c| %>
       <a href="<%= c['link'] %>" class="journey-card">
         <div class="jcard-bg" aria-hidden="true">
           <img src="<%= c['image'] %>" alt="">

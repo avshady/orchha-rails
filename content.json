@@ -934,11 +934,6 @@
       "description": "Explore the 500-year Legacy of the Bundela Dynasty through Historical Monuments, Sacred Temples, and Breathtaking Artistry that brings Orchha's Legends to Life.",
       "cards": [
         {
-          "name": "Events",
-          "image": "/images/card_events.jpg",
-          "link": "/events"
-        },
-        {
           "name": "Monuments",
           "image": "/images/heritage_jahangir.jpg",
           "link": "/monuments"
@@ -947,6 +942,11 @@
           "name": "Experience",
           "image": "/images/exp_rafting.jpg",
           "link": "/experiences"
+        },
+        {
+          "name": "Events",
+          "image": "/images/card_events.jpg",
+          "link": "/events"
         }
       ]
     },
