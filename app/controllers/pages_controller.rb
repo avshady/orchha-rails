@@ -81,6 +81,17 @@ class PagesController < ApplicationController
     @home = {}
   end
 
+  def river_kayaking
+    raw = JSON.parse(File.read(CMS_CONTENT_PATH))
+    all = raw['experienceItems'] || []
+    @exp  = all.find { |e| e['id'] == 'river-kayaking' } || {}
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content.json read failed: #{e.message}"
+    @exp = {}
+    @home = {}
+  end
+
   def monument
     raw = JSON.parse(File.read(CMS_CONTENT_PATH))
     all = raw['monuments'] || []

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get "/sabhyata", to: "pages#sabhyata"
   get "/experiences", to: "pages#experiences"
   get "/experiences/eco-trail", to: "pages#eco_trail"
+  get "/experiences/river-kayaking", to: "pages#river_kayaking"
   get "/experiences/:id", to: "pages#experience_detail"
   get "up" => "rails/health#show", as: :rails_health_check
 end
