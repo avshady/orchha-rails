@@ -6,6 +6,14 @@ Rails.application.routes.draw do
     resources :content_blocks, param: :key, only: [ :edit, :update ]
     resources :uploads, only: [ :create ]
     get "export", to: "exports#show", defaults: { format: :json }
+
+    get    "collections/:key",                    to: "collections#show",  as: :collection
+    get    "collections/:key/records/new",        to: "records#new",       as: :new_collection_record
+    post   "collections/:key/records",            to: "records#create",    as: :collection_records
+    get    "collections/:key/records/:index/edit", to: "records#edit",     as: :edit_collection_record
+    patch  "collections/:key/records/:index",     to: "records#update",    as: :collection_record
+    delete "collections/:key/records/:index",     to: "records#destroy"
+    patch  "collections/:key/records/:index/move", to: "records#move",     as: :move_collection_record
   end
 
   root "home#index"

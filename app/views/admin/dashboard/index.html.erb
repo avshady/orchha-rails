@@ -11,9 +11,18 @@
     <tbody>
       <% @blocks.each do |block| %>
       <tr>
-        <td><strong><%= block.key %></strong></td>
+        <td>
+          <strong><%= block.key %></strong>
+          <% if block.data.is_a?(Array) %><div class="adm-muted" style="font-size:12px;"><%= block.data.size %> records</div><% end %>
+        </td>
         <td class="adm-muted"><%= block.updated_at.strftime("%d %b %Y, %H:%M") %></td>
-        <td><a href="<%= edit_admin_content_block_path(block.key) %>" class="adm-btn adm-btn-outline" style="padding:5px 14px; font-size:13px;">Edit</a></td>
+        <td>
+          <% if block.data.is_a?(Array) %>
+            <a href="<%= admin_collection_path(block.key) %>" class="adm-btn adm-btn-outline" style="padding:5px 14px; font-size:13px;">Manage records</a>
+          <% else %>
+            <a href="<%= edit_admin_content_block_path(block.key) %>" class="adm-btn adm-btn-outline" style="padding:5px 14px; font-size:13px;">Edit</a>
+          <% end %>
+        </td>
       </tr>
       <% end %>
     </tbody>

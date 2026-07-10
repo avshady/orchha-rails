@@ -1,0 +1,54 @@
+<% title_for = ->(rec) {
+     rec.is_a?(Hash) ? (rec["name"] || rec["title"] || rec["label"] || rec["id"] || rec.values.find { |v| v.is_a?(String) } || "(record)").to_s.truncate(60) : rec.to_s.truncate(60)
+   } %>
+
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+  <h2 class="adm-page-title" style="margin-bottom:0;"><%= @key %></h2>
+  <div style="display:flex; gap:10px;">
+    <a href="<%= admin_new_collection_record_path(@key) %>" class="adm-btn">+ Add record</a>
+    <a href="<%= edit_admin_content_block_path(@key) %>" class="adm-btn adm-btn-outline">Raw JSON</a>
+    <a href="<%= admin_root_path %>" class="adm-btn adm-btn-outline">Back</a>
+  </div>
+</div>
+
+<div class="adm-card">
+  <table class="adm-table">
+    <thead>
+      <tr><th style="width:36px;">#</th><th>Record</th><th>Visible</th><th style="width:250px;"></th></tr>
+    </thead>
+    <tbody>
+      <% @records.each_with_index do |rec, i| %>
+      <tr>
+        <td class="adm-muted"><%= i + 1 %></td>
+        <td>
+          <strong><%= title_for.call(rec) %></strong>
+          <% if rec.is_a?(Hash) && rec["id"] %><div class="adm-muted" style="font-size:12px;">id: <%= rec["id"] %></div><% end %>
+        </td>
+        <td>
+          <% if rec.is_a?(Hash) && rec.key?("visible") %>
+            <%= rec["visible"] == false ? "Hidden" : "Visible" %>
+          <% else %>
+            <span class="adm-muted">—</span>
+          <% end %>
+        </td>
+        <td style="text-align:right; white-space:nowrap;">
+          <%= button_to "↑", admin_move_collection_record_path(@key, i, dir: "up"), method: :patch, style: "display:inline-block;", class: "adm-btn adm-btn-outline adm-btn-sm" %>
+          <%= button_to "↓", admin_move_collection_record_path(@key, i, dir: "down"), method: :patch, style: "display:inline-block;", class: "adm-btn adm-btn-outline adm-btn-sm" %>
+          <a href="<%= admin_edit_collection_record_path(@key, i) %>" class="adm-btn adm-btn-outline adm-btn-sm">Edit</a>
+          <%= button_to "Delete", admin_collection_record_path(@key, i), method: :delete,
+                form: { data: { turbo_confirm: "Delete this record?" }, onsubmit: "return confirm('Delete this record?')" },
+                style: "display:inline-block;", class: "adm-btn adm-btn-outline adm-btn-sm" %>
+        </td>
+      </tr>
+      <% end %>
+      <% if @records.empty? %>
+      <tr><td colspan="4" class="adm-muted">No records yet.</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  .adm-btn-sm { padding: 4px 10px !important; font-size: 12px !important; }
+  td form.button_to { display: inline-block; margin: 0 2px; }
+</style>
