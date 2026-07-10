@@ -1,0 +1,61 @@
+<h2 class="adm-page-title">Edit: <%= @block.key %></h2>
+
+<div class="adm-card">
+  <%= form_with url: admin_content_block_path(@block.key), method: :patch, local: true do %>
+    <textarea name="data" id="adm-json-editor" spellcheck="false"
+      style="width:100%; min-height:520px; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+             font-size:13px; line-height:1.5; padding:14px; border:1px solid #c9b9a6;
+             border-radius:8px; background:#faf7f2; resize:vertical;"><%= @json %></textarea>
+    <div style="display:flex; gap:12px; align-items:center; margin-top:14px;">
+      <button type="submit" class="adm-btn">Save</button>
+      <a href="<%= admin_root_path %>" class="adm-btn adm-btn-outline">Cancel</a>
+      <span class="adm-muted" id="adm-json-status"></span>
+    </div>
+  <% end %>
+</div>
+
+<div class="adm-card">
+  <strong style="color:#6e1603; font-size:14px;">Upload an image</strong>
+  <p class="adm-muted" style="margin:6px 0 12px;">
+    Upload a file, then paste the generated URL into an <code>image</code> field above.
+  </p>
+  <input type="file" id="adm-upload-input" accept="image/*,video/*">
+  <button type="button" class="adm-btn adm-btn-outline" id="adm-upload-btn" style="margin-left:8px;">Upload</button>
+  <div id="adm-upload-result" style="margin-top:10px; font-size:13px; word-break:break-all;"></div>
+</div>
+
+<script>
+  // Live JSON validity hint
+  const editor = document.getElementById('adm-json-editor');
+  const status = document.getElementById('adm-json-status');
+  function checkJson() {
+    try { JSON.parse(editor.value); status.textContent = '✓ Valid JSON'; status.style.color = '#2c5424'; }
+    catch (e) { status.textContent = '✗ Invalid JSON'; status.style.color = '#8a1f0e'; }
+  }
+  editor.addEventListener('input', checkJson);
+  checkJson();
+
+  // Upload widget
+  document.getElementById('adm-upload-btn').addEventListener('click', async () => {
+    const input = document.getElementById('adm-upload-input');
+    const result = document.getElementById('adm-upload-result');
+    if (!input.files.length) { result.textContent = 'Choose a file first.'; return; }
+    const fd = new FormData();
+    fd.append('file', input.files[0]);
+    result.textContent = 'Uploading…';
+    try {
+      const resp = await fetch('<%= admin_uploads_path %>', {
+        method: 'POST',
+        headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content },
+        body: fd
+      });
+      const data = await resp.json();
+      if (!resp.ok) throw new Error(data.error || resp.statusText);
+      result.innerHTML = 'Uploaded: <code>' + data.url + '</code> ' +
+        '<button type="button" class="adm-btn adm-btn-outline" style="padding:3px 10px; font-size:12px;" ' +
+        'onclick="navigator.clipboard.writeText(\'' + data.url + '\')">Copy</button>';
+    } catch (e) {
+      result.textContent = 'Upload failed: ' + e.message;
+    }
+  });
+</script>

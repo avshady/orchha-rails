@@ -1,4 +1,7 @@
-<h2 class="adm-page-title">Content</h2>
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+  <h2 class="adm-page-title" style="margin-bottom:0;">Content</h2>
+  <a href="<%= admin_export_path %>" class="adm-btn adm-btn-outline">Download backup (JSON)</a>
+</div>
 
 <div class="adm-card">
   <table class="adm-table">
@@ -10,7 +13,7 @@
       <tr>
         <td><strong><%= block.key %></strong></td>
         <td class="adm-muted"><%= block.updated_at.strftime("%d %b %Y, %H:%M") %></td>
-        <td class="adm-muted">Editor coming in the next phase</td>
+        <td><a href="<%= edit_admin_content_block_path(block.key) %>" class="adm-btn adm-btn-outline" style="padding:5px 14px; font-size:13px;">Edit</a></td>
       </tr>
       <% end %>
     </tbody>

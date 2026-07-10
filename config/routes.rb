@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root "dashboard#index"
+    resources :content_blocks, param: :key, only: [ :edit, :update ]
+    resources :uploads, only: [ :create ]
+    get "export", to: "exports#show", defaults: { format: :json }
   end
 
   root "home#index"
