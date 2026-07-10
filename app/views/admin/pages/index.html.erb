@@ -1,0 +1,34 @@
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+  <h2 class="adm-page-title" style="margin-bottom:0;">Custom pages</h2>
+  <div style="display:flex; gap:10px;">
+    <a href="<%= new_admin_page_path %>" class="adm-btn">+ New page</a>
+    <a href="<%= admin_root_path %>" class="adm-btn adm-btn-outline">Back</a>
+  </div>
+</div>
+
+<div class="adm-card">
+  <table class="adm-table">
+    <thead>
+      <tr><th>URL</th><th>Title</th><th>Status</th><th>Updated</th><th></th></tr>
+    </thead>
+    <tbody>
+      <% @pages.each do |page| %>
+      <tr>
+        <td><a href="/<%= page.slug %>" target="_blank" style="color:#6e1603; text-decoration:underline;">/<%= page.slug %></a></td>
+        <td><strong><%= page.title %></strong></td>
+        <td><%= page.published? ? "Published" : "Draft" %></td>
+        <td class="adm-muted"><%= page.updated_at.strftime("%d %b %Y, %H:%M") %></td>
+        <td style="text-align:right; white-space:nowrap;">
+          <a href="<%= edit_admin_page_path(page) %>" class="adm-btn adm-btn-outline" style="padding:4px 12px; font-size:12px;">Edit</a>
+          <%= button_to "Delete", admin_page_path(page), method: :delete,
+                form: { onsubmit: "return confirm('Delete /#{page.slug}?')", style: "display:inline-block; margin-left:6px;" },
+                class: "adm-btn adm-btn-outline", style: "padding:4px 12px; font-size:12px;" %>
+        </td>
+      </tr>
+      <% end %>
+      <% if @pages.empty? %>
+      <tr><td colspan="5" class="adm-muted">No custom pages yet. Create one to claim URLs like /plan-your-visit, /news or /museums.</td></tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     root "dashboard#index"
     resources :content_blocks, param: :key, only: [ :edit, :update ]
     resources :uploads, only: [ :create ]
+    resources :pages, except: [ :show ]
     get "export", to: "exports#show", defaults: { format: :json }
 
     get    "sections/:key/edit",                  to: "sections#edit",     as: :edit_section
@@ -31,4 +32,7 @@ Rails.application.routes.draw do
   get "/experiences/river-kayaking", to: "pages#river_kayaking"
   get "/experiences/:id", to: "pages#experience_detail"
   get "up" => "rails/health#show", as: :rails_health_check
+
+  # Admin-created custom pages — must stay the last route.
+  get "/:slug", to: "custom_pages#show", constraints: { slug: /[a-z0-9]+(-[a-z0-9]+)*/ }, as: :custom_page
 end

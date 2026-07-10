@@ -1,0 +1,40 @@
+<%= form_with model: [ :admin, page ], local: true do |f| %>
+  <div style="margin-bottom:16px;">
+    <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;">URL slug</label>
+    <div style="display:flex; align-items:center; gap:6px;">
+      <span class="adm-muted">/</span>
+      <%= f.text_field :slug, class: "adm-input", placeholder: "plan-your-visit" %>
+    </div>
+    <span class="adm-muted" style="font-size:12px;">Lowercase letters, numbers and hyphens. The page will live at this URL.</span>
+  </div>
+
+  <div style="margin-bottom:16px;">
+    <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;">Title</label>
+    <%= f.text_field :title, class: "adm-input" %>
+  </div>
+
+  <div style="margin-bottom:16px;">
+    <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;">Body (HTML)</label>
+    <%= f.text_area :body, rows: 18, spellcheck: false, class: "adm-input",
+          style: "font-family:ui-monospace,Menlo,monospace; font-size:13px;" %>
+    <span class="adm-muted" style="font-size:12px;">Standard HTML: &lt;h2&gt;, &lt;p&gt;, &lt;img&gt;, &lt;a&gt;, lists…</span>
+  </div>
+
+  <div style="margin-bottom:16px;">
+    <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;">Status</label>
+    <%= f.select :published, [ [ "Draft (hidden)", false ], [ "Published (live)", true ] ], {}, class: "adm-input" %>
+  </div>
+
+  <div style="display:flex; gap:12px; margin-top:20px;">
+    <button type="submit" class="adm-btn">Save</button>
+    <a href="<%= admin_pages_path %>" class="adm-btn adm-btn-outline">Cancel</a>
+  </div>
+<% end %>
+
+<style>
+  .adm-input {
+    width: 100%; padding: 9px 11px; font-size: 14px; font-family: inherit;
+    border: 1px solid #c9b9a6; border-radius: 8px; background: #faf7f2;
+  }
+  .adm-input:focus { outline: 2px solid #6e1603; border-color: #6e1603; }
+</style>
