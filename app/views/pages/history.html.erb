@@ -12,7 +12,7 @@
 
 <%# Sticky HOHO button %>
 <div class="sticky-hoho">
-  <a href="/hoho">HOHO Service</a>
+  <a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a>
 </div>
 
 <%# ── PAGE WRAPPER ──────────────────────────────────── %>
@@ -26,12 +26,12 @@
       <nav class="hist-navbar">
         <div class="nav-links">
           <div class="nav-discover">
-            <button class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+            <a href="/" class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
               Discover Orchha
               <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-            </button>
+            </a>
           </div>
           <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
           <a href="/news" class="hist-nav-link">News</a>
@@ -225,7 +225,9 @@
   const histBtn = document.querySelector('.hist-nav-discover-btn');
   const histDd  = document.querySelector('.hist-nav-dropdown');
   if (histBtn && histDd) {
+    let histCloseTimer;
     function openHistDd() {
+      clearTimeout(histCloseTimer);
       const r = histBtn.getBoundingClientRect();
       histDd.style.top  = (r.bottom + 8) + 'px';
       histDd.style.left = r.left + 'px';
@@ -238,9 +240,15 @@
       histBtn.classList.remove('open');
       histBtn.setAttribute('aria-expanded', 'false');
     }
+    function scheduleCloseHistDd() { histCloseTimer = setTimeout(closeHistDd, 200); }
+    histBtn.addEventListener('mouseenter', openHistDd);
+    histBtn.addEventListener('mouseleave', scheduleCloseHistDd);
+    histDd.addEventListener('mouseenter', () => clearTimeout(histCloseTimer));
+    histDd.addEventListener('mouseleave', scheduleCloseHistDd);
     histBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      histDd.classList.contains('open') ? closeHistDd() : openHistDd();
+      if (histDd.classList.contains('open')) return;
+      e.preventDefault();
+      openHistDd();
     });
     document.addEventListener('click', closeHistDd);
     histDd.addEventListener('click', function(e) { e.stopPropagation(); });

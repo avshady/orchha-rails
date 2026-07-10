@@ -20,17 +20,17 @@
 %>
 
 <%# HOHO sticky tab %>
-<div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
+<div class="sticky-hoho"><a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a></div>
 
 <%# Fixed nav — outside the scroll wrapper so position:fixed is viewport-relative %>
 <div class="mdet-nav-wrap">
   <nav class="mdet-navbar">
     <div class="mdet-nav-links">
       <div class="mdet-nav-discover">
-        <button class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+        <a href="/" class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
           Discover Orchha
           <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        </a>
       </div>
       <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
       <a href="/news"            class="mdet-nav-link">News</a>
@@ -411,7 +411,9 @@
   const btn = document.querySelector('.mdet-discover-btn');
   const dd  = document.querySelector('.mdet-nav-dropdown');
   if (btn && dd) {
+    let ddCloseTimer;
     function openDd()  {
+      clearTimeout(ddCloseTimer);
       const r = btn.getBoundingClientRect();
       dd.style.top  = (r.bottom + 8) + 'px';
       dd.style.left = r.left + 'px';
@@ -424,9 +426,15 @@
       btn.classList.remove('open');
       btn.setAttribute('aria-expanded', 'false');
     }
+    function scheduleCloseDd() { ddCloseTimer = setTimeout(closeDd, 200); }
+    btn.addEventListener('mouseenter', openDd);
+    btn.addEventListener('mouseleave', scheduleCloseDd);
+    dd.addEventListener('mouseenter', () => clearTimeout(ddCloseTimer));
+    dd.addEventListener('mouseleave', scheduleCloseDd);
     btn.addEventListener('click', e => {
-      e.stopPropagation();
-      dd.classList.contains('open') ? closeDd() : openDd();
+      if (dd.classList.contains('open')) return;
+      e.preventDefault();
+      openDd();
     });
     document.addEventListener('click', closeDd);
     dd.addEventListener('click', e => e.stopPropagation());

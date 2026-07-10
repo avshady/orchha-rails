@@ -1,0 +1,237 @@
+<%# About Sabhyata Foundation page — horizontal scroll-jacking, 3 panels %>
+<% nav = (@home['nav'] || {})
+   dd  = nav['discoverDropdown'] || []
+%>
+
+<div class="sticky-hoho"><a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a></div>
+
+<%# Fixed nav — outside scroll wrapper %>
+<div class="mdet-nav-wrap">
+  <nav class="mdet-navbar">
+    <div class="mdet-nav-links">
+      <div class="mdet-nav-discover">
+        <a href="/" class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
+      <a href="/news"            class="mdet-nav-link">News</a>
+      <a href="/support-us"      class="mdet-nav-link">Support Us</a>
+      <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
+    </div>
+    <button class="mdet-nav-hamburger" id="mdet-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="/book-tickets" class="mdet-book-btn">Book Tickets</a>
+  </nav>
+
+  <div class="mdet-nav-mobile-menu" id="mdet-nav-mobile-menu">
+    <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mdet-nav-mobile-links">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="mdet-nav-mobile-link"><%= item['label'] %></a>
+      <% end %>
+      <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
+      <a href="/news" class="mdet-nav-mobile-link">News</a>
+      <a href="/support-us" class="mdet-nav-mobile-link">Support Us</a>
+      <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
+    </div>
+    <a href="/book-tickets" class="mdet-nav-mobile-book-btn">Book Tickets</a>
+  </div>
+
+  <%# Discover dropdown — kept outside .mdet-navbar because its backdrop-filter
+      creates a new containing block for position:fixed descendants %>
+  <div class="mdet-nav-dropdown" role="menu">
+    <% dd.each do |item| %>
+    <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+    <% end %>
+  </div>
+</div>
+
+<div class="mdet-wrapper sab-wrapper" data-panels="3">
+  <div class="mdet-sticky">
+    <div class="mdet-track" id="mdet-track">
+
+      <%# ══ PANEL 1 — ABOUT SABHYATA FOUNDATION ══════════════ %>
+      <section class="mdet-panel sab-panel">
+        <div class="sab-left">
+          <h1 class="sab-heading"><em>About</em> Sabhyata<br>Foundation</h1>
+          <p class="sab-body">Sabhyata Foundation is a heritage-led initiative committed to reviving and reinterpreting India's cultural landmarks through research, design, and community stewardship. Our work blends scholarship with lived experience so that monuments are preserved as living spaces, not museum pieces.</p>
+          <p class="sab-body">At Orchha, our approach joins careful conservation with interpretive experiences, educational programmes for local students, and partnerships with artisan communities — so that the heritage economy becomes a source of livelihood alongside tourism.</p>
+        </div>
+        <div class="sab-right">
+          <div class="sab-img sab-img-tall">
+            <img src="/images/sabhyata_about_1.jpg" alt="Orchha heritage site — aerial view of historical monument">
+          </div>
+          <div class="sab-img sab-img-short">
+            <img src="/images/sabhyata_about_2.jpg" alt="Orchha heritage monument with surrounding greenery">
+          </div>
+        </div>
+
+        <div class="mdet-scroll-hint" id="mdet-scroll-hint">
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </section>
+
+      <%# ══ PANEL 2 — INSTITUTIONAL CREDIBILITY ═══════════════ %>
+      <section class="mdet-panel sab-panel sab-panel-cred">
+        <div class="sab-left">
+          <h2 class="sab-heading">Institutional<br><em>Credibility</em></h2>
+          <div class="sab-stats">
+            <div class="sab-stat">
+              <span class="sab-stat-num" data-target="100000" id="sab-stat-school">0</span>
+              <span class="sab-stat-label">School Visits</span>
+            </div>
+            <div class="sab-stat">
+              <span class="sab-stat-num" data-target="100" id="sab-stat-walk">0</span>
+              <span class="sab-stat-label">Walk through</span>
+            </div>
+          </div>
+        </div>
+        <div class="sab-right">
+          <div class="sab-img sab-img-equal">
+            <img src="/images/sabhyata_school_1.jpg" alt="School students visiting Orchha heritage site">
+          </div>
+          <div class="sab-img sab-img-equal">
+            <img src="/images/sabhyata_school_2.jpg" alt="Guided school group at historical monument">
+          </div>
+        </div>
+      </section>
+
+      <%# ══ PANEL 3 — OTHER SABHYATA SITES ═════════════════════ %>
+      <section class="mdet-panel sab-panel">
+        <div class="sab-left">
+          <h2 class="sab-heading"><em>Other</em><br>Sabhyata Sites</h2>
+          <p class="sab-body">Beyond Orchha, Sabhyata Foundation stewards heritage revival across multiple sites — working with state tourism boards, archaeologists, and local craft communities to reinterpret the stories each monument holds.</p>
+          <p class="sab-body">Each project is approached as a long-term stewardship, not a restoration one-off — with ongoing conservation cycles, community interpreters, and programmes that let every visit leave something behind for the site and its custodians.</p>
+        </div>
+        <div class="sab-right">
+          <div class="sab-site-wrap">
+            <span class="sab-site-label">Site More</span>
+            <div class="sab-img sab-img-tall">
+              <img src="/images/sabhyata_site_1.jpg" alt="Sabhyata Foundation heritage site — monuments">
+            </div>
+          </div>
+          <div class="sab-site-wrap">
+            <span class="sab-site-label">Site More</span>
+            <div class="sab-img sab-img-short">
+              <img src="/images/sabhyata_site_2.jpg" alt="Purana Qila — heritage site managed by Sabhyata Foundation">
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><%# /mdet-track %>
+  </div><%# /mdet-sticky %>
+</div><%# /mdet-wrapper %>
+
+<script>
+(function() {
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+  const wrapper = document.querySelector('.sab-wrapper');
+  const sticky  = document.querySelector('.mdet-sticky');
+  const hint    = document.getElementById('mdet-scroll-hint');
+
+  if (wrapper && sticky && !isMobile) {
+    const panels = parseFloat(wrapper.dataset.panels || '3');
+    wrapper.style.height = (panels * 100) + 'vh';
+
+    function updateHoriz() {
+      const wrapperTop  = wrapper.offsetTop;
+      const totalScroll = wrapper.offsetHeight - window.innerHeight;
+      const progress    = Math.max(0, Math.min(1, (window.scrollY - wrapperTop) / totalScroll));
+      const maxScroll   = sticky.scrollWidth - window.innerWidth;
+      sticky.scrollLeft = progress * maxScroll;
+      if (hint) hint.style.opacity = progress > 0.01 ? '0' : '1';
+    }
+
+    window.addEventListener('scroll', updateHoriz, { passive: true });
+    updateHoriz();
+  }
+
+  // ── Animated stat counters ──────────────────────────────────
+  let countersRun = false;
+  function runCounters() {
+    if (countersRun) return;
+    countersRun = true;
+    document.querySelectorAll('.sab-stat-num[data-target]').forEach(el => {
+      const target = parseInt(el.dataset.target, 10);
+      const dur = 1600;
+      const t0 = performance.now();
+      const isSchool = el.id === 'sab-stat-school';
+      (function tick(now) {
+        const p = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        const v = Math.round(eased * target);
+        el.textContent = v.toLocaleString('en-IN') + (isSchool ? '+' : '');
+        if (p < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toLocaleString('en-IN') + (isSchool ? '+' : '');
+      })(t0);
+    });
+  }
+  const credPanel = document.querySelector('.sab-panel-cred');
+  if (credPanel) {
+    const io = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) { runCounters(); io.disconnect(); }
+    }, { threshold: 0.3 });
+    io.observe(credPanel);
+  }
+
+  // ── Navbar dropdown ───────────────────────────────────────
+  const btn = document.querySelector('.mdet-discover-btn');
+  const dd  = document.querySelector('.mdet-nav-dropdown');
+  if (btn && dd) {
+    let ddCloseTimer;
+    function openDd()  {
+      clearTimeout(ddCloseTimer);
+      const r = btn.getBoundingClientRect();
+      dd.style.top  = (r.bottom + 8) + 'px';
+      dd.style.left = r.left + 'px';
+      dd.classList.add('open');
+      btn.classList.add('open');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDd() {
+      dd.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleCloseDd() { ddCloseTimer = setTimeout(closeDd, 200); }
+    btn.addEventListener('mouseenter', openDd);
+    btn.addEventListener('mouseleave', scheduleCloseDd);
+    dd.addEventListener('mouseenter', () => clearTimeout(ddCloseTimer));
+    dd.addEventListener('mouseleave', scheduleCloseDd);
+    btn.addEventListener('click', e => { if (dd.classList.contains('open')) return; e.preventDefault(); openDd(); });
+    document.addEventListener('click', closeDd);
+    dd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ─────────────────────────────────
+  const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
+  const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
+  const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
+  if (mdetHamburgerBtn && mdetMobileMenu) {
+    function openMdetMobileMenu() {
+      mdetMobileMenu.classList.add('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMdetMobileMenu() {
+      mdetMobileMenu.classList.remove('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    mdetHamburgerBtn.addEventListener('click', openMdetMobileMenu);
+    if (mdetMobileClose) mdetMobileClose.addEventListener('click', closeMdetMobileMenu);
+    mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
+  }
+
+  // Mobile: counters fire immediately since section isn't scroll-gated
+  if (isMobile) runCounters();
+})();
+</script>

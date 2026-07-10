@@ -13,7 +13,7 @@
 
 <%# Sticky HOHO button %>
 <div class="sticky-hoho">
-  <a href="/hoho">HOHO Service</a>
+  <a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a>
 </div>
 
 <div class="acc-page">
@@ -23,12 +23,12 @@
     <nav class="hist-navbar">
       <div class="nav-links">
         <div class="nav-discover">
-          <button class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+          <a href="/" class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
             Discover Orchha
             <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
+          </a>
         </div>
         <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
         <a href="/news" class="hist-nav-link">News</a>
@@ -196,7 +196,9 @@
   const accBtn = document.querySelector('.hist-nav-discover-btn');
   const accDd  = document.querySelector('.hist-nav-dropdown');
   if (accBtn && accDd) {
+    let accDdCloseTimer;
     function openAccDd() {
+      clearTimeout(accDdCloseTimer);
       const r = accBtn.getBoundingClientRect();
       accDd.style.top  = (r.bottom + 8) + 'px';
       accDd.style.left = r.left + 'px';
@@ -209,7 +211,12 @@
       accBtn.classList.remove('open');
       accBtn.setAttribute('aria-expanded', 'false');
     }
-    accBtn.addEventListener('click', e => { e.stopPropagation(); accDd.classList.contains('open') ? closeAccDd() : openAccDd(); });
+    function scheduleCloseAccDd() { accDdCloseTimer = setTimeout(closeAccDd, 200); }
+    accBtn.addEventListener('mouseenter', openAccDd);
+    accBtn.addEventListener('mouseleave', scheduleCloseAccDd);
+    accDd.addEventListener('mouseenter', () => clearTimeout(accDdCloseTimer));
+    accDd.addEventListener('mouseleave', scheduleCloseAccDd);
+    accBtn.addEventListener('click', e => { if (accDd.classList.contains('open')) return; e.preventDefault(); openAccDd(); });
     document.addEventListener('click', closeAccDd);
     accDd.addEventListener('click', e => e.stopPropagation());
   }

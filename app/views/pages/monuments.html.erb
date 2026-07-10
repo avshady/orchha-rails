@@ -14,7 +14,7 @@
 
 <%# Sticky HOHO button %>
 <div class="sticky-hoho">
-  <a href="/hoho">HOHO Service</a>
+  <a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a>
 </div>
 
 <div class="mon-page">
@@ -24,12 +24,12 @@
     <nav class="hist-navbar">
       <div class="nav-links">
         <div class="nav-discover">
-          <button class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+          <a href="/" class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
             Discover Orchha
             <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
+          </a>
         </div>
         <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
         <a href="/news" class="hist-nav-link">News</a>
@@ -174,7 +174,9 @@
   const monBtn = document.querySelector('.hist-nav-discover-btn');
   const monDd  = document.querySelector('.hist-nav-dropdown');
   if (monBtn && monDd) {
+    let monCloseTimer;
     function openMonDd() {
+      clearTimeout(monCloseTimer);
       const r = monBtn.getBoundingClientRect();
       monDd.style.top  = (r.bottom + 8) + 'px';
       monDd.style.left = r.left + 'px';
@@ -187,7 +189,12 @@
       monBtn.classList.remove('open');
       monBtn.setAttribute('aria-expanded', 'false');
     }
-    monBtn.addEventListener('click', e => { e.stopPropagation(); monDd.classList.contains('open') ? closeMonDd() : openMonDd(); });
+    function scheduleCloseMonDd() { monCloseTimer = setTimeout(closeMonDd, 200); }
+    monBtn.addEventListener('mouseenter', openMonDd);
+    monBtn.addEventListener('mouseleave', scheduleCloseMonDd);
+    monDd.addEventListener('mouseenter', () => clearTimeout(monCloseTimer));
+    monDd.addEventListener('mouseleave', scheduleCloseMonDd);
+    monBtn.addEventListener('click', e => { if (monDd.classList.contains('open')) return; e.preventDefault(); openMonDd(); });
     document.addEventListener('click', closeMonDd);
     monDd.addEventListener('click', e => e.stopPropagation());
   }

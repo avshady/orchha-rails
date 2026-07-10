@@ -1,4 +1,4 @@
-<%# Experiences & Trails page %>
+<%# Celebrate Orchha (Events) page %>
 <% ft       = (@home['footer'] || {})
    ft_links = ft['links'] || []
    vs       = @home['visit'] || {}
@@ -6,11 +6,11 @@
    dd       = nav['discoverDropdown'] || []
    cats     = @page['filterCategories'] || [
      {'label'=>'ALL','value'=>'all'},
-     {'label'=>'WALKS','value'=>'walks'},
-     {'label'=>'TRAILS','value'=>'trails'},
-     {'label'=>'EVENING EXPERIENCES','value'=>'evening-experiences'},
-     {'label'=>'ADVENTURE','value'=>'adventure'}
+     {'label'=>'ONGOING','value'=>'ongoing'},
+     {'label'=>'UPCOMING','value'=>'upcoming'},
+     {'label'=>'ARCHIVES','value'=>'archives'}
    ]
+   months = @items.map { |e| e['month'] }.reject(&:blank?).uniq
 %>
 
 <%# Sticky HOHO button %>
@@ -18,7 +18,7 @@
   <a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a>
 </div>
 
-<div class="exp-page">
+<div class="evt-page">
 
   <%# ── NAVBAR ─────────────────────────────────────────── %>
   <div class="mon-nav-wrap">
@@ -69,77 +69,72 @@
   </div>
 
   <%# ── HEADER ─────────────────────────────────────────── %>
-  <header class="exp-header">
-    <h1 class="exp-heading"><%= @page['heading'] || 'Experiences and Trails' %></h1>
-    <p class="exp-subheading"><%= @page['subheading'] || 'Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.' %></p>
+  <header class="evt-header">
+    <h1 class="evt-heading"><%= @page['heading'] || 'Celebrate Orchha' %></h1>
+    <p class="evt-subheading"><%= @page['subheading'] || 'Discover the festivals, cultural gatherings, and seasonal celebrations that showcase the living traditions of Orchha.' %></p>
   </header>
 
-  <%# ── FILTER + SEARCH ────────────────────────────────── %>
-  <div class="exp-filter-row">
-    <div class="exp-filter-tabs" role="tablist">
-      <% cats.each_with_index do |cat, i| %>
-      <button class="exp-tab <%= i == 0 ? 'active' : '' %>"
-              data-cat="<%= cat['value'] %>"
-              role="tab"
-              aria-selected="<%= i == 0 ? 'true' : 'false' %>">
-        <%= cat['label'] %>
-      </button>
-      <% end %>
-    </div>
-    <div class="exp-search">
-      <input class="exp-search-input" type="text" id="exp-search-input" placeholder="Search experiences...">
-      <svg class="exp-search-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="9" cy="9" r="6" stroke="#6e1603" stroke-width="2"/>
-        <path d="M13.5 13.5L17 17" stroke="#6e1603" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-    </div>
-  </div>
+  <%# ── EVENTS SECTION ────────────────────────────────────── %>
+  <section class="evt-section">
 
-  <%# ── EXPERIENCE CARDS GRID ──────────────────────────── %>
-  <section class="exp-section">
-    <div class="exp-cards" id="exp-cards">
-      <% @items.each do |item| %>
-      <div class="exp-card"
-           data-cat="<%= item['category'] || 'all' %>"
-           data-name="<%= item['name'].downcase %>">
-        <div class="exp-card-photo">
-          <img src="<%= item['image'] %>" alt="<%= item['name'] %>" loading="lazy">
-          <img src="/images/mpt_logo.png" class="exp-card-mpt" alt="MPT">
-          <img src="/images/incredible_india.png" class="exp-card-ii" alt="Incredible India">
+    <%# Filter row %>
+    <div class="evt-filter-row">
+      <div class="evt-filter-tabs" role="tablist">
+        <% cats.each_with_index do |cat, i| %>
+        <button class="evt-tab <%= i == 0 ? 'active' : '' %>"
+                data-cat="<%= cat['value'] %>"
+                role="tab"
+                aria-selected="<%= i == 0 ? 'true' : 'false' %>">
+          <%= cat['label'] %>
+        </button>
+        <% end %>
+      </div>
+      <div class="evt-month-filter">
+        <select class="evt-month-select" id="evt-month-select" aria-label="Filter by month">
+          <option value="all">Month</option>
+          <% months.each do |m| %>
+          <option value="<%= m %>"><%= m.capitalize %></option>
+          <% end %>
+        </select>
+        <svg class="evt-month-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1l4 4 4-4" stroke="#6e1603" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <%# Cards grid %>
+    <div class="evt-cards" id="evt-cards">
+      <% @items.each do |ev| %>
+      <a href="<%= ev['detailPage'] || '#' %>" class="evt-card"
+         data-cat="<%= ev['category'] || 'upcoming' %>"
+         data-month="<%= ev['month'] %>">
+        <div class="evt-card-photo">
+          <img src="<%= ev['image'] %>" alt="<%= ev['name'] %>" loading="lazy">
+          <div class="evt-card-logos">
+            <img src="/images/mpt_logo.png" class="evt-logo-mpt" alt="MPT">
+            <img src="/images/incredible_india.png" class="evt-logo-ii" alt="Incredible India">
+          </div>
         </div>
-        <div class="exp-card-bottom">
-          <h3 class="exp-card-title"><%= item['name'] %></h3>
-          <a href="/experiences/<%= item['id'] %>" class="exp-card-explore">
+        <div class="evt-card-body">
+          <h3 class="evt-card-name"><%= ev['name'] %></h3>
+          <p class="evt-card-date"><%= ev['date'] %></p>
+          <span class="evt-card-explore">
             Explore
             <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 5h13M10 1l4 4-4 4" stroke="#535353" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </a>
+          </span>
         </div>
-      </div>
+      </a>
       <% end %>
     </div>
-    <p class="exp-empty" id="exp-empty" style="display:none">No experiences found.</p>
+
+    <%# Empty state %>
+    <p class="evt-empty" id="evt-empty" style="display:none">No events found.</p>
+
   </section>
 
-  <%# ── CUISINE STRIP ──────────────────────────────────── %>
-  <section class="exp-cuisine">
-    <h2 class="exp-cuisine-heading">Must Try Bundelkhand Cuisine</h2>
-    <div class="exp-cuisine-track-wrap">
-      <div class="exp-cuisine-track" id="exp-cuisine-track">
-        <% (@cuisine + @cuisine).each do |c| %>
-        <div class="exp-cuisine-card">
-          <img src="<%= c['image'] %>" alt="<%= c['name'] %>" loading="lazy">
-          <div class="exp-cuisine-overlay">
-            <span class="exp-cuisine-name"><%= c['name'] %></span>
-          </div>
-        </div>
-        <% end %>
-      </div>
-    </div>
-  </section>
-
-  <%# ── VISIT ORCHHA ────────────────────────────────────── %>
+  <%# ── VISIT ORCHHA (reused) ──────────────────────────── %>
   <div class="visit-wrap">
     <div class="visit-section">
       <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
@@ -180,36 +175,36 @@
     </div>
   </footer>
 
-</div><%# /.exp-page %>
+</div><%# /.evt-page %>
 
 <script>
   // ── Navbar dropdown ───────────────────────────────────────
-  const expNavBtn = document.querySelector('.hist-nav-discover-btn');
-  const expNavDd  = document.querySelector('.hist-nav-dropdown');
-  if (expNavBtn && expNavDd) {
-    let expDdCloseTimer;
-    function openExpDd() {
-      clearTimeout(expDdCloseTimer);
-      const r = expNavBtn.getBoundingClientRect();
-      expNavDd.style.top  = (r.bottom + 8) + 'px';
-      expNavDd.style.left = r.left + 'px';
-      expNavDd.classList.add('open');
-      expNavBtn.classList.add('open');
-      expNavBtn.setAttribute('aria-expanded', 'true');
+  const evtBtn = document.querySelector('.hist-nav-discover-btn');
+  const evtDd  = document.querySelector('.hist-nav-dropdown');
+  if (evtBtn && evtDd) {
+    let evtDdCloseTimer;
+    function openEvtDd() {
+      clearTimeout(evtDdCloseTimer);
+      const r = evtBtn.getBoundingClientRect();
+      evtDd.style.top  = (r.bottom + 8) + 'px';
+      evtDd.style.left = r.left + 'px';
+      evtDd.classList.add('open');
+      evtBtn.classList.add('open');
+      evtBtn.setAttribute('aria-expanded', 'true');
     }
-    function closeExpDd() {
-      expNavDd.classList.remove('open');
-      expNavBtn.classList.remove('open');
-      expNavBtn.setAttribute('aria-expanded', 'false');
+    function closeEvtDd() {
+      evtDd.classList.remove('open');
+      evtBtn.classList.remove('open');
+      evtBtn.setAttribute('aria-expanded', 'false');
     }
-    function scheduleCloseExpDd() { expDdCloseTimer = setTimeout(closeExpDd, 200); }
-    expNavBtn.addEventListener('mouseenter', openExpDd);
-    expNavBtn.addEventListener('mouseleave', scheduleCloseExpDd);
-    expNavDd.addEventListener('mouseenter', () => clearTimeout(expDdCloseTimer));
-    expNavDd.addEventListener('mouseleave', scheduleCloseExpDd);
-    expNavBtn.addEventListener('click', e => { if (expNavDd.classList.contains('open')) return; e.preventDefault(); openExpDd(); });
-    document.addEventListener('click', closeExpDd);
-    expNavDd.addEventListener('click', e => e.stopPropagation());
+    function scheduleCloseEvtDd() { evtDdCloseTimer = setTimeout(closeEvtDd, 200); }
+    evtBtn.addEventListener('mouseenter', openEvtDd);
+    evtBtn.addEventListener('mouseleave', scheduleCloseEvtDd);
+    evtDd.addEventListener('mouseenter', () => clearTimeout(evtDdCloseTimer));
+    evtDd.addEventListener('mouseleave', scheduleCloseEvtDd);
+    evtBtn.addEventListener('click', e => { if (evtDd.classList.contains('open')) return; e.preventDefault(); openEvtDd(); });
+    document.addEventListener('click', closeEvtDd);
+    evtDd.addEventListener('click', e => e.stopPropagation());
   }
 
   // ── Mobile hamburger menu ───────────────────────────────────
@@ -232,58 +227,42 @@
     histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
   }
 
-  // ── Filter + Search ───────────────────────────────────────
-  const expCards   = Array.from(document.querySelectorAll('.exp-card'));
-  const expTabs    = Array.from(document.querySelectorAll('.exp-tab'));
-  const expEmpty   = document.getElementById('exp-empty');
-  let expActiveCat = 'all';
-  let expSearchVal = '';
+  // ── Filter by category + month ───────────────────────────────
+  const evtCards = Array.from(document.querySelectorAll('.evt-card'));
+  const evtTabs  = Array.from(document.querySelectorAll('.evt-tab'));
+  const evtEmpty = document.getElementById('evt-empty');
+  const evtMonthSelect = document.getElementById('evt-month-select');
+  let evtActiveCat = 'all';
+  let evtActiveMonth = 'all';
 
-  function applyExpFilter() {
+  function applyEvtFilter() {
     let visible = 0;
-    expCards.forEach(card => {
-      const catOk  = expActiveCat === 'all' || card.dataset.cat === expActiveCat;
-      const nameOk = card.dataset.name.includes(expSearchVal.toLowerCase());
-      const show   = catOk && nameOk;
+    evtCards.forEach(card => {
+      const cat   = card.dataset.cat;
+      const month = card.dataset.month;
+      const catOk   = evtActiveCat === 'all' || cat === evtActiveCat;
+      const monthOk = evtActiveMonth === 'all' || month === evtActiveMonth;
+      const show = catOk && monthOk;
       card.style.display = show ? '' : 'none';
       if (show) visible++;
     });
-    expEmpty.style.display = visible === 0 ? 'block' : 'none';
+    evtEmpty.style.display = visible === 0 ? 'block' : 'none';
   }
 
-  expTabs.forEach(tab => {
+  evtTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      expTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      evtTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
       tab.classList.add('active');
       tab.setAttribute('aria-selected','true');
-      expActiveCat = tab.dataset.cat;
-      applyExpFilter();
+      evtActiveCat = tab.dataset.cat;
+      applyEvtFilter();
     });
   });
 
-  document.getElementById('exp-search-input').addEventListener('input', e => {
-    expSearchVal = e.target.value;
-    applyExpFilter();
-  });
-
-  // ── Cuisine auto-scroll ───────────────────────────────────
-  (function() {
-    const track = document.getElementById('exp-cuisine-track');
-    if (!track) return;
-    let pos = 0;
-    const speed = 0.6;
-    let raf;
-    const half = track.scrollWidth / 2;
-
-    function tick() {
-      pos += speed;
-      if (pos >= half) pos = 0;
-      track.style.transform = 'translateX(-' + pos + 'px)';
-      raf = requestAnimationFrame(tick);
-    }
-
-    track.addEventListener('mouseenter', () => cancelAnimationFrame(raf));
-    track.addEventListener('mouseleave', () => { raf = requestAnimationFrame(tick); });
-    raf = requestAnimationFrame(tick);
-  })();
+  if (evtMonthSelect) {
+    evtMonthSelect.addEventListener('change', e => {
+      evtActiveMonth = e.target.value;
+      applyEvtFilter();
+    });
+  }
 </script>

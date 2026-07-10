@@ -711,27 +711,75 @@
   ],
   "events": [
     {
-      "id": "ram-vivah-mahotsav",
-      "name": "Shree Ram Vivah Mahotsav",
-      "category": "ongoing",
-      "image": "ram_raja_placeholder.webp",
-      "detailPage": "#",
-      "visible": true
-    },
-    {
-      "id": "sound-light-show",
-      "name": "Sound And Light Show",
-      "category": "ongoing",
-      "image": "sl_show_placeholder.webp",
-      "detailPage": "#",
-      "visible": true
-    },
-    {
-      "id": "orchha-festival",
-      "name": "Orchha Festival",
+      "id": "new-year-celebrations",
+      "name": "New Year Celebrations",
+      "date": "1st January",
+      "month": "january",
       "category": "upcoming",
-      "image": "events_placeholder.webp",
-      "detailPage": "#",
+      "image": "/images/evt_new_year.jpg",
+      "visible": true
+    },
+    {
+      "id": "pushya-nakshatra",
+      "name": "Pushya Nakshatra",
+      "date": "Every month",
+      "month": "",
+      "category": "ongoing",
+      "image": "/images/evt_pushya_nakshatra.jpg",
+      "visible": true
+    },
+    {
+      "id": "makar-sankranti",
+      "name": "Makar Sankranti",
+      "date": "14-15 January 2026",
+      "month": "january",
+      "category": "upcoming",
+      "image": "/images/evt_makar_sankranti.jpg",
+      "visible": true
+    },
+    {
+      "id": "shree-ram-janmotsav",
+      "name": "Shree Ram Janmotsav",
+      "date": "27th March 2026",
+      "month": "march",
+      "category": "upcoming",
+      "image": "/images/evt_ram_janmotsav.jpg",
+      "visible": true
+    },
+    {
+      "id": "sawan-teej-mela",
+      "name": "Sawan Teej Mela",
+      "date": "15th-17th August 2026",
+      "month": "august",
+      "category": "upcoming",
+      "image": "/images/evt_sawan_teej.jpg",
+      "visible": true
+    },
+    {
+      "id": "deepawali",
+      "name": "Deepawali",
+      "date": "8th November 2026",
+      "month": "november",
+      "category": "upcoming",
+      "image": "/images/evt_deepawali.jpg",
+      "visible": true
+    },
+    {
+      "id": "ram-vivah-festival",
+      "name": "Ram Vivah Festival Mandap & Bhandara",
+      "date": "13th December 2026",
+      "month": "december",
+      "category": "upcoming",
+      "image": "/images/evt_ram_vivah_mandap.jpg",
+      "visible": true
+    },
+    {
+      "id": "ram-vivah-var-yatra",
+      "name": "Ram Vivah Var Yatra",
+      "date": "13th December 2026",
+      "month": "december",
+      "category": "upcoming",
+      "image": "/images/evt_ram_vivah_yatra.jpg",
       "visible": true
     }
   ],
@@ -996,15 +1044,15 @@
       "links": [
         {
           "label": "How to Reach Orchha",
-          "url": "/plan-your-visit#how-to-reach"
+          "url": "https://visit-orchha.netlify.app/"
         },
         {
           "label": "Travel Options",
-          "url": "/plan-your-visit#travel"
+          "url": "https://visit-orchha.netlify.app/"
         },
         {
           "label": "Stay Options",
-          "url": "/accommodation"
+          "url": "https://visit-orchha.netlify.app/"
         }
       ]
     },
@@ -1647,5 +1695,27 @@
       "address": "Ward no.12, Gundrai, Bagan, Orchha, Madhya Pradesh 472246",
       "image": "/images/acc_ratangarhi.jpg"
     }
-  ]
+  ],
+  "eventsPage": {
+    "heading": "Celebrate Orchha",
+    "subheading": "Discover the festivals, cultural gatherings, and seasonal celebrations that showcase the living traditions of Orchha.",
+    "filterCategories": [
+      {
+        "label": "ALL",
+        "value": "all"
+      },
+      {
+        "label": "ONGOING",
+        "value": "ongoing"
+      },
+      {
+        "label": "UPCOMING",
+        "value": "upcoming"
+      },
+      {
+        "label": "ARCHIVES",
+        "value": "archives"
+      }
+    ]
+  }
 }

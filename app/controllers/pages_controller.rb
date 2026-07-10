@@ -33,6 +33,24 @@ class PagesController < ApplicationController
     @page = {}; @items = []; @home = {}
   end
 
+  def events
+    raw = JSON.parse(File.read(CMS_CONTENT_PATH))
+    @page  = raw['eventsPage'] || {}
+    @items = (raw['events'] || []).select { |ev| ev['visible'] != false }
+    @home  = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content.json read failed: #{e.message}"
+    @page = {}; @items = []; @home = {}
+  end
+
+  def sabhyata
+    raw = JSON.parse(File.read(CMS_CONTENT_PATH))
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content.json read failed: #{e.message}"
+    @home = {}
+  end
+
   def experiences
     raw = JSON.parse(File.read(CMS_CONTENT_PATH))
     @page     = raw['experiencesPage'] || {}

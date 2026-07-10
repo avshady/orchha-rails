@@ -3,17 +3,17 @@
    dd  = nav['discoverDropdown'] || []
 %>
 
-<div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
+<div class="sticky-hoho"><a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a></div>
 
 <%# Fixed nav — outside scroll wrapper %>
 <div class="mdet-nav-wrap">
   <nav class="mdet-navbar">
     <div class="mdet-nav-links">
       <div class="mdet-nav-discover">
-        <button class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+        <a href="/" class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
           Discover Orchha
           <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        </a>
       </div>
       <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
       <a href="/news"            class="mdet-nav-link">News</a>
@@ -255,7 +255,9 @@
   const navBtn = document.querySelector('.mdet-discover-btn');
   const navDd  = document.querySelector('.mdet-nav-dropdown');
   if (navBtn && navDd) {
+    let navDdCloseTimer;
     function openDd() {
+      clearTimeout(navDdCloseTimer);
       const r = navBtn.getBoundingClientRect();
       navDd.style.top  = (r.bottom + 8) + 'px';
       navDd.style.left = r.left + 'px';
@@ -268,7 +270,12 @@
       navBtn.classList.remove('open');
       navBtn.setAttribute('aria-expanded', 'false');
     }
-    navBtn.addEventListener('click', e => { e.stopPropagation(); navDd.classList.contains('open') ? closeDd() : openDd(); });
+    function scheduleCloseDd() { navDdCloseTimer = setTimeout(closeDd, 200); }
+    navBtn.addEventListener('mouseenter', openDd);
+    navBtn.addEventListener('mouseleave', scheduleCloseDd);
+    navDd.addEventListener('mouseenter', () => clearTimeout(navDdCloseTimer));
+    navDd.addEventListener('mouseleave', scheduleCloseDd);
+    navBtn.addEventListener('click', e => { if (navDd.classList.contains('open')) return; e.preventDefault(); openDd(); });
     document.addEventListener('click', closeDd);
     navDd.addEventListener('click', e => e.stopPropagation());
   }

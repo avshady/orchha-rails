@@ -1,6 +1,6 @@
 <%# Sticky HOHO button %>
 <div class="sticky-hoho">
-  <a href="/hoho">HOHO Service</a>
+  <a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a>
 </div>
 
 <%# ── HERO ───────────────────────────────────────────── %>
@@ -39,12 +39,12 @@
     <nav class="navbar">
       <div class="nav-links">
         <div class="nav-discover">
-          <button class="nav-link nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+          <a href="/" class="nav-link nav-discover-btn" aria-expanded="false" aria-haspopup="true">
             Discover Orchha
             <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </button>
+          </a>
         </div>
         <a href="/plan-your-visit" class="nav-link">Plan Your Visit</a>
         <a href="/news" class="nav-link">News</a>
@@ -586,7 +586,9 @@
   const discoverBtn = document.querySelector('.nav-discover-btn');
   const discoverDropdown = document.querySelector('.nav-dropdown');
   if (discoverBtn && discoverDropdown) {
+    let discoverCloseTimer;
     function openDropdown() {
+      clearTimeout(discoverCloseTimer);
       const r = discoverBtn.getBoundingClientRect();
       discoverDropdown.style.top  = (r.bottom + 8) + 'px';
       discoverDropdown.style.left = r.left + 'px';
@@ -599,9 +601,17 @@
       discoverBtn.classList.remove('open');
       discoverBtn.setAttribute('aria-expanded', 'false');
     }
+    function scheduleCloseDropdown() { discoverCloseTimer = setTimeout(closeDropdown, 200); }
+    discoverBtn.addEventListener('mouseenter', openDropdown);
+    discoverBtn.addEventListener('mouseleave', scheduleCloseDropdown);
+    discoverDropdown.addEventListener('mouseenter', () => clearTimeout(discoverCloseTimer));
+    discoverDropdown.addEventListener('mouseleave', scheduleCloseDropdown);
+    // Touch/keyboard fallback: first activation opens the menu instead of navigating;
+    // activating again (dropdown already open) lets the link follow through to "/"
     discoverBtn.addEventListener('click', function(e) {
-      e.stopPropagation();
-      discoverDropdown.classList.contains('open') ? closeDropdown() : openDropdown();
+      if (discoverDropdown.classList.contains('open')) return;
+      e.preventDefault();
+      openDropdown();
     });
     document.addEventListener('click', closeDropdown);
     discoverDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
