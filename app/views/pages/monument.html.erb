@@ -42,8 +42,27 @@
       <a href="/support-us"      class="mdet-nav-link">Support Us</a>
       <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
     </div>
+    <button class="mdet-nav-hamburger" id="mdet-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
     <a href="/book-tickets" class="mdet-book-btn">Book Tickets</a>
   </nav>
+
+  <div class="mdet-nav-mobile-menu" id="mdet-nav-mobile-menu">
+    <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mdet-nav-mobile-links">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="mdet-nav-mobile-link"><%= item['label'] %></a>
+      <% end %>
+      <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
+      <a href="/news" class="mdet-nav-mobile-link">News</a>
+      <a href="/support-us" class="mdet-nav-mobile-link">Support Us</a>
+      <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
+    </div>
+    <a href="/book-tickets" class="mdet-nav-mobile-book-btn">Book Tickets</a>
+  </div>
 </div>
 
 <div class="mdet-wrapper" data-panels="<%= panel_count %>" data-monument="<%= @monument['id'] %>">
@@ -345,13 +364,15 @@
 
 <script>
 (function() {
-  // ── Horizontal scroll-jacking ─────────────────────────────
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+  // ── Horizontal scroll-jacking (desktop only — mobile stacks panels vertically) ──
   const wrapper = document.querySelector('.mdet-wrapper');
   const sticky  = document.querySelector('.mdet-sticky');
   const hint    = document.getElementById('mdet-scroll-hint');
   const tabs    = document.querySelector('.mdet-action-tabs');
 
-  if (wrapper && sticky) {
+  if (wrapper && sticky && !isMobile) {
     const panels = parseFloat(wrapper.dataset.panels || '5');
     wrapper.style.height = (panels * 100) + 'vh';
 
@@ -406,6 +427,26 @@
     });
     document.addEventListener('click', closeDd);
     dd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ─────────────────────────────────
+  const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
+  const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
+  const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
+  if (mdetHamburgerBtn && mdetMobileMenu) {
+    function openMdetMobileMenu() {
+      mdetMobileMenu.classList.add('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMdetMobileMenu() {
+      mdetMobileMenu.classList.remove('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    mdetHamburgerBtn.addEventListener('click', openMdetMobileMenu);
+    if (mdetMobileClose) mdetMobileClose.addEventListener('click', closeMdetMobileMenu);
+    mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
   }
 })();
 </script>

@@ -56,6 +56,9 @@
         <a href="/news" class="nav-link">News</a>
         <a href="/support-us" class="nav-link">Support Us</a>
       </div>
+      <button class="nav-hamburger" id="nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
       <a href="/book-tickets" class="nav-book-btn">Book Tickets</a>
     </nav>
 
@@ -83,6 +86,22 @@
         <img src="/images/incredible_india.png" alt="Incredible India" class="hero-india-logo">
       </div>
     </div>
+  </div>
+
+  <div class="nav-mobile-menu" id="nav-mobile-menu">
+    <button class="nav-mobile-close" id="nav-mobile-close-btn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="nav-mobile-links">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="nav-mobile-link"><%= item['label'] %></a>
+      <% end %>
+      <a href="/plan-your-visit" class="nav-mobile-link">Plan Your Visit</a>
+      <a href="/sabhyata" class="nav-mobile-link">Sabhyata</a>
+      <a href="/news" class="nav-mobile-link">News</a>
+      <a href="/support-us" class="nav-mobile-link">Support Us</a>
+    </div>
+    <a href="/book-tickets" class="nav-mobile-book-btn">Book Tickets</a>
   </div>
 
   <%# Bouncing chevron scroll indicator %>
@@ -582,5 +601,25 @@
     });
     document.addEventListener('click', closeDropdown);
     discoverDropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
+
+  // Mobile hamburger menu
+  const navHamburgerBtn = document.getElementById('nav-hamburger-btn');
+  const navMobileMenu   = document.getElementById('nav-mobile-menu');
+  const navMobileClose  = document.getElementById('nav-mobile-close-btn');
+  if (navHamburgerBtn && navMobileMenu) {
+    function openMobileMenu() {
+      navMobileMenu.classList.add('open');
+      navHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMobileMenu() {
+      navMobileMenu.classList.remove('open');
+      navHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    navHamburgerBtn.addEventListener('click', openMobileMenu);
+    if (navMobileClose) navMobileClose.addEventListener('click', closeMobileMenu);
+    navMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMobileMenu));
   }
 </script>

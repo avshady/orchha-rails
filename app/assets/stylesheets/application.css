@@ -190,6 +190,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 14px;
   color: #fff; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
 }
+@media (max-width: 900px) {
+  .sticky-hoho { padding: 10px 4px 10px 5px; }
+  .sticky-hoho a { font-size: 11px; }
+}
 
 /* ── SHARED SECTION ──────────────────────────────────── */
 .section { padding: 100px 0; }
@@ -658,8 +662,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .cuisine-title { font-size: 42px; }
 }
 
-/* Mobile: ≤ 767px */
-@media (max-width: 767px) {
+/* Mobile: ≤ 900px (widened from 767 so the 768–900 tablet-portrait gap
+   between here and the hamburger-nav breakpoint doesn't regress to desktop layout) */
+@media (max-width: 900px) {
   /* Footer */
   .footer { padding: 60px 0 40px; }
   .footer-container { padding: 0 24px; gap: 32px; }
@@ -702,6 +707,48 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .cuisine-section { padding: 40px 0 50px; gap: 20px; }
   .cuisine-title { font-size: 36px; }
   .cuisine-card { width: 240px; height: 270px; }
+
+  /* Hero */
+  .hero { height: 100vh; min-height: 560px; }
+  .hero-wrap { width: calc(100% - 32px); padding: 20px 0 90px; }
+  .navbar { padding: 8px 8px 8px 18px; }
+  .hero-title { font-size: 46px; white-space: normal; }
+  .hero-title-row { width: 100%; flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hero-subtitle-block { padding-top: 0; }
+  .hero-subtitle { font-size: 17px; width: auto; max-width: 320px; }
+  .hero-footer { flex-wrap: wrap; gap: 16px; }
+  .hero-btn-group { padding-right: 0; }
+  .hero-explore-btn { padding: 9px 20px; font-size: 15px; }
+  .hero-mpt-wrap { width: 56px; height: 38px; }
+  .hero-india-wrap { width: 40px; height: 52px; }
+  .hero-dots { bottom: 90px; }
+
+  /* Journey */
+  .journey-section { padding: 56px 0; }
+  .journey-inner { grid-template-columns: 1fr; gap: 28px; padding: 0 20px; }
+  .journey-heading { font-size: 38px; }
+  .journey-cards { grid-template-columns: 1fr; gap: 14px; }
+  .journey-card { height: 240px; }
+
+  /* Heritage */
+  .heritage-header { width: 100%; padding: 0 20px; }
+  .heritage-subtitle { width: 100%; }
+  .heritage-cards-row { flex-direction: column; gap: 14px; }
+  .heritage-big-card { width: 100%; height: 320px; }
+  .heritage-grid { width: 100%; height: auto; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .heritage-small-card { height: 200px; }
+
+  /* Trails */
+  .trails-title { white-space: normal; font-size: 38px; }
+  .trails-subtitle { width: 100%; padding: 0 20px; }
+  .trails-cards-row { grid-template-columns: 1fr 1fr; gap: 14px; }
+
+  /* Home Experiences preview */
+  .exp-title { white-space: normal; font-size: 38px; }
+  .exp-subtitle { width: 100%; padding: 0 20px; }
+  .exp-grid { grid-template-columns: 1fr; grid-template-rows: none; height: auto; gap: 14px; }
+  .exp-card { height: 260px; }
+  .exp-card-tall { grid-row: auto; height: 320px; }
 }
 
 /* ════════════════════════════════════════════════════════
@@ -952,7 +999,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hist-mptb-text { flex: 1; }
   .hist-mptb-images { display: none; }
 }
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .hist-hero-content { flex-direction: column; padding-top: 32px; }
   .hist-hero-text { flex: none; padding-top: 0; }
   .hist-hero-image { height: 320px; width: 100%; }
@@ -1193,14 +1240,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 @media (max-width: 768px) {
   .mon-navbar { top: 12px; margin-top: 12px; border-radius: 0; padding: 10px 16px; }
   .mon-nav-links { display: none; }
+  .mon-header { padding: 0 20px; max-width: 100%; }
   .mon-heading { font-size: 42px; }
-  .mon-subheading { font-size: 17px; }
-  .mon-section { margin-top: 32px; gap: 28px; }
+  .mon-subheading { font-size: 17px; width: 100%; max-width: 100%; }
+  .mon-section { margin-top: 32px; gap: 28px; padding: 0 20px; }
   .mon-filter-row { flex-direction: column; align-items: flex-start; }
   .mon-search { width: 100%; }
   .mon-cards { justify-content: center; }
   .mon-card { width: calc(50% - 10px); min-width: 160px; }
   .mon-card-img { height: 180px; }
+  .mon-card-name { width: auto; max-width: 100%; font-size: 22px; line-height: 1.15; }
 }
 
 
@@ -2114,6 +2163,29 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #fff;
 }
 
+/* ── Experiences & Trails listing — Mobile ───────────────────
+   Scoped under .exp-page since .exp-header/.exp-card/.exp-section
+   class names are also reused by the unrelated home-page preview block. */
+@media (max-width: 900px) {
+  .exp-page .exp-header { padding: 32px 20px 32px; }
+  .exp-page .exp-heading { font-size: 40px; }
+  .exp-page .exp-subheading { font-size: 16px; max-width: 100%; }
+  .exp-page .exp-filter-row { flex-direction: column; align-items: stretch; padding: 0 20px 28px; gap: 16px; }
+  .exp-page .exp-filter-tabs { padding-bottom: 4px; }
+  .exp-page .exp-tab { font-size: 15px; padding: 6px 14px; }
+  .exp-page .exp-tab.active { font-size: 14.5px; }
+  .exp-page .exp-search { width: 100%; }
+  .exp-page .exp-section { padding: 0 20px 56px; }
+  .exp-page .exp-cards { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .exp-page .exp-card-photo { height: 180px; }
+  .exp-page .exp-card-title { font-size: 22px; line-height: 1.15; width: auto; }
+  .exp-page .exp-cuisine { padding: 40px 0 56px; }
+  .exp-page .exp-cuisine-heading { font-size: 34px; }
+}
+@media (max-width: 520px) {
+  .exp-page .exp-cards { grid-template-columns: 1fr; }
+}
+
 /* ═══════════════════════════════════════════════════════════
    ART WALK — PANEL 1 (dark hero mural)
    ═══════════════════════════════════════════════════════════ */
@@ -2281,54 +2353,57 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ═══════════════════════════════════════════════════════════
    ART WALK — PANEL 3 ("The Walk Through Time", dark)
    ═══════════════════════════════════════════════════════════ */
-.aw-walk-panel { background: #0d0704; position: relative; overflow: hidden; }
-
-.aw-walk-bg {
-  position: absolute; inset: 0;
+/* ── Panel 4: Outro (full-bleed mural + CTA) ── */
+.aw-walk-panel {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.aw-walk-bg > img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
-}
-.aw-walk-overlay {
-  position: absolute; inset: 0;
-  background: rgba(10,4,0,0.65);
-}
-
-.aw-walk-content {
+.aw-walk-mural {
   position: absolute;
-  top: 50%;
-  left: 80px;
-  transform: translateY(-50%);
-  z-index: 2;
-  max-width: 380px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  z-index: 0;
+}
+.aw-walk-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 36px;
 }
 .aw-walk-heading {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
-  font-size: 62px;
-  line-height: 1.1;
+  font-size: 65.754px;
+  line-height: 72.928px;
   color: #6e1603;
-  margin: 0 0 20px 0;
+  text-align: center;
+  margin: 0;
 }
-.aw-walk-sub {
+.aw-walk-cta {
+  display: inline-block;
+  padding: 11px 36px;
+  background: #e7ded5;
+  border: 1px solid rgba(26, 14, 6, 0.18);
+  color: #1a0e06;
+  border-radius: 28px;
   font-family: 'Gambetta', serif;
   font-weight: 500;
-  font-size: 19px;
-  line-height: 1.55;
-  color: rgba(255,255,255,0.82);
-  margin: 0 0 36px 0;
+  font-size: 15px;
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
 }
-
-.aw-mural-large {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 340px;
-  height: auto;
-  object-fit: cover;
-  opacity: 0.68;
-  border-radius: 8px 0 0 0;
-  z-index: 1;
+.aw-walk-cta:hover {
+  background: #fff;
 }
 
 /* (keep old panel-2 right styles for any stale references) */
@@ -2364,6 +2439,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── Panel 3 (light): Walk Through Time + vignette mural ── */
+/* ── Panel 3: Walk Through Time + Monument Cards (combined) ── */
 .aw-transit-panel {
   background: #e7ded5;
   position: relative;
@@ -2371,14 +2447,24 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-top: 1px solid rgba(110, 22, 3, 0.22);
   border-bottom: 1px solid rgba(110, 22, 3, 0.22);
   display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0;
+}
+
+/* Left column: heading + subtitle + vignette */
+.aw-tr-left {
+  flex: 0 0 28%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  padding: 72px 72px 0;
+  padding: 64px 28px 0 72px;
 }
 .aw-transit-text {
   position: relative;
   z-index: 2;
+  flex-shrink: 0;
 }
 .aw-transit-heading {
   font-family: 'Scotch Display', serif;
@@ -2396,45 +2482,55 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #1a0e06;
   margin: 18px 0 0;
 }
-.aw-transit-art {
+.aw-vignette-img {
   position: absolute;
-  bottom: -8%;
+  bottom: -6%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 1;
-}
-.aw-vignette-img {
-  width: 569px;
-  height: 711px;
+  width: 105%;
+  height: auto;
   aspect-ratio: 565 / 706;
   object-fit: contain;
   display: block;
+  z-index: 1;
 }
 
-/* ── Panel 5: Monument Stop Cards ── */
-.aw-stops-panel {
-  background: #0d0704;
+/* Right column: step indicator + cards */
+.aw-tr-right {
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 56px;
+  padding: 0 56px 0 20px;
 }
-.aw-stops-row {
+
+/* Card grid with dashed step line */
+.aw-card-grid {
+  position: relative;
   display: flex;
   gap: 18px;
-  padding-top: 28px;
   width: 100%;
 }
-.aw-stop-card {
-  position: relative;
+.aw-card-grid::before {
+  content: '';
+  position: absolute;
+  top: 18px;
+  left: 12.5%;
+  right: 12.5%;
+  border-top: 1.5px dashed rgba(110, 22, 3, 0.45);
+  z-index: 0;
+}
+.aw-tc {
   flex: 1;
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.aw-stop-num {
-  position: absolute;
-  top: -18px;
-  left: 50%;
-  transform: translateX(-50%);
+.aw-tc-dot {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
   width: 36px;
   height: 36px;
   background: #1a0e06;
@@ -2445,54 +2541,56 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #fff;
   font-family: 'Gambetta', serif;
   font-weight: 700;
-  font-size: 15px;
-  z-index: 2;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
-.aw-stop-photo {
+.aw-tc-body {
+  background: #0d0704;
+  border-radius: 12px;
+  padding: 10px 10px 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.aw-tc-photo {
   position: relative;
-  aspect-ratio: 385 / 290;
-  border-radius: 10px 10px 0 0;
+  width: 100%;
+  aspect-ratio: 385 / 245;
+  border-radius: 8px;
   overflow: hidden;
+  margin-bottom: 14px;
 }
-.aw-stop-photo img {
+.aw-tc-photo > img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.aw-stop-logos {
+.aw-tc-logos {
   position: absolute;
-  top: 10px;
+  top: 9px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 10px;
+  padding: 0 9px;
 }
-.aw-slogo-mpt { height: 20px; }
-.aw-slogo-ii  { height: 26px; }
-.aw-stop-info {
-  background: #1a0e06;
-  border-radius: 0 0 10px 10px;
-  padding: 18px 16px 22px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-.aw-stop-name {
+.aw-slogo-mpt { height: 18px; }
+.aw-slogo-ii  { height: 24px; }
+.aw-tc-name {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
-  font-size: 26px;
-  line-height: 1.15;
+  font-size: 28px;
+  line-height: 1.2;
   color: #6e1603;
   text-align: center;
-  margin: 0;
+  margin: 0 0 12px;
 }
-.aw-stop-btn {
+.aw-tc-btn {
   display: inline-block;
-  padding: 9px 22px;
-  border: 1px solid rgba(255,255,255,0.45);
-  color: rgba(255,255,255,0.75);
+  padding: 8px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.75);
   border-radius: 24px;
   font-family: 'Gambetta', serif;
   font-weight: 500;
@@ -2500,4 +2598,482 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   text-decoration: none;
   white-space: nowrap;
 }
-.aw-stop-btn:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+.aw-tc-btn:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ECO TRAIL PAGE  (et-*)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Panel 1: Hero ── */
+.et-hero-panel { position: relative; overflow: hidden; }
+.et-hero-bg { position: absolute; inset: 0; }
+.et-hero-bg > img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+.et-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(10,4,0,0.55) 0%, transparent 38%);
+}
+
+/* ── Panel 2: Eco Trail Content ── */
+.et-content-panel {
+  background: #e7ded5;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  border-top: 1px solid rgba(110, 22, 3, 0.22);
+  border-bottom: 1px solid rgba(110, 22, 3, 0.22);
+  overflow: hidden;
+}
+.et-left {
+  flex: 0 0 38%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 40px 24px 40px 72px;
+  gap: 14px;
+  overflow: hidden;
+}
+.et-card {
+  position: relative;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.et-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.et-card-tall  { aspect-ratio: 421 / 429; }
+.et-card-short { aspect-ratio: 353 / 415; }
+.et-card-logos {
+  position: absolute;
+  top: 13px; left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.et-book-btn {
+  display: inline-block;
+  padding: 11px 26px;
+  border: 1.5px solid #6e1603;
+  color: #6e1603;
+  border-radius: 22px;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  text-decoration: none;
+  white-space: nowrap;
+  margin-top: 4px;
+}
+.et-book-btn:hover { background: #6e1603; color: #e7ded5; }
+.et-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 56px 72px 56px 28px;
+}
+.et-heading {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: 70px;
+  line-height: 1.043;
+  color: #6e1603;
+  margin: 0 0 24px;
+  text-transform: capitalize;
+}
+.et-body {
+  font-family: 'Gambetta', serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.68;
+  color: #1a0e06;
+  margin: 0 0 14px;
+}
+.et-body:last-child { margin-bottom: 0; }
+
+/* ── Panel 3: Did You Know? ── */
+.et-know-panel {
+  background: #e7ded5;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-bottom: 1px solid rgba(110, 22, 3, 0.22);
+  overflow: hidden;
+}
+.et-know-left {
+  flex: 0 0 36%;
+  padding: 56px 28px 56px 72px;
+  display: flex;
+  align-items: center;
+}
+.et-know-heading {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: 72px;
+  line-height: 1.05;
+  color: #6e1603;
+  margin: 0;
+}
+.et-know-right {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 36px;
+  padding: 56px 72px 56px 16px;
+}
+.et-know-card {
+  flex: 0 0 46%;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 321 / 240;
+}
+.et-know-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.et-know-text {
+  flex: 1;
+  font-family: 'Gambetta', serif;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.68;
+  color: #1a0e06;
+}
+
+/* ── Panel 4: Outro ── */
+.et-outro-panel {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.et-outro-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE NAVIGATION — shared hamburger + full-screen menu pattern
+   Covers 3 nav systems: .navbar (home), .hist-navbar (history/monuments/
+   experiences), .mdet-navbar (monument detail/art walk/eco trail)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* Hamburger button — hidden on desktop, shown < 900px */
+.nav-hamburger, .hist-nav-hamburger, .mdet-nav-hamburger {
+  display: none;
+  align-items: center; justify-content: center;
+  width: 40px; height: 40px; flex-shrink: 0;
+  background: none; border: none; padding: 0; margin: 0; cursor: pointer;
+}
+.nav-hamburger svg, .hist-nav-hamburger svg, .mdet-nav-hamburger svg { width: 26px; height: 26px; display: block; }
+.nav-hamburger svg path, .mdet-nav-hamburger svg path { stroke: #fff; }
+.hist-nav-hamburger svg path { stroke: #6e1603; }
+
+/* Full-screen mobile menu overlay — shared visual language across systems */
+.nav-mobile-menu, .hist-nav-mobile-menu, .mdet-nav-mobile-menu {
+  position: fixed; inset: 0; z-index: 9999;
+  background: rgba(26, 10, 3, 0.97);
+  backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 32px;
+  opacity: 0; pointer-events: none;
+  transform: translateY(-16px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.nav-mobile-menu.open, .hist-nav-mobile-menu.open, .mdet-nav-mobile-menu.open {
+  opacity: 1; pointer-events: auto; transform: translateY(0);
+}
+.nav-mobile-close, .hist-nav-mobile-close, .mdet-nav-mobile-close {
+  position: absolute; top: 24px; right: 24px;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: none; cursor: pointer;
+}
+.nav-mobile-close svg, .hist-nav-mobile-close svg, .mdet-nav-mobile-close svg { width: 26px; height: 26px; }
+.nav-mobile-close svg path, .hist-nav-mobile-close svg path, .mdet-nav-mobile-close svg path { stroke: #fff; }
+.nav-mobile-links, .hist-nav-mobile-links, .mdet-nav-mobile-links {
+  display: flex; flex-direction: column; align-items: center; gap: 26px;
+  max-height: 70vh; overflow-y: auto; padding: 8px 24px;
+}
+.nav-mobile-link, .hist-nav-mobile-link, .mdet-nav-mobile-link {
+  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 22px;
+  color: #fff; text-transform: uppercase; letter-spacing: 0.04em;
+  text-decoration: none; text-align: center;
+}
+.nav-mobile-book-btn, .hist-nav-mobile-book-btn, .mdet-nav-mobile-book-btn {
+  background: linear-gradient(73deg, rgb(219,173,108) 6%, rgb(222,186,134) 95%);
+  border-radius: 28.5px; padding: 13px 32px;
+  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 16px;
+  color: #000; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+
+@media (max-width: 900px) {
+  /* System A — home */
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  .navbar { padding: 10px 10px 10px 20px; }
+
+  /* System B — history / monuments / experiences (shared .hist-navbar) */
+  .hist-navbar .nav-links { display: none; }
+  .hist-nav-hamburger { display: flex; }
+  .hist-navbar { padding: 10px 10px 10px 20px; }
+
+  /* System C — monument detail / art walk / eco trail */
+  .mdet-nav-links { display: none; }
+  .mdet-nav-hamburger { display: flex; }
+  .mdet-navbar { padding: 10px 10px 10px 20px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE — mdet SYSTEM (monument detail / art walk / eco trail)
+   Below 900px the horizontal scroll-jacking is disabled (see inline JS
+   `isMobile` guard) and panels flow as normal vertical sections instead.
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* ── Structural: kill the horizontal track, stack panels vertically ── */
+  .mdet-wrapper { height: auto !important; }
+  .mdet-sticky {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+  .mdet-track {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+  }
+  .mdet-panel {
+    width: 100% !important;
+    height: auto !important;
+    min-height: auto;
+    flex-shrink: 1;
+  }
+  .mdet-scroll-hint { display: none; }
+
+  /* ── Fixed bottom action bar — shrink to fit narrow viewports ── */
+  .mdet-action-tabs {
+    display: flex !important;
+    left: 0; right: 0;
+    justify-content: flex-end;
+    gap: 2px; padding-left: 2px;
+  }
+  .mdet-action-tab {
+    padding: 0 12px;
+    font-size: 11px;
+    letter-spacing: 0.4px;
+  }
+  .mdet-audio-panel {
+    width: min(420px, calc(100vw - 12px));
+    right: 0;
+  }
+
+  /* ── Nav wrap: tighten side padding ── */
+  .mdet-nav-wrap { top: 16px; padding: 0 16px; }
+
+  /* ── Photo card logos scale down slightly ── */
+  .mdet-logo-mpt { height: 20px; }
+  .mdet-logo-ii  { height: 26px; }
+}
+
+@media (max-width: 480px) {
+  .mdet-action-tab { padding: 0 9px; font-size: 10px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE — MONUMENT DETAIL PAGE PANELS
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* Panel 1: Hero — full-bleed, needs explicit height since content is absolute */
+  .mdet-hero { height: 100vh !important; min-height: 520px; }
+
+  /* Panel 2: Info — 3-col grid → stacked flex, reordered to name→photo→photo→desc→button */
+  .mdet-info { display: block; padding: 0; }
+  .mdet-info-inner {
+    display: flex; flex-direction: column; gap: 20px;
+    height: auto; width: 100%; max-width: 100%;
+    padding: 100px 20px 56px;
+  }
+  .mdet-info-col1, .mdet-info-col2, .mdet-info-col3 { display: contents; }
+  .mdet-info-meta { order: 1; margin-bottom: 0; }
+  .mdet-photo-main { order: 2; width: 100%; height: 62vw; max-height: 360px; margin-bottom: 0; }
+  .mdet-photo-second { order: 3; width: 100%; height: 55vw; max-height: 300px; }
+  .mdet-desc { order: 4; max-width: 100%; }
+  .mdet-info-col1 .mdet-outline-btn { order: 5; align-self: flex-start; }
+  .mdet-year { font-size: 22px; }
+  .mdet-name { font-size: 40px; line-height: 1.1; width: auto; }
+  .mdet-name-subtitle { font-size: 32px; }
+  .mdet-desc, .mdet-desc p { font-size: 16px; line-height: 1.55; }
+
+  /* Panel 3: Arti & Bhog schedule — 2 seasons stack, tables scroll within their own card */
+  .mdet-arti { width: 100% !important; }
+  .mdet-arti-inner { height: auto; padding: 56px 20px; }
+  .mdet-arti-heading { font-size: 28px; margin-bottom: 24px; }
+  .mdet-arti-tables { flex-direction: column; gap: 32px; }
+  .mdet-arti-card { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+  .mdet-arti-table { min-width: 560px; }
+
+  /* Panel 4: Did You Know — absolute canvas → stacked flow */
+  .mdet-dyk { width: 100% !important; }
+  .mdet-dyk-inner {
+    position: static; height: auto;
+    display: flex; flex-direction: column; gap: 20px;
+    padding: 56px 20px;
+  }
+  .mdet-dyk-heading { position: static; font-size: 36px; }
+  .mdet-dyk-card1, .mdet-dyk-card2 { position: static; width: 100%; height: 260px; }
+  .mdet-dyk-text { position: static; max-width: 100%; font-size: 16px; }
+
+  /* Experiences panel — absolute card + photos → stacked flow */
+  .mdet-experiences-inner {
+    position: static;
+    display: flex; flex-direction: column; gap: 32px;
+    padding: 56px 20px;
+  }
+  .mdet-exp-card {
+    position: static; width: 100%; height: auto;
+    padding: 44px 20px 24px;
+  }
+  .mdet-exp-label { position: static; transform: none; margin-bottom: 24px; }
+  .mdet-exp-item:nth-of-type(1),
+  .mdet-exp-item:nth-of-type(2),
+  .mdet-exp-item:nth-of-type(3),
+  .mdet-exp-item:nth-of-type(4) {
+    position: static; margin-bottom: 22px;
+  }
+  .mdet-exp-item:nth-of-type(4) { margin-bottom: 0; }
+  .mdet-exp-item:nth-of-type(1) .mdet-exp-desc,
+  .mdet-exp-item:nth-of-type(2) .mdet-exp-desc,
+  .mdet-exp-item:nth-of-type(3) .mdet-exp-desc,
+  .mdet-exp-item:nth-of-type(4) .mdet-exp-desc {
+    max-width: 100%;
+  }
+  .mdet-exp-photos { position: static; flex-wrap: wrap; gap: 12px; }
+  .mdet-exp-photo { width: calc(50% - 6px); height: auto; aspect-ratio: 1; }
+  .mdet-exp-photo:nth-child(2) { margin-right: 0; }
+
+  /* Panel: Sub-monuments — dashed connector removed, cards stack */
+  .mdet-sub { width: 100% !important; }
+  .mdet-sub-inner { padding: 56px 20px; }
+  .mdet-sub-cards { flex-direction: column; gap: 36px; padding-right: 0; }
+  .mdet-sub-cards::before { display: none; }
+  .mdet-sub-card { width: 100%; flex: none; }
+  .mdet-sub-photo { height: 60vw; max-height: 320px; }
+  .mdet-sub-name { font-size: 28px; }
+
+  /* Panel 5: Close-Up Detail — absolute % canvas → stacked flow */
+  .mdet-closeup-inner {
+    position: static;
+    display: flex; flex-direction: column; gap: 20px;
+    padding: 56px 20px;
+  }
+  .mdet-closeup-heading { position: static; width: auto; text-align: left; font-size: 34px; }
+  .mdet-closeup-view360 { position: static; align-self: flex-start; }
+  .mdet-closeup-main { position: static; width: 100%; height: 62vw; max-height: 360px; }
+  .mdet-closeup-side { position: static; width: 100%; height: 52vw; max-height: 280px; }
+
+  /* Panel: Paintings — absolute → stacked flow */
+  .mdet-paintings { width: 100% !important; }
+  .mdet-paintings-inner {
+    position: static;
+    display: flex; flex-direction: column; gap: 20px;
+    padding: 56px 20px;
+  }
+  .mdet-paintings-heading { position: static; font-size: 34px; }
+  .mdet-paintings-card1, .mdet-paintings-card2 { position: static; width: 100%; height: 62vw; max-height: 340px; }
+  .mdet-paintings-view-more { position: static; align-self: flex-start; }
+
+  /* Panel 6: Outro */
+  .mdet-outro { height: 100vh !important; min-height: 480px; }
+
+  /* Neutralize per-monument absolute overrides (baroodkhana / wildlife-sanctuary) */
+  [data-monument="baroodkhana"] .mdet-photo-second,
+  [data-monument="wildlife-sanctuary"] .mdet-photo-second { height: 55vw; max-height: 300px; }
+  [data-monument="baroodkhana"] .mdet-info-col3,
+  [data-monument="wildlife-sanctuary"] .mdet-info-col3 { padding-top: 0; padding-bottom: 0; display: contents; }
+  [data-monument="wildlife-sanctuary"] .mdet-dyk { width: 100% !important; }
+  [data-monument="wildlife-sanctuary"] .mdet-dyk-heading { left: auto; }
+  [data-monument="wildlife-sanctuary"] .mdet-dyk-card1 { left: auto; }
+  [data-monument="wildlife-sanctuary"] .mdet-dyk-card2 { left: auto; }
+  [data-monument="wildlife-sanctuary"] .mdet-dyk-text { left: auto; max-width: 100%; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE — ART WALK PAGE PANELS
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* Panel 1: Hero mural */
+  .aw-hero-panel { height: 100vh !important; min-height: 520px; }
+  .aw-video-label { top: 100px; left: 20px; font-size: 22px; }
+
+  /* Panel 2: Content — text left + card cluster right → stacked */
+  .aw-content-panel { flex-direction: column; height: auto; }
+  .aw-left { flex: none; width: 100%; padding: 56px 20px 8px; }
+  .aw-heading { font-size: 34px; }
+  .aw-body { font-size: 15.5px; max-width: 100%; margin-bottom: 28px; }
+  .aw-stats { flex-wrap: wrap; gap: 20px; }
+  .aw-right-cards {
+    flex: none; width: 100%;
+    flex-direction: column; align-items: stretch;
+    gap: 20px;
+    padding: 8px 20px 56px;
+  }
+  .aw-cards-grid {
+    position: static; width: 100%; height: auto;
+    display: flex; flex-direction: column; gap: 16px;
+  }
+  .aw-gc1, .aw-gc2, .aw-gc3 { position: static; width: 100%; height: 220px; top: auto; left: auto; }
+  .aw-gallery-btn { position: static; align-self: flex-start; }
+
+  /* Panel 3: Walk Through Time + Monument Cards — stacked */
+  .aw-transit-panel { flex-direction: column; height: auto; }
+  .aw-tr-left {
+    flex: none; width: 100%; position: relative;
+    padding: 56px 20px 0; min-height: 300px;
+  }
+  .aw-transit-heading { font-size: 36px; line-height: 1.12; }
+  .aw-transit-sub { font-size: 16px; }
+  .aw-vignette-img {
+    position: relative; bottom: auto; left: auto; top: auto;
+    transform: none; width: 100%; margin-top: 20px;
+  }
+  .aw-tr-right { padding: 24px 20px 56px; }
+  .aw-card-grid { flex-direction: column; gap: 24px; }
+  .aw-card-grid::before { display: none; }
+  .aw-tc { width: 100%; }
+  .aw-tc-body { padding: 12px 12px 24px; }
+  .aw-tc-name { font-size: 26px; }
+
+  /* Panel 4: Outro */
+  .aw-walk-panel { height: 100vh !important; min-height: 480px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOBILE — ECO TRAIL PAGE PANELS
+   ═══════════════════════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+  /* Panel 1: Hero */
+  .et-hero-panel { height: 100vh !important; min-height: 520px; }
+
+  /* Panel 2: Content — two stacked cards left + heading/body right → single column */
+  .et-content-panel { flex-direction: column; height: auto; }
+  .et-left { flex: none; width: 100%; padding: 40px 20px 0; }
+  .et-right { padding: 24px 20px 56px; }
+  .et-heading { font-size: 40px; }
+  .et-body { font-size: 15px; }
+
+  /* Panel 3: Did You Know? — heading left + card/text right → single column */
+  .et-know-panel { flex-direction: column; height: auto; }
+  .et-know-left { flex: none; width: 100%; padding: 40px 20px 8px; }
+  .et-know-heading { font-size: 36px; }
+  .et-know-right { flex-direction: column; gap: 20px; padding: 8px 20px 56px; }
+  .et-know-card { flex: none; width: 100%; }
+  .et-know-text { font-size: 15px; }
+
+  /* Panel 4: Outro */
+  .et-outro-panel { height: 100vh !important; min-height: 480px; }
+}

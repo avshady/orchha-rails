@@ -1,0 +1,231 @@
+<%# Eco Trail experience page — horizontal scroll-jacking, 4 panels %>
+<% nav = (@home['nav'] || {})
+   dd  = nav['discoverDropdown'] || []
+%>
+
+<div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
+
+<%# Fixed nav %>
+<div class="mdet-nav-wrap">
+  <nav class="mdet-navbar">
+    <div class="mdet-nav-links">
+      <div class="mdet-nav-discover">
+        <button class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="mdet-nav-dropdown" role="menu">
+          <% dd.each do |item| %>
+          <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
+      <a href="/news"            class="mdet-nav-link">News</a>
+      <a href="/support-us"      class="mdet-nav-link">Support Us</a>
+      <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
+    </div>
+    <button class="mdet-nav-hamburger" id="mdet-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="/book-tickets" class="mdet-book-btn">Book Tickets</a>
+  </nav>
+
+  <div class="mdet-nav-mobile-menu" id="mdet-nav-mobile-menu">
+    <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mdet-nav-mobile-links">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="mdet-nav-mobile-link"><%= item['label'] %></a>
+      <% end %>
+      <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
+      <a href="/news" class="mdet-nav-mobile-link">News</a>
+      <a href="/support-us" class="mdet-nav-mobile-link">Support Us</a>
+      <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
+    </div>
+    <a href="/book-tickets" class="mdet-nav-mobile-book-btn">Book Tickets</a>
+  </div>
+</div>
+
+<div class="mdet-wrapper et-wrapper" data-panels="4">
+  <div class="mdet-sticky">
+    <div class="mdet-track" id="mdet-track">
+
+      <%# ══ PANEL 1 — HERO ════════════════════════════════════════ %>
+      <section class="mdet-panel et-hero-panel">
+        <div class="et-hero-bg">
+          <img src="/images/et_hero.png" alt="Eco Trail — aerial view of Orchha and Betwa River">
+          <div class="et-hero-overlay"></div>
+        </div>
+        <div class="mdet-scroll-hint" id="mdet-scroll-hint">
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </section>
+
+      <%# ══ PANEL 2 — ECO TRAIL CONTENT ══════════════════════════ %>
+      <section class="mdet-panel et-content-panel">
+
+        <%# Left: two stacked photo cards + Book Tickets %>
+        <div class="et-left">
+          <div class="et-card et-card-tall">
+            <img src="/images/et_card1.jpg" alt="Lakshmi Narayan Temple surrounded by forest">
+            <div class="et-card-logos">
+              <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
+              <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+            </div>
+          </div>
+          <div class="et-card et-card-short">
+            <img src="/images/et_card2.jpg" alt="Orchha gardens and Betwa River from above">
+            <div class="et-card-logos">
+              <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
+              <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+            </div>
+          </div>
+          <a href="/book-tickets" class="et-book-btn">Book Tickets</a>
+        </div>
+
+        <%# Right: heading + description %>
+        <div class="et-right">
+          <h1 class="et-heading">Eco Trail</h1>
+          <p class="et-body">Just beyond the monuments, the forest begins. The Orchha Wildlife Sanctuary runs along the Betwa River, a stretch of forest that borders the heritage complex and offers a very different kind of encounter with Orchha. Here, the river does not frame palaces — it winds through trees, opens onto islands, and carries the sounds of birds rather than history. The sanctuary is home to around ten eco points, each offering its own view of the Betwa and the forested landscape around it, guided by the forest department team stationed within.</p>
+          <p class="et-body">Two of these eco points stand out. Jahaz Mahal sits in the middle of the Betwa — a structure shaped like a ship, with the river flowing on both sides, visible only from within the forest. Panchnadhi, also set within the Betwa, is a cluster of five riverside bats and one of the sanctuary's principal picnic spots. Across from the Orchha Chhatris, a dedicated birdwatching point draws visitors who come to spot the domestic and migratory birds that gather along this stretch of the river.</p>
+          <p class="et-body">The eco trail is best experienced in the early morning or at dusk, when the Betwa is at its quietest and the forest at its most alive. The forest department team guides visitors through the sanctuary and to the eco points throughout the day.</p>
+        </div>
+
+      </section><%# /et-content-panel %>
+
+      <%# ══ PANEL 3 — DID YOU KNOW? ═══════════════════════════════ %>
+      <section class="mdet-panel et-know-panel">
+
+        <div class="et-know-left">
+          <h2 class="et-know-heading">Did You<br>Know?</h2>
+        </div>
+
+        <div class="et-know-right">
+          <div class="et-know-card">
+            <img src="/images/et_card3.jpg" alt="Historic Orchha ruins amid greenery">
+            <div class="et-card-logos">
+              <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
+              <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+            </div>
+          </div>
+          <p class="et-know-text">Visitors have recorded sightings of the Indian skimmer, sarus crane, river tern, white-rumped vulture, and various kingfisher and egret species along the riverbanks.</p>
+        </div>
+
+      </section><%# /et-know-panel %>
+
+      <%# ══ PANEL 4 — OUTRO ════════════════════════════════════════ %>
+      <section class="mdet-panel et-outro-panel">
+        <img src="/images/et_outro.jpg" class="et-outro-bg" alt="Aerial view of Orchha monuments">
+        <a href="/experiences" class="aw-walk-cta">View All Experiences &amp; Trails</a>
+      </section>
+
+    </div><%# /mdet-track %>
+  </div><%# /mdet-sticky %>
+</div><%# /mdet-wrapper %>
+
+<%# Fixed bottom action bar %>
+<div class="mdet-action-tabs" id="mdet-action-tabs">
+  <div class="mdet-audio-wrap">
+    <div class="mdet-audio-panel" id="mdet-audio-panel">
+      <button class="mdet-audio-play" id="mdet-audio-play-btn" aria-label="Play">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="white"/>
+          <polygon points="13,10 13,22 23,16" fill="#6e1603"/>
+        </svg>
+      </button>
+      <span class="mdet-audio-track">Eco Trail</span>
+      <div class="mdet-audio-wave">
+        <svg viewBox="0 0 434 28" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <rect y="8" width="434" height="7" rx="3.5" fill="white" fill-opacity="0.4"/>
+          <rect x="2" y="10" width="47" height="3" rx="1.5" fill="white"/>
+          <circle cx="55.5" cy="11.5" r="9.5" fill="white"/>
+          <circle cx="55.5" cy="11.5" r="8.5" stroke="rgba(102,18,0,0.6)" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="mdet-audio-time">0:00 / 3:00</span>
+    </div>
+    <button class="mdet-action-tab" id="mdet-audio-btn">Audio Guide</button>
+  </div>
+  <button class="mdet-action-tab">Virtual Tour</button>
+  <button class="mdet-action-tab">Translate</button>
+</div>
+
+<script>
+(function() {
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+  const wrapper = document.querySelector('.et-wrapper');
+  const sticky  = document.querySelector('.mdet-sticky');
+  const hint    = document.getElementById('mdet-scroll-hint');
+  const tabs    = document.getElementById('mdet-action-tabs');
+
+  if (wrapper && sticky && !isMobile) {
+    const panels = parseFloat(wrapper.dataset.panels || '4');
+    wrapper.style.height = (panels * 100) + 'vh';
+
+    function updateHoriz() {
+      const wrapperTop  = wrapper.offsetTop;
+      const totalScroll = wrapper.offsetHeight - window.innerHeight;
+      const progress    = Math.max(0, Math.min(1, (window.scrollY - wrapperTop) / totalScroll));
+      const maxScroll   = sticky.scrollWidth - window.innerWidth;
+      sticky.scrollLeft = progress * maxScroll;
+      if (hint) hint.style.opacity = progress > 0.01 ? '0' : '1';
+      const isPast = window.scrollY > wrapper.offsetTop + wrapper.offsetHeight;
+      if (tabs) tabs.style.display = isPast ? 'none' : 'flex';
+    }
+
+    window.addEventListener('scroll', updateHoriz, { passive: true });
+    updateHoriz();
+  }
+
+  const audioBtn   = document.getElementById('mdet-audio-btn');
+  const audioPanel = document.getElementById('mdet-audio-panel');
+  if (audioBtn && audioPanel) {
+    audioBtn.addEventListener('click', () => audioPanel.classList.toggle('open'));
+  }
+
+  const navBtn = document.querySelector('.mdet-discover-btn');
+  const navDd  = document.querySelector('.mdet-nav-dropdown');
+  if (navBtn && navDd) {
+    function openDd() {
+      const r = navBtn.getBoundingClientRect();
+      navDd.style.top  = (r.bottom + 8) + 'px';
+      navDd.style.left = r.left + 'px';
+      navDd.classList.add('open');
+      navBtn.classList.add('open');
+      navBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDd() {
+      navDd.classList.remove('open');
+      navBtn.classList.remove('open');
+      navBtn.setAttribute('aria-expanded', 'false');
+    }
+    navBtn.addEventListener('click', e => { e.stopPropagation(); navDd.classList.contains('open') ? closeDd() : openDd(); });
+    document.addEventListener('click', closeDd);
+    navDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ─────────────────────────────────
+  const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
+  const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
+  const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
+  if (mdetHamburgerBtn && mdetMobileMenu) {
+    function openMdetMobileMenu() {
+      mdetMobileMenu.classList.add('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMdetMobileMenu() {
+      mdetMobileMenu.classList.remove('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    mdetHamburgerBtn.addEventListener('click', openMdetMobileMenu);
+    if (mdetMobileClose) mdetMobileClose.addEventListener('click', closeMdetMobileMenu);
+    mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
+  }
+})();
+</script>

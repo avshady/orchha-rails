@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "/monuments", to: "pages#monuments"
   get "/monuments/:id", to: "pages#monument"
   get "/experiences", to: "pages#experiences"
+  get "/experiences/eco-trail", to: "pages#eco_trail"
   get "/experiences/:id", to: "pages#experience_detail"
   get "up" => "rails/health#show", as: :rails_health_check
 end

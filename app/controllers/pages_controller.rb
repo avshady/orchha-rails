@@ -45,6 +45,14 @@ class PagesController < ApplicationController
     redirect_to '/experiences'
   end
 
+  def eco_trail
+    raw = JSON.parse(File.read(CMS_CONTENT_PATH))
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content.json read failed: #{e.message}"
+    @home = {}
+  end
+
   def monument
     raw = JSON.parse(File.read(CMS_CONTENT_PATH))
     all = raw['monuments'] || []

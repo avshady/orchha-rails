@@ -25,11 +25,30 @@
       <a href="/support-us"      class="mdet-nav-link">Support Us</a>
       <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
     </div>
+    <button class="mdet-nav-hamburger" id="mdet-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
     <a href="/book-tickets" class="mdet-book-btn">Book Tickets</a>
   </nav>
+
+  <div class="mdet-nav-mobile-menu" id="mdet-nav-mobile-menu">
+    <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mdet-nav-mobile-links">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="mdet-nav-mobile-link"><%= item['label'] %></a>
+      <% end %>
+      <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
+      <a href="/news" class="mdet-nav-mobile-link">News</a>
+      <a href="/support-us" class="mdet-nav-mobile-link">Support Us</a>
+      <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
+    </div>
+    <a href="/book-tickets" class="mdet-nav-mobile-book-btn">Book Tickets</a>
+  </div>
 </div>
 
-<div class="mdet-wrapper aw-wrapper" data-panels="5">
+<div class="mdet-wrapper aw-wrapper" data-panels="4">
   <div class="mdet-sticky">
     <div class="mdet-track" id="mdet-track">
 
@@ -118,59 +137,51 @@
 
       </section><%# /aw-content-panel %>
 
-      <%# ══ PANEL 3 — "WALK THROUGH TIME" (light + vignette mural) ═════ %>
+      <%# ══ PANEL 3 — WALK THROUGH TIME + MONUMENT CARDS (combined) ══ %>
       <section class="mdet-panel aw-transit-panel">
 
-        <div class="aw-transit-text">
-          <h2 class="aw-transit-heading">The Walk<br>Through Time</h2>
-          <p class="aw-transit-sub">A journey through four icon monuments.<br>One artistic legacy.</p>
+        <%# Left col: heading, subtitle, vignette mural %>
+        <div class="aw-tr-left">
+          <div class="aw-transit-text">
+            <h2 class="aw-transit-heading">The Walk<br>Through Time</h2>
+            <p class="aw-transit-sub">A journey through four icon monuments.<br>One artistic legacy.</p>
+          </div>
+          <img src="/images/aw_vignette.jpg" class="aw-vignette-img" alt="Bundela battle fresco — Raja Mahal mural">
         </div>
 
-        <div class="aw-transit-art">
-          <img src="/images/aw_vignette.jpg" class="aw-vignette-img" alt="Bundela battle fresco — Raja Mahal mural">
+        <%# Right col: numbered step line + 4 monument cards %>
+        <div class="aw-tr-right">
+          <div class="aw-card-grid">
+            <% [
+              { num: 1, img: 'rm_closeup_main.jpg',  name: 'Raja Mahal',        id: 'raja-mahal' },
+              { num: 2, img: 'jm_closeup_main.jpg',  name: 'Jahangir Mahal',    id: 'jahangir-mahal' },
+              { num: 3, img: 'rpm_closeup_main.jpg', name: 'Rai Praveen Mahal', id: 'rai-praveen-mahal' },
+              { num: 4, img: 'lnt_closeup_main.jpg', name: 'Lakshmi Temple',    id: 'lakshmi-narayan-temple' },
+            ].each do |stop| %>
+            <div class="aw-tc">
+              <div class="aw-tc-dot"><%= stop[:num] %></div>
+              <div class="aw-tc-body">
+                <div class="aw-tc-photo">
+                  <img src="/images/<%= stop[:img] %>" alt="<%= stop[:name] %>">
+                  <div class="aw-tc-logos">
+                    <img src="/images/mpt_logo.png"         class="aw-slogo-mpt" alt="MPT">
+                    <img src="/images/incredible_india.png" class="aw-slogo-ii"  alt="Incredible India">
+                  </div>
+                </div>
+                <h3 class="aw-tc-name"><%= stop[:name] %></h3>
+                <a href="/monuments/<%= stop[:id] %>" class="aw-tc-btn">View Monument</a>
+              </div>
+            </div>
+            <% end %>
+          </div>
         </div>
 
       </section><%# /aw-transit-panel %>
 
-      <%# ══ PANEL 4 — MONUMENT STOPS (4 cards) ══════════════════ %>
-      <section class="mdet-panel aw-stops-panel">
-        <div class="aw-stops-row">
-          <% [
-            { num: 1, img: 'rm_closeup_main.jpg',  name: 'Raja Mahal',        id: 'raja-mahal' },
-            { num: 2, img: 'jm_closeup_main.jpg',  name: 'Jahangir Mahal',    id: 'jahangir-mahal' },
-            { num: 3, img: 'rpm_closeup_main.jpg', name: 'Rai Praveen Mahal', id: 'rai-praveen-mahal' },
-            { num: 4, img: 'lnt_closeup_main.jpg', name: 'Lakshmi Temple',    id: 'lakshmi-narayan-temple' },
-          ].each do |stop| %>
-          <div class="aw-stop-card">
-            <div class="aw-stop-num"><%= stop[:num] %></div>
-            <div class="aw-stop-photo">
-              <img src="/images/<%= stop[:img] %>" alt="<%= stop[:name] %>">
-              <div class="aw-stop-logos">
-                <img src="/images/mpt_logo.png"         class="aw-slogo-mpt" alt="MPT">
-                <img src="/images/incredible_india.png" class="aw-slogo-ii"  alt="Incredible India">
-              </div>
-            </div>
-            <div class="aw-stop-info">
-              <h3 class="aw-stop-name"><%= stop[:name] %></h3>
-              <a href="/monuments/<%= stop[:id] %>" class="aw-stop-btn">View Monument</a>
-            </div>
-          </div>
-          <% end %>
-        </div>
-      </section><%# /aw-stops-panel %>
-
-      <%# ══ PANEL 5 — "THE WALK THROUGH TIME" (dark finale) ═══ %>
+      <%# ══ PANEL 4 — OUTRO (full-bleed mural + CTA) ═══════════ %>
       <section class="mdet-panel aw-walk-panel">
-        <div class="aw-walk-bg">
-          <img src="/images/aw_bg2.jpg" alt="Orchha palace">
-          <div class="aw-walk-overlay"></div>
-        </div>
-        <div class="aw-walk-content">
-          <h2 class="aw-walk-heading">The Walk<br>Through Time</h2>
-          <p class="aw-walk-sub">A journey through four iconic monuments.<br>One artistic legacy.</p>
-          <a href="/experiences" class="mdet-dark-btn">View All Experiences &amp; Trails</a>
-        </div>
-        <img src="/images/aw_mural_large.jpg" class="aw-mural-large" alt="Orchha mural — Krishna">
+        <img src="/images/aw_outro_mural.jpg" class="aw-walk-mural" alt="Bundela mural — Orchha">
+        <a href="/experiences" class="aw-walk-cta">View All Experiences &amp; Trails</a>
       </section>
 
     </div><%# /mdet-track %>
@@ -206,12 +217,14 @@
 
 <script>
 (function() {
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
   const wrapper = document.querySelector('.aw-wrapper');
   const sticky  = document.querySelector('.mdet-sticky');
   const hint    = document.getElementById('mdet-scroll-hint');
   const tabs    = document.getElementById('mdet-action-tabs');
 
-  if (wrapper && sticky) {
+  if (wrapper && sticky && !isMobile) {
     const panels = parseFloat(wrapper.dataset.panels || '3');
     wrapper.style.height = (panels * 100) + 'vh';
 
@@ -255,6 +268,26 @@
     navBtn.addEventListener('click', e => { e.stopPropagation(); navDd.classList.contains('open') ? closeDd() : openDd(); });
     document.addEventListener('click', closeDd);
     navDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ─────────────────────────────────
+  const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
+  const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
+  const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
+  if (mdetHamburgerBtn && mdetMobileMenu) {
+    function openMdetMobileMenu() {
+      mdetMobileMenu.classList.add('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMdetMobileMenu() {
+      mdetMobileMenu.classList.remove('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    mdetHamburgerBtn.addEventListener('click', openMdetMobileMenu);
+    if (mdetMobileClose) mdetMobileClose.addEventListener('click', closeMdetMobileMenu);
+    mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
   }
 })();
 </script>

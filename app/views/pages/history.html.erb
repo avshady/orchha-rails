@@ -43,8 +43,27 @@
           <a href="/news" class="hist-nav-link">News</a>
           <a href="/support-us" class="hist-nav-link">Support Us</a>
         </div>
+        <button class="hist-nav-hamburger" id="hist-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
         <a href="/book-tickets" class="hist-book-btn">Book Tickets</a>
       </nav>
+
+      <div class="hist-nav-mobile-menu" id="hist-nav-mobile-menu">
+        <button class="hist-nav-mobile-close" id="hist-nav-mobile-close-btn" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="hist-nav-mobile-links">
+          <% dd.each do |item| %>
+          <a href="<%= item['url'] %>" class="hist-nav-mobile-link"><%= item['label'] %></a>
+          <% end %>
+          <a href="/plan-your-visit" class="hist-nav-mobile-link">Plan Your Visit</a>
+          <a href="/sabhyata" class="hist-nav-mobile-link">Sabhyata</a>
+          <a href="/news" class="hist-nav-mobile-link">News</a>
+          <a href="/support-us" class="hist-nav-mobile-link">Support Us</a>
+        </div>
+        <a href="/book-tickets" class="hist-nav-mobile-book-btn">Book Tickets</a>
+      </div>
 
       <%# Hero content: left text + right image %>
       <div class="hist-hero-content">
@@ -222,5 +241,25 @@
     });
     document.addEventListener('click', closeHistDd);
     histDd.addEventListener('click', function(e) { e.stopPropagation(); });
+  }
+
+  // Mobile hamburger menu
+  const histHamburgerBtn = document.getElementById('hist-nav-hamburger-btn');
+  const histMobileMenu   = document.getElementById('hist-nav-mobile-menu');
+  const histMobileClose  = document.getElementById('hist-nav-mobile-close-btn');
+  if (histHamburgerBtn && histMobileMenu) {
+    function openHistMobileMenu() {
+      histMobileMenu.classList.add('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeHistMobileMenu() {
+      histMobileMenu.classList.remove('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    histHamburgerBtn.addEventListener('click', openHistMobileMenu);
+    if (histMobileClose) histMobileClose.addEventListener('click', closeHistMobileMenu);
+    histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
   }
 </script>
