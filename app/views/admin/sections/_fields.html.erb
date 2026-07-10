@@ -1,0 +1,50 @@
+<%# Recursive field renderer. locals: data (Hash), prefix (String), depth (Integer) %>
+<% data.each do |field, value| %>
+  <% name = "#{prefix}[#{field}]" %>
+  <% case value
+     when Hash %>
+    <% if depth < 2 %>
+      <fieldset style="border:1px solid #e0d5c5; border-radius:10px; padding:16px 18px; margin-bottom:18px;">
+        <legend style="font-size:13px; font-weight:700; color:#6e1603; padding:0 8px; text-transform:uppercase; letter-spacing:0.05em;"><%= field %></legend>
+        <%= render "admin/sections/fields", data: value, prefix: name, depth: depth + 1 %>
+      </fieldset>
+    <% else %>
+      <div style="margin-bottom:16px;">
+        <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;"><%= field %></label>
+        <textarea name="<%= name %>" spellcheck="false" rows="<%= [[JSON.pretty_generate(value).lines.count + 1, 3].max, 12].min %>"
+          class="adm-input" style="font-family:ui-monospace,Menlo,monospace; font-size:12.5px;"><%= JSON.pretty_generate(value) %></textarea>
+        <span class="adm-muted" style="font-size:12px;">Structured field — must stay valid JSON.</span>
+      </div>
+    <% end %>
+  <% when Array %>
+    <div style="margin-bottom:16px;">
+      <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;"><%= field %></label>
+      <textarea name="<%= name %>" spellcheck="false" rows="<%= [[JSON.pretty_generate(value).lines.count + 1, 3].max, 14].min %>"
+        class="adm-input" style="font-family:ui-monospace,Menlo,monospace; font-size:12.5px;"><%= JSON.pretty_generate(value) %></textarea>
+      <span class="adm-muted" style="font-size:12px;">List — must stay valid JSON.</span>
+    </div>
+  <% when TrueClass, FalseClass %>
+    <div style="margin-bottom:16px;">
+      <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;"><%= field %></label>
+      <select name="<%= name %>" class="adm-input">
+        <option value="true"  <%= "selected" if value %>>true (visible / yes)</option>
+        <option value="false" <%= "selected" unless value %>>false (hidden / no)</option>
+      </select>
+    </div>
+  <% when Numeric %>
+    <div style="margin-bottom:16px;">
+      <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;"><%= field %></label>
+      <input type="number" step="any" name="<%= name %>" value="<%= value %>" class="adm-input">
+    </div>
+  <% else %>
+    <% str = value.to_s %>
+    <div style="margin-bottom:16px;">
+      <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;"><%= field %></label>
+      <% if str.length > 90 || str.include?("\n") %>
+        <textarea name="<%= name %>" rows="4" class="adm-input"><%= str %></textarea>
+      <% else %>
+        <input type="text" name="<%= name %>" value="<%= str %>" class="adm-input">
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

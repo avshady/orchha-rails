@@ -19,6 +19,8 @@
         <td>
           <% if block.data.is_a?(Array) %>
             <a href="<%= admin_collection_path(block.key) %>" class="adm-btn adm-btn-outline" style="padding:5px 14px; font-size:13px;">Manage records</a>
+          <% elsif block.data.is_a?(Hash) %>
+            <a href="<%= admin_edit_section_path(block.key) %>" class="adm-btn adm-btn-outline" style="padding:5px 14px; font-size:13px;">Edit section</a>
           <% else %>
             <a href="<%= edit_admin_content_block_path(block.key) %>" class="adm-btn adm-btn-outline" style="padding:5px 14px; font-size:13px;">Edit</a>
           <% end %>

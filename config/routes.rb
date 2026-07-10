@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     resources :uploads, only: [ :create ]
     get "export", to: "exports#show", defaults: { format: :json }
 
+    get    "sections/:key/edit",                  to: "sections#edit",     as: :edit_section
+    patch  "sections/:key",                       to: "sections#update",   as: :section
+
     get    "collections/:key",                    to: "collections#show",  as: :collection
     get    "collections/:key/records/new",        to: "records#new",       as: :new_collection_record
     post   "collections/:key/records",            to: "records#create",    as: :collection_records
