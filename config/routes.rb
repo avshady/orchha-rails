@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get "/experiences/eco-trail", to: "pages#eco_trail"
   get "/experiences/river-kayaking", to: "pages#river_kayaking"
   get "/experiences/religious-walk", to: "pages#religious_walk"
+  get "/experiences/religious-trail", to: redirect("/experiences/religious-walk")
   get "/experiences/:id", to: "pages#experience_detail"
   get "up" => "rails/health#show", as: :rails_health_check
 
