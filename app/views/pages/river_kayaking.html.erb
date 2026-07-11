@@ -1,4 +1,5 @@
-<%# River Kayaking experience page — horizontal scroll-jacking, 4 panels %>
+<%# River Kayaking experience page — horizontal scroll-jack matching the Figma
+    collage: hero / flowing content strip (171vw) / outro. %>
 <% nav = (@home['nav'] || {})
    dd  = nav['discoverDropdown'] || []
    exp = @exp || {}
@@ -52,14 +53,14 @@
   </div>
 </div>
 
-<div class="mdet-wrapper rk-wrapper" data-panels="4">
+<div class="mdet-wrapper rk-wrapper" data-panels="3.72">
   <div class="mdet-sticky">
     <div class="mdet-track" id="mdet-track">
 
-      <%# ══ PANEL 1 — HERO ════════════════════════════════════════ %>
+      <%# ══ PANEL 1 — HERO (blue raft close-up) ═══════════════════ %>
       <section class="mdet-panel et-hero-panel">
         <div class="et-hero-bg">
-          <img src="/images/rk_hero.jpg" alt="River Kayaking — rafting boat on the Betwa River with Orchha's chhatris behind">
+          <img src="/images/rk_hero_raft.jpg" alt="River rafting on the Betwa with Orchha's chhatris behind">
           <div class="et-hero-overlay"></div>
         </div>
         <div class="mdet-scroll-hint" id="mdet-scroll-hint">
@@ -68,84 +69,67 @@
         </div>
       </section>
 
-      <%# ══ PANEL 2 — RIVER KAYAKING CONTENT ═════════════════════ %>
-      <section class="mdet-panel et-content-panel">
+      <%# ══ PANEL 2 — FLOWING COLLAGE (171vw, positions from Figma) ═ %>
+      <section class="mdet-panel rkc-panel">
 
-        <%# Left: two stacked photo cards + Book Tickets %>
-        <div class="et-left">
-          <div class="et-card et-card-tall">
-            <img src="/images/rk_hero.jpg" alt="Rafting boat with Orchha's temple skyline" style="object-position: 30% 45%;">
-            <div class="et-card-logos">
-              <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
-              <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
-            </div>
-          </div>
-          <div class="et-card et-card-short">
-            <img src="/images/rk_card_kayak_sunset.jpg" alt="Kayaker on the Betwa River at sunset, Orchha chhatris in the background">
-            <div class="et-card-logos">
-              <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
-              <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
-            </div>
-          </div>
-          <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="et-book-btn">Book Tickets</a>
-        </div>
+        <h1 class="rkc-heading">River Kayaking</h1>
 
-        <%# Right: heading + description + cost info %>
-        <div class="et-right">
-          <h1 class="et-heading">River Kayaking</h1>
-          <p class="et-body"><%= exp['text1'] || "The Betwa River has been the lifeblood of Orchha for centuries — a sacred artery that shaped the city's geography and spirit. River Kayaking offers you the most intimate way to experience this ancient landscape: from the water itself, surrounded by the reflections of temples and the sounds of the forest." %></p>
-          <p class="et-body"><%= exp['text2'] || "Beginners and experienced paddlers are both welcome. Your guide will lead you through calm stretches dotted with wildlife, past the magnificent Orchha Chhatris, and through sections of gentle rapids that add a touch of adventure to the journey." %></p>
-          <p class="et-body"><%= exp['text3'] || "All safety equipment is provided. Evening kayaking sessions offer a particularly breathtaking experience as the sun sets behind the Chhatris, turning the river gold." %></p>
-
-          <div class="rk-info-box">
-            <div class="rk-info-row">
-              <span class="rk-info-label">Cost -</span>
-              <span class="rk-info-value">Indian: 899 INR | Foreigner: 2000 INR</span>
-            </div>
-            <div class="rk-info-row">
-              <span class="rk-info-label">Best Time To Visit -</span>
-              <span class="rk-info-value">9AM to 2PM</span>
-            </div>
-            <div class="rk-info-row">
-              <span class="rk-info-label">No. Of Passenger -</span>
-              <span class="rk-info-value">6 People</span>
-            </div>
+        <div class="rkc-card rkc-card1">
+          <img src="/images/rk_hero_raft.jpg" alt="Rafting below the Orchha chhatris">
+          <div class="et-card-logos">
+            <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
+            <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
           </div>
         </div>
 
-      </section><%# /et-content-panel %>
-
-      <%# ══ PANEL 3 — DID YOU KNOW? ═══════════════════════════════ %>
-      <section class="mdet-panel et-know-panel">
-
-        <div class="et-know-left">
-          <h2 class="et-know-heading">Did You<br>Know?</h2>
+        <div class="rkc-card rkc-card2">
+          <img src="/images/rk_card_kayak_sunset.jpg" alt="Kayaker on the Betwa at sunset">
+          <div class="et-card-logos">
+            <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
+            <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+          </div>
         </div>
 
-        <div class="et-know-right">
-          <div class="et-know-card">
-            <img src="/images/rk_card_rafting_ruins.jpg" alt="Rafting boat passing ruins along the Betwa River" style="object-position: center 25%;">
-            <div class="et-card-logos">
-              <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
-              <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
-            </div>
-          </div>
-          <div class="et-know-card">
-            <img src="/images/rk_card_rafting_wide.jpg" alt="Rafting group on the Betwa River with Orchha's monuments behind">
-            <div class="et-card-logos">
-              <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
-              <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
-            </div>
-          </div>
-          <p class="et-know-text"><%= exp['didYouKnow'] || "The Betwa River, known in ancient texts as the Vetravati, is mentioned in the Mahabharata. It flows through the heart of the Bundelkhand region and has sustained civilisations for over 3,000 years." %></p>
+        <div class="rkc-body">
+          <p><%= exp['text1'] || "The Betwa River has been the lifeblood of Orchha for centuries — a sacred artery that shaped the city's geography and spirit. River Kayaking offers you the most intimate way to experience this ancient landscape: from the water itself, surrounded by the reflections of temples and the sounds of the forest." %></p>
+          <p><%= exp['text2'] || "Beginners and experienced paddlers are both welcome. Your guide will lead you through calm stretches dotted with wildlife, past the magnificent Orchha Chhatris, and through sections of gentle rapids that add a touch of adventure to the journey." %></p>
         </div>
 
-      </section><%# /et-know-panel %>
+        <div class="rkc-info">
+          <div class="rkc-info-row"><span class="rkc-info-label">Cost -</span> <span>Indian: 899 INR&nbsp;&nbsp;|&nbsp;&nbsp;Foreigner: 2000 INR</span></div>
+          <div class="rkc-info-row"><span class="rkc-info-label">Best Time To Visit -</span> <span>9AM to 2PM</span></div>
+          <div class="rkc-info-row"><span class="rkc-info-label">No. Of Passenger -</span> <span>6 People</span></div>
+        </div>
 
-      <%# ══ PANEL 4 — OUTRO ════════════════════════════════════════ %>
-      <section class="mdet-panel et-outro-panel">
-        <img src="/images/rk_hero.jpg" class="et-outro-bg" alt="Aerial view of the Betwa River and Orchha monuments">
-        <a href="/experiences" class="aw-walk-cta">View All Experiences &amp; Trails</a>
+        <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-outline-btn rkc-book">Book Tickets</a>
+
+        <h2 class="rkc-heading rkc-dyk-heading">Did you<br>Know?</h2>
+
+        <div class="rkc-card rkc-card3">
+          <img src="/images/rk_card_rafting_ruins.jpg" alt="Rafting group passing riverside ruins" style="object-position: center 30%;">
+          <div class="et-card-logos">
+            <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
+            <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+          </div>
+        </div>
+
+        <div class="rkc-card rkc-card4">
+          <img src="/images/rk_card_rafting_wide.jpg" alt="Raft on the Betwa with Orchha's monuments behind">
+          <div class="et-card-logos">
+            <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
+            <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+          </div>
+        </div>
+
+        <p class="rkc-dyk-text"><%= exp['didYouKnow'] || "Visitors have recorded sightings of the Indian skimmer, sarus crane, river tern, white-rumped vulture, and various kingfisher and egret species along the riverbanks." %></p>
+
+      </section><%# /rkc-panel %>
+
+      <%# ══ PANEL 3 — OUTRO (panorama + dark overlay) ══════════════ %>
+      <section class="mdet-panel rk-outro-panel">
+        <img src="/images/rk_hero.jpg" class="et-outro-bg" alt="Raft on the Betwa river below the Orchha chhatris">
+        <div class="rk-outro-overlay"></div>
+        <a href="/experiences" class="aw-walk-cta rk-outro-cta">View All Experiences &amp; Trails</a>
       </section>
 
     </div><%# /mdet-track %>
@@ -189,7 +173,7 @@
   const tabs    = document.getElementById('mdet-action-tabs');
 
   if (wrapper && sticky && !isMobile) {
-    const panels = parseFloat(wrapper.dataset.panels || '4');
+    const panels = parseFloat(wrapper.dataset.panels || '3.72');
     wrapper.style.height = (panels * 100) + 'vh';
 
     function updateHoriz() {

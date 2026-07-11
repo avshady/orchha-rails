@@ -2757,32 +2757,115 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   z-index: 0;
 }
 
-/* ── River Kayaking: cost/info box ── */
-.rk-info-box {
+/* ── River Kayaking: flowing collage panel (geometry from the 1440×818
+      Figma frame: left = x/14.4 vw, top = y/8.18 vh, width = w/14.4 vw) ── */
+.rkc-panel {
+  position: relative;
+  width: 171.39vw;
+  flex-shrink: 0;
+  background: #e7ded5;
+  overflow: hidden;
+}
+.rkc-heading {
+  position: absolute;
+  left: 40vw; top: 19.44vh;
+  width: 28.7vw;
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: clamp(38px, 4.86vw, 80px);
+  line-height: 1.043;
+  color: #6e1603;
+  text-transform: capitalize;
+  margin: 0;
+}
+.rkc-card {
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.rkc-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rkc-card1 { left: 6.67vw;   top: 21.03vh; width: 29.24vw; aspect-ratio: 421 / 429; }
+.rkc-card2 { left: 40.28vw;  top: 42.54vh; width: 24.51vw; aspect-ratio: 353 / 367; }
+.rkc-card3 { left: 112.64vw; top: 51.59vh; width: 22.29vw; aspect-ratio: 321 / 293; }
+.rkc-card4 { left: 138.19vw; top: 19.68vh; width: 20.35vw; aspect-ratio: 293 / 248; }
+.rkc-body {
+  position: absolute;
+  left: 68.61vw; bottom: 26.65vh;
+  width: 34.1vw;
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 500;
+  font-size: clamp(13px, 1.39vw, 21px);
+  line-height: 1.195;
+  letter-spacing: -0.01em;
+  color: #000;
+}
+.rkc-body p { margin: 0 0 0.9em; }
+.rkc-body p:last-child { margin-bottom: 0; }
+.rkc-info {
+  position: absolute;
+  left: 68.61vw; top: 76.04vh;
+  width: 24.4vw;
   background: #704214;
-  border-radius: 8px;
-  padding: 16px 22px;
+  border-radius: 4px;
+  padding: 1.55vh 0.9vw;
   display: flex;
   flex-direction: column;
-  gap: 7px;
-  margin-top: 28px;
-  max-width: 440px;
+  gap: 0.55vh;
 }
-.rk-info-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  font-family: 'Gambetta', serif;
-  font-size: 13px;
-  line-height: 1.4;
+.rkc-info-row {
+  font-family: 'Gambetta Variable', serif;
+  font-size: clamp(9px, 0.99vw, 15px);
+  line-height: 1.27;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.02em;
+  white-space: nowrap;
 }
-.rk-info-label { font-weight: 700; }
-.rk-info-value { font-weight: 400; }
+.rkc-info-label { font-weight: 700; }
+.rkc-book { position: absolute; left: 25.28vw; top: 78.73vh; }
+.rkc-dyk-heading { left: 112.64vw; top: 26.41vh; width: auto; white-space: nowrap; }
+.rkc-dyk-text {
+  position: absolute;
+  left: 138.13vw; top: 54.89vh;
+  width: 23.75vw;
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 500;
+  font-size: clamp(13px, 1.39vw, 21px);
+  line-height: 1.195;
+  letter-spacing: -0.01em;
+  color: #000;
+  margin: 0;
+}
+
+/* ── River Kayaking: outro ── */
+.rk-outro-panel { position: relative; overflow: hidden; }
+.rk-outro-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.31); }
+.rk-outro-cta {
+  position: absolute; left: 39.51vw; top: 47.43vh;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1.5px solid #fff;
+  color: #fff;
+}
+.rk-outro-cta:hover { background: rgba(0, 0, 0, 0.4); color: #fff; }
+
 @media (max-width: 900px) {
-  .rk-info-box { max-width: 100%; margin-top: 20px; }
+  .rkc-panel {
+    width: 100%;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    padding: 48px 20px 56px;
+  }
+  .rkc-panel > * { position: static !important; width: 100% !important; margin: 0; }
+  .rkc-heading { font-size: 42px; }
+  .rkc-dyk-heading { white-space: normal; }
+  .rkc-dyk-heading br { display: none; }
+  .rkc-body, .rkc-dyk-text { font-size: 16px; line-height: 1.45; }
+  .rkc-info { padding: 13px 16px; gap: 6px; }
+  .rkc-info-row { font-size: 12px; white-space: normal; }
+  .rkc-book { align-self: flex-start; width: auto !important; }
+  .rk-outro-panel { height: 100vh !important; min-height: 480px; }
+  .rk-outro-cta { position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%); width: auto !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
