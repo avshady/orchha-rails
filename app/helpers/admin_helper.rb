@@ -15,6 +15,7 @@ module AdminHelper
     "newsItems"         => "News",
     "museums"           => "Museums",
     "itineraries"       => "Itineraries",
+    "freedomFighters"   => "Freedom Fighters",
     "heroImages"        => "Hero Images",
     "journeyImages"     => "Journey Images",
     "homeTrails"        => "Home Trails",
@@ -69,7 +70,8 @@ module AdminHelper
       { group: "Content", items: [
         { label: "News", path: admin_collection_path("newsItems"), match: %r{/collections/newsItems} },
         { label: "Museums", path: admin_collection_path("museums"), match: %r{/collections/museums} },
-        { label: "Itineraries", path: admin_collection_path("itineraries"), match: %r{/collections/itineraries} }
+        { label: "Itineraries", path: admin_collection_path("itineraries"), match: %r{/collections/itineraries} },
+        { label: "Freedom Fighters", path: admin_collection_path("freedomFighters"), match: %r{/collections/freedomFighters} }
       ] },
       { group: "Library", items: [
         { label: "Media", path: admin_media_path, match: %r{/admin/media} },

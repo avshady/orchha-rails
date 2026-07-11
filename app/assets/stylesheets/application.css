@@ -3853,3 +3853,141 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .sab-stat-num { font-size: 40px; }
   .sab-stat-label { font-size: 16px; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FREEDOM FIGHTERS PAGE (ff-*)
+   ═══════════════════════════════════════════════════════════════════════ */
+.ff-page {
+  background: #e7ded5;
+  min-height: 100vh;
+  padding-top: 43px;
+}
+
+.ff-header {
+  max-width: 827px;
+  margin: 76px auto 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+  padding: 0 24px;
+}
+.ff-heading {
+  color: #6e1603;
+  font-family: 'Scotch Display', serif;
+  font-size: 62px;
+  font-weight: 600;
+  line-height: 95%;
+  margin: 0;
+}
+.ff-subheading {
+  max-width: 719px;
+  margin: 0 auto;
+  color: #000;
+  font-family: 'Gambetta Variable', serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 22.744px;
+}
+
+/* ── Bento photo grid ───────────────────────────────────── */
+.ff-grid-wrap {
+  max-width: 1200px;
+  margin: 62px auto 0;
+  padding: 0 24px;
+}
+.ff-grid {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1200 / 712;
+}
+.ff-card {
+  position: absolute;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #d9d9d9;
+}
+.ff-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ff-card-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 51.75%, #000 100%);
+  pointer-events: none;
+}
+.ff-card-logos {
+  position: absolute; top: 13px; left: 0; right: 0;
+  display: flex; justify-content: space-between; padding: 0 20px;
+}
+.ff-card-name {
+  position: absolute; left: 20px; bottom: 13px; right: 20px;
+  font-family: 'Gambetta Variable', serif; font-weight: 600;
+  font-size: 28px; line-height: 1.15; color: #fff; margin: 0;
+}
+.ff-card-1 { left: 0;      top: 0;      width: 32.25%; height: 52.247%; }
+.ff-card-2 { left: 33.917%; top: 0;      width: 32.25%; height: 39.888%; }
+.ff-card-3 { left: 0;      top: 55.056%; width: 32.25%; height: 44.944%; }
+.ff-card-4 { left: 33.917%; top: 42.697%; width: 32.25%; height: 57.303%; }
+.ff-card-5 { left: 67.75%;  top: 0;      width: 32.25%; height: 100%; }
+
+.ff-translate {
+  position: absolute;
+  right: -2%; top: 62%;
+  display: flex; align-items: center; gap: 10px;
+  background: #e6d6c3;
+  padding: 9px 14px;
+  border-radius: 5px;
+  box-shadow: 0 10.7px 6.96px rgba(0,0,0,0.11);
+  font-family: 'Gambetta Variable', serif; font-weight: 600;
+  font-size: 16px; color: #000;
+}
+
+/* ── Marquee ────────────────────────────────────────────── */
+.ff-marquee {
+  overflow: hidden;
+  width: 100%;
+  margin: 70px 0;
+  padding: 10px 0;
+}
+.ff-marquee-track {
+  display: flex;
+  width: max-content;
+  gap: 87px;
+  animation: ff-marquee-scroll 28s linear infinite;
+}
+.ff-marquee-item {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: 56px;
+  line-height: 1.073;
+  color: #6e1603;
+  text-transform: capitalize;
+  white-space: nowrap;
+}
+@keyframes ff-marquee-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ff-header { margin-top: 56px; }
+  .ff-heading { font-size: 38px; }
+  .ff-subheading { font-size: 16px; }
+
+  .ff-grid-wrap { margin-top: 40px; }
+  .ff-grid {
+    position: static;
+    aspect-ratio: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ff-card {
+    position: static;
+    width: 100% !important;
+    height: 260px !important;
+  }
+  .ff-translate { display: none; }
+
+  .ff-marquee { margin: 40px 0; }
+  .ff-marquee-item { font-size: 34px; }
+}

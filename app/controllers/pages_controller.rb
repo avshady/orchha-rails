@@ -22,6 +22,16 @@ class PagesController < ApplicationController
     @home = {}
   end
 
+  def freedom_fighters
+    raw = ContentStore.raw
+    @fighters = raw['freedomFighters'] || []
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @fighters = []
+    @home = {}
+  end
+
   def accommodation
     raw = ContentStore.raw
     @page  = raw['accommodationPage'] || {}

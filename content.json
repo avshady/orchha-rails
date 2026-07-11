@@ -1717,5 +1717,37 @@
         "value": "archives"
       }
     ]
-  }
+  },
+  "freedomFighters": [
+    {
+      "id": "tatya-tope",
+      "name": "Tatya Tope",
+      "image": "/images/ff_tatya_tope.jpg",
+      "visible": true
+    },
+    {
+      "id": "rani-lakshmibai",
+      "name": "Rani Lakshmibai",
+      "image": "/images/rk_hero_raft.jpg",
+      "visible": true
+    },
+    {
+      "id": "chandra-shekhar-azad",
+      "name": "Chandra Shekhar Azad",
+      "image": "/images/rk_hero_raft.jpg",
+      "visible": true
+    },
+    {
+      "id": "bhagat-singh",
+      "name": "Bhagat Singh",
+      "image": "/images/rk_hero_raft.jpg",
+      "visible": true
+    },
+    {
+      "id": "mahatma-gandhi",
+      "name": "Mahatma Gandhi",
+      "image": "/images/rk_hero_raft.jpg",
+      "visible": true
+    }
+  ]
 }
