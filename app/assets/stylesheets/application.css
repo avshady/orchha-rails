@@ -4232,6 +4232,50 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .hoho-detail-item.open .hoho-detail-body p { padding-top: 14px; }
 
+.hoho-detail-toggle-txt--open { display: none; }
+.hoho-detail-item.open .hoho-detail-toggle-txt--closed { display: none; }
+.hoho-detail-item.open .hoho-detail-toggle-txt--open { display: inline; }
+
+.hoho-route-head { overflow: hidden; padding-top: 14px; }
+.hoho-detail-item .hoho-route-head { padding-top: 0; }
+.hoho-detail-item.open .hoho-detail-body .hoho-route-head { padding-top: 14px; }
+.hoho-route-name {
+  margin: 0; font-family: 'Gambetta Variable', serif;
+  font-size: 16px; color: #1a0e06;
+}
+.hoho-route-name strong { font-weight: 700; }
+.hoho-route-subtitle {
+  margin: 4px 0 0; font-family: 'Gambetta Variable', serif;
+  font-style: italic; font-size: 14px; color: #6e1603;
+}
+
+.hoho-stops-timeline { list-style: none; margin: 0; padding: 18px 0 0; overflow: hidden; }
+.hoho-stop-row { display: flex; gap: 12px; margin-bottom: 18px; }
+.hoho-stop-row:last-child { margin-bottom: 0; }
+.hoho-stop-rail { position: relative; width: 24px; flex-shrink: 0; }
+.hoho-stop-icon { display: block; width: 24px; height: 24px; }
+.hoho-stop-icon svg { width: 100%; height: 100%; }
+.hoho-stop-row:not(:last-child) .hoho-stop-rail::before {
+  content: ""; position: absolute; left: 50%; top: 24px; bottom: -18px;
+  width: 2px; transform: translateX(-50%);
+  background: rgba(110, 22, 3, 0.25);
+}
+.hoho-stop-content { flex: 1; min-width: 0; }
+.hoho-segment-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  margin-bottom: 10px; padding: 4px 12px;
+  background: #fff; border: 1px solid rgba(110, 22, 3, 0.25); border-radius: 20px;
+  font-family: 'Gambetta Variable', serif; font-size: 12px; color: #6e1603; white-space: nowrap;
+}
+.hoho-segment-dot { opacity: 0.6; }
+.hoho-stop-main { display: flex; align-items: center; gap: 12px; }
+.hoho-stop-name {
+  flex: 1; padding-top: 2px;
+  font-family: 'Gambetta Variable', serif; font-weight: 600;
+  font-size: 15px; color: #1a0e06;
+}
+.hoho-stop-photo { width: 80px; height: 44px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+
 .hoho-translate { position: absolute; right: 0; top: 43%; }
 
 @media (max-width: 900px) {
@@ -4249,4 +4293,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hoho-stat-label { font-size: 13px; }
   .hoho-book-btn { font-size: 18px; height: 54px; }
   .hoho-translate { display: none; }
+  .hoho-stop-photo { width: 60px; height: 36px; }
+  .hoho-stop-name { font-size: 14px; }
+  .hoho-segment-chip { font-size: 11px; padding: 3px 10px; }
+  .hoho-route-name, .hoho-route-subtitle { font-size: 13px; }
 }

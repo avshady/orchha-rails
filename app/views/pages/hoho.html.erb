@@ -119,11 +119,45 @@
           <% if s['detailText'].present? %>
           <div class="hoho-detail-item">
             <button type="button" class="hoho-detail-toggle" data-acc-toggle>
-              <span>View detailed route, distance &amp; travel time</span>
+              <span class="hoho-detail-toggle-txt hoho-detail-toggle-txt--closed">View detailed route, distance &amp; travel time</span>
+              <span class="hoho-detail-toggle-txt hoho-detail-toggle-txt--open">Close detailed route, distance &amp; travel time</span>
               <svg class="hoho-detail-chevron" viewBox="0 0 16 10" fill="none"><path d="M1 1l7 7 7-7" stroke="#1a0a00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
             <div class="hoho-detail-body">
+              <% if s['stops'].present? %>
+              <div class="hoho-route-head">
+                <p class="hoho-route-name"><strong>Route:</strong> <%= s['routeName'] %></p>
+                <p class="hoho-route-subtitle"><%= s['routeSubtitle'] %></p>
+              </div>
+              <ol class="hoho-stops-timeline">
+                <% s['stops'].each do |stop| %>
+                <li class="hoho-stop-row">
+                  <div class="hoho-stop-rail">
+                    <span class="hoho-stop-icon" aria-hidden="true">
+                      <svg viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 23S2 14.6 2 9a8 8 0 1 1 16 0c0 5.6-8 14-8 14Z" fill="#a8391c"/><circle cx="10" cy="9" r="3.2" fill="#fff"/></svg>
+                    </span>
+                  </div>
+                  <div class="hoho-stop-content">
+                    <% if stop['distanceFromPrev'].present? %>
+                    <div class="hoho-segment-chip">
+                      <span><%= stop['distanceFromPrev'] %></span>
+                      <span class="hoho-segment-dot">&middot;</span>
+                      <span><%= stop['durationFromPrev'] %></span>
+                    </div>
+                    <% end %>
+                    <div class="hoho-stop-main">
+                      <span class="hoho-stop-name"><%= stop['name'] %></span>
+                      <% if stop['image'].present? %>
+                      <img class="hoho-stop-photo" src="<%= stop['image'] %>" alt="<%= stop['name'] %>" loading="lazy">
+                      <% end %>
+                    </div>
+                  </div>
+                </li>
+                <% end %>
+              </ol>
+              <% else %>
               <p><%= s['detailText'] %></p>
+              <% end %>
             </div>
           </div>
           <% end %>

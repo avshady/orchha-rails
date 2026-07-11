@@ -1785,7 +1785,21 @@
       "duration": "~1 Hr",
       "detailText": "Route: Bus Stand → Ram Raja Temple → Jahangir Mahal → Raja Mahal → Chaturbhuj Temple → Orchha Chhatris → Betwa Riverfront, looping back to the Bus Stand. Buses depart every 20 minutes from 9AM to 6PM, with hop-on hop-off privileges at every stop along the route.",
       "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
-      "visible": true
+      "visible": true,
+      "routeName": "Full Orchha Circuit",
+      "routeSubtitle": "Hop on. Discover Orchha with every stop",
+      "stops": [
+        { "name": "Orchha Parking", "image": "/images/hoho_stop_parking.jpg" },
+        { "name": "Ramraja Temple", "image": "/images/hoho_stop_ramraja.jpg", "distanceFromPrev": "1300 meter", "durationFromPrev": "8 minutes" },
+        { "name": "Citadel (Raja and Jahangir Mahal)", "image": "/images/hoho_stop_citadel.jpg", "distanceFromPrev": "600 meter", "durationFromPrev": "7 minutes" },
+        { "name": "Rai Praveen Mahal", "image": "/images/hoho_stop_raipraveen.jpg", "distanceFromPrev": "900 meter", "durationFromPrev": "4 minutes" },
+        { "name": "Betwa Ghat", "image": "/images/hoho_stop_betwaghat.jpg", "distanceFromPrev": "1200 meter", "durationFromPrev": "6 minutes" },
+        { "name": "Chhatri Complex Kanchana Ghat", "image": "/images/hoho_stop_chhatri.jpg", "distanceFromPrev": "400 meter", "durationFromPrev": "2 minutes" },
+        { "name": "Kalpvriksha", "image": "/images/hoho_stop_kalpvriksha.jpg", "distanceFromPrev": "1500 meter", "durationFromPrev": "5 minutes" },
+        { "name": "Lakshmi Temple and parking", "image": "/images/hoho_stop_lakshmi.jpg", "distanceFromPrev": "1700 meter", "durationFromPrev": "6 minutes" },
+        { "name": "Azad Park Museum", "image": "/images/hoho_stop_azadpark.jpg", "distanceFromPrev": "5500 meter", "durationFromPrev": "17 minutes" },
+        { "name": "Parking Area", "image": "/images/hoho_stop_parking.jpg", "distanceFromPrev": "3300 meter", "durationFromPrev": "9 minutes" }
+      ]
     },
     {
       "id": "e-rickshaw",
