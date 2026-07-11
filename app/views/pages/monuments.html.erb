@@ -100,7 +100,7 @@
     <%# Cards grid %>
     <div class="mon-cards" id="mon-cards">
       <% @monuments.each do |m| %>
-      <div class="mon-card"
+      <a href="/monuments/<%= m['id'] %>" class="mon-card"
            data-cat="<%= m['filterCategory'] || 'all' %>"
            data-name="<%= m['name'].downcase %>">
         <div class="mon-card-img">
@@ -110,14 +110,14 @@
         </div>
         <div class="mon-card-info">
           <h3 class="mon-card-name"><%= m['name'] %></h3>
-          <a href="/monuments/<%= m['id'] %>" class="mon-card-explore">
+          <span class="mon-card-explore">
             Explore
             <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 5h13M10 1l4 4-4 4" stroke="#535353" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </a>
+          </span>
         </div>
-      </div>
+      </a>
       <% end %>
     </div>
 

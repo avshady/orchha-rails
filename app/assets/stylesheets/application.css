@@ -1165,6 +1165,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   overflow: hidden;
   flex-shrink: 0;
   box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.mon-card:hover {
+  box-shadow: 0 6px 18px rgba(110, 22, 3, 0.16);
+  transform: translateY(-2px);
 }
 .mon-card-img {
   position: relative;
@@ -2047,6 +2055,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border: 1px solid rgba(110,22,3,0.25);
   border-radius: 10px;
   overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.exp-card:hover {
+  box-shadow: 0 6px 18px rgba(110, 22, 3, 0.16);
+  transform: translateY(-2px);
 }
 .exp-card-photo {
   position: relative;

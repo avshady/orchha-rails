@@ -99,7 +99,7 @@
   <section class="exp-section">
     <div class="exp-cards" id="exp-cards">
       <% @items.each do |item| %>
-      <div class="exp-card"
+      <a href="/experiences/<%= item['id'] %>" class="exp-card"
            data-cat="<%= item['category'] || 'all' %>"
            data-name="<%= item['name'].downcase %>">
         <div class="exp-card-photo">
@@ -109,14 +109,14 @@
         </div>
         <div class="exp-card-bottom">
           <h3 class="exp-card-title"><%= item['name'] %></h3>
-          <a href="/experiences/<%= item['id'] %>" class="exp-card-explore">
+          <span class="exp-card-explore">
             Explore
             <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 5h13M10 1l4 4-4 4" stroke="#535353" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
-          </a>
+          </span>
         </div>
-      </div>
+      </a>
       <% end %>
     </div>
     <p class="exp-empty" id="exp-empty" style="display:none">No experiences found.</p>
