@@ -102,6 +102,17 @@ class PagesController < ApplicationController
     @home = {}
   end
 
+  def religious_walk
+    raw = ContentStore.raw
+    all = raw['experienceItems'] || []
+    @exp  = all.find { |e| e['id'] == 'religious-walk' } || {}
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @exp = {}
+    @home = {}
+  end
+
   def monument
     raw = ContentStore.raw
     all = raw['monuments'] || []

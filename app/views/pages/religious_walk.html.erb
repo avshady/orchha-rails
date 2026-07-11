@@ -1,0 +1,254 @@
+<%# Religious Walk experience page — horizontal scroll-jack matching the Figma:
+    hero / intro + numbered trail strip (265vw) / outro. %>
+<% nav = (@home['nav'] || {})
+   dd  = nav['discoverDropdown'] || []
+   exp = @exp || {}
+   stops = [
+     { n: 1, name: "Ram Raja Temple",     img: "/images/rt_stop1.jpg" },
+     { n: 2, name: "Lakshmi Temple",      img: "/images/rt_stop2.jpg" },
+     { n: 3, name: "Chaturbhuj Temple",   img: "/images/rt_stop3.jpg" },
+     { n: 4, name: "Hardol Ki Mandir",    img: "/images/heritage_raja_ram.jpg" },
+     { n: 5, name: "Savan Bhado Pillars", img: "/images/rt_stop5.jpg" },
+     { n: 6, name: "Kalpvriksha",         img: "/images/rt_stop6.jpg" }
+   ]
+%>
+
+<div class="sticky-hoho"><a href="https://ho-hoservices.netlify.app/" target="_blank" rel="noopener">HOHO Service</a></div>
+
+<%# Fixed nav %>
+<div class="mdet-nav-wrap">
+  <nav class="mdet-navbar">
+    <div class="mdet-nav-links">
+      <div class="mdet-nav-discover">
+        <a href="/" class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
+      <a href="/news"            class="mdet-nav-link">News</a>
+      <a href="/support-us"      class="mdet-nav-link">Support Us</a>
+      <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
+    </div>
+    <button class="mdet-nav-hamburger" id="mdet-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-book-btn">Book Tickets</a>
+  </nav>
+
+  <div class="mdet-nav-mobile-menu" id="mdet-nav-mobile-menu">
+    <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="mdet-nav-mobile-links">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="mdet-nav-mobile-link"><%= item['label'] %></a>
+      <% end %>
+      <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
+      <a href="/news" class="mdet-nav-mobile-link">News</a>
+      <a href="/support-us" class="mdet-nav-mobile-link">Support Us</a>
+      <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
+    </div>
+    <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-nav-mobile-book-btn">Book Tickets</a>
+  </div>
+
+  <%# Discover dropdown — kept outside .mdet-navbar because its backdrop-filter
+      creates a new containing block for position:fixed descendants %>
+  <div class="mdet-nav-dropdown" role="menu">
+    <% dd.each do |item| %>
+    <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+    <% end %>
+  </div>
+</div>
+
+<div class="mdet-wrapper rt-wrapper" data-panels="4.65">
+  <div class="mdet-sticky">
+    <div class="mdet-track" id="mdet-track">
+
+      <%# ══ PANEL 1 — HERO (Ram Raja Temple entrance) ═════════════ %>
+      <section class="mdet-panel et-hero-panel">
+        <div class="et-hero-bg">
+          <img src="/images/rt_hero.jpg" alt="Ram Raja Temple entrance, Orchha" style="object-position: center 30%;">
+          <div class="et-hero-overlay"></div>
+        </div>
+        <div class="mdet-scroll-hint" id="mdet-scroll-hint">
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </section>
+
+      <%# ══ PANEL 2 — INTRO + NUMBERED TRAIL (265vw) ══════════════ %>
+      <section class="mdet-panel rt-panel">
+
+        <div class="rt-intro">
+          <h1 class="rt-heading">Religious Walk</h1>
+          <div class="rt-body">
+            <p><%= exp['text1'].presence || "Orchha is not just a heritage town - it is a living place of faith. The Religious Walk moves through the spiritual heart of the city: from the royal court of Ram Raja Temple, where a king still holds divine audience, to the soaring silence of Chaturbhuj Temple, built in anticipation of a god who never arrived. Along the way, you pass the sacred memorial of Lala Hardaul, whose legend still draws wedding blessings from across Bundelkhand, and the ancient Savan Bhado pillars that mark the passage of time and devotion alike." %></p>
+            <p>A walk not just through temples - but through the faith that has kept Orchha alive for five centuries.</p>
+          </div>
+          <div class="rt-stats">
+            <div class="rt-stat">
+              <svg class="rt-stat-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="20.5" stroke="#6e1603" stroke-width="1.5"/>
+                <path d="M22 13v9l5.5 5.5" stroke="#6e1603" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <div class="rt-stat-text">
+                <span class="rt-stat-lbl">Duration</span>
+                <span class="rt-stat-num">2.5 - 3 Hours</span>
+              </div>
+            </div>
+            <div class="rt-stat">
+              <svg class="rt-stat-icon" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="22" cy="22" r="20.5" stroke="#6e1603" stroke-width="1.5"/>
+                <circle cx="22" cy="17" r="5" stroke="#6e1603" stroke-width="1.5"/>
+                <path d="M11 34c0-6.075 4.925-11 11-11s11 4.925 11 11" stroke="#6e1603" stroke-width="1.5" stroke-linecap="round"/>
+              </svg>
+              <div class="rt-stat-text">
+                <span class="rt-stat-lbl">Guided</span>
+                <span class="rt-stat-num">Heritage Walk</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rt-line" aria-hidden="true"></div>
+
+        <div class="rt-stops">
+          <% stops.each do |stop| %>
+          <div class="rt-stop">
+            <span class="rt-stop-num"><%= stop[:n] %></span>
+            <div class="rt-stop-card">
+              <img src="<%= stop[:img] %>" alt="<%= stop[:name] %>">
+              <div class="et-card-logos">
+                <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
+                <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+              </div>
+            </div>
+            <p class="rt-stop-name"><%= stop[:name] %></p>
+          </div>
+          <% end %>
+        </div>
+
+      </section><%# /rt-panel %>
+
+      <%# ══ PANEL 3 — OUTRO (Lakshmi Temple + dark overlay) ════════ %>
+      <section class="mdet-panel rk-outro-panel">
+        <img src="/images/rt_stop2.jpg" class="et-outro-bg" alt="Lakshmi Narayan Temple, Orchha">
+        <div class="rk-outro-overlay"></div>
+        <a href="/experiences" class="aw-walk-cta rk-outro-cta">View All Experiences &amp; Trails</a>
+      </section>
+
+    </div><%# /mdet-track %>
+  </div><%# /mdet-sticky %>
+</div><%# /mdet-wrapper %>
+
+<%# Fixed bottom action bar %>
+<div class="mdet-action-tabs" id="mdet-action-tabs">
+  <div class="mdet-audio-wrap">
+    <div class="mdet-audio-panel" id="mdet-audio-panel">
+      <button class="mdet-audio-play" id="mdet-audio-play-btn" aria-label="Play">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="16" fill="white"/>
+          <polygon points="13,10 13,22 23,16" fill="#6e1603"/>
+        </svg>
+      </button>
+      <span class="mdet-audio-track">Religious Walk</span>
+      <div class="mdet-audio-wave">
+        <svg viewBox="0 0 434 28" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <rect y="8" width="434" height="7" rx="3.5" fill="white" fill-opacity="0.4"/>
+          <rect x="2" y="10" width="47" height="3" rx="1.5" fill="white"/>
+          <circle cx="55.5" cy="11.5" r="9.5" fill="white"/>
+          <circle cx="55.5" cy="11.5" r="8.5" stroke="rgba(102,18,0,0.6)" stroke-width="2"/>
+        </svg>
+      </div>
+      <span class="mdet-audio-time">0:00 / 3:00</span>
+    </div>
+    <button class="mdet-action-tab" id="mdet-audio-btn">Audio Guide</button>
+  </div>
+  <button class="mdet-action-tab">Virtual Tour</button>
+  <button class="mdet-action-tab">Translate</button>
+</div>
+
+<script>
+(function() {
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+  const wrapper = document.querySelector('.rt-wrapper');
+  const sticky  = document.querySelector('.mdet-sticky');
+  const hint    = document.getElementById('mdet-scroll-hint');
+  const tabs    = document.getElementById('mdet-action-tabs');
+
+  if (wrapper && sticky && !isMobile) {
+    const panels = parseFloat(wrapper.dataset.panels || '4.65');
+    wrapper.style.height = (panels * 100) + 'vh';
+
+    function updateHoriz() {
+      const wrapperTop  = wrapper.offsetTop;
+      const totalScroll = wrapper.offsetHeight - window.innerHeight;
+      const progress    = Math.max(0, Math.min(1, (window.scrollY - wrapperTop) / totalScroll));
+      const maxScroll   = sticky.scrollWidth - window.innerWidth;
+      sticky.scrollLeft = progress * maxScroll;
+      if (hint) hint.style.opacity = progress > 0.01 ? '0' : '1';
+      const isPast = window.scrollY > wrapper.offsetTop + wrapper.offsetHeight;
+      if (tabs) tabs.style.display = isPast ? 'none' : 'flex';
+    }
+
+    window.addEventListener('scroll', updateHoriz, { passive: true });
+    updateHoriz();
+  }
+
+  const audioBtn   = document.getElementById('mdet-audio-btn');
+  const audioPanel = document.getElementById('mdet-audio-panel');
+  if (audioBtn && audioPanel) {
+    audioBtn.addEventListener('click', () => audioPanel.classList.toggle('open'));
+  }
+
+  const navBtn = document.querySelector('.mdet-discover-btn');
+  const navDd  = document.querySelector('.mdet-nav-dropdown');
+  if (navBtn && navDd) {
+    let navDdCloseTimer;
+    function openDd() {
+      clearTimeout(navDdCloseTimer);
+      const r = navBtn.getBoundingClientRect();
+      navDd.style.top  = (r.bottom + 8) + 'px';
+      navDd.style.left = r.left + 'px';
+      navDd.classList.add('open');
+      navBtn.classList.add('open');
+      navBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDd() {
+      navDd.classList.remove('open');
+      navBtn.classList.remove('open');
+      navBtn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleCloseDd() { navDdCloseTimer = setTimeout(closeDd, 200); }
+    navBtn.addEventListener('mouseenter', openDd);
+    navBtn.addEventListener('mouseleave', scheduleCloseDd);
+    navDd.addEventListener('mouseenter', () => clearTimeout(navDdCloseTimer));
+    navDd.addEventListener('mouseleave', scheduleCloseDd);
+    navBtn.addEventListener('click', e => { if (navDd.classList.contains('open')) return; e.preventDefault(); openDd(); });
+    document.addEventListener('click', closeDd);
+    navDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ─────────────────────────────────
+  const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
+  const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
+  const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
+  if (mdetHamburgerBtn && mdetMobileMenu) {
+    function openMdetMobileMenu() {
+      mdetMobileMenu.classList.add('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMdetMobileMenu() {
+      mdetMobileMenu.classList.remove('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    mdetHamburgerBtn.addEventListener('click', openMdetMobileMenu);
+    if (mdetMobileClose) mdetMobileClose.addEventListener('click', closeMdetMobileMenu);
+    mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
+  }
+})();
+</script>

@@ -2836,6 +2836,122 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0;
 }
 
+/* ── Religious Walk: intro + numbered trail strip (geometry from the
+      6693×818 Figma frame, same vw/vh scaling as the kayaking collage) ── */
+.rt-panel {
+  position: relative;
+  width: 264.79vw;
+  flex-shrink: 0;
+  background: #e7ded5;
+  overflow: hidden;
+}
+.rt-intro {
+  position: absolute;
+  left: 6.32vw; top: 22.25vh;
+  width: 41.88vw;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.rt-heading {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: clamp(34px, 4.26vw, 68px);
+  line-height: 1.11;
+  color: #6e1603;
+  margin: 0;
+}
+.rt-body {
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 500;
+  font-size: clamp(13px, 1.46vw, 22px);
+  line-height: 1.38;
+  color: #000;
+}
+.rt-body p { margin: 0 0 0.9em; }
+.rt-body p:last-child { margin-bottom: 0; }
+.rt-stats { display: flex; gap: 2.85vw; align-items: center; margin-top: 2px; }
+.rt-stat { display: flex; gap: 0.9vw; align-items: center; }
+.rt-stat-icon { width: 3.96vw; height: 3.96vw; min-width: 40px; min-height: 40px; }
+.rt-stat-text { display: flex; flex-direction: column; }
+.rt-stat-lbl {
+  font-family: 'Gambetta Variable', serif; font-weight: 500;
+  font-size: clamp(12px, 1.3vw, 19px); color: #6e1603; letter-spacing: -0.01em;
+}
+.rt-stat-num {
+  font-family: 'Gambetta Variable', serif; font-weight: 700;
+  font-size: clamp(18px, 2.26vw, 34px); line-height: 1.2; color: #6e1603;
+  white-space: nowrap;
+}
+.rt-line {
+  position: absolute;
+  left: 75.07vw; top: 33.01vh;
+  width: 165.97vw;
+  border-top: 4px dashed #6e1603;
+  z-index: 0;
+}
+.rt-stops {
+  position: absolute;
+  left: 61.67vw; top: 30.32vh;
+  display: flex;
+  gap: 6.46vw;
+  z-index: 1;
+}
+.rt-stop {
+  width: 26.74vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rt-stop-num {
+  width: 3.06vw; height: 3.06vw; min-width: 34px; min-height: 34px;
+  border-radius: 50%;
+  background: #6e1603;
+  color: #e7ded5;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(16px, 1.89vw, 28px);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 4.52vh;
+}
+.rt-stop-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 385 / 256;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.rt-stop-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.rt-stop-name {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: clamp(20px, 2.5vw, 38px);
+  line-height: 1.35;
+  color: #6e1603;
+  text-align: center;
+  margin: 13px 0 0;
+}
+
+@media (max-width: 900px) {
+  .rt-panel {
+    width: 100%;
+    height: auto !important;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    padding: 48px 20px 56px;
+  }
+  .rt-intro { position: static; width: 100%; }
+  .rt-heading { font-size: 42px; }
+  .rt-body { font-size: 16px; line-height: 1.5; }
+  .rt-stats { flex-wrap: wrap; gap: 20px; }
+  .rt-stat { gap: 10px; }
+  .rt-line { display: none; }
+  .rt-stops { position: static; flex-direction: column; gap: 34px; }
+  .rt-stop { width: 100%; }
+  .rt-stop-num { margin-bottom: 14px; }
+}
+
 /* ── River Kayaking: outro ── */
 .rk-outro-panel { position: relative; overflow: hidden; }
 .rk-outro-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.31); }
