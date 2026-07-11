@@ -4221,24 +4221,19 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .hoho-detail-chevron { flex-shrink: 0; width: 15px; height: 9px; transition: transform 0.2s; }
 .hoho-detail-item.open .hoho-detail-chevron { transform: rotate(180deg); }
-.hoho-detail-body {
-  display: grid; grid-template-rows: 0fr;
-  transition: grid-template-rows 0.25s ease;
-}
-.hoho-detail-item.open .hoho-detail-body { grid-template-rows: 1fr; }
+.hoho-detail-body { display: none; }
+.hoho-detail-item.open .hoho-detail-body { display: block; }
+.hoho-detail-body-inner { padding-top: 14px; }
 .hoho-detail-body p {
-  overflow: hidden; margin: 0;
+  margin: 0;
   font-family: 'Gambetta Variable', serif; font-size: 15px; line-height: 1.6; color: #1a0e06;
 }
-.hoho-detail-item.open .hoho-detail-body p { padding-top: 14px; }
 
 .hoho-detail-toggle-txt--open { display: none; }
 .hoho-detail-item.open .hoho-detail-toggle-txt--closed { display: none; }
 .hoho-detail-item.open .hoho-detail-toggle-txt--open { display: inline; }
 
-.hoho-route-head { overflow: hidden; padding-top: 14px; }
-.hoho-detail-item .hoho-route-head { padding-top: 0; }
-.hoho-detail-item.open .hoho-detail-body .hoho-route-head { padding-top: 14px; }
+.hoho-route-head { margin: 0; }
 .hoho-route-name {
   margin: 0; font-family: 'Gambetta Variable', serif;
   font-size: 16px; color: #1a0e06;
