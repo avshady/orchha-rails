@@ -1723,31 +1723,51 @@
       "id": "tatya-tope",
       "name": "Tatya Tope",
       "image": "/images/ff_tatya_tope.jpg",
-      "visible": true
+      "visible": true,
+      "years": "1814 – 1859",
+      "lifeText": "Born Ramchandra Pandurang in Yeola, Maharashtra, he served as a trusted general to Nana Sahib of the Maratha Peshwa court. He became one of the principal military strategists of the 1857 uprising against British rule, leading forces across Kanpur, Gwalior, and Central India.",
+      "legacyText": "Renowned for his guerrilla tactics and relentless resistance even after the fall of Delhi and Jhansi, Tatya Tope became a symbol of defiance. He was betrayed by an ally, captured near Sironj, and executed by the British in 1859 at Shivpuri.",
+      "contributionText": "His campaigns through the Bundelkhand region, in coordination with Rani Lakshmibai, kept the rebellion alive for over a year after most other centers of resistance had fallen, extending the fight for independence deep into Central India."
     },
     {
       "id": "rani-lakshmibai",
       "name": "Rani Lakshmibai",
       "image": "/images/rk_hero_raft.jpg",
-      "visible": true
+      "visible": true,
+      "years": "1828 – 1858",
+      "lifeText": "Born Manikarnika Tambe in Varanasi, she became the Rani of Jhansi through her marriage to Raja Gangadhar Rao. When the British East India Company annexed Jhansi under the Doctrine of Lapse after her husband’s death, she refused to surrender her adopted son’s right to the throne.",
+      "legacyText": "She became one of the most celebrated figures of the 1857 rebellion, remembered for leading her troops into battle with her son strapped to her back. Her death in battle at Gwalior in 1858 cemented her place as an enduring symbol of resistance and courage.",
+      "contributionText": "Jhansi’s proximity to Orchha meant her uprising directly shaped the resistance across Bundelkhand, and her alliance with Tatya Tope’s forces turned the region into one of the fiercest fronts of the rebellion."
     },
     {
       "id": "chandra-shekhar-azad",
       "name": "Chandra Shekhar Azad",
       "image": "/images/rk_hero_raft.jpg",
-      "visible": true
+      "visible": true,
+      "years": "1906 – 1931",
+      "lifeText": "Born in Bhabhra and raised largely in the forests of Central India, Azad joined the independence movement as a teenager and vowed never to be captured alive by the British. He co-founded the Hindustan Socialist Republican Association with revolutionaries including Bhagat Singh.",
+      "legacyText": "A fearless organizer and marksman, he trained a generation of young revolutionaries and became a legendary figure of the armed resistance movement. True to his vow, he took his own life during a gunfight with police at Alfred Park, Allahabad, in 1931.",
+      "contributionText": "His years spent evading capture across the ravines and forests of the Chambal and Bundelkhand region built a network of safe houses and revolutionary cells that sustained the underground movement through Central India."
     },
     {
       "id": "bhagat-singh",
       "name": "Bhagat Singh",
       "image": "/images/rk_hero_raft.jpg",
-      "visible": true
+      "visible": true,
+      "years": "1907 – 1931",
+      "lifeText": "Born in Banga, Punjab, into a family already active in the freedom struggle, Bhagat Singh was drawn to revolutionary politics as a student and became one of the founding members of the Hindustan Socialist Republican Association.",
+      "legacyText": "His execution at age 23, alongside Rajguru and Sukhdev, transformed him into a martyr whose writings on socialism, secularism, and revolution continued to inspire generations long after independence.",
+      "contributionText": "His act of throwing a non-lethal bomb in the Central Legislative Assembly, followed by his voluntary arrest, was a calculated act of protest designed to make “the deaf hear” — drawing national and international attention to India’s demand for independence."
     },
     {
       "id": "mahatma-gandhi",
       "name": "Mahatma Gandhi",
       "image": "/images/rk_hero_raft.jpg",
-      "visible": true
+      "visible": true,
+      "years": "1869 – 1948",
+      "lifeText": "Born in Porbandar, Gujarat, Mohandas Karamchand Gandhi trained as a barrister in London before developing his philosophy of nonviolent resistance while working against discrimination in South Africa.",
+      "legacyText": "Known as the Father of the Nation, Gandhi’s principle of Satyagraha — truth-force — became the moral foundation of India’s independence movement and influenced civil rights movements across the world.",
+      "contributionText": "Gandhi’s mass movements, including the Non-Cooperation Movement, the Salt March, and the Quit India Movement, mobilized ordinary Indians across every region, including Bundelkhand, turning independence into a truly popular struggle."
     }
   ]
 }

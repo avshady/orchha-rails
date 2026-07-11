@@ -3906,6 +3906,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 10px;
   overflow: hidden;
   background: #d9d9d9;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.ff-card:hover {
+  box-shadow: 0 8px 22px rgba(0,0,0,0.25);
+  transform: translateY(-2px);
 }
 .ff-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .ff-card-overlay {
@@ -3990,4 +3999,126 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
   .ff-marquee { margin: 40px 0; }
   .ff-marquee-item { font-size: 34px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FREEDOM FIGHTER DETAIL PAGE (ffd-*)
+   ═══════════════════════════════════════════════════════════════════════ */
+.ffd-hero-wrap {
+  position: relative;
+  max-width: 1200px;
+  margin: 76px auto 0;
+  padding: 0 24px;
+}
+.ffd-hero {
+  display: flex;
+  gap: 49px;
+  align-items: flex-start;
+}
+.ffd-photo {
+  flex: 0 0 54.17%;
+  border-radius: 22px;
+  overflow: hidden;
+  aspect-ratio: 624 / 563;
+}
+.ffd-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.ffd-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 4px;
+}
+.ffd-title { display: flex; flex-direction: column; gap: 4px; }
+.ffd-name {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: 58px;
+  line-height: 1.073;
+  color: #6e1603;
+  text-transform: capitalize;
+  margin: 0;
+}
+.ffd-years {
+  font-family: 'Scotch Display', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 46px;
+  line-height: 1.073;
+  color: #000;
+  margin: 0;
+}
+
+.ffd-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin-top: 8px;
+}
+.ffd-acc-item {
+  border: 2.5px solid #8d140c;
+  border-radius: 27px;
+  overflow: hidden;
+  transition: border-radius 0.2s;
+}
+.ffd-acc-item.open { border-radius: 16px; }
+.ffd-acc-header {
+  width: 100%;
+  height: 54px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  color: #8d140c;
+  text-transform: uppercase;
+}
+.ffd-acc-chevron { width: 16px; height: 10px; flex-shrink: 0; transition: transform 0.2s; }
+.ffd-acc-item.open .ffd-acc-chevron { transform: rotate(180deg); }
+.ffd-acc-body {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.25s ease;
+}
+.ffd-acc-item.open .ffd-acc-body { grid-template-rows: 1fr; }
+.ffd-acc-body p {
+  overflow: hidden;
+  margin: 0;
+  padding: 0 24px;
+  font-family: 'Gambetta Variable', serif;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1a0e06;
+}
+.ffd-acc-item.open .ffd-acc-body p { padding: 0 24px 22px; }
+
+.ffd-back {
+  margin-top: 8px;
+  font-family: 'Chivo', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #6e1603;
+}
+
+.ffd-translate { position: absolute; right: 0; top: 8%; }
+
+@media (max-width: 900px) {
+  .ffd-hero-wrap { margin-top: 56px; }
+  .ffd-hero { flex-direction: column; gap: 28px; }
+  .ffd-photo { flex: none; width: 100%; aspect-ratio: 4 / 3; }
+  .ffd-name { font-size: 38px; }
+  .ffd-years { font-size: 28px; }
+  .ffd-acc-header { font-size: 17px; padding: 0 18px; }
+  .ffd-acc-body p { font-size: 15px; padding: 0 18px; }
+  .ffd-acc-item.open .ffd-acc-body p { padding: 0 18px 18px; }
+  .ffd-translate { display: none; }
 }

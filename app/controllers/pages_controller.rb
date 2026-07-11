@@ -32,6 +32,17 @@ class PagesController < ApplicationController
     @home = {}
   end
 
+  def freedom_fighter
+    raw = ContentStore.raw
+    all = raw['freedomFighters'] || []
+    @fighter = all.find { |f| f['id'] == params[:id] }
+    redirect_to '/freedom-fighters' and return unless @fighter
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    redirect_to '/freedom-fighters'
+  end
+
   def accommodation
     raw = ContentStore.raw
     @page  = raw['accommodationPage'] || {}

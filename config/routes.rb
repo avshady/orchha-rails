@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get "/experiences/religious-trail", to: redirect("/experiences/religious-walk")
   get "/experiences/:id", to: "pages#experience_detail"
   get "/freedom-fighters", to: "pages#freedom_fighters"
+  get "/freedom-fighters/:id", to: "pages#freedom_fighter"
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Admin-created custom pages — must stay the last route.
