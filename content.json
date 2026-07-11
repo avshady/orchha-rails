@@ -1769,5 +1769,39 @@
       "legacyText": "Known as the Father of the Nation, Gandhi’s principle of Satyagraha — truth-force — became the moral foundation of India’s independence movement and influenced civil rights movements across the world.",
       "contributionText": "Gandhi’s mass movements, including the Non-Cooperation Movement, the Salt March, and the Quit India Movement, mobilized ordinary Indians across every region, including Bundelkhand, turning independence into a truly popular struggle."
     }
+  ],
+  "hohoServices": [
+    {
+      "id": "e-bus",
+      "name": "E-Bus - Orchha Tour",
+      "image": "/images/hoho_ebus.jpg",
+      "features": [
+        "Comfortable",
+        "Spacious",
+        "Eco-friendly"
+      ],
+      "price": "₹100",
+      "distance": "16.4 KM",
+      "duration": "~1 Hr",
+      "detailText": "Route: Bus Stand → Ram Raja Temple → Jahangir Mahal → Raja Mahal → Chaturbhuj Temple → Orchha Chhatris → Betwa Riverfront, looping back to the Bus Stand. Buses depart every 20 minutes from 9AM to 6PM, with hop-on hop-off privileges at every stop along the route.",
+      "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
+      "visible": true
+    },
+    {
+      "id": "e-rickshaw",
+      "name": "E-Rickshaw - Orchha Tour",
+      "image": "/images/hoho_erickshaw.jpg",
+      "features": [
+        "Quick",
+        "Convenient",
+        "Eco-friendly"
+      ],
+      "price": "₹10",
+      "distance": "900 M",
+      "duration": "~4 Min",
+      "detailText": "Route: Ram Raja Temple to the riverside ghats — a short, direct hop ideal for covering the old town core on foot-free comfort. E-rickshaws run continuously through the day; just flag one down at any of the marked pickup points near the temple square.",
+      "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
+      "visible": true
+    }
   ]
 }

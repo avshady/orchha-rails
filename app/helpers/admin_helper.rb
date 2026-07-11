@@ -16,6 +16,7 @@ module AdminHelper
     "museums"           => "Museums",
     "itineraries"       => "Itineraries",
     "freedomFighters"   => "Freedom Fighters",
+    "hohoServices"      => "Hop-on Hop-off Services",
     "heroImages"        => "Hero Images",
     "journeyImages"     => "Journey Images",
     "homeTrails"        => "Home Trails",
@@ -71,7 +72,8 @@ module AdminHelper
         { label: "News", path: admin_collection_path("newsItems"), match: %r{/collections/newsItems} },
         { label: "Museums", path: admin_collection_path("museums"), match: %r{/collections/museums} },
         { label: "Itineraries", path: admin_collection_path("itineraries"), match: %r{/collections/itineraries} },
-        { label: "Freedom Fighters", path: admin_collection_path("freedomFighters"), match: %r{/collections/freedomFighters} }
+        { label: "Freedom Fighters", path: admin_collection_path("freedomFighters"), match: %r{/collections/freedomFighters} },
+        { label: "HOHO Services", path: admin_collection_path("hohoServices"), match: %r{/collections/hohoServices} }
       ] },
       { group: "Library", items: [
         { label: "Media", path: admin_media_path, match: %r{/admin/media} },

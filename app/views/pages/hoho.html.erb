@@ -1,16 +1,10 @@
-<%# Celebrate Orchha (Events) page %>
+<%# Hop-on Hop-off Services — matches the Figma design %>
 <% ft       = (@home['footer'] || {})
    ft_links = ft['links'] || []
-   vs       = @home['visit'] || {}
    nav      = @home['nav']   || {}
    dd       = nav['discoverDropdown'] || []
-   cats     = @page['filterCategories'] || [
-     {'label'=>'ALL','value'=>'all'},
-     {'label'=>'ONGOING','value'=>'ongoing'},
-     {'label'=>'UPCOMING','value'=>'upcoming'},
-     {'label'=>'ARCHIVES','value'=>'archives'}
-   ]
-   months = @items.map { |e| e['month'] }.reject(&:blank?).uniq
+   vs       = @home['visit'] || {}
+   services = @services.presence || []
 %>
 
 <%# Sticky HOHO button %>
@@ -18,7 +12,7 @@
   <a href="/hoho">HOHO Service</a>
 </div>
 
-<div class="evt-page">
+<div class="ff-page">
 
   <%# ── NAVBAR ─────────────────────────────────────────── %>
   <div class="mon-nav-wrap">
@@ -59,8 +53,6 @@
       <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-nav-mobile-book-btn">Book Tickets</a>
     </div>
 
-    <%# Discover dropdown — kept outside .hist-navbar because its backdrop-filter
-        creates a new containing block for position:fixed descendants %>
     <div class="hist-nav-dropdown" role="menu">
       <% dd.each do |item| %>
       <a href="<%= item['url'] %>" class="hist-nav-dropdown-item" role="menuitem"><%= item['label'] %></a>
@@ -69,69 +61,82 @@
   </div>
 
   <%# ── HEADER ─────────────────────────────────────────── %>
-  <header class="evt-header">
-    <h1 class="evt-heading"><%= @page['heading'] || 'Celebrate Orchha' %></h1>
-    <p class="evt-subheading"><%= @page['subheading'] || 'Discover the festivals, cultural gatherings, and seasonal celebrations that showcase the living traditions of Orchha.' %></p>
+  <header class="ff-header hoho-header">
+    <h1 class="ff-heading">Hop-on Hop-off Services</h1>
+    <p class="ff-subheading">Explore Orchha effortlessly with eco-friendly Ho-Ho Services, connecting major monuments, temples, cultural attractions, and riverside landmarks through convenient Hop-On Hop-Off transportation.</p>
   </header>
 
-  <%# ── EVENTS SECTION ────────────────────────────────────── %>
-  <section class="evt-section">
-
-    <%# Filter row %>
-    <div class="evt-filter-row">
-      <div class="evt-filter-tabs" role="tablist">
-        <% cats.each_with_index do |cat, i| %>
-        <button class="evt-tab <%= i == 0 ? 'active' : '' %>"
-                data-cat="<%= cat['value'] %>"
-                role="tab"
-                aria-selected="<%= i == 0 ? 'true' : 'false' %>">
-          <%= cat['label'] %>
-        </button>
-        <% end %>
-      </div>
-      <div class="evt-month-filter">
-        <select class="evt-month-select" id="evt-month-select" aria-label="Filter by month">
-          <option value="all">Month</option>
-          <% months.each do |m| %>
-          <option value="<%= m %>"><%= m.capitalize %></option>
-          <% end %>
-        </select>
-        <svg class="evt-month-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M1 1l4 4 4-4" stroke="#6e1603" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-    </div>
-
-    <%# Cards grid %>
-    <div class="evt-cards" id="evt-cards">
-      <% @items.each do |ev| %>
-      <a href="/events/<%= ev['id'] %>" class="evt-card"
-         data-cat="<%= ev['category'] || 'upcoming' %>"
-         data-month="<%= ev['month'] %>">
-        <div class="evt-card-photo">
-          <img src="<%= ev['image'] %>" alt="<%= ev['name'] %>" loading="lazy">
-          <div class="evt-card-logos">
-            <img src="/images/mpt_logo.png" class="evt-logo-mpt" alt="MPT">
-            <img src="/images/incredible_india.png" class="evt-logo-ii" alt="Incredible India">
+  <%# ── SERVICE CARDS ─────────────────────────────────────── %>
+  <section class="hoho-cards-wrap">
+    <div class="hoho-cards">
+      <% services.each do |s| %>
+      <div class="hoho-card">
+        <div class="hoho-card-photo">
+          <img src="<%= s['image'] %>" alt="<%= s['name'] %>" loading="lazy">
+          <div class="hoho-card-tag">
+            <span class="hoho-tag-icon">
+              <svg viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="7" width="22" height="14" rx="3" stroke="#6e1603" stroke-width="1.7"/><path d="M3 13h22M9 21v2M19 21v2" stroke="#6e1603" stroke-width="1.7" stroke-linecap="round"/><circle cx="8.5" cy="17" r="1.4" fill="#6e1603"/><circle cx="19.5" cy="17" r="1.4" fill="#6e1603"/></svg>
+            </span>
+            <span class="hoho-tag-label"><%= s['name'] %></span>
           </div>
         </div>
-        <div class="evt-card-body">
-          <h3 class="evt-card-name"><%= ev['name'] %></h3>
-          <p class="evt-card-date"><%= ev['date'] %></p>
-          <span class="evt-card-explore">
-            Explore
-            <svg viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M1 5h13M10 1l4 4-4 4" stroke="#535353" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </span>
+
+        <div class="hoho-card-body">
+          <div class="hoho-features">
+            <% (s['features'] || []).each_with_index do |feat, i| %>
+            <% if i > 0 %><span class="hoho-divider"></span><% end %>
+            <div class="hoho-feature">
+              <%= hoho_feature_icon(feat) %>
+              <span><%= feat %></span>
+            </div>
+            <% end %>
+          </div>
+
+          <hr class="hoho-hr">
+
+          <div class="hoho-stats">
+            <div class="hoho-stat">
+              <div class="hoho-stat-value"><%= s['price'] %></div>
+              <div class="hoho-stat-label">per person</div>
+            </div>
+            <span class="hoho-divider hoho-divider-tall"></span>
+            <div class="hoho-stat">
+              <div class="hoho-stat-value"><%= s['distance'] %></div>
+              <div class="hoho-stat-label">Total Distance</div>
+            </div>
+            <span class="hoho-divider hoho-divider-tall"></span>
+            <div class="hoho-stat">
+              <div class="hoho-stat-value"><%= s['duration'] %></div>
+              <div class="hoho-stat-label">Total Duration</div>
+            </div>
+          </div>
+
+          <a href="<%= s['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="hoho-book-btn">
+            Book Now
+            <svg viewBox="0 0 24 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5h20M16 1l4 4-4 4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+
+          <% if s['detailText'].present? %>
+          <div class="hoho-detail-item">
+            <button type="button" class="hoho-detail-toggle" data-acc-toggle>
+              <span>View detailed route, distance &amp; travel time</span>
+              <svg class="hoho-detail-chevron" viewBox="0 0 16 10" fill="none"><path d="M1 1l7 7 7-7" stroke="#1a0a00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+            <div class="hoho-detail-body">
+              <p><%= s['detailText'] %></p>
+            </div>
+          </div>
+          <% end %>
         </div>
-      </a>
+      </div>
       <% end %>
     </div>
 
-    <%# Empty state %>
-    <p class="evt-empty" id="evt-empty" style="display:none">No events found.</p>
-
+    <div class="ff-translate hoho-translate" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 5h9M8.5 3v2.5M6 8c1 2.5 3 4.5 6 6M11 8c-.7 3-3 6-7 7.5M14 21l4-9 4 9M15.5 18h5" stroke="#1a0a00" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Translate</span>
+      <svg viewBox="0 0 10 6" fill="none" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="#1a0a00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
   </section>
 
   <%# ── VISIT ORCHHA (reused) ──────────────────────────── %>
@@ -175,36 +180,36 @@
     </div>
   </footer>
 
-</div><%# /.evt-page %>
+</div><%# /.ff-page %>
 
 <script>
   // ── Navbar dropdown ───────────────────────────────────────
-  const evtBtn = document.querySelector('.hist-nav-discover-btn');
-  const evtDd  = document.querySelector('.hist-nav-dropdown');
-  if (evtBtn && evtDd) {
-    let evtDdCloseTimer;
-    function openEvtDd() {
-      clearTimeout(evtDdCloseTimer);
-      const r = evtBtn.getBoundingClientRect();
-      evtDd.style.top  = (r.bottom + 8) + 'px';
-      evtDd.style.left = r.left + 'px';
-      evtDd.classList.add('open');
-      evtBtn.classList.add('open');
-      evtBtn.setAttribute('aria-expanded', 'true');
+  const hohoBtn = document.querySelector('.hist-nav-discover-btn');
+  const hohoDd  = document.querySelector('.hist-nav-dropdown');
+  if (hohoBtn && hohoDd) {
+    let hohoCloseTimer;
+    function openHohoDd() {
+      clearTimeout(hohoCloseTimer);
+      const r = hohoBtn.getBoundingClientRect();
+      hohoDd.style.top  = (r.bottom + 8) + 'px';
+      hohoDd.style.left = r.left + 'px';
+      hohoDd.classList.add('open');
+      hohoBtn.classList.add('open');
+      hohoBtn.setAttribute('aria-expanded', 'true');
     }
-    function closeEvtDd() {
-      evtDd.classList.remove('open');
-      evtBtn.classList.remove('open');
-      evtBtn.setAttribute('aria-expanded', 'false');
+    function closeHohoDd() {
+      hohoDd.classList.remove('open');
+      hohoBtn.classList.remove('open');
+      hohoBtn.setAttribute('aria-expanded', 'false');
     }
-    function scheduleCloseEvtDd() { evtDdCloseTimer = setTimeout(closeEvtDd, 200); }
-    evtBtn.addEventListener('mouseenter', openEvtDd);
-    evtBtn.addEventListener('mouseleave', scheduleCloseEvtDd);
-    evtDd.addEventListener('mouseenter', () => clearTimeout(evtDdCloseTimer));
-    evtDd.addEventListener('mouseleave', scheduleCloseEvtDd);
-    evtBtn.addEventListener('click', e => { if (evtDd.classList.contains('open')) return; e.preventDefault(); openEvtDd(); });
-    document.addEventListener('click', closeEvtDd);
-    evtDd.addEventListener('click', e => e.stopPropagation());
+    function scheduleCloseHohoDd() { hohoCloseTimer = setTimeout(closeHohoDd, 200); }
+    hohoBtn.addEventListener('mouseenter', openHohoDd);
+    hohoBtn.addEventListener('mouseleave', scheduleCloseHohoDd);
+    hohoDd.addEventListener('mouseenter', () => clearTimeout(hohoCloseTimer));
+    hohoDd.addEventListener('mouseleave', scheduleCloseHohoDd);
+    hohoBtn.addEventListener('click', e => { if (hohoDd.classList.contains('open')) return; e.preventDefault(); openHohoDd(); });
+    document.addEventListener('click', closeHohoDd);
+    hohoDd.addEventListener('click', e => e.stopPropagation());
   }
 
   // ── Mobile hamburger menu ───────────────────────────────────
@@ -227,42 +232,10 @@
     histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
   }
 
-  // ── Filter by category + month ───────────────────────────────
-  const evtCards = Array.from(document.querySelectorAll('.evt-card'));
-  const evtTabs  = Array.from(document.querySelectorAll('.evt-tab'));
-  const evtEmpty = document.getElementById('evt-empty');
-  const evtMonthSelect = document.getElementById('evt-month-select');
-  let evtActiveCat = 'all';
-  let evtActiveMonth = 'all';
-
-  function applyEvtFilter() {
-    let visible = 0;
-    evtCards.forEach(card => {
-      const cat   = card.dataset.cat;
-      const month = card.dataset.month;
-      const catOk   = evtActiveCat === 'all' || cat === evtActiveCat;
-      const monthOk = evtActiveMonth === 'all' || month === evtActiveMonth;
-      const show = catOk && monthOk;
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
-    });
-    evtEmpty.style.display = visible === 0 ? 'block' : 'none';
-  }
-
-  evtTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      evtTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected','true');
-      evtActiveCat = tab.dataset.cat;
-      applyEvtFilter();
+  // ── Route detail accordion ─────────────────────────────────
+  document.querySelectorAll('[data-acc-toggle]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      btn.closest('.hoho-detail-item').classList.toggle('open');
     });
   });
-
-  if (evtMonthSelect) {
-    evtMonthSelect.addEventListener('change', e => {
-      evtActiveMonth = e.target.value;
-      applyEvtFilter();
-    });
-  }
 </script>

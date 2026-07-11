@@ -43,6 +43,16 @@ class PagesController < ApplicationController
     redirect_to '/freedom-fighters'
   end
 
+  def hoho
+    raw = ContentStore.raw
+    @services = raw['hohoServices'] || []
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @services = []
+    @home = {}
+  end
+
   def accommodation
     raw = ContentStore.raw
     @page  = raw['accommodationPage'] || {}
