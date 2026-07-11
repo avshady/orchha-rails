@@ -252,11 +252,19 @@
           const row = document.createElement('div');
           row.className = 'adm-imgfield';
           input.parentNode.insertBefore(row, input);
-          const thumb = document.createElement('img');
+          const thumb = document.createElement('span');
           thumb.className = 'adm-imgfield-thumb';
+          thumb.style.cssText += 'display:flex; align-items:center; justify-content:center; background:#e8ddcf; overflow:hidden; font-size:17px;';
+          function isVideoUrl(v) { return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(v); }
           function syncThumb() {
-            if (input.value) { thumb.src = input.value; thumb.style.display = ''; }
-            else { thumb.style.display = 'none'; }
+            const v = input.value.trim();
+            if (!v) { thumb.style.display = 'none'; return; }
+            thumb.style.display = 'flex';
+            if (isVideoUrl(v)) {
+              thumb.textContent = '🎞';
+            } else {
+              thumb.innerHTML = '<img src="' + v + '" style="width:100%; height:100%; object-fit:cover;" onerror="this.replaceWith(\'🖼\')">';
+            }
           }
           const btn = document.createElement('button');
           btn.type = 'button';

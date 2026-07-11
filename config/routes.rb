@@ -9,6 +9,9 @@ Rails.application.routes.draw do
     resources :pages, except: [ :show ]
     get "export", to: "exports#show", defaults: { format: :json }
 
+    get    "hero",                                to: "hero#edit",         as: :edit_hero
+    patch  "hero",                                to: "hero#update",       as: :hero
+
     get    "sections/:key/edit",                  to: "sections#edit",     as: :edit_section
     patch  "sections/:key",                       to: "sections#update",   as: :section
 

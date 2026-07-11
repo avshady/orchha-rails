@@ -37,7 +37,11 @@ module AdminHelper
         { label: "Dashboard", path: admin_root_path, match: %r{\A/admin\z} }
       ] },
       { group: "Pages", items: [
-        { label: "Home", path: admin_edit_section_path("homePage"), match: %r{/sections/homePage} },
+        { label: "Home", path: admin_edit_section_path("homePage"), match: %r{/(sections/homePage|admin/hero)},
+          children: [
+            { label: "Page Content", path: admin_edit_section_path("homePage"), match: %r{/sections/homePage} },
+            { label: "Hero Slideshow", path: admin_edit_hero_path, match: %r{/admin/hero} }
+          ] },
         { label: "History", path: admin_edit_section_path("historyPage"), match: %r{/sections/historyPage} },
         { label: "Monuments", path: admin_collection_path("monuments"), match: %r{/(collections|sections)/monuments},
           children: [
@@ -85,8 +89,8 @@ module AdminHelper
     "#{base}/#{record['id']}"
   end
 
-  # Heuristic: does this field hold an image/media path?
+  # Heuristic: does this field hold an image/video/media path?
   def media_field?(name)
-    name.to_s.match?(/image|photo|src|icon|logo|bg\b|thumbnail|panorama/i)
+    name.to_s.match?(/image|photo|video|src|icon|logo|bg\b|thumbnail|panorama/i)
   end
 end

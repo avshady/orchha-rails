@@ -1,0 +1,92 @@
+<div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
+  <h2 class="adm-page-title" style="margin-bottom:0;">Hero Slideshow</h2>
+  <a href="/" target="_blank" class="adm-btn adm-btn-outline">View home page ↗</a>
+</div>
+
+<div class="adm-card">
+  <p class="adm-muted" style="margin-bottom:16px;">
+    Slides play in order on the home page hero. Images show for 6 seconds;
+    <strong>videos autoplay muted and the slideshow moves on when they finish</strong>.
+    MP4 (H.264) is the safest video format.
+  </p>
+
+  <%= form_with url: admin_hero_path, method: :patch, local: true do %>
+    <div id="hero-slides"></div>
+
+    <div style="display:flex; gap:12px; margin-top:18px;">
+      <button type="button" class="adm-btn adm-btn-outline" onclick="addSlide('image')">+ Add image slide</button>
+      <button type="button" class="adm-btn adm-btn-outline" onclick="addSlide('video')">+ Add video slide</button>
+    </div>
+
+    <div style="display:flex; gap:12px; margin-top:22px;">
+      <button type="submit" class="adm-btn">Save slideshow</button>
+      <a href="<%= admin_root_path %>" class="adm-btn adm-btn-outline">Cancel</a>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  const initialSlides = <%= raw @slides.to_json %>;
+  const container = document.getElementById('hero-slides');
+
+  function isVideoSrc(src) { return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(src); }
+
+  function slideRow(slide) {
+    const row = document.createElement('div');
+    row.className = 'hero-slide-row';
+    row.style.cssText = 'display:flex; gap:10px; align-items:center; padding:12px; border:1px solid #ece2d2; border-radius:10px; margin-bottom:10px; background:#faf7f2;';
+    row.innerHTML = `
+      <div class="hs-preview" style="width:84px; height:56px; border-radius:8px; overflow:hidden; background:#e8ddcf; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-size:22px;"></div>
+      <select name="slides[][type]" class="adm-input" style="width:110px; flex-shrink:0;">
+        <option value="image">Image</option>
+        <option value="video">Video</option>
+      </select>
+      <input type="text" name="slides[][src]" class="adm-input" placeholder="/images/… or upload via Browse" style="flex:1;">
+      <button type="button" class="adm-btn adm-btn-outline hs-browse" style="padding:7px 14px; font-size:13px; white-space:nowrap;">Browse…</button>
+      <div style="display:flex; flex-direction:column; gap:3px;">
+        <button type="button" class="adm-btn adm-btn-outline hs-up" style="padding:1px 8px; font-size:11px;">↑</button>
+        <button type="button" class="adm-btn adm-btn-outline hs-down" style="padding:1px 8px; font-size:11px;">↓</button>
+      </div>
+      <button type="button" class="adm-btn adm-btn-outline hs-remove" style="padding:7px 12px; font-size:13px;">✕</button>`;
+
+    const select = row.querySelector('select');
+    const input = row.querySelector('input');
+    const preview = row.querySelector('.hs-preview');
+    select.value = slide.type || 'image';
+    input.value = slide.src || '';
+
+    function syncPreview() {
+      const src = input.value.trim();
+      if (!src) { preview.innerHTML = '🖼'; return; }
+      if (select.value === 'video' || isVideoSrc(src)) {
+        preview.innerHTML = '<video muted preload="metadata" style="width:100%; height:100%; object-fit:cover;"><source src="' + src + '"></video>';
+      } else {
+        preview.innerHTML = '<img src="' + src + '" style="width:100%; height:100%; object-fit:cover;" loading="lazy">';
+      }
+    }
+    function autoType() {
+      if (isVideoSrc(input.value)) select.value = 'video';
+    }
+    input.addEventListener('input', () => { autoType(); syncPreview(); });
+    select.addEventListener('change', syncPreview);
+    row.querySelector('.hs-browse').addEventListener('click', () => admOpenMediaModal(input));
+    row.querySelector('.hs-remove').addEventListener('click', () => row.remove());
+    row.querySelector('.hs-up').addEventListener('click', () => {
+      const prev = row.previousElementSibling;
+      if (prev) container.insertBefore(row, prev);
+    });
+    row.querySelector('.hs-down').addEventListener('click', () => {
+      const next = row.nextElementSibling;
+      if (next) container.insertBefore(next, row);
+    });
+    syncPreview();
+    return row;
+  }
+
+  function addSlide(type) {
+    container.appendChild(slideRow({ type: type, src: '' }));
+  }
+
+  (initialSlides.length ? initialSlides : [{ type: 'image', src: '/images/hero_bg.jpg' }])
+    .forEach(s => container.appendChild(slideRow(s)));
+</script>
