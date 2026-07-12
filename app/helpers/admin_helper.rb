@@ -12,6 +12,7 @@ module AdminHelper
     "events"            => "Events",
     "accommodationPage" => "Accommodation Page Settings",
     "accommodations"    => "Hotels & Homestays",
+    "supportUsPage"     => "Support Us Page Settings",
     "newsPage"          => "News Page Settings",
     "newsItems"         => "News",
     "museums"           => "Museums",
@@ -69,6 +70,7 @@ module AdminHelper
             { label: "All Stays", path: admin_collection_path("accommodations"), match: %r{/collections/accommodations} },
             { label: "Page Settings", path: admin_edit_section_path("accommodationPage"), match: %r{/sections/accommodationPage} }
           ] },
+        { label: "Support Us", path: admin_edit_section_path("supportUsPage"), match: %r{/sections/supportUsPage} },
         { label: "Custom Pages", path: admin_pages_path, match: %r{/admin/pages} }
       ] },
       { group: "Content", items: [

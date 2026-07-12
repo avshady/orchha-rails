@@ -1,0 +1,217 @@
+<%# Support Us (Sabhyata Foundation donation) page %>
+<% ft       = (@home['footer'] || {})
+   ft_links = ft['links'] || []
+   nav      = @home['nav']   || {}
+   dd       = nav['discoverDropdown'] || []
+   vs       = @home['visit'] || {}
+%>
+
+<%# Sticky HOHO button %>
+<div class="sticky-hoho">
+  <a href="/hoho">HOHO Service</a>
+</div>
+
+<div class="sup-page">
+
+  <%# ── NAVBAR ─────────────────────────────────────────── %>
+  <div class="mon-nav-wrap">
+    <nav class="hist-navbar">
+      <div class="nav-links">
+        <div class="nav-discover">
+          <a href="/" class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+            Discover Orchha
+            <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-link">News</a>
+        <a href="/support-us" class="hist-nav-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-link">Sabhyata Foundation</a>
+      </div>
+      <button class="hist-nav-hamburger" id="hist-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-book-btn">Book Tickets</a>
+    </nav>
+
+    <div class="hist-nav-mobile-menu" id="hist-nav-mobile-menu">
+      <button class="hist-nav-mobile-close" id="hist-nav-mobile-close-btn" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="hist-nav-mobile-links">
+        <% dd.each do |item| %>
+        <a href="<%= item['url'] %>" class="hist-nav-mobile-link"><%= item['label'] %></a>
+        <% end %>
+        <a href="/plan-your-visit" class="hist-nav-mobile-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-mobile-link">News</a>
+        <a href="/support-us" class="hist-nav-mobile-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-mobile-link">Sabhyata Foundation</a>
+      </div>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-nav-mobile-book-btn">Book Tickets</a>
+    </div>
+
+    <%# Discover dropdown — kept outside .hist-navbar because its backdrop-filter
+        creates a new containing block for position:fixed descendants %>
+    <div class="hist-nav-dropdown" role="menu">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="hist-nav-dropdown-item" role="menuitem"><%= item['label'] %></a>
+      <% end %>
+    </div>
+  </div>
+
+  <%# ── HEADER ─────────────────────────────────────────── %>
+  <header class="sup-header">
+    <h1 class="sup-heading"><%= @page['heading'] || 'Sabhyata Foundation' %></h1>
+  </header>
+
+  <%# ── DONATION FORM ─────────────────────────────────── %>
+  <section class="sup-form-section">
+    <p class="sup-eyebrow"><%= @page['eyebrow'] || 'Sabhyata Foundation Donation' %></p>
+
+    <form class="sup-form" onsubmit="return false;">
+      <div class="sup-field">
+        <label class="sup-field-label" for="sup-first-name">First Name</label>
+        <input class="sup-field-input" type="text" id="sup-first-name" name="firstName" autocomplete="given-name">
+      </div>
+      <div class="sup-field">
+        <label class="sup-field-label" for="sup-pan">PAN No</label>
+        <input class="sup-field-input" type="text" id="sup-pan" name="pan" maxlength="10" style="text-transform: uppercase;" autocomplete="off">
+      </div>
+      <div class="sup-field">
+        <label class="sup-field-label" for="sup-email">Email</label>
+        <input class="sup-field-input" type="email" id="sup-email" name="email" autocomplete="email">
+      </div>
+      <div class="sup-field">
+        <label class="sup-field-label" for="sup-phone">Phone</label>
+        <input class="sup-field-input" type="tel" id="sup-phone" name="phone" autocomplete="tel">
+      </div>
+      <div class="sup-field">
+        <label class="sup-field-label" for="sup-amount">Donation Amount</label>
+        <input class="sup-field-input" type="number" id="sup-amount" name="amount" min="1" placeholder="₹">
+      </div>
+
+      <a href="<%= @page['donationUrl'].presence || 'mailto:contact@orchha.com?subject=Donation%20Enquiry' %>" class="sup-pay-btn" target="_blank" rel="noopener">
+        Proceed to Pay
+      </a>
+    </form>
+
+    <div class="sup-translate" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 5h9M8.5 3v2.5M6 8c1 2.5 3 4.5 6 6M11 8c-.7 3-3 6-7 7.5M14 21l4-9 4 9M15.5 18h5" stroke="#1a0a00" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Translate</span>
+      <svg viewBox="0 0 10 6" fill="none" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="#1a0a00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+  </section>
+
+  <%# ── VISIT ORCHHA (reused) ──────────────────────────── %>
+  <div class="visit-wrap">
+    <div class="visit-section">
+      <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
+      <div class="visit-content">
+        <h2 class="visit-heading"><em>Visit</em> Orchha</h2>
+        <div class="visit-links">
+          <% (vs['links'] || [{'label'=>'How to Reach Orchha','url'=>'/reach'},{'label'=>'Travel Options','url'=>'/travel'},{'label'=>'Stay Options','url'=>'/stay'}]).each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="visit-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# ── CONTACT INFORMATION ──────────────────────────── %>
+  <section class="sup-contact-section">
+    <h2 class="sup-contact-heading">Contact Information</h2>
+    <div class="sup-contact-box">
+      <span class="sup-contact-label">General Enquiries:</span>
+      <div class="sup-contact-details">
+        <a href="mailto:<%= @page['contactEmail'].presence || 'contact@orchha.com' %>" class="sup-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" stroke="#6e1603" stroke-width="1.6"/><path d="m3.5 6 8.5 7 8.5-7" stroke="#6e1603" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <%= @page['contactEmail'].presence || 'contact@orchha.com' %>
+        </a>
+        <a href="tel:<%= (@page['contactPhone'].presence || '+91 87963 83600').gsub(' ', '') %>" class="sup-contact-item">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.4 21 3 14.6 3 6a2 2 0 0 1 2-2Z" stroke="#6e1603" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <%= @page['contactPhone'].presence || '+91 87963 83600' %>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <%# ── FOOTER ─────────────────────────────────────────── %>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <% ft_links.each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="footer-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+        <div class="footer-logos">
+          <img src="/images/incredible_india.png" alt="Incredible India" class="footer-logo-ii">
+          <img src="/images/mpt_logo.png" alt="MPTDC" class="footer-logo-mptdc">
+          <img src="/images/footer_logo_sabhyata.png" alt="Sabhyata Foundation" class="footer-logo-sabhyata">
+        </div>
+        <div class="footer-map">
+          <img src="/images/footer_map.jpg" alt="Orchha map">
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span class="footer-copy"><%= ft['copyright'] || '@2026ORCHHA' %></span>
+        <span class="footer-copy"><%= ft['org'] || 'SABHYATA Foundation' %></span>
+      </div>
+    </div>
+  </footer>
+
+</div><%# /.sup-page %>
+
+<script>
+  // ── Navbar dropdown ───────────────────────────────────────
+  const supBtn = document.querySelector('.hist-nav-discover-btn');
+  const supDd  = document.querySelector('.hist-nav-dropdown');
+  if (supBtn && supDd) {
+    let supCloseTimer;
+    function openSupDd() {
+      clearTimeout(supCloseTimer);
+      const r = supBtn.getBoundingClientRect();
+      supDd.style.top  = (r.bottom + 8) + 'px';
+      supDd.style.left = r.left + 'px';
+      supDd.classList.add('open');
+      supBtn.classList.add('open');
+      supBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeSupDd() {
+      supDd.classList.remove('open');
+      supBtn.classList.remove('open');
+      supBtn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleCloseSupDd() { supCloseTimer = setTimeout(closeSupDd, 200); }
+    supBtn.addEventListener('mouseenter', openSupDd);
+    supBtn.addEventListener('mouseleave', scheduleCloseSupDd);
+    supDd.addEventListener('mouseenter', () => clearTimeout(supCloseTimer));
+    supDd.addEventListener('mouseleave', scheduleCloseSupDd);
+    supBtn.addEventListener('click', e => { if (supDd.classList.contains('open')) return; e.preventDefault(); openSupDd(); });
+    document.addEventListener('click', closeSupDd);
+    supDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ───────────────────────────────────
+  const histHamburgerBtn = document.getElementById('hist-nav-hamburger-btn');
+  const histMobileMenu   = document.getElementById('hist-nav-mobile-menu');
+  const histMobileClose  = document.getElementById('hist-nav-mobile-close-btn');
+  if (histHamburgerBtn && histMobileMenu) {
+    function openHistMobileMenu() {
+      histMobileMenu.classList.add('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeHistMobileMenu() {
+      histMobileMenu.classList.remove('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    histHamburgerBtn.addEventListener('click', openHistMobileMenu);
+    if (histMobileClose) histMobileClose.addEventListener('click', closeHistMobileMenu);
+    histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
+  }
+</script>

@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   get "/hoho", to: "pages#hoho"
   get "/art-frescoes", to: "pages#art_frescoes"
   get "/news", to: "pages#news"
+  get "/support-us", to: "pages#support_us"
   get "up" => "rails/health#show", as: :rails_health_check
 
   # Admin-created custom pages — must stay the last route.

@@ -112,6 +112,16 @@ class PagesController < ApplicationController
     @home = {}
   end
 
+  def support_us
+    raw = ContentStore.raw
+    @page = raw['supportUsPage'] || {}
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}
+    @home = {}
+  end
+
   def experiences
     raw = ContentStore.raw
     @page     = raw['experiencesPage'] || {}

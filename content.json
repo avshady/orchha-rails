@@ -860,6 +860,13 @@
       "link": "#"
     }
   ],
+  "supportUsPage": {
+    "heading": "Sabhyata Foundation",
+    "eyebrow": "Sabhyata Foundation Donation",
+    "donationUrl": "mailto:contact@orchha.com?subject=Donation%20Enquiry",
+    "contactEmail": "contact@orchha.com",
+    "contactPhone": "+91 87963 83600"
+  },
   "newsPage": {
     "heading": "Orchha in News",
     "subheading": "A curated stream of heritage stories, conservation updates, cultural events, and evolving narratives from the heart of Orchha.",
