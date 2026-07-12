@@ -860,6 +860,13 @@
       "link": "#"
     }
   ],
+  "audioGuides": [
+    { "id": "citadel-walk", "title": "Citadel Walk", "tracks": [], "visible": true },
+    { "id": "eco-trail", "title": "Eco Trail", "tracks": [], "visible": true },
+    { "id": "river-kayaking", "title": "River Kayaking", "tracks": [], "visible": true },
+    { "id": "religious-walk", "title": "Religious Walk", "tracks": [], "visible": true },
+    { "id": "art-walk", "title": "Art Walk", "tracks": [], "visible": true }
+  ],
   "citadelWalkPage": {
     "heading": "Citadel Walk",
     "description": "Behind the Kateela Darwaza - its doors still studded with the iron spikes that once stopped war elephants - lies the world that built Orchha. The Citadel Walk takes you deep into the fort complex, from the palace where the kingdom began to the armoury that kept it standing, from the residence of a queen's most devoted companions to a temple that once held five Shivalingas consecrated to rival the holiest shrines in India. Raja Mahal, Jahangir Mahal, Rai Praveen Mahal, the Barud Khana, Teen Dasiyon ki Haveli, Shiva Temple - and more await within these walls.",

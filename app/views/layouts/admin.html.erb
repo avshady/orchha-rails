@@ -111,6 +111,14 @@
       .adm-imgfield .adm-input { flex: 1; }
       .adm-imgfield-thumb { width: 38px; height: 38px; border-radius: 6px; object-fit: cover; border: 1px solid #ddd0bf; flex-shrink: 0; }
 
+      .adm-tracks-editor { display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+      .adm-track-row { display: flex; gap: 8px; align-items: center; background: #f3ece0; border: 1px solid #e0d5c5; border-radius: 8px; padding: 10px; }
+      .adm-track-lang { width: 150px; flex-shrink: 0; }
+      .adm-track-audio { flex: 1; min-width: 0; }
+      .adm-track-play { width: 34px; height: 34px; flex-shrink: 0; border-radius: 6px; border: 1px solid #ddd0bf; background: #fff; cursor: pointer; font-size: 14px; }
+      .adm-track-remove { flex-shrink: 0; border: none; background: none; color: #8a1e03; cursor: pointer; font-size: 20px; line-height: 1; padding: 4px 8px; }
+      .adm-track-empty { font-size: 13px; color: #7a6a58; padding: 4px 0; }
+
       @media (max-width: 900px) {
         .adm-shell { flex-direction: column; }
         .adm-sidebar { width: 100%; height: auto; position: static; }
@@ -164,7 +172,7 @@
             <input type="text" id="adm-media-search" class="adm-input" placeholder="Search…" style="width:180px; padding:6px 10px;">
             <label class="adm-btn adm-btn-outline" style="padding:6px 14px; font-size:13px;">
               Upload new
-              <input type="file" id="adm-media-upload" accept="image/*,video/*" style="display:none;">
+              <input type="file" id="adm-media-upload" accept="image/*,video/*,audio/*" style="display:none;">
             </label>
             <button type="button" class="adm-btn adm-btn-outline" style="padding:6px 14px; font-size:13px;" onclick="admCloseMediaModal()">Close</button>
           </div>
@@ -277,6 +285,93 @@
           row.appendChild(btn);
           input.addEventListener('input', syncThumb);
           syncThumb();
+        });
+
+        // Repeatable audio-track editor: language + uploadable audio per row,
+        // synced to a hidden JSON textarea the server already parses.
+        document.querySelectorAll('[data-tracks-editor]').forEach(editor => {
+          const json = editor.parentNode.querySelector('[data-tracks-json]');
+          if (!json) return;
+          let rows;
+          try { rows = JSON.parse(json.value || '[]'); } catch (e) { return; } // leave raw JSON textarea visible on parse error
+          if (!Array.isArray(rows)) rows = [];
+          json.style.display = 'none';
+
+          const csrf = document.querySelector('meta[name="csrf-token"]').content;
+
+          function sync() {
+            json.value = JSON.stringify(rows.map(r => ({ language: r.language || '', audio: r.audio || '' })), null, 2);
+          }
+          function render() {
+            editor.innerHTML = '';
+            if (!rows.length) {
+              const empty = document.createElement('div');
+              empty.className = 'adm-track-empty';
+              empty.textContent = 'No languages yet — add one below.';
+              editor.appendChild(empty);
+            }
+            rows.forEach((r, i) => {
+              const row = document.createElement('div');
+              row.className = 'adm-track-row';
+
+              const lang = document.createElement('input');
+              lang.type = 'text'; lang.className = 'adm-input adm-track-lang';
+              lang.placeholder = 'Language (e.g. English)'; lang.value = r.language || '';
+              lang.addEventListener('input', () => { rows[i].language = lang.value; sync(); });
+
+              const audio = document.createElement('input');
+              audio.type = 'text'; audio.className = 'adm-input adm-track-audio';
+              audio.placeholder = 'Audio file URL — upload with the button →'; audio.value = r.audio || '';
+              audio.addEventListener('input', () => { rows[i].audio = audio.value; sync(); updatePlay(); });
+
+              const play = document.createElement('button');
+              play.type = 'button'; play.className = 'adm-track-play'; play.title = 'Preview';
+              let audioEl = null;
+              function updatePlay() { play.disabled = !audio.value.trim(); play.style.opacity = audio.value.trim() ? '1' : '0.4'; }
+              play.textContent = '▶';
+              play.addEventListener('click', () => {
+                if (!audio.value.trim()) return;
+                if (!audioEl) { audioEl = new Audio(audio.value); audioEl.addEventListener('ended', () => play.textContent = '▶'); }
+                if (audioEl.paused) { audioEl.src = audio.value; audioEl.play(); play.textContent = '⏸'; }
+                else { audioEl.pause(); play.textContent = '▶'; }
+              });
+              updatePlay();
+
+              const upBtn = document.createElement('label');
+              upBtn.className = 'adm-btn adm-btn-outline';
+              upBtn.style.cssText = 'padding:7px 12px; font-size:13px; white-space:nowrap; cursor:pointer;';
+              upBtn.textContent = 'Upload';
+              const file = document.createElement('input');
+              file.type = 'file'; file.accept = 'audio/*'; file.style.display = 'none';
+              file.addEventListener('change', async () => {
+                if (!file.files.length) return;
+                const fd = new FormData(); fd.append('file', file.files[0]);
+                upBtn.textContent = 'Uploading…';
+                try {
+                  const resp = await fetch('<%= admin_uploads_path %>', { method: 'POST', headers: { 'X-CSRF-Token': csrf }, body: fd });
+                  const data = await resp.json();
+                  if (!resp.ok) throw new Error(data.error || resp.statusText);
+                  rows[i].audio = data.url; audio.value = data.url; sync(); updatePlay();
+                } catch (e) { alert('Upload failed: ' + e.message); }
+                upBtn.textContent = 'Upload'; file.value = '';
+              });
+              upBtn.appendChild(file);
+
+              const rm = document.createElement('button');
+              rm.type = 'button'; rm.className = 'adm-track-remove'; rm.title = 'Remove'; rm.innerHTML = '&times;';
+              rm.addEventListener('click', () => { rows.splice(i, 1); sync(); render(); });
+
+              row.append(play, lang, audio, upBtn, rm);
+              editor.appendChild(row);
+            });
+            const add = document.createElement('button');
+            add.type = 'button'; add.className = 'adm-btn adm-btn-outline';
+            add.style.cssText = 'align-self:flex-start; padding:8px 16px; font-size:13px;';
+            add.textContent = '+ Add language';
+            add.addEventListener('click', () => { rows.push({ language: '', audio: '' }); sync(); render(); });
+            editor.appendChild(add);
+          }
+          render(); sync();
         });
       });
       document.getElementById('adm-media-modal').addEventListener('click', e => {

@@ -139,6 +139,7 @@ class PagesController < ApplicationController
     @exp  = all.find { |e| e['id'] == params[:id] }
     redirect_to '/experiences' and return unless @exp
     @home = raw['homePage'] || {}
+    @audio_tracks = audio_tracks_for(raw, @exp['id'])
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     redirect_to '/experiences'
@@ -147,6 +148,7 @@ class PagesController < ApplicationController
   def eco_trail
     raw = ContentStore.raw
     @home = raw['homePage'] || {}
+    @audio_tracks = audio_tracks_for(raw, 'eco-trail')
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @home = {}
@@ -157,6 +159,7 @@ class PagesController < ApplicationController
     all = raw['experienceItems'] || []
     @exp  = all.find { |e| e['id'] == 'river-kayaking' } || {}
     @home = raw['homePage'] || {}
+    @audio_tracks = audio_tracks_for(raw, 'river-kayaking')
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @exp = {}
@@ -168,6 +171,7 @@ class PagesController < ApplicationController
     all = raw['experienceItems'] || []
     @exp  = all.find { |e| e['id'] == 'religious-walk' } || {}
     @home = raw['homePage'] || {}
+    @audio_tracks = audio_tracks_for(raw, 'religious-walk')
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @exp = {}
@@ -188,6 +192,7 @@ class PagesController < ApplicationController
     raw = ContentStore.raw
     @page = raw['citadelWalkPage'] || {}
     @home = raw['homePage'] || {}
+    @audio_tracks = audio_tracks_for(raw, 'citadel-walk')
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}
@@ -201,8 +206,20 @@ class PagesController < ApplicationController
     redirect_to '/monuments' and return unless @monument
     @home = raw['homePage'] || {}
     @all_monuments = all.select { |m| m['visible'] != false }
+    @audio_tracks = audio_tracks_for(raw, @monument['id'])
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     redirect_to '/monuments'
+  end
+
+  private
+
+  # Language tracks for a page's audio guide, from the audioGuides collection.
+  # Returns [] when no visible guide matches, so views fall back gracefully.
+  def audio_tracks_for(raw, id)
+    guide = (raw['audioGuides'] || []).find { |g| g['id'] == id && g['visible'] != false }
+    tracks = guide && guide['tracks']
+    return [] unless tracks.is_a?(Array)
+    tracks.select { |t| t.is_a?(Hash) && t['audio'].to_s.strip.present? }
   end
 end

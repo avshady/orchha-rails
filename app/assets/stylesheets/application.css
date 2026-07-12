@@ -1925,12 +1925,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: none; border: none; padding: 0; cursor: pointer;
 }
 .mdet-audio-play svg { width: 100%; height: 100%; display: block; }
+.mdet-audio-play[disabled] { cursor: default; opacity: 0.85; }
 .mdet-audio-track {
   font-family: 'Chivo', sans-serif; font-weight: 400; font-size: 13px;
   color: #fff; text-transform: uppercase; white-space: nowrap; flex-shrink: 0;
 }
+.mdet-audio-lang {
+  flex-shrink: 0; max-width: 130px;
+  background: rgba(255,255,255,0.14); color: #fff;
+  border: 1px solid rgba(255,255,255,0.4); border-radius: 7px;
+  font-family: 'Chivo', sans-serif; font-size: 12px; text-transform: uppercase;
+  padding: 4px 8px; cursor: pointer;
+}
+.mdet-audio-lang option { color: #1a0e06; }
 .mdet-audio-wave {
+  position: relative;
   flex: 1; height: 28px; overflow: hidden;
+}
+.mdet-audio-progress {
+  position: absolute; left: 0; bottom: 10px; height: 3px; width: 0;
+  background: #fff; border-radius: 2px; pointer-events: none;
+  transition: width 0.15s linear;
 }
 .mdet-audio-wave svg { width: 100%; height: 100%; }
 .mdet-audio-time {

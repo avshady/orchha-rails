@@ -21,6 +21,7 @@ module AdminHelper
     "itineraries"       => "Itineraries",
     "freedomFighters"   => "Freedom Fighters",
     "hohoServices"      => "Hop-on Hop-off Services",
+    "audioGuides"       => "Audio Guides",
     "artFrescoesPage"   => "Art of Orchha Page Settings",
     "artFrescoes"       => "Art of Orchha / Frescoes",
     "heroImages"        => "Hero Images",
@@ -87,6 +88,7 @@ module AdminHelper
         { label: "Itineraries", path: admin_collection_path("itineraries"), match: %r{/collections/itineraries} },
         { label: "Freedom Fighters", path: admin_collection_path("freedomFighters"), match: %r{/collections/freedomFighters} },
         { label: "HOHO Services", path: admin_collection_path("hohoServices"), match: %r{/collections/hohoServices} },
+        { label: "Audio Guides", path: admin_collection_path("audioGuides"), match: %r{/collections/audioGuides} },
         { label: "Art of Orchha / Frescoes", path: admin_collection_path("artFrescoes"), match: %r{/(collections/artFrescoes|sections/artFrescoesPage)},
           children: [
             { label: "All Frescoes", path: admin_collection_path("artFrescoes"), match: %r{/collections/artFrescoes} },
@@ -114,5 +116,11 @@ module AdminHelper
   # Heuristic: does this field hold an image/video/media path?
   def media_field?(name)
     name.to_s.match?(/image|photo|video|src|icon|logo|bg\b|thumbnail|panorama/i)
+  end
+
+  # Field that holds audio-track language rows, rendered with a repeatable
+  # upload editor instead of a raw JSON textarea.
+  def audio_tracks_field?(name)
+    name.to_s == "tracks"
   end
 end
