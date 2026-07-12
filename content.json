@@ -860,6 +860,47 @@
       "link": "#"
     }
   ],
+  "soundLightShowPage": {
+    "heading": "Light & Sound Show",
+    "description": "Step into the living history of Orchha as the ancient fort comes alive after dark. The Orchha Sound & Light Show narrates the grandeur of the Bundela dynasty brought to life through dramatic light projections & immersive sound experiences across the fort's 16th-century ramparts.",
+    "heroImage": "/images/lss_hero.jpg",
+    "sideImage": "/images/lss_side.jpg",
+    "languages": "English & Hindi",
+    "duration": "~1 Hour",
+    "venue": "Near Jehangir Mahal",
+    "capacity": "150 - 200",
+    "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
+    "showTimes": {
+      "summer": { "label": "Summer Time", "english": "7:00 pm to 8:00 pm", "hindi": "8:15 to 9:15 pm" },
+      "winter": { "label": "Winter Time", "english": "6:30 pm to 7:30 pm", "hindi": "7:45 pm to 8:45 pm" }
+    },
+    "pricing": {
+      "indian": "₹500",
+      "foreign": "₹750",
+      "note1": "General admission",
+      "note2": "Open-air venue",
+      "note3": "No assigned seating"
+    },
+    "guidelines": [
+      "Arrive at least 20 minutes before the show starts.",
+      "Entry closes 10 minutes after the scheduled start time.",
+      "Outside food and beverages are not permitted.",
+      "Please maintain silence during the show.",
+      "E-rickshaw service not available after 7 PM.",
+      "Tickets are non-transferable and must match the visitor's name."
+    ],
+    "gallery": [
+      "/images/lss_gallery_1.jpg",
+      "/images/lss_gallery_2.jpg",
+      "/images/lss_gallery_3.jpg",
+      "/images/lss_hero.jpg",
+      "/images/lss_side.jpg",
+      "/images/lss_gallery_6.jpg",
+      "/images/lss_gallery_7.jpg",
+      "/images/lss_gallery_8.jpg",
+      "/images/lss_gallery_9.jpg"
+    ]
+  },
   "supportUsPage": {
     "heading": "Sabhyata Foundation",
     "eyebrow": "Sabhyata Foundation Donation",

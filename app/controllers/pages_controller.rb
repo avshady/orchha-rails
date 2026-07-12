@@ -174,6 +174,16 @@ class PagesController < ApplicationController
     @home = {}
   end
 
+  def sound_light_show
+    raw = ContentStore.raw
+    @page = raw['soundLightShowPage'] || {}
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}
+    @home = {}
+  end
+
   def monument
     raw = ContentStore.raw
     all = raw['monuments'] || []
