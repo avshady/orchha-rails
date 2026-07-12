@@ -1,4 +1,5 @@
-<%# Light & Sound Show page %>
+<%# Light & Sound Show — horizontal scroll-jack matching the Figma frame
+    (4648x818): content strip (222.78vw, positions from Figma) + outro. %>
 <% nav = (@home['nav'] || {})
    dd  = nav['discoverDropdown'] || []
    p   = @page
@@ -12,9 +13,8 @@
 
 <div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
 
-<div class="lss-page">
-
-  <%# ── NAVBAR ─────────────────────────────────────────── %>
+<%# Fixed light nav (Figma uses the maroon-on-beige nav variant) %>
+<div class="lss-nav-fixed">
   <div class="mon-nav-wrap">
     <nav class="hist-navbar">
       <div class="nav-links">
@@ -53,18 +53,24 @@
       <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-nav-mobile-book-btn">Book Tickets</a>
     </div>
 
+    <%# Discover dropdown — kept outside .hist-navbar because its backdrop-filter
+        creates a new containing block for position:fixed descendants %>
     <div class="hist-nav-dropdown" role="menu">
       <% dd.each do |item| %>
       <a href="<%= item['url'] %>" class="hist-nav-dropdown-item" role="menuitem"><%= item['label'] %></a>
       <% end %>
     </div>
   </div>
+</div>
 
-  <div class="lss-layout">
-    <div class="lss-main">
+<div class="mdet-wrapper lss-wrapper" data-panels="3.23">
+  <div class="mdet-sticky">
+    <div class="mdet-track" id="mdet-track">
 
-      <%# ── HERO ROW: photo card + heading/description/book ───── %>
-      <section class="lss-hero-row">
+      <%# ══ PANEL 1 — CONTENT STRIP (222.78vw, positions from Figma) ══ %>
+      <section class="mdet-panel lss-strip">
+
+        <%# Hero photo card (Figma x120 y172 631x564) %>
         <div class="lss-hero-card">
           <img src="<%= p['heroImage'] || '/images/lss_hero.jpg' %>" alt="Orchha Fort illuminated at night">
           <div class="lss-hero-card-gradient"></div>
@@ -91,85 +97,80 @@
           </div>
         </div>
 
-        <div class="lss-hero-text">
-          <h1 class="lss-heading"><%= p['heading'] || 'Light & Sound Show' %></h1>
-          <p class="lss-description"><%= p['description'] %></p>
-          <div class="lss-heading-rule"></div>
-          <a href="<%= p['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="lss-book-btn">
-            Book Tickets
-            <svg viewBox="0 0 24 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5h20M16 1l4 4-4 4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </section>
+        <%# Heading column (Figma x776 y183) %>
+        <h1 class="lss-heading"><%= p['heading'] || 'Light & Sound Show' %></h1>
+        <div class="lss-heading-rule"></div>
+        <p class="lss-description"><%= p['description'] %></p>
+        <a href="<%= p['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="lss-book-btn">
+          Book Tickets
+          <svg viewBox="0 0 24 10" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M1 5h20M16 1l4 4-4 4" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
 
-      <%# ── INFO GRID: show times/pricing | visitor guideline | gallery ──── %>
-      <section class="lss-info-grid">
-
-        <div class="lss-col lss-col-times">
-          <h2 class="lss-col-heading">
-            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="12" stroke="#6e1603" stroke-width="1.8"/><path d="M16 9v7l5 3" stroke="#6e1603" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Show times
-          </h2>
-          <div class="lss-card lss-times-card">
-            <div class="lss-times-col">
-              <div class="lss-times-title">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="6" stroke="#6e1603" stroke-width="1.6"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="#6e1603" stroke-width="1.6" stroke-linecap="round"/></svg>
-                <span><%= summer['label'] || 'Summer Time' %></span>
-              </div>
-              <div class="lss-times-row">
-                <span class="lss-times-lang">English</span>
-                <span class="lss-times-hrs"><%= summer['english'] %></span>
-              </div>
-              <div class="lss-times-row">
-                <span class="lss-times-lang">Hindi</span>
-                <span class="lss-times-hrs"><%= summer['hindi'] %></span>
-              </div>
+        <%# Show times column (Figma x1321 y160) %>
+        <h2 class="lss-col-heading lss-times-heading">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="12" stroke="#6e1603" stroke-width="1.8"/><path d="M16 9v7l5 3" stroke="#6e1603" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Show times
+        </h2>
+        <div class="lss-card lss-times-card">
+          <div class="lss-times-col">
+            <div class="lss-times-title">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="6" stroke="#6e1603" stroke-width="1.6"/><path d="M12 2v2M12 20v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M2 12h2M20 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" stroke="#6e1603" stroke-width="1.6" stroke-linecap="round"/></svg>
+              <span><%= summer['label'] || 'Summer Time' %></span>
             </div>
-            <span class="lss-times-sep"></span>
-            <div class="lss-times-col">
-              <div class="lss-times-title">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M4 7l16 10M20 7 4 17M2 12h20" stroke="#6e1603" stroke-width="1.4" stroke-linecap="round"/></svg>
-                <span><%= winter['label'] || 'Winter Time' %></span>
-              </div>
-              <div class="lss-times-row">
-                <span class="lss-times-lang">English</span>
-                <span class="lss-times-hrs"><%= winter['english'] %></span>
-              </div>
-              <div class="lss-times-row">
-                <span class="lss-times-lang">Hindi</span>
-                <span class="lss-times-hrs"><%= winter['hindi'] %></span>
-              </div>
+            <div class="lss-times-row">
+              <span class="lss-times-lang">English</span>
+              <span class="lss-times-hrs"><%= summer['english'] %></span>
+            </div>
+            <div class="lss-times-row">
+              <span class="lss-times-lang">Hindi</span>
+              <span class="lss-times-hrs"><%= summer['hindi'] %></span>
             </div>
           </div>
-
-          <h2 class="lss-col-heading lss-pricing-heading">
-            <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="9" width="24" height="14" rx="2" stroke="#6e1603" stroke-width="1.8"/><circle cx="16" cy="16" r="3.5" stroke="#6e1603" stroke-width="1.8"/></svg>
-            Ticket Pricing
-          </h2>
-          <div class="lss-card lss-pricing-card">
-            <div class="lss-price-col">
-              <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="23" cy="23" r="21" fill="#f5730a"/><circle cx="23" cy="23" r="21" fill="#fff" fill-opacity="0" /><rect x="2" y="9" width="42" height="9.3" fill="#ff9933"/><rect x="2" y="18.3" width="42" height="9.3" fill="#fff"/><rect x="2" y="27.7" width="42" height="9.3" fill="#128807"/><circle cx="23" cy="23" r="4" stroke="#000088" stroke-width="1"/></svg>
-              <p class="lss-price-label">Indian Nationals</p>
-              <p class="lss-price-sub">Per person</p>
-              <p class="lss-price-value"><%= pricing['indian'] || '₹500' %></p>
+          <span class="lss-times-sep"></span>
+          <div class="lss-times-col">
+            <div class="lss-times-title">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2v20M4 7l16 10M20 7 4 17M2 12h20" stroke="#6e1603" stroke-width="1.4" stroke-linecap="round"/></svg>
+              <span><%= winter['label'] || 'Winter Time' %></span>
             </div>
-            <span class="lss-times-sep"></span>
-            <div class="lss-price-col">
-              <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="23" cy="23" r="21" stroke="#6e1603" stroke-width="1.8"/><path d="M2 23h42M23 2c5 5.5 5 34.5 0 42M23 2c-5 5.5-5 34.5 0 42" stroke="#6e1603" stroke-width="1.6"/></svg>
-              <p class="lss-price-label">Foreign Nationals</p>
-              <p class="lss-price-sub">Per person</p>
-              <p class="lss-price-value"><%= pricing['foreign'] || '₹750' %></p>
+            <div class="lss-times-row">
+              <span class="lss-times-lang">English</span>
+              <span class="lss-times-hrs"><%= winter['english'] %></span>
             </div>
-          </div>
-          <div class="lss-card lss-admission-card">
-            <p><%= pricing['note1'] || 'General admission' %></p>
-            <p><%= pricing['note2'] || 'Open-air venue' %></p>
-            <p><%= pricing['note3'] || 'No assigned seating' %></p>
+            <div class="lss-times-row">
+              <span class="lss-times-lang">Hindi</span>
+              <span class="lss-times-hrs"><%= winter['hindi'] %></span>
+            </div>
           </div>
         </div>
 
-        <div class="lss-col lss-col-guideline">
-          <h2 class="lss-col-heading lss-guideline-heading">Visitor<br>Guideline</h2>
+        <h2 class="lss-col-heading lss-pricing-heading">
+          <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="9" width="24" height="14" rx="2" stroke="#6e1603" stroke-width="1.8"/><circle cx="16" cy="16" r="3.5" stroke="#6e1603" stroke-width="1.8"/></svg>
+          Ticket Pricing
+        </h2>
+        <div class="lss-card lss-pricing-card">
+          <div class="lss-price-col">
+            <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="23" cy="23" r="21" fill="#f5730a"/><circle cx="23" cy="23" r="21" fill="#fff" fill-opacity="0" /><rect x="2" y="9" width="42" height="9.3" fill="#ff9933"/><rect x="2" y="18.3" width="42" height="9.3" fill="#fff"/><rect x="2" y="27.7" width="42" height="9.3" fill="#128807"/><circle cx="23" cy="23" r="4" stroke="#000088" stroke-width="1"/></svg>
+            <p class="lss-price-label">Indian Nationals</p>
+            <p class="lss-price-value"><%= pricing['indian'] || '₹500' %></p>
+            <p class="lss-price-sub">Per person</p>
+          </div>
+          <span class="lss-times-sep"></span>
+          <div class="lss-price-col">
+            <svg viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="23" cy="23" r="21" stroke="#6e1603" stroke-width="1.8"/><path d="M2 23h42M23 2c5 5.5 5 34.5 0 42M23 2c-5 5.5-5 34.5 0 42" stroke="#6e1603" stroke-width="1.6"/></svg>
+            <p class="lss-price-label">Foreign Nationals</p>
+            <p class="lss-price-value"><%= pricing['foreign'] || '₹750' %></p>
+            <p class="lss-price-sub">Per person</p>
+          </div>
+        </div>
+        <div class="lss-card lss-admission-card">
+          <p><%= pricing['note1'] || 'General admission' %></p>
+          <p><%= pricing['note2'] || 'Open-air venue' %></p>
+          <p><%= pricing['note3'] || 'No assigned seating' %></p>
+        </div>
+
+        <%# Visitor Guideline column (Figma x1847 y154) %>
+        <div class="lss-guideline-block">
+          <h2 class="lss-guideline-heading">Visitor<br>Guideline</h2>
           <ul class="lss-guideline-list">
             <% icons = [
                  '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="#6e1603" stroke-width="1.6"/><path d="M12 7v5l3.5 2" stroke="#6e1603" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
@@ -188,56 +189,86 @@
           </ul>
         </div>
 
-        <div class="lss-col lss-col-gallery">
-          <h2 class="lss-gallery-heading">Glimpse of Experience</h2>
-          <div class="lss-gallery-grid">
-            <% gallery.each do |img| %>
-            <div class="lss-gallery-tile"><img src="<%= img %>" alt="Light and Sound Show" loading="lazy"></div>
-            <% end %>
-          </div>
+        <%# Gallery (Figma x2314 y132) %>
+        <h2 class="lss-gallery-heading">Glimpse of Experience</h2>
+        <div class="lss-gallery-grid">
+          <% gallery.each do |img| %>
+          <div class="lss-gallery-tile"><img src="<%= img %>" alt="Light and Sound Show" loading="lazy"></div>
+          <% end %>
         </div>
 
+        <div class="mdet-scroll-hint lss-scroll-hint" id="mdet-scroll-hint">
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+
+      </section><%# /lss-strip %>
+
+      <%# ══ PANEL 2 — OUTRO (full-bleed night photo + CTA) ═══════════ %>
+      <section class="mdet-panel lss-outro-panel">
+        <img src="<%= p['sideImage'] || '/images/lss_side.jpg' %>" class="lss-outro-bg" alt="Orchha Fort illuminated during the show">
+        <div class="lss-outro-overlay"></div>
+        <a href="/experiences" class="lss-outro-cta">View All Experiences &amp; Trails</a>
       </section>
-    </div><%# /.lss-main %>
 
-    <div class="lss-side-image">
-      <img src="<%= p['sideImage'] || '/images/lss_side.jpg' %>" alt="Orchha Fort illuminated at night">
-      <div class="lss-side-overlay"></div>
-      <a href="/experiences" class="lss-side-cta">View All Experiences &amp; Trails</a>
-    </div>
-  </div><%# /.lss-layout %>
-
-</div><%# /.lss-page %>
+    </div><%# /mdet-track %>
+  </div><%# /mdet-sticky %>
+</div><%# /mdet-wrapper %>
 
 <script>
-  const lssBtn = document.querySelector('.hist-nav-discover-btn');
-  const lssDd  = document.querySelector('.hist-nav-dropdown');
-  if (lssBtn && lssDd) {
-    let lssCloseTimer;
-    function openLssDd() {
-      clearTimeout(lssCloseTimer);
-      const r = lssBtn.getBoundingClientRect();
-      lssDd.style.top  = (r.bottom + 8) + 'px';
-      lssDd.style.left = r.left + 'px';
-      lssDd.classList.add('open');
-      lssBtn.classList.add('open');
-      lssBtn.setAttribute('aria-expanded', 'true');
+(function() {
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+  const wrapper = document.querySelector('.lss-wrapper');
+  const sticky  = document.querySelector('.mdet-sticky');
+  const hint    = document.getElementById('mdet-scroll-hint');
+
+  if (wrapper && sticky && !isMobile) {
+    const panels = parseFloat(wrapper.dataset.panels || '3.23');
+    wrapper.style.height = (panels * 100) + 'vh';
+
+    function updateHoriz() {
+      const wrapperTop  = wrapper.offsetTop;
+      const totalScroll = wrapper.offsetHeight - window.innerHeight;
+      const progress    = Math.max(0, Math.min(1, (window.scrollY - wrapperTop) / totalScroll));
+      const maxScroll   = sticky.scrollWidth - window.innerWidth;
+      sticky.scrollLeft = progress * maxScroll;
+      if (hint) hint.style.opacity = progress > 0.01 ? '0' : '1';
     }
-    function closeLssDd() {
-      lssDd.classList.remove('open');
-      lssBtn.classList.remove('open');
-      lssBtn.setAttribute('aria-expanded', 'false');
-    }
-    function scheduleCloseLssDd() { lssCloseTimer = setTimeout(closeLssDd, 200); }
-    lssBtn.addEventListener('mouseenter', openLssDd);
-    lssBtn.addEventListener('mouseleave', scheduleCloseLssDd);
-    lssDd.addEventListener('mouseenter', () => clearTimeout(lssCloseTimer));
-    lssDd.addEventListener('mouseleave', scheduleCloseLssDd);
-    lssBtn.addEventListener('click', e => { if (lssDd.classList.contains('open')) return; e.preventDefault(); openLssDd(); });
-    document.addEventListener('click', closeLssDd);
-    lssDd.addEventListener('click', e => e.stopPropagation());
+
+    window.addEventListener('scroll', updateHoriz, { passive: true });
+    updateHoriz();
   }
 
+  const navBtn = document.querySelector('.hist-nav-discover-btn');
+  const navDd  = document.querySelector('.hist-nav-dropdown');
+  if (navBtn && navDd) {
+    let navDdCloseTimer;
+    function openDd() {
+      clearTimeout(navDdCloseTimer);
+      const r = navBtn.getBoundingClientRect();
+      navDd.style.top  = (r.bottom + 8) + 'px';
+      navDd.style.left = r.left + 'px';
+      navDd.classList.add('open');
+      navBtn.classList.add('open');
+      navBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDd() {
+      navDd.classList.remove('open');
+      navBtn.classList.remove('open');
+      navBtn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleCloseDd() { navDdCloseTimer = setTimeout(closeDd, 200); }
+    navBtn.addEventListener('mouseenter', openDd);
+    navBtn.addEventListener('mouseleave', scheduleCloseDd);
+    navDd.addEventListener('mouseenter', () => clearTimeout(navDdCloseTimer));
+    navDd.addEventListener('mouseleave', scheduleCloseDd);
+    navBtn.addEventListener('click', e => { if (navDd.classList.contains('open')) return; e.preventDefault(); openDd(); });
+    document.addEventListener('click', closeDd);
+    navDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ─────────────────────────────────
   const histHamburgerBtn = document.getElementById('hist-nav-hamburger-btn');
   const histMobileMenu   = document.getElementById('hist-nav-mobile-menu');
   const histMobileClose  = document.getElementById('hist-nav-mobile-close-btn');
@@ -256,4 +287,5 @@
     if (histMobileClose) histMobileClose.addEventListener('click', closeHistMobileMenu);
     histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
   }
+})();
 </script>
