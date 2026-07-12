@@ -865,7 +865,22 @@
     { "id": "eco-trail", "title": "Eco Trail", "tracks": [], "visible": true },
     { "id": "river-kayaking", "title": "River Kayaking", "tracks": [], "visible": true },
     { "id": "religious-walk", "title": "Religious Walk", "tracks": [], "visible": true },
-    { "id": "art-walk", "title": "Art Walk", "tracks": [], "visible": true }
+    { "id": "art-walk", "title": "Art Walk", "tracks": [], "visible": true },
+    { "id": "orchha-fort-complex", "title": "Orchha Fort Complex", "tracks": [], "visible": true },
+    { "id": "ram-raja-temple", "title": "Ram Raja Temple", "tracks": [], "visible": true },
+    { "id": "chaturbhuj-temple", "title": "Chaturbhuj Temple", "tracks": [], "visible": true },
+    { "id": "raja-mahal", "title": "Raja Mahal", "tracks": [], "visible": true },
+    { "id": "jahangir-mahal", "title": "Jahangir Mahal", "tracks": [], "visible": true },
+    { "id": "sundar-mahal", "title": "Sundar Mahal", "tracks": [], "visible": true },
+    { "id": "lakshmi-narayan-temple", "title": "Lakshmi Narayan Temple", "tracks": [], "visible": true },
+    { "id": "orchha-chhatris", "title": "Orchha Chhatris", "tracks": [], "visible": true },
+    { "id": "hanuman-mandir", "title": "Hanuman Mandir", "tracks": [], "visible": true },
+    { "id": "rai-praveen-mahal", "title": "Rai Praveen Mahal", "tracks": [], "visible": true },
+    { "id": "teen-dasiyon-ki-haveli", "title": "Teen Dasiyon Ki Haveli", "tracks": [], "visible": true },
+    { "id": "sheesh-mahal", "title": "Sheesh Mahal", "tracks": [], "visible": true },
+    { "id": "shiva-temple", "title": "Shiva Temple", "tracks": [], "visible": true },
+    { "id": "baroodkhana", "title": "Baroodkhana", "tracks": [], "visible": true },
+    { "id": "wildlife-sanctuary", "title": "Wildlife Sanctuary", "tracks": [], "visible": true }
   ],
   "citadelWalkPage": {
     "heading": "Citadel Walk",
