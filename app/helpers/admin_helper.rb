@@ -17,6 +17,8 @@ module AdminHelper
     "itineraries"       => "Itineraries",
     "freedomFighters"   => "Freedom Fighters",
     "hohoServices"      => "Hop-on Hop-off Services",
+    "artFrescoesPage"   => "Art of Orchha Page Settings",
+    "artFrescoes"       => "Art of Orchha / Frescoes",
     "heroImages"        => "Hero Images",
     "journeyImages"     => "Journey Images",
     "homeTrails"        => "Home Trails",
@@ -73,7 +75,12 @@ module AdminHelper
         { label: "Museums", path: admin_collection_path("museums"), match: %r{/collections/museums} },
         { label: "Itineraries", path: admin_collection_path("itineraries"), match: %r{/collections/itineraries} },
         { label: "Freedom Fighters", path: admin_collection_path("freedomFighters"), match: %r{/collections/freedomFighters} },
-        { label: "HOHO Services", path: admin_collection_path("hohoServices"), match: %r{/collections/hohoServices} }
+        { label: "HOHO Services", path: admin_collection_path("hohoServices"), match: %r{/collections/hohoServices} },
+        { label: "Art of Orchha / Frescoes", path: admin_collection_path("artFrescoes"), match: %r{/(collections/artFrescoes|sections/artFrescoesPage)},
+          children: [
+            { label: "All Frescoes", path: admin_collection_path("artFrescoes"), match: %r{/collections/artFrescoes} },
+            { label: "Page Settings", path: admin_edit_section_path("artFrescoesPage"), match: %r{/sections/artFrescoesPage} }
+          ] }
       ] },
       { group: "Library", items: [
         { label: "Media", path: admin_media_path, match: %r{/admin/media} },

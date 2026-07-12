@@ -1770,6 +1770,28 @@
       "contributionText": "Gandhi’s mass movements, including the Non-Cooperation Movement, the Salt March, and the Quit India Movement, mobilized ordinary Indians across every region, including Bundelkhand, turning independence into a truly popular struggle."
     }
   ],
+  "artFrescoesPage": {
+    "heading": "Art of Orchha / Frescoes",
+    "filterCategories": [
+      {"label": "All", "value": "all"},
+      {"label": "Lakshmi Narayan Temple", "value": "lakshmi-narayan-temple"},
+      {"label": "Raja Mahal", "value": "raja-mahal"}
+    ]
+  },
+  "artFrescoes": [
+    { "id": "af-1", "image": "/images/art_fresco_1.jpg", "category": "raja-mahal" },
+    { "id": "af-2", "image": "/images/art_fresco_2.jpg", "category": "raja-mahal" },
+    { "id": "af-3", "image": "/images/art_fresco_3.jpg", "category": "raja-mahal" },
+    { "id": "af-4", "image": "/images/art_fresco_4.jpg", "category": "raja-mahal" },
+    { "id": "af-5", "image": "/images/art_fresco_5.jpg", "category": "raja-mahal" },
+    { "id": "af-6", "image": "/images/art_fresco_6.jpg", "category": "raja-mahal" },
+    { "id": "af-7", "image": "/images/art_fresco_7.jpg", "category": "raja-mahal" },
+    { "id": "af-8", "image": "/images/art_fresco_8.jpg", "category": "raja-mahal" },
+    { "id": "af-9", "image": "/images/art_fresco_9.jpg", "category": "raja-mahal" },
+    { "id": "af-10", "image": "/images/art_fresco_10.jpg", "category": "raja-mahal" },
+    { "id": "af-11", "image": "/images/art_fresco_11.jpg", "category": "raja-mahal" },
+    { "id": "af-12", "image": "/images/art_fresco_12.jpg", "category": "raja-mahal" }
+  ],
   "hohoServices": [
     {
       "id": "e-bus",

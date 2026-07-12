@@ -1,0 +1,226 @@
+<%# Art of Orchha / Frescoes — gallery grid of palace & temple murals %>
+<% ft       = (@home['footer'] || {})
+   ft_links = ft['links'] || []
+   nav      = @home['nav']   || {}
+   dd       = nav['discoverDropdown'] || []
+   vs       = @home['visit'] || {}
+   items    = @items.presence || []
+   cats     = @page['filterCategories'] || [
+     {'label'=>'All','value'=>'all'},
+     {'label'=>'Lakshmi Narayan Temple','value'=>'lakshmi-narayan-temple'},
+     {'label'=>'Raja Mahal','value'=>'raja-mahal'}
+   ]
+%>
+
+<%# Sticky HOHO button %>
+<div class="sticky-hoho">
+  <a href="/hoho">HOHO Service</a>
+</div>
+
+<div class="aof-page">
+
+  <%# ── NAVBAR ─────────────────────────────────────────── %>
+  <div class="mon-nav-wrap">
+    <nav class="hist-navbar">
+      <div class="nav-links">
+        <div class="nav-discover">
+          <a href="/" class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+            Discover Orchha
+            <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-link">News</a>
+        <a href="/support-us" class="hist-nav-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-link">Sabhyata Foundation</a>
+      </div>
+      <button class="hist-nav-hamburger" id="hist-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-book-btn">Book Tickets</a>
+    </nav>
+
+    <div class="hist-nav-mobile-menu" id="hist-nav-mobile-menu">
+      <button class="hist-nav-mobile-close" id="hist-nav-mobile-close-btn" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="hist-nav-mobile-links">
+        <% dd.each do |item| %>
+        <a href="<%= item['url'] %>" class="hist-nav-mobile-link"><%= item['label'] %></a>
+        <% end %>
+        <a href="/plan-your-visit" class="hist-nav-mobile-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-mobile-link">News</a>
+        <a href="/support-us" class="hist-nav-mobile-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-mobile-link">Sabhyata Foundation</a>
+      </div>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-nav-mobile-book-btn">Book Tickets</a>
+    </div>
+
+    <%# Discover dropdown — kept outside .hist-navbar because its backdrop-filter
+        creates a new containing block for position:fixed descendants %>
+    <div class="hist-nav-dropdown" role="menu">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="hist-nav-dropdown-item" role="menuitem"><%= item['label'] %></a>
+      <% end %>
+    </div>
+  </div>
+
+  <%# ── HEADER ─────────────────────────────────────────── %>
+  <header class="aof-header">
+    <h1 class="aof-heading"><%= @page['heading'] || 'Art of Orchha / Frescoes' %></h1>
+  </header>
+
+  <%# ── GALLERY ────────────────────────────────────────── %>
+  <section class="aof-section">
+    <div class="evt-filter-tabs">
+      <% cats.each_with_index do |cat, i| %>
+      <button class="evt-tab aof-tab <%= i == 0 ? 'active' : '' %>"
+              data-cat="<%= cat['value'] %>"
+              role="tab"
+              aria-selected="<%= i == 0 ? 'true' : 'false' %>">
+        <%= cat['label'] %>
+      </button>
+      <% end %>
+    </div>
+
+    <div class="aof-grid-wrap">
+      <div class="aof-grid" id="aof-grid">
+        <% items.each do |f| %>
+        <div class="aof-card" data-cat="<%= f['category'] || 'raja-mahal' %>">
+          <img src="<%= f['image'] %>" alt="Orchha fresco" loading="lazy">
+          <div class="aof-card-logos">
+            <img src="/images/mpt_logo.png" class="aw-logo-mpt" alt="MPT">
+            <img src="/images/incredible_india.png" class="aw-logo-ii" alt="Incredible India">
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <p class="aof-empty" id="aof-empty" style="display:none;">No frescoes found in this category yet.</p>
+
+      <div class="aof-translate" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 5h9M8.5 3v2.5M6 8c1 2.5 3 4.5 6 6M11 8c-.7 3-3 6-7 7.5M14 21l4-9 4 9M15.5 18h5" stroke="#1a0a00" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Translate</span>
+        <svg viewBox="0 0 10 6" fill="none" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="#1a0a00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <%# ── VISIT ORCHHA (reused) ──────────────────────────── %>
+  <div class="visit-wrap">
+    <div class="visit-section">
+      <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
+      <div class="visit-content">
+        <h2 class="visit-heading"><em>Visit</em> Orchha</h2>
+        <div class="visit-links">
+          <% (vs['links'] || [{'label'=>'How to Reach Orchha','url'=>'/reach'},{'label'=>'Travel Options','url'=>'/travel'},{'label'=>'Stay Options','url'=>'/stay'}]).each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="visit-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%# ── FOOTER ─────────────────────────────────────────── %>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <% ft_links.each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="footer-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+        <div class="footer-logos">
+          <img src="/images/incredible_india.png" alt="Incredible India" class="footer-logo-ii">
+          <img src="/images/mpt_logo.png" alt="MPTDC" class="footer-logo-mptdc">
+          <img src="/images/footer_logo_sabhyata.png" alt="Sabhyata Foundation" class="footer-logo-sabhyata">
+        </div>
+        <div class="footer-map">
+          <img src="/images/footer_map.jpg" alt="Orchha map">
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span class="footer-copy"><%= ft['copyright'] || '@2026ORCHHA' %></span>
+        <span class="footer-copy"><%= ft['org'] || 'SABHYATA Foundation' %></span>
+      </div>
+    </div>
+  </footer>
+
+</div><%# /.aof-page %>
+
+<script>
+  // ── Navbar dropdown ───────────────────────────────────────
+  const aofBtn = document.querySelector('.hist-nav-discover-btn');
+  const aofDd  = document.querySelector('.hist-nav-dropdown');
+  if (aofBtn && aofDd) {
+    let aofCloseTimer;
+    function openAofDd() {
+      clearTimeout(aofCloseTimer);
+      const r = aofBtn.getBoundingClientRect();
+      aofDd.style.top  = (r.bottom + 8) + 'px';
+      aofDd.style.left = r.left + 'px';
+      aofDd.classList.add('open');
+      aofBtn.classList.add('open');
+      aofBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeAofDd() {
+      aofDd.classList.remove('open');
+      aofBtn.classList.remove('open');
+      aofBtn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleCloseAofDd() { aofCloseTimer = setTimeout(closeAofDd, 200); }
+    aofBtn.addEventListener('mouseenter', openAofDd);
+    aofBtn.addEventListener('mouseleave', scheduleCloseAofDd);
+    aofDd.addEventListener('mouseenter', () => clearTimeout(aofCloseTimer));
+    aofDd.addEventListener('mouseleave', scheduleCloseAofDd);
+    aofBtn.addEventListener('click', e => { if (aofDd.classList.contains('open')) return; e.preventDefault(); openAofDd(); });
+    document.addEventListener('click', closeAofDd);
+    aofDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ───────────────────────────────────
+  const histHamburgerBtn = document.getElementById('hist-nav-hamburger-btn');
+  const histMobileMenu   = document.getElementById('hist-nav-mobile-menu');
+  const histMobileClose  = document.getElementById('hist-nav-mobile-close-btn');
+  if (histHamburgerBtn && histMobileMenu) {
+    function openHistMobileMenu() {
+      histMobileMenu.classList.add('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeHistMobileMenu() {
+      histMobileMenu.classList.remove('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    histHamburgerBtn.addEventListener('click', openHistMobileMenu);
+    if (histMobileClose) histMobileClose.addEventListener('click', closeHistMobileMenu);
+    histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
+  }
+
+  // ── Filter by category ───────────────────────────────
+  const aofCards = Array.from(document.querySelectorAll('.aof-card'));
+  const aofTabs  = Array.from(document.querySelectorAll('.aof-tab'));
+  const aofEmpty = document.getElementById('aof-empty');
+
+  function applyAofFilter(cat) {
+    let visible = 0;
+    aofCards.forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    aofEmpty.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  aofTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      aofTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+      tab.classList.add('active');
+      tab.setAttribute('aria-selected','true');
+      applyAofFilter(tab.dataset.cat);
+    });
+  });
+</script>
