@@ -860,28 +860,44 @@
       "link": "#"
     }
   ],
+  "newsPage": {
+    "heading": "Orchha in News",
+    "subheading": "A curated stream of heritage stories, conservation updates, cultural events, and evolving narratives from the heart of Orchha.",
+    "filterCategories": [
+      {"label": "All", "value": "all"},
+      {"label": "Heritage", "value": "heritage"},
+      {"label": "Tourism", "value": "tourism"},
+      {"label": "Events", "value": "events"}
+    ]
+  },
   "newsItems": [
     {
       "id": "news-1775719037425",
-      "heading": "UNESCO Nomination",
+      "heading": "The Revival of Orchha’s Historic Monuments",
+      "category": "heritage",
+      "date": "9 June 2026",
       "text": "The Modern Day Revival of Orchha is Not Accidental - It is the Result of Deliberate, Careful Stewardship. Sabhyata Foundation’s Work in Orchha is Built on a Single Conviction: That India’s Heritage Sites Deserve to be Experienced, Not just Preserved.",
-      "image": "/uploads/1775719029959-733741995.png",
+      "image": "/images/heritage_jahangir.jpg",
       "link": "#",
       "visible": true
     },
     {
       "id": "news-1775719097618",
-      "heading": "UNESCO Nomination",
+      "heading": "UNESCO Nomination: Orchha’s Living Heritage",
+      "category": "heritage",
+      "date": "18 May 2026",
       "text": "The Modern Day Revival of Orchha is Not Accidental - It is the Result of Deliberate, Careful Stewardship. Sabhyata Foundation’s Work in Orchha is Built on a Single Conviction: That India’s Heritage Sites Deserve to be Experienced, Not just Preserved.",
-      "image": "monuments_placeholder.webp",
+      "image": "/images/heritage_raj_mahal.jpg",
       "link": "#",
       "visible": true
     },
     {
       "id": "news-1775719174348",
-      "heading": "UNESCO Nomination",
-      "text": "The Modern Day Revival of Orchha is Not Accidental - It is the Result of Deliberate, Careful Stewardship. Sabhyata Foundation’s Work in Orchha is Built on a Single Conviction: That India’s Heritage Sites Deserve to be Experienced, Not just Preserved.",
-      "image": "monuments_placeholder.webp",
+      "heading": "Ram Navmi Celebrations Light Up Orchha",
+      "category": "events",
+      "date": "27 March 2026",
+      "text": "Thousands gathered at Ram Raja Temple as Orchha marked Ram Navmi with processions, devotional song, and lights along the Betwa ghats, continuing a tradition of celebration unique to the town where Ram Ji is worshipped as king.",
+      "image": "/images/hoho_stop_ramraja.jpg",
       "link": "#",
       "visible": true
     }

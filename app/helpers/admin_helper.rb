@@ -12,6 +12,7 @@ module AdminHelper
     "events"            => "Events",
     "accommodationPage" => "Accommodation Page Settings",
     "accommodations"    => "Hotels & Homestays",
+    "newsPage"          => "News Page Settings",
     "newsItems"         => "News",
     "museums"           => "Museums",
     "itineraries"       => "Itineraries",
@@ -71,7 +72,11 @@ module AdminHelper
         { label: "Custom Pages", path: admin_pages_path, match: %r{/admin/pages} }
       ] },
       { group: "Content", items: [
-        { label: "News", path: admin_collection_path("newsItems"), match: %r{/collections/newsItems} },
+        { label: "News", path: admin_collection_path("newsItems"), match: %r{/(collections/newsItems|sections/newsPage)},
+          children: [
+            { label: "All News", path: admin_collection_path("newsItems"), match: %r{/collections/newsItems} },
+            { label: "Page Settings", path: admin_edit_section_path("newsPage"), match: %r{/sections/newsPage} }
+          ] },
         { label: "Museums", path: admin_collection_path("museums"), match: %r{/collections/museums} },
         { label: "Itineraries", path: admin_collection_path("itineraries"), match: %r{/collections/itineraries} },
         { label: "Freedom Fighters", path: admin_collection_path("freedomFighters"), match: %r{/collections/freedomFighters} },
