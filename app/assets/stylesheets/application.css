@@ -4257,11 +4257,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .hoho-stop-content { flex: 1; min-width: 0; }
 .hoho-segment-chip {
-  display: inline-flex; align-items: center; gap: 6px;
-  margin-bottom: 10px; padding: 4px 12px;
-  background: #fff; border: 1px solid rgba(110, 22, 3, 0.25); border-radius: 20px;
-  font-family: 'Gambetta Variable', serif; font-size: 12px; color: #6e1603; white-space: nowrap;
+  display: flex; align-items: center; gap: 6px;
+  margin-bottom: 10px; padding: 8px 14px;
+  background: rgba(110, 22, 3, 0.07); border-radius: 10px;
+  font-family: 'Chivo', sans-serif; font-size: 13px; color: #6e1603;
+  flex-wrap: wrap;
 }
+.hoho-segment-icon { flex-shrink: 0; width: 10px; height: 17px; }
+.hoho-segment-label { opacity: 0.65; }
+.hoho-segment-value { font-weight: 700; }
 .hoho-segment-dot { opacity: 0.6; }
 .hoho-stop-main { display: flex; align-items: center; gap: 12px; }
 .hoho-stop-name {

@@ -141,16 +141,19 @@
                     <div class="hoho-stop-content">
                       <% if stop['distanceFromPrev'].present? %>
                       <div class="hoho-segment-chip">
-                        <span><%= stop['distanceFromPrev'] %></span>
-                        <span class="hoho-segment-dot">&middot;</span>
-                        <span><%= stop['durationFromPrev'] %></span>
+                        <svg class="hoho-segment-icon" viewBox="0 0 12 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M6 1v18M6 1 2 5M6 1l4 4M6 19l-4-4M6 19l4-4" stroke="#6e1603" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        <span class="hoho-segment-label">Distance:</span>
+                        <span class="hoho-segment-value"><%= stop['distanceFromPrev'] %></span>
+                        <span class="hoho-segment-dot">&bull;</span>
+                        <span class="hoho-segment-label">Duration:</span>
+                        <span class="hoho-segment-value"><%= stop['durationFromPrev'] %></span>
                       </div>
                       <% end %>
                       <div class="hoho-stop-main">
-                        <span class="hoho-stop-name"><%= stop['name'] %></span>
                         <% if stop['image'].present? %>
                         <img class="hoho-stop-photo" src="<%= stop['image'] %>" alt="<%= stop['name'] %>" loading="lazy">
                         <% end %>
+                        <span class="hoho-stop-name"><%= stop['name'] %></span>
                       </div>
                     </div>
                   </li>
