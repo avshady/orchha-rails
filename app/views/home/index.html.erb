@@ -330,17 +330,17 @@
      'linear-gradient(to bottom, rgba(0,0,0,0) 51.754%, rgba(0,0,0,1) 100%)'
    ]
 %>
-<section class="exp-section">
-  <div class="exp-header">
-    <h2 class="exp-title"><%= ex['heading'] || 'Where History Becomes an Experience' %></h2>
-    <p class="exp-subtitle"><%= ex['subtitle'] || 'From adventures on the Betwa River to spectacular sunsets, heritage light shows, and immersive cultural moments, discover experiences that reveal the timeless charm of Orchha beyond its monuments.' %></p>
+<section class="hxp-section">
+  <div class="hxp-header">
+    <h2 class="hxp-title"><%= ex['heading'] || 'Where History Becomes an Experience' %></h2>
+    <p class="hxp-subtitle"><%= ex['subtitle'] || 'From adventures on the Betwa River to spectacular sunsets, heritage light shows, and immersive cultural moments, discover experiences that reveal the timeless charm of Orchha beyond its monuments.' %></p>
   </div>
-  <div class="exp-grid">
+  <div class="hxp-grid">
     <% 3.times do |i|
          c    = exc[i] || exd[i]
          tall = (c['tall'] == true) || (i == 0)
     %>
-    <a href="<%= c['link'] %>" class="exp-card<%= tall ? ' exp-card-tall' : '' %>">
+    <a href="<%= c['link'] %>" class="hxp-card<%= tall ? ' hxp-card-tall' : '' %>">
       <div class="hcard-bg" aria-hidden="true">
         <img src="<%= c['image'] %>" alt="">
         <div class="hcard-overlay" style="background: <%= ex_gradients[i] %>"></div>

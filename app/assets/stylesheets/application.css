@@ -364,35 +364,37 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .trails-explore-btn:hover { background: rgba(110,22,3,0.08); }
 
 /* ── EXPERIENCES ──────────────────────────────────────── */
-.exp-section {
+/* hxp-* = home "Where History Becomes an Experience" — deliberately NOT
+   exp-* to avoid colliding with the experiences listing page's classes. */
+.hxp-section {
   background: #e7ded5; padding: 50px 0 70px;
   display: flex; flex-direction: column; gap: 32px; align-items: center;
 }
-.exp-header {
+.hxp-header {
   display: flex; flex-direction: column; gap: 12px; align-items: center;
   text-align: center;
 }
-.exp-title {
+.hxp-title {
   font-family: 'Scotch Display', serif; font-weight: 600; font-style: normal;
   font-size: 52px; line-height: 95%; color: #6e1603; text-align: center;
   white-space: nowrap;
 }
-.exp-subtitle {
+.hxp-subtitle {
   font-family: 'Gambetta Variable', serif; font-weight: 600; font-style: normal;
   font-size: 20px; line-height: 21.897px; color: #000; text-align: center; width: 980px;
 }
-.exp-grid {
+.hxp-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr; gap: 16px;
   width: min(1200px, calc(100% - 48px));
   height: 528px;
 }
-.exp-card {
+.hxp-card {
   position: relative; border-radius: 10px; overflow: hidden;
   display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between;
   padding: 13px 20px;
 }
-.exp-card-tall { grid-row: span 2; }
+.hxp-card-tall { grid-row: span 2; }
 
 /* ── CUISINE ─────────────────────────────────────────── */
 .cuisine-section {
@@ -706,7 +708,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
   /* Cuisine */
   .cuisine-section { padding: 40px 0 50px; gap: 20px; }
-  .cuisine-title { font-size: 36px; }
+  .cuisine-title { font-size: 36px; white-space: normal; padding: 0 20px; }
   .cuisine-card { width: 240px; height: 270px; }
 
   /* Hero */
@@ -745,11 +747,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .trails-cards-row { grid-template-columns: 1fr 1fr; gap: 14px; }
 
   /* Home Experiences preview */
-  .exp-title { white-space: normal; font-size: 38px; }
-  .exp-subtitle { width: 100%; padding: 0 20px; }
-  .exp-grid { grid-template-columns: 1fr; grid-template-rows: none; height: auto; gap: 14px; }
-  .exp-card { height: 260px; }
-  .exp-card-tall { grid-row: auto; height: 320px; }
+  .hxp-title { white-space: normal; font-size: 38px; padding: 0 20px; }
+  .hxp-subtitle { width: 100%; padding: 0 20px; }
+  .hxp-grid { grid-template-columns: 1fr; grid-template-rows: none; height: auto; gap: 14px; }
+  .hxp-card { height: 260px; }
+  .hxp-card-tall { grid-row: auto; height: 320px; }
 }
 
 /* ════════════════════════════════════════════════════════
