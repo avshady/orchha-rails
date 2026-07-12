@@ -13,6 +13,7 @@ module AdminHelper
     "accommodationPage" => "Accommodation Page Settings",
     "accommodations"    => "Hotels & Homestays",
     "soundLightShowPage" => "Light & Sound Show Page",
+    "citadelWalkPage"   => "Citadel Walk Page",
     "supportUsPage"     => "Support Us Page Settings",
     "newsPage"          => "News Page Settings",
     "newsItems"         => "News",
@@ -72,6 +73,7 @@ module AdminHelper
             { label: "Page Settings", path: admin_edit_section_path("accommodationPage"), match: %r{/sections/accommodationPage} }
           ] },
         { label: "Light & Sound Show", path: admin_edit_section_path("soundLightShowPage"), match: %r{/sections/soundLightShowPage} },
+        { label: "Citadel Walk", path: admin_edit_section_path("citadelWalkPage"), match: %r{/sections/citadelWalkPage} },
         { label: "Support Us", path: admin_edit_section_path("supportUsPage"), match: %r{/sections/supportUsPage} },
         { label: "Custom Pages", path: admin_pages_path, match: %r{/admin/pages} }
       ] },

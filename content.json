@@ -860,6 +860,29 @@
       "link": "#"
     }
   ],
+  "citadelWalkPage": {
+    "heading": "Citadel Walk",
+    "description": "Behind the Kateela Darwaza - its doors still studded with the iron spikes that once stopped war elephants - lies the world that built Orchha. The Citadel Walk takes you deep into the fort complex, from the palace where the kingdom began to the armoury that kept it standing, from the residence of a queen's most devoted companions to a temple that once held five Shivalingas consecrated to rival the holiest shrines in India. Raja Mahal, Jahangir Mahal, Rai Praveen Mahal, the Barud Khana, Teen Dasiyon ki Haveli, Shiva Temple - and more await within these walls.",
+    "heroImage": "/images/ct_entrance.jpg",
+    "duration": "2.5 - 3 Hours",
+    "durationLabel": "Duration",
+    "guided": "Heritage Walk",
+    "guidedLabel": "Guided",
+    "audioTrack": "Citadel Walk",
+    "outroImage": "/images/cw_outro.jpg",
+    "stops": [
+      { "name": "Kateela Darwaza", "image": "/images/cw_kateela.jpg" },
+      { "name": "Raja Mahal", "image": "/images/cw_rajamahal.jpg" },
+      { "name": "Jahangir Mahal", "image": "/images/cw_jahangir.jpg" },
+      { "name": "Baroud Khana", "image": "/images/cw_baroud.jpg" },
+      { "name": "Rai Praveen Mahal", "image": "/images/cw_raipraveen.jpg" },
+      { "name": "Teen Dasiya", "image": "/images/cw_teendasiya.jpg" },
+      { "name": "Shiva Temple", "image": "/images/cw_shiva.jpg" },
+      { "name": "Vanvasi Mandir", "image": "/images/cw_vanvasi.jpg" },
+      { "name": "Panchmukhi Mandir", "image": "/images/cw_panchmukhi.jpg" },
+      { "name": "Tulsi Ghat", "image": "/images/cw_tulsighat.jpg" }
+    ]
+  },
   "soundLightShowPage": {
     "heading": "Light & Sound Show",
     "description": "Step into the living history of Orchha as the ancient fort comes alive after dark. The Orchha Sound & Light Show narrates the grandeur of the Bundela dynasty brought to life through dramatic light projections & immersive sound experiences across the fort's 16th-century ramparts.",

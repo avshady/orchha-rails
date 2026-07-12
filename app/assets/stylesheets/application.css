@@ -4885,3 +4885,134 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
   .lss-outro-panel { min-height: 60vh !important; height: 60vh !important; }
 }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CITADEL WALK PAGE (cw-*)
+   Horizontal scroll-jack; positions mapped from the 8794x818 Figma frame
+   (strip starts at x=1440; px/14.4 = vw, px/8.18 = vh).
+   ═══════════════════════════════════════════════════════════════════════ */
+.cw-hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 18%, rgba(0,0,0,0) 42%);
+}
+
+.cw-strip {
+  width: 410.69vw;
+  background: #e7ded5;
+}
+
+/* ── Intro (x91 y204 w603) ── */
+.cw-intro {
+  position: absolute; left: 6.32vw; top: 24.94vh; width: 41.88vw;
+  display: flex; flex-direction: column; gap: 1.96vh;
+}
+.cw-heading {
+  font-family: 'Scotch Display', serif; font-weight: 600;
+  font-size: 4.258vw; line-height: 1.109; color: #6e1603;
+  margin: 0;
+}
+.cw-description {
+  font-family: 'Gambetta Variable', serif; font-weight: 500;
+  font-size: 1.458vw; line-height: 1.381; color: #000;
+  width: 39.79vw; margin: 0;
+}
+.cw-info-row { display: flex; align-items: center; gap: 2.85vw; margin-top: 0.9vh; }
+.cw-info-item { display: flex; align-items: center; gap: 0.9vw; }
+.cw-info-icon {
+  flex-shrink: 0; width: 3.958vw; height: 3.958vw; border-radius: 50%;
+  border: 1.6px solid #6e1603;
+  display: flex; align-items: center; justify-content: center;
+}
+.cw-info-icon svg { width: 2vw; height: 2vw; }
+.cw-info-item > div { display: flex; flex-direction: column; }
+.cw-info-label {
+  font-family: 'Gambetta Variable', serif; font-weight: 500;
+  font-size: 1.297vw; letter-spacing: -0.01em; color: #6e1603;
+}
+.cw-info-value {
+  font-family: 'Gambetta Variable', serif; font-weight: 700;
+  font-size: 2.262vw; line-height: 1.21; color: #6e1603; white-space: nowrap;
+}
+
+/* ── Timeline line (card-1 center → card-10 center at y270) ── */
+.cw-timeline-line {
+  position: absolute; left: 75.07vw; top: 33.01vh; width: 311.81vw;
+  border-top: 2px dashed rgba(141, 20, 12, 0.45);
+}
+
+/* ── Numbered monument cards (row1 x888, row2 x3467, y248) ── */
+.cw-cards {
+  position: absolute; top: 30.32vh;
+  display: flex; gap: 6.458vw;
+  list-style: none; margin: 0; padding: 0;
+}
+.cw-cards-1 { left: 61.67vw; }
+.cw-cards-2 { left: 240.76vw; }
+.cw-card { width: 26.74vw; display: flex; flex-direction: column; align-items: center; }
+.cw-card-num {
+  width: 3.056vw; height: 3.056vw; border-radius: 50%;
+  background: #6e1603;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Chivo', sans-serif; font-weight: 700;
+  font-size: 1.887vw; color: #e7ded5; text-transform: capitalize;
+  margin-bottom: 4.52vh;
+  position: relative; z-index: 1;
+}
+.cw-card-photo {
+  position: relative; width: 100%; height: 31.31vh;
+  border-radius: 0.694vw; overflow: hidden;
+  margin-bottom: 1.59vh;
+}
+.cw-card-photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cw-card-logos {
+  position: absolute; top: 1.26vh; left: 1.1vw; right: 1.1vw;
+  display: flex; justify-content: space-between; align-items: flex-start;
+}
+.cw-logo-mpt { height: 1.65vw; width: auto; object-fit: contain; }
+.cw-logo-ii  { height: 1.72vw; width: auto; object-fit: contain; }
+.cw-card-name {
+  font-family: 'Scotch Display', serif; font-weight: 600;
+  font-size: 2.5vw; line-height: 1.349; color: #6e1603; text-align: center;
+  margin: 0;
+}
+
+/* ── "Other places" rotated divider (center x3326 y457) ── */
+.cw-other-places {
+  position: absolute; left: 230.97vw; top: 55.87vh;
+  transform: translate(-50%, -50%) rotate(-90deg);
+  white-space: nowrap;
+  font-family: 'Chivo', sans-serif; font-weight: 700;
+  font-size: 2.907vw; text-transform: uppercase; text-align: center;
+  color: #8d140c; opacity: 0.22;
+}
+
+/* ── Mobile: vertical stack ─────────────────────────────── */
+@media (max-width: 900px) {
+  .cw-strip {
+    width: 100% !important;
+    display: flex; flex-direction: column;
+    padding: 40px 20px 48px;
+    gap: 28px;
+  }
+  .cw-strip > * { position: static !important; width: auto !important; }
+
+  .cw-timeline-line, .cw-other-places { display: none; }
+
+  .cw-intro { gap: 14px; }
+  .cw-heading { font-size: 38px; }
+  .cw-description { font-size: 17px; line-height: 1.5; width: auto; }
+  .cw-info-row { gap: 24px; flex-wrap: wrap; }
+  .cw-info-item { gap: 12px; }
+  .cw-info-icon { width: 46px; height: 46px; }
+  .cw-info-icon svg { width: 24px; height: 24px; }
+  .cw-info-label { font-size: 14px; }
+  .cw-info-value { font-size: 22px; }
+
+  .cw-cards { flex-direction: column; gap: 30px; }
+  .cw-card { width: 100% !important; }
+  .cw-card-num { width: 40px; height: 40px; font-size: 20px; margin-bottom: 12px; }
+  .cw-card-photo { height: 220px; border-radius: 10px; margin-bottom: 10px; }
+  .cw-logo-mpt { height: 20px; }
+  .cw-logo-ii  { height: 22px; }
+  .cw-card-name { font-size: 26px; }
+}

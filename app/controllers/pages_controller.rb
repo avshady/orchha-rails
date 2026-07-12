@@ -184,6 +184,16 @@ class PagesController < ApplicationController
     @home = {}
   end
 
+  def citadel_walk
+    raw = ContentStore.raw
+    @page = raw['citadelWalkPage'] || {}
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}
+    @home = {}
+  end
+
   def monument
     raw = ContentStore.raw
     all = raw['monuments'] || []
