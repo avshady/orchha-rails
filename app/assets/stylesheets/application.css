@@ -2410,6 +2410,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
   z-index: 0;
 }
+.aw-walk-overlay {
+  position: absolute; inset: 0; z-index: 0;
+  background: rgba(0, 0, 0, 0.31);
+  pointer-events: none;
+}
 .aw-walk-content {
   position: relative;
   z-index: 1;
@@ -2428,21 +2433,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0;
 }
 .aw-walk-cta {
-  display: inline-block;
-  padding: 11px 36px;
-  background: #e7ded5;
-  border: 1px solid rgba(26, 14, 6, 0.18);
-  color: #1a0e06;
-  border-radius: 28px;
-  font-family: 'Gambetta', serif;
-  font-weight: 500;
-  font-size: 15px;
+  position: relative; z-index: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 11px 26px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1.5px solid #fff;
+  color: #fff;
+  border-radius: 22px;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
   text-decoration: none;
   white-space: nowrap;
-  letter-spacing: 0.01em;
 }
 .aw-walk-cta:hover {
-  background: #fff;
+  background: rgba(0, 0, 0, 0.4);
 }
 
 /* (keep old panel-2 right styles for any stale references) */
@@ -2553,7 +2558,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .aw-card-grid::before {
   content: '';
   position: absolute;
-  top: 18px;
+  top: 22px;
   left: 12.5%;
   right: 12.5%;
   border-top: 1.5px dashed rgba(110, 22, 3, 0.45);
@@ -2570,23 +2575,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: relative;
   z-index: 1;
   flex-shrink: 0;
-  width: 36px;
-  height: 36px;
-  background: #1a0e06;
+  width: 44px;
+  height: 44px;
+  background: #6e1603;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #fff;
-  font-family: 'Gambetta', serif;
+  color: #e7ded5;
+  font-family: 'Chivo', sans-serif;
   font-weight: 700;
-  font-size: 14px;
-  margin-bottom: 10px;
+  font-size: 20px;
+  margin-bottom: 34px;
 }
 .aw-tc-body {
-  background: #0d0704;
-  border-radius: 12px;
-  padding: 10px 10px 20px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -2595,10 +2597,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .aw-tc-photo {
   position: relative;
   width: 100%;
-  aspect-ratio: 385 / 245;
-  border-radius: 8px;
+  aspect-ratio: 228 / 226;
+  border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 .aw-tc-photo > img {
   width: 100%;
@@ -2607,15 +2609,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .aw-tc-logos {
   position: absolute;
-  top: 9px;
+  top: 13px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 9px;
+  padding: 0 20px;
 }
-.aw-slogo-mpt { height: 18px; }
-.aw-slogo-ii  { height: 24px; }
+.aw-slogo-mpt { height: 22px; }
+.aw-slogo-ii  { height: 28px; }
 .aw-tc-name {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
@@ -2623,21 +2625,25 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   line-height: 1.2;
   color: #6e1603;
   text-align: center;
-  margin: 0 0 12px;
+  margin: 0 0 14px;
+  min-height: 2.4em;      /* reserve 2 lines so single-line names keep buttons aligned */
+  display: flex; align-items: center; justify-content: center;
 }
 .aw-tc-btn {
   display: inline-block;
-  padding: 8px 22px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: rgba(255, 255, 255, 0.75);
-  border-radius: 24px;
-  font-family: 'Gambetta', serif;
-  font-weight: 500;
-  font-size: 13px;
+  padding: 9px 24px;
+  border: 1.5px solid #6e1603;
+  background: rgba(255, 255, 255, 0.01);
+  color: #6e1603;
+  border-radius: 22px;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
   text-decoration: none;
   white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
 }
-.aw-tc-btn:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+.aw-tc-btn:hover { background: #6e1603; color: #fff; }
 
 /* ═══════════════════════════════════════════════════════════════
    ECO TRAIL PAGE  (et-*)
