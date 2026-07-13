@@ -597,15 +597,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .visit-bg-img {
   position: absolute;
-  left: calc(50% + 182px); top: 0;
+  left: calc(50% + 208px); top: 0;
   transform: translateX(-50%);
-  width: 836px; height: 317px;
-  aspect-ratio: 269/102;
-  background-color: lightgray;
-  background-position: 0px -205px;
-  background-size: 150.718% 264.984%;
+  width: 784px; height: 100%;
+  background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
-  mix-blend-mode: darken;
+  /* Fade the left edge into the beige panel (Figma left→right gradient) */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 43%);
+          mask-image: linear-gradient(to right, transparent 0%, #000 43%);
   pointer-events: none;
 }
 
