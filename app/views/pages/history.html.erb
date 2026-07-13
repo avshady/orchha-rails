@@ -128,16 +128,10 @@
     </div>
     <%# New Chapter text below %>
     <div class="hist-new-chapter">
-      <div class="hist-nc-left">
-        <h2 class="hist-nc-heading">
-          <%= nc['heading1'] || 'A New' %><br>
-          <%= nc['heading2'] || 'Chapter for an' %><br>
-          <%= nc['heading3'] || 'Ancient Kingdom' %>
-        </h2>
-      </div>
-      <div class="hist-nc-right">
+      <h2 class="hist-nc-heading"><%= nc['heading'] || 'A New Chapter for an Ancient Kingdom' %></h2>
+      <div class="hist-nc-body">
         <% (nc['paragraphs'] || []).each do |para| %>
-        <p><%= para %></p>
+        <p><%= raw(para) %></p>
         <% end %>
       </div>
     </div>

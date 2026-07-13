@@ -966,19 +966,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ── A New Chapter ──────────────────────────────────── */
 .hist-new-chapter {
   max-width: 1200px; margin: 0 auto; padding: 60px 24px;
-  display: flex; gap: 60px; align-items: flex-start;
+  display: flex; flex-direction: column; gap: 38px;
 }
-.hist-nc-left { flex: 0 0 272px; }
 .hist-nc-heading {
+  max-width: 1121px; margin: 0;
   font-family: 'Scotch Display', serif; font-weight: 600; font-style: normal;
   font-size: 61px; line-height: 1.08; color: #6e1603; text-transform: capitalize;
 }
-.hist-nc-right {
-  flex: 1;
+.hist-nc-body {
+  max-width: 1199px;
   font-family: 'Gambetta Variable', serif; font-weight: 500; font-style: normal;
-  font-size: 20px; line-height: 23.9px; color: #000;
-  display: flex; flex-direction: column; gap: 15px; padding-top: 8px;
+  font-size: 20px; line-height: 23.9px; letter-spacing: -0.2px; color: #000;
+  display: flex; flex-direction: column; gap: 15px;
 }
+.hist-nc-body strong { font-weight: 700; }
 
 /* ── Quote section ──────────────────────────────────── */
 .hist-quote-section {
@@ -1068,8 +1069,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hist-new-orchha-img { height: 340px; background-position: 72% center; }
   .hist-new-orchha-overlay { padding: 40px 24px 0; }
   .hist-new-orchha-heading { font-size: 34px; max-width: 100%; }
-  .hist-new-chapter { flex-direction: column; gap: 24px; }
-  .hist-nc-heading { font-size: 42px; }
+  .hist-new-chapter { gap: 24px; }
+  .hist-nc-heading { font-size: 38px; max-width: 100%; }
+  .hist-nc-body { font-size: 17px; line-height: 1.5; gap: 18px; }
   .hist-quote-text { font-size: 32px; }
   .hist-mptb-acronym { font-size: 72px; }
   .hist-mptb-fullname { font-size: 32px; }
