@@ -3767,6 +3767,121 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
+   MUSEUMS PAGE — Figma 3269-10498
+   ═══════════════════════════════════════════════════════════════════════ */
+.msm-page {
+  background: #e7ded5;
+  min-height: 100vh;
+  padding-top: 43px;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+.msm-header {
+  max-width: 630px;
+  margin: 66px auto 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 17px;
+}
+.msm-heading {
+  color: #6e1603;
+  font-family: 'Scotch Display', serif;
+  font-size: 62px;
+  font-weight: 600;
+  line-height: 95%;
+  margin: 0;
+}
+.msm-subheading {
+  width: 588px;
+  max-width: 100%;
+  color: #000;
+  font-family: 'Gambetta Variable', serif;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 22.744px;
+  align-self: center;
+  margin: 0;
+}
+
+/* ── Museum cards mosaic ────────────────────────────────── */
+.msm-section {
+  max-width: 1200px;
+  margin: 49px auto 45px;
+}
+.msm-grid {
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+}
+.msm-card-feature { flex: 1 1 0; height: 619px; }
+.msm-col {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  gap: 19px;
+}
+.msm-card-small { height: 300px; }
+
+.msm-card {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+}
+.msm-card-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+a.msm-card:hover .msm-card-img { transform: scale(1.04); }
+.msm-card-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 51.75%, #000 100%);
+  pointer-events: none;
+}
+.msm-card-logos {
+  position: absolute;
+  top: 13px;
+  left: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.msm-logo-mpt { width: 44px; height: 30px; object-fit: contain; }
+.msm-logo-ii  { width: 30px; height: 39px; object-fit: contain; }
+.msm-card-name {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 13px;
+  margin: 0;
+  color: #fff;
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 35.5px;
+}
+
+/* ── Mobile ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .msm-header { padding: 0 20px; max-width: 100%; }
+  .msm-heading { font-size: 42px; }
+  .msm-subheading { font-size: 17px; width: 100%; }
+  .msm-section { margin: 32px auto 24px; padding: 0 20px; }
+  .msm-grid { flex-direction: column; }
+  .msm-card-feature { height: 420px; }
+  .msm-card-small { height: 260px; }
+  .msm-card-name { font-size: 24px; line-height: 1.2; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
    SABHYATA FOUNDATION PAGE — horizontal scroll-jack, 3 panels
    ═══════════════════════════════════════════════════════════════════════ */
 .sab-panel {

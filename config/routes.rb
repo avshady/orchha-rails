@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   get "/monuments", to: "pages#monuments"
   get "/monuments/:id", to: "pages#monument"
   get "/accommodation", to: "pages#accommodation"
+  get "/museums", to: "pages#museums"
   get "/events", to: "pages#events"
   get "/events/:id", to: "pages#event"
   get "/sabhyata", to: "pages#sabhyata"

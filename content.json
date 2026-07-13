@@ -995,34 +995,38 @@
       "visible": true
     }
   ],
+  "museumsPage": {
+    "heading": "Museums of Orchha",
+    "subheading": "Experience Orchha’s rich heritage through museums that preserve the past and bring centuries of history to life."
+  },
   "museums": [
     {
-      "id": "topchi-ki-haveli",
+      "id": "chandrashekhar-azad-memorial",
       "number": "01",
+      "name": "Chandra Shekhar Aazad Memorial",
+      "category": "museum",
+      "description": "A tribute to the legendary freedom fighter who drew inspiration from Orchha's spirit of resistance — a memorial that honours his fearless legacy and enduring contribution to India's independence.",
+      "image": "/images/museum_azad_memorial.jpg",
+      "detailPage": "#",
+      "visible": true
+    },
+    {
+      "id": "topchi-ki-haveli",
+      "number": "02",
       "name": "Topchi Ki Haveli",
       "category": "museum",
       "description": "A historic haveli that once housed the royal artillery officers of the Bundela court, now standing as a testament to the military heritage and architectural craftsmanship of Orchha.",
-      "image": "events_placeholder.webp",
+      "image": "/images/museum_topchi_haveli.jpg",
       "detailPage": "#",
       "visible": true
     },
     {
       "id": "baroodkhana",
-      "number": "02",
+      "number": "03",
       "name": "Baroodkhana",
       "category": "museum",
       "description": "Orchha's ancient gunpowder storehouse, an evocative relic of the Bundela dynasty's military might — where the walls still echo with the history of battles fought and kingdoms defended.",
-      "image": "events_placeholder.webp",
-      "detailPage": "#",
-      "visible": true
-    },
-    {
-      "id": "chandrashekhar-azad-memorial",
-      "number": "03",
-      "name": "Chandrashekhar Azad Memorial",
-      "category": "museum",
-      "description": "A tribute to the legendary freedom fighter who drew inspiration from Orchha's spirit of resistance — a memorial that honours his fearless legacy and enduring contribution to India's independence.",
-      "image": "events_placeholder.webp",
+      "image": "/images/museum_baroodkhana.jpg",
       "detailPage": "#",
       "visible": true
     }
