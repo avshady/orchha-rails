@@ -1310,9 +1310,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .mon-filter-row { flex-direction: column; align-items: flex-start; }
   .mon-search { width: 100%; }
   .mon-cards { justify-content: center; }
-  .mon-card { width: calc(50% - 10px); min-width: 160px; }
+  .mon-card { width: calc(50% - 10px); min-width: 0; }
   .mon-card-img { height: 180px; }
   .mon-card-name { width: auto; max-width: 100%; font-size: 22px; line-height: 1.15; }
+}
+@media (max-width: 619px) {
+  .mon-card { width: 100%; }
+  .mon-card-img { height: 220px; }
 }
 
 

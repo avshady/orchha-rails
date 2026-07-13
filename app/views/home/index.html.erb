@@ -98,6 +98,7 @@
       <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
     <div class="nav-mobile-links">
+      <a href="/" class="nav-mobile-link">Home</a>
       <% dd.each do |item| %>
       <a href="<%= item['url'] %>" class="nav-mobile-link"><%= item['label'] %></a>
       <% end %>
