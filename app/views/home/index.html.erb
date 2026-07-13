@@ -484,7 +484,7 @@
   <div class="news-track-wrap">
     <div class="news-track">
       <% nw_items.each do |c| %>
-      <a href="<%= c['link'] %>" class="news-card">
+      <a href="<%= c['link'] %>" class="news-card" data-tag="<%= c['tag'].to_s.downcase %>">
         <div class="news-card-body">
           <div class="news-card-img">
             <img src="<%= c['image'] %>" alt="">
@@ -576,12 +576,49 @@
 </footer>
 
 <script>
+  // ── Orchha in News: filters + carousel arrows ─────────────
+  const newsWrap  = document.querySelector('.news-track-wrap');
+  const newsCards = Array.from(document.querySelectorAll('.news-card'));
+
   document.querySelectorAll('.news-filter-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       document.querySelectorAll('.news-filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      // "events" matches tag "event" too — compare without a trailing "s"
+      const want = btn.dataset.filter.replace(/s$/, '');
+      newsCards.forEach(card => {
+        const tag = (card.dataset.tag || '').replace(/s$/, '');
+        card.style.display = (want === 'all' || tag === want) ? '' : 'none';
+      });
+      if (newsWrap) newsWrap.scrollTo({ left: 0 });
     });
   });
+
+  function newsStep() {
+    const visible = newsCards.find(c => c.style.display !== 'none');
+    return visible ? visible.getBoundingClientRect().width + 20 : 339;
+  }
+  // Timer-driven eased scroll: native smooth scrolling and rAF are both
+  // unreliable in some embedded/webview browsers, timers are not.
+  let newsAnim = null;
+  function newsGlide(delta) {
+    clearInterval(newsAnim);
+    const from = newsWrap.scrollLeft;
+    const to = Math.max(0, Math.min(from + delta, newsWrap.scrollWidth - newsWrap.clientWidth));
+    const start = Date.now(), dur = 350;
+    newsAnim = setInterval(() => {
+      const t = Math.min(1, (Date.now() - start) / dur);
+      const ease = 1 - Math.pow(1 - t, 3);
+      newsWrap.scrollLeft = from + (to - from) * ease;
+      if (t >= 1) clearInterval(newsAnim);
+    }, 16);
+  }
+  const newsPrev = document.getElementById('news-prev');
+  const newsNext = document.getElementById('news-next');
+  if (newsWrap && newsPrev && newsNext) {
+    newsPrev.addEventListener('click', () => newsGlide(-newsStep()));
+    newsNext.addEventListener('click', () => newsGlide( newsStep()));
+  }
 
   // Discover Orchha dropdown — position: fixed so it escapes all stacking contexts
   const discoverBtn = document.querySelector('.nav-discover-btn');

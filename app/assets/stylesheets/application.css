@@ -494,9 +494,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .news-chevron svg { width: 35px; height: 34px; }
 .news-chevron:hover rect { fill: rgba(110,22,3,0.06); }
 .news-track-wrap {
-  width: 100%; overflow: clip; contain: paint;
-  padding-left: calc((100% - min(1200px, calc(100% - 48px))) / 2 + 60px);
+  width: 100%; contain: paint;
+  overflow-x: auto; overflow-y: clip;
+  scrollbar-width: none;
+  /* first card flush with the 1200px controls row (Figma: 1320 strip, 60px pad) */
+  padding-left: calc((100% - min(1200px, calc(100% - 48px))) / 2);
+  padding-right: calc((100% - min(1200px, calc(100% - 48px))) / 2);
 }
+.news-track-wrap::-webkit-scrollbar { display: none; }
 .news-track {
   display: flex; gap: 20px; width: max-content;
 }
@@ -655,7 +660,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .visit-bg-img { left: auto; right: 0; transform: none; }
 
   /* News */
-  .news-track-wrap { padding-left: 24px; }
+  .news-track-wrap { padding-left: 24px; padding-right: 24px; }
 
   /* Celebrate */
   .celebrate-inner { width: calc(100% - 48px); }
@@ -695,7 +700,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .news-controls { width: calc(100% - 32px); }
   .news-filters { gap: 16px; }
   .news-filter-btn { font-size: 15px; }
-  .news-track-wrap { padding-left: 16px; }
+  .news-track-wrap { padding-left: 16px; padding-right: 16px; }
   .news-card { width: 280px; }
 
   /* Celebrate */
