@@ -382,7 +382,7 @@
   <div class="cuisine-scroll-wrapper">
     <div class="cuisine-scroll-track">
       <% (cu_cards + cu_cards).each do |c| %>
-      <a href="<%= c['link'] %>" class="cuisine-card">
+      <div class="cuisine-card">
         <div class="hcard-bg" aria-hidden="true">
           <img src="<%= c['image'] %>" alt="">
           <div class="hcard-overlay" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 51.754%, rgba(0,0,0,1) 100%)"></div>
@@ -390,7 +390,7 @@
         <div class="cuisine-card-info">
           <p class="cuisine-card-name"><%= raw(c['name']) %></p>
         </div>
-      </a>
+      </div>
       <% end %>
     </div>
   </div>

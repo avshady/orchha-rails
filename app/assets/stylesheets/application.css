@@ -191,10 +191,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 16px;
   color: #fff; letter-spacing: 0.1em; text-transform: uppercase; white-space: nowrap;
 }
-/* Desktop: flush to the right edge, left corners only (Figma 3215-8904) */
+/* Desktop: flush to the right edge, left corners only (Figma 3215-8904).
+   right:2px (not 0) — a real reserved-width scrollbar can make the fixed-position
+   viewport and the html{overflow-x:clip} clip box disagree by a pixel or two,
+   slicing off the edge of the tab when it sits at literal right:0. */
 @media (min-width: 901px) {
   .sticky-hoho {
-    right: 0;
+    right: 2px;
     border-radius: 12px 0 0 12px;
     padding: 14px 6px 14px 8px;
     box-shadow: none;
