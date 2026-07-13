@@ -1,6 +1,14 @@
 <%# Experience detail page — Art Walk (horizontal scroll-jacking, 3 panels) %>
 <% nav = (@home['nav'] || {})
    dd  = nav['discoverDropdown'] || []
+   pg  = @page || {}
+   gallery = (pg['galleryImages'].presence || ['/images/aw_card1.jpg', '/images/aw_card2.jpg', '/images/aw_mural_large.jpg'])
+   stops = (pg['stops'].presence || [
+     { 'num' => 1, 'image' => '/images/rm_closeup_main.jpg',  'name' => 'Raja Mahal',        'link' => '/monuments/raja-mahal' },
+     { 'num' => 2, 'image' => '/images/jm_closeup_main.jpg',  'name' => 'Jahangir Mahal',    'link' => '/monuments/jahangir-mahal' },
+     { 'num' => 3, 'image' => '/images/rpm_closeup_main.jpg', 'name' => 'Rai Praveen Mahal', 'link' => '/monuments/rai-praveen-mahal' },
+     { 'num' => 4, 'image' => '/images/lnt_closeup_main.jpg', 'name' => 'Lakshmi Temple',    'link' => '/monuments/lakshmi-narayan-temple' }
+   ])
 %>
 
 <div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
@@ -58,10 +66,10 @@
       <%# ══ PANEL 1 — HERO (full-bleed mural) ═════════════════ %>
       <section class="mdet-panel aw-hero-panel">
         <div class="aw-hero-bg">
-          <img src="/images/aw_hero.jpg" alt="Art Walk — Bundela fresco mural">
+          <img src="<%= pg['heroImage'] || '/images/aw_hero.jpg' %>" alt="Art Walk — Bundela fresco mural">
           <div class="aw-hero-overlay"></div>
         </div>
-        <p class="aw-video-label">Art walk video</p>
+        <p class="aw-video-label"><%= pg['heroLabel'] || 'Art walk video' %></p>
         <div class="mdet-scroll-hint" id="mdet-scroll-hint">
           <span>Scroll to explore</span>
           <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -73,17 +81,8 @@
 
         <%# Left — heading, body, stats %>
         <div class="aw-left">
-          <h1 class="aw-heading">Four Monuments.<br>Centuries of Colour.</h1>
-          <p class="aw-body">
-            Step inside the walls where Orchha's greatest artists left their mark.
-            The Art Walk takes you through four monuments — Raja Mahal, Jahangir Mahal,
-            Rai Praveen Mahal, and Lakshmi Narayan Temple — each carrying a distinct
-            chapter of Bundela artistic tradition. From 16th-century murals believed to
-            have been painted by Kashmiri artists, to the vivid Bundeli frescoes of
-            Lakshmi Narayan Temple, to the palace built for a poet-dancer whose verses
-            silenced an emperor — this is Orchha read not through its history, but
-            through its art.
-          </p>
+          <h1 class="aw-heading"><%= raw(pg['heading'] || 'Four Monuments.<br>Centuries of Colour.') %></h1>
+          <p class="aw-body"><%= pg['body'] || "Step inside the walls where Orchha's greatest artists left their mark. The Art Walk takes you through four monuments — Raja Mahal, Jahangir Mahal, Rai Praveen Mahal, and Lakshmi Narayan Temple — each carrying a distinct chapter of Bundela artistic tradition. From 16th-century murals believed to have been painted by Kashmiri artists, to the vivid Bundeli frescoes of Lakshmi Narayan Temple, to the palace built for a poet-dancer whose verses silenced an emperor — this is Orchha read not through its history, but through its art." %></p>
 
           <div class="aw-stats">
             <div class="aw-stat">
@@ -93,7 +92,7 @@
               </svg>
               <div class="aw-stat-text">
                 <span class="aw-stat-lbl">Duration</span>
-                <span class="aw-stat-num">2 Hours</span>
+                <span class="aw-stat-num"><%= pg['duration'] || '2 Hours' %></span>
               </div>
             </div>
             <div class="aw-stat">
@@ -104,7 +103,7 @@
               </svg>
               <div class="aw-stat-text">
                 <span class="aw-stat-lbl">Guided</span>
-                <span class="aw-stat-num">Heritage Walk</span>
+                <span class="aw-stat-num"><%= pg['guided'] || 'Heritage Walk' %></span>
               </div>
             </div>
           </div>
@@ -114,28 +113,28 @@
         <div class="aw-right-cards">
           <div class="aw-cards-grid">
             <div class="aw-mcard aw-gc1">
-              <img src="/images/aw_card1.jpg" alt="Orchha fresco — elephant panel">
+              <img src="<%= gallery[0] %>" alt="Orchha fresco — elephant panel">
               <div class="aw-mcard-logos">
                 <img src="/images/mpt_logo.png"        class="aw-logo-mpt" alt="MPT">
                 <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
               </div>
             </div>
             <div class="aw-mcard aw-gc2">
-              <img src="/images/aw_card2.jpg" alt="Orchha fresco — court scene">
+              <img src="<%= gallery[1] || gallery[0] %>" alt="Orchha fresco — court scene">
               <div class="aw-mcard-logos">
                 <img src="/images/mpt_logo.png"        class="aw-logo-mpt" alt="MPT">
                 <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
               </div>
             </div>
             <div class="aw-mcard aw-gc3">
-              <img src="/images/aw_mural_large.jpg" alt="Orchha fresco — Krishna">
+              <img src="<%= gallery[2] || gallery[0] %>" alt="Orchha fresco — Krishna">
               <div class="aw-mcard-logos">
                 <img src="/images/mpt_logo.png"        class="aw-logo-mpt" alt="MPT">
                 <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
               </div>
             </div>
           </div>
-          <a href="/experiences" class="mdet-outline-btn aw-gallery-btn">View Art Gallery</a>
+          <a href="<%= pg['galleryCtaLink'] || '/experiences' %>" class="mdet-outline-btn aw-gallery-btn"><%= pg['galleryCtaLabel'] || 'View Art Gallery' %></a>
         </div>
 
       </section><%# /aw-content-panel %>
@@ -146,33 +145,28 @@
         <%# Left col: heading, subtitle, vignette mural %>
         <div class="aw-tr-left">
           <div class="aw-transit-text">
-            <h2 class="aw-transit-heading">The Walk<br>Through Time</h2>
-            <p class="aw-transit-sub">A journey through four icon monuments.<br>One artistic legacy.</p>
+            <h2 class="aw-transit-heading"><%= raw(pg['transitHeading'] || 'The Walk<br>Through Time') %></h2>
+            <p class="aw-transit-sub"><%= raw(pg['transitSub'] || 'A journey through four icon monuments.<br>One artistic legacy.') %></p>
           </div>
-          <img src="/images/aw_vignette.jpg" class="aw-vignette-img" alt="Bundela battle fresco — Raja Mahal mural">
+          <img src="<%= pg['vignetteImage'] || '/images/aw_vignette.jpg' %>" class="aw-vignette-img" alt="Bundela battle fresco — Raja Mahal mural">
         </div>
 
         <%# Right col: numbered step line + 4 monument cards %>
         <div class="aw-tr-right">
           <div class="aw-card-grid">
-            <% [
-              { num: 1, img: 'rm_closeup_main.jpg',  name: 'Raja Mahal',        id: 'raja-mahal' },
-              { num: 2, img: 'jm_closeup_main.jpg',  name: 'Jahangir Mahal',    id: 'jahangir-mahal' },
-              { num: 3, img: 'rpm_closeup_main.jpg', name: 'Rai Praveen Mahal', id: 'rai-praveen-mahal' },
-              { num: 4, img: 'lnt_closeup_main.jpg', name: 'Lakshmi Temple',    id: 'lakshmi-narayan-temple' },
-            ].each do |stop| %>
+            <% stops.each_with_index do |stop, i| %>
             <div class="aw-tc">
-              <div class="aw-tc-dot"><%= stop[:num] %></div>
+              <div class="aw-tc-dot"><%= stop['num'] || (i + 1) %></div>
               <div class="aw-tc-body">
                 <div class="aw-tc-photo">
-                  <img src="/images/<%= stop[:img] %>" alt="<%= stop[:name] %>">
+                  <img src="<%= stop['image'] %>" alt="<%= stop['name'] %>">
                   <div class="aw-tc-logos">
                     <img src="/images/mpt_logo.png"         class="aw-slogo-mpt" alt="MPT">
                     <img src="/images/incredible_india.png" class="aw-slogo-ii"  alt="Incredible India">
                   </div>
                 </div>
-                <h3 class="aw-tc-name"><%= stop[:name] %></h3>
-                <a href="/monuments/<%= stop[:id] %>" class="aw-tc-btn">View Monument</a>
+                <h3 class="aw-tc-name"><%= stop['name'] %></h3>
+                <a href="<%= stop['link'] || '/monuments' %>" class="aw-tc-btn">View Monument</a>
               </div>
             </div>
             <% end %>
@@ -183,9 +177,9 @@
 
       <%# ══ PANEL 4 — OUTRO (full-bleed mural + CTA) ═══════════ %>
       <section class="mdet-panel aw-walk-panel">
-        <img src="/images/aw_outro_mural.jpg" class="aw-walk-mural" alt="Bundela mural — Orchha">
+        <img src="<%= pg['outroImage'] || '/images/aw_outro_mural.jpg' %>" class="aw-walk-mural" alt="Bundela mural — Orchha">
         <div class="aw-walk-overlay"></div>
-        <a href="/experiences" class="aw-walk-cta">View All Experiences &amp; Trails</a>
+        <a href="<%= pg['outroCtaLink'] || '/experiences' %>" class="aw-walk-cta"><%= pg['outroCtaLabel'] || 'View All Experiences & Trails' %></a>
       </section>
 
     </div><%# /mdet-track %>

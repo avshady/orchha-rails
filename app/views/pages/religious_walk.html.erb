@@ -3,14 +3,15 @@
 <% nav = (@home['nav'] || {})
    dd  = nav['discoverDropdown'] || []
    exp = @exp || {}
-   stops = [
-     { n: 1, name: "Ram Raja Temple",     img: "/images/rt_stop1.jpg" },
-     { n: 2, name: "Lakshmi Temple",      img: "/images/rt_stop2.jpg" },
-     { n: 3, name: "Chaturbhuj Temple",   img: "/images/rt_stop3.jpg" },
-     { n: 4, name: "Hardol Ki Mandir",    img: "/images/heritage_raja_ram.jpg" },
-     { n: 5, name: "Savan Bhado Pillars", img: "/images/rt_stop5.jpg" },
-     { n: 6, name: "Kalpvriksha",         img: "/images/rt_stop6.jpg" }
-   ]
+   pg  = @page || {}
+   stops = (pg['stops'].presence || [
+     { 'n' => 1, 'name' => 'Ram Raja Temple',     'image' => '/images/rt_stop1.jpg' },
+     { 'n' => 2, 'name' => 'Lakshmi Temple',      'image' => '/images/rt_stop2.jpg' },
+     { 'n' => 3, 'name' => 'Chaturbhuj Temple',   'image' => '/images/rt_stop3.jpg' },
+     { 'n' => 4, 'name' => 'Hardol Ki Mandir',    'image' => '/images/heritage_raja_ram.jpg' },
+     { 'n' => 5, 'name' => 'Savan Bhado Pillars', 'image' => '/images/rt_stop5.jpg' },
+     { 'n' => 6, 'name' => 'Kalpvriksha',         'image' => '/images/rt_stop6.jpg' }
+   ])
 %>
 
 <div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
@@ -68,7 +69,7 @@
       <%# ══ PANEL 1 — HERO (Ram Raja Temple entrance) ═════════════ %>
       <section class="mdet-panel et-hero-panel">
         <div class="et-hero-bg">
-          <img src="/images/rt_hero.jpg" alt="Ram Raja Temple entrance, Orchha" style="object-position: center 30%;">
+          <img src="<%= pg['heroImage'] || '/images/rt_hero.jpg' %>" alt="Ram Raja Temple entrance, Orchha" style="object-position: center 30%;">
           <div class="et-hero-overlay"></div>
         </div>
         <div class="mdet-scroll-hint" id="mdet-scroll-hint">
@@ -81,10 +82,10 @@
       <section class="mdet-panel rt-panel">
 
         <div class="rt-intro">
-          <h1 class="rt-heading">Religious Walk</h1>
+          <h1 class="rt-heading"><%= pg['heading'] || 'Religious Walk' %></h1>
           <div class="rt-body">
-            <p><%= exp['text1'].presence || "Orchha is not just a heritage town - it is a living place of faith. The Religious Walk moves through the spiritual heart of the city: from the royal court of Ram Raja Temple, where a king still holds divine audience, to the soaring silence of Chaturbhuj Temple, built in anticipation of a god who never arrived. Along the way, you pass the sacred memorial of Lala Hardaul, whose legend still draws wedding blessings from across Bundelkhand, and the ancient Savan Bhado pillars that mark the passage of time and devotion alike." %></p>
-            <p>A walk not just through temples - but through the faith that has kept Orchha alive for five centuries.</p>
+            <p><%= pg['text1'].presence || exp['text1'].presence || "Orchha is not just a heritage town - it is a living place of faith. The Religious Walk moves through the spiritual heart of the city: from the royal court of Ram Raja Temple, where a king still holds divine audience, to the soaring silence of Chaturbhuj Temple, built in anticipation of a god who never arrived. Along the way, you pass the sacred memorial of Lala Hardaul, whose legend still draws wedding blessings from across Bundelkhand, and the ancient Savan Bhado pillars that mark the passage of time and devotion alike." %></p>
+            <p><%= pg['text2'] || 'A walk not just through temples - but through the faith that has kept Orchha alive for five centuries.' %></p>
           </div>
           <div class="rt-stats">
             <div class="rt-stat">
@@ -94,7 +95,7 @@
               </svg>
               <div class="rt-stat-text">
                 <span class="rt-stat-lbl">Duration</span>
-                <span class="rt-stat-num">2.5 - 3 Hours</span>
+                <span class="rt-stat-num"><%= pg['duration'] || '2.5 - 3 Hours' %></span>
               </div>
             </div>
             <div class="rt-stat">
@@ -105,7 +106,7 @@
               </svg>
               <div class="rt-stat-text">
                 <span class="rt-stat-lbl">Guided</span>
-                <span class="rt-stat-num">Heritage Walk</span>
+                <span class="rt-stat-num"><%= pg['guided'] || 'Heritage Walk' %></span>
               </div>
             </div>
           </div>
@@ -116,15 +117,15 @@
         <div class="rt-stops">
           <% stops.each do |stop| %>
           <div class="rt-stop">
-            <span class="rt-stop-num"><%= stop[:n] %></span>
+            <span class="rt-stop-num"><%= stop['n'] %></span>
             <div class="rt-stop-card">
-              <img src="<%= stop[:img] %>" alt="<%= stop[:name] %>">
+              <img src="<%= stop['image'] %>" alt="<%= stop['name'] %>">
               <div class="et-card-logos">
                 <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
                 <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
               </div>
             </div>
-            <p class="rt-stop-name"><%= stop[:name] %></p>
+            <p class="rt-stop-name"><%= stop['name'] %></p>
           </div>
           <% end %>
         </div>
@@ -133,9 +134,9 @@
 
       <%# ══ PANEL 3 — OUTRO (Lakshmi Temple + dark overlay) ════════ %>
       <section class="mdet-panel rk-outro-panel">
-        <img src="/images/rt_stop2.jpg" class="et-outro-bg" alt="Lakshmi Narayan Temple, Orchha">
+        <img src="<%= pg['outroImage'] || '/images/rt_stop2.jpg' %>" class="et-outro-bg" alt="Lakshmi Narayan Temple, Orchha">
         <div class="rk-outro-overlay"></div>
-        <a href="/experiences" class="aw-walk-cta rk-outro-cta">View All Experiences &amp; Trails</a>
+        <a href="<%= pg['outroCtaLink'] || '/experiences' %>" class="aw-walk-cta rk-outro-cta"><%= pg['outroCtaLabel'] || 'View All Experiences & Trails' %></a>
       </section>
 
     </div><%# /mdet-track %>

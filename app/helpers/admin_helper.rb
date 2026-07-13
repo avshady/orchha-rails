@@ -14,6 +14,10 @@ module AdminHelper
     "accommodations"    => "Hotels & Homestays",
     "soundLightShowPage" => "Light & Sound Show Page",
     "citadelWalkPage"   => "Citadel Walk Page",
+    "artWalkPage"       => "Art Walk Page",
+    "ecoTrailPage"      => "Eco Trail Page",
+    "riverKayakingPage" => "River Kayaking Page",
+    "religiousWalkPage" => "Religious Walk Page",
     "supportUsPage"     => "Support Us Page Settings",
     "newsPage"          => "News Page Settings",
     "newsItems"         => "News",
@@ -57,9 +61,13 @@ module AdminHelper
             { label: "All Monuments", path: admin_collection_path("monuments"), match: %r{/collections/monuments} },
             { label: "Page Settings", path: admin_edit_section_path("monumentsPage"), match: %r{/sections/monumentsPage} }
           ] },
-        { label: "Experiences", path: admin_collection_path("experienceItems"), match: %r{/(collections/(experienceItems|cuisineItems)|sections/experiencesPage)},
+        { label: "Experiences", path: admin_collection_path("experienceItems"), match: %r{/(collections/(experienceItems|cuisineItems)|sections/(experiencesPage|artWalkPage|ecoTrailPage|riverKayakingPage|religiousWalkPage))},
           children: [
             { label: "All Experiences", path: admin_collection_path("experienceItems"), match: %r{/collections/experienceItems} },
+            { label: "Art Walk Page", path: admin_edit_section_path("artWalkPage"), match: %r{/sections/artWalkPage} },
+            { label: "Eco Trail Page", path: admin_edit_section_path("ecoTrailPage"), match: %r{/sections/ecoTrailPage} },
+            { label: "River Kayaking Page", path: admin_edit_section_path("riverKayakingPage"), match: %r{/sections/riverKayakingPage} },
+            { label: "Religious Walk Page", path: admin_edit_section_path("religiousWalkPage"), match: %r{/sections/religiousWalkPage} },
             { label: "Cuisine Items", path: admin_collection_path("cuisineItems"), match: %r{/collections/cuisineItems} },
             { label: "Page Settings", path: admin_edit_section_path("experiencesPage"), match: %r{/sections/experiencesPage} }
           ] },
@@ -122,5 +130,13 @@ module AdminHelper
   # upload editor instead of a raw JSON textarea.
   def audio_tracks_field?(name)
     name.to_s == "tracks"
+  end
+
+  # Array of image/video path strings — rendered with a repeatable
+  # thumbnail + Browse editor instead of a raw JSON textarea.
+  def image_list_field?(name, value)
+    return false unless value.is_a?(Array) && value.all? { |v| v.is_a?(String) }
+    return true if media_field?(name)
+    value.any? && value.all? { |v| v.match?(%r{\.(jpe?g|png|webp|gif|svg|avif|mp4|webm)(\?|\z)}i) || v.start_with?("/rails/") }
   end
 end

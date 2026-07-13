@@ -1,6 +1,7 @@
 <%# Eco Trail experience page — horizontal scroll-jacking, 4 panels %>
 <% nav = (@home['nav'] || {})
    dd  = nav['discoverDropdown'] || []
+   pg  = @page || {}
 %>
 
 <div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
@@ -58,7 +59,7 @@
       <%# ══ PANEL 1 — HERO ════════════════════════════════════════ %>
       <section class="mdet-panel et-hero-panel">
         <div class="et-hero-bg">
-          <img src="/images/et_hero.png" alt="Eco Trail — aerial view of Orchha and Betwa River">
+          <img src="<%= pg['heroImage'] || '/images/et_hero.png' %>" alt="Eco Trail — aerial view of Orchha and Betwa River">
           <div class="et-hero-overlay"></div>
         </div>
         <div class="mdet-scroll-hint" id="mdet-scroll-hint">
@@ -73,28 +74,32 @@
         <%# Left: two stacked photo cards + Book Tickets %>
         <div class="et-left">
           <div class="et-card et-card-tall">
-            <img src="/images/et_card1.jpg" alt="Lakshmi Narayan Temple surrounded by forest">
+            <img src="<%= pg['cardImage1'] || '/images/et_card1.jpg' %>" alt="Lakshmi Narayan Temple surrounded by forest">
             <div class="et-card-logos">
               <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
               <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
             </div>
           </div>
           <div class="et-card et-card-short">
-            <img src="/images/et_card2.jpg" alt="Orchha gardens and Betwa River from above">
+            <img src="<%= pg['cardImage2'] || '/images/et_card2.jpg' %>" alt="Orchha gardens and Betwa River from above">
             <div class="et-card-logos">
               <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
               <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
             </div>
           </div>
-          <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="et-book-btn">Book Tickets</a>
+          <a href="<%= pg['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="et-book-btn">Book Tickets</a>
         </div>
 
         <%# Right: heading + description %>
         <div class="et-right">
-          <h1 class="et-heading">Eco Trail</h1>
-          <p class="et-body">Just beyond the monuments, the forest begins. The Orchha Wildlife Sanctuary runs along the Betwa River, a stretch of forest that borders the heritage complex and offers a very different kind of encounter with Orchha. Here, the river does not frame palaces — it winds through trees, opens onto islands, and carries the sounds of birds rather than history. The sanctuary is home to around ten eco points, each offering its own view of the Betwa and the forested landscape around it, guided by the forest department team stationed within.</p>
-          <p class="et-body">Two of these eco points stand out. Jahaz Mahal sits in the middle of the Betwa — a structure shaped like a ship, with the river flowing on both sides, visible only from within the forest. Panchnadhi, also set within the Betwa, is a cluster of five riverside bats and one of the sanctuary's principal picnic spots. Across from the Orchha Chhatris, a dedicated birdwatching point draws visitors who come to spot the domestic and migratory birds that gather along this stretch of the river.</p>
-          <p class="et-body">The eco trail is best experienced in the early morning or at dusk, when the Betwa is at its quietest and the forest at its most alive. The forest department team guides visitors through the sanctuary and to the eco points throughout the day.</p>
+          <h1 class="et-heading"><%= pg['heading'] || 'Eco Trail' %></h1>
+          <% (pg['paragraphs'].presence || [
+               "Just beyond the monuments, the forest begins. The Orchha Wildlife Sanctuary runs along the Betwa River, a stretch of forest that borders the heritage complex and offers a very different kind of encounter with Orchha. Here, the river does not frame palaces — it winds through trees, opens onto islands, and carries the sounds of birds rather than history. The sanctuary is home to around ten eco points, each offering its own view of the Betwa and the forested landscape around it, guided by the forest department team stationed within.",
+               "Two of these eco points stand out. Jahaz Mahal sits in the middle of the Betwa — a structure shaped like a ship, with the river flowing on both sides, visible only from within the forest. Panchnadhi, also set within the Betwa, is a cluster of five riverside bats and one of the sanctuary's principal picnic spots. Across from the Orchha Chhatris, a dedicated birdwatching point draws visitors who come to spot the domestic and migratory birds that gather along this stretch of the river.",
+               "The eco trail is best experienced in the early morning or at dusk, when the Betwa is at its quietest and the forest at its most alive. The forest department team guides visitors through the sanctuary and to the eco points throughout the day."
+             ]).each do |para| %>
+          <p class="et-body"><%= para %></p>
+          <% end %>
         </div>
 
       </section><%# /et-content-panel %>
@@ -108,21 +113,21 @@
 
         <div class="et-know-right">
           <div class="et-know-card">
-            <img src="/images/et_card3.jpg" alt="Historic Orchha ruins amid greenery">
+            <img src="<%= pg['dykImage'] || '/images/et_card3.jpg' %>" alt="Historic Orchha ruins amid greenery">
             <div class="et-card-logos">
               <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
               <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
             </div>
           </div>
-          <p class="et-know-text">Visitors have recorded sightings of the Indian skimmer, sarus crane, river tern, white-rumped vulture, and various kingfisher and egret species along the riverbanks.</p>
+          <p class="et-know-text"><%= pg['dykText'] || 'Visitors have recorded sightings of the Indian skimmer, sarus crane, river tern, white-rumped vulture, and various kingfisher and egret species along the riverbanks.' %></p>
         </div>
 
       </section><%# /et-know-panel %>
 
       <%# ══ PANEL 4 — OUTRO ════════════════════════════════════════ %>
       <section class="mdet-panel et-outro-panel">
-        <img src="/images/et_outro.jpg" class="et-outro-bg" alt="Aerial view of Orchha monuments">
-        <a href="/experiences" class="aw-walk-cta">View All Experiences &amp; Trails</a>
+        <img src="<%= pg['outroImage'] || '/images/et_outro.jpg' %>" class="et-outro-bg" alt="Aerial view of Orchha monuments">
+        <a href="<%= pg['outroCtaLink'] || '/experiences' %>" class="aw-walk-cta"><%= pg['outroCtaLabel'] || 'View All Experiences & Trails' %></a>
       </section>
 
     </div><%# /mdet-track %>

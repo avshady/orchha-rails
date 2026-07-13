@@ -905,6 +905,87 @@
       { "name": "Tulsi Ghat", "image": "/images/cw_tulsighat.jpg" }
     ]
   },
+  "artWalkPage": {
+    "heroImage": "/images/aw_hero.jpg",
+    "heroLabel": "Art walk video",
+    "heading": "Four Monuments.<br>Centuries of Colour.",
+    "body": "Step inside the walls where Orchha's greatest artists left their mark. The Art Walk takes you through four monuments — Raja Mahal, Jahangir Mahal, Rai Praveen Mahal, and Lakshmi Narayan Temple — each carrying a distinct chapter of Bundela artistic tradition. From 16th-century murals believed to have been painted by Kashmiri artists, to the vivid Bundeli frescoes of Lakshmi Narayan Temple, to the palace built for a poet-dancer whose verses silenced an emperor — this is Orchha read not through its history, but through its art.",
+    "duration": "2 Hours",
+    "guided": "Heritage Walk",
+    "galleryImages": [
+      "/images/aw_card1.jpg",
+      "/images/aw_card2.jpg",
+      "/images/aw_mural_large.jpg"
+    ],
+    "galleryCtaLabel": "View Art Gallery",
+    "galleryCtaLink": "/experiences",
+    "transitHeading": "The Walk<br>Through Time",
+    "transitSub": "A journey through four icon monuments.<br>One artistic legacy.",
+    "vignetteImage": "/images/aw_vignette.jpg",
+    "stops": [
+      { "num": 1, "image": "/images/rm_closeup_main.jpg", "name": "Raja Mahal", "link": "/monuments/raja-mahal" },
+      { "num": 2, "image": "/images/jm_closeup_main.jpg", "name": "Jahangir Mahal", "link": "/monuments/jahangir-mahal" },
+      { "num": 3, "image": "/images/rpm_closeup_main.jpg", "name": "Rai Praveen Mahal", "link": "/monuments/rai-praveen-mahal" },
+      { "num": 4, "image": "/images/lnt_closeup_main.jpg", "name": "Lakshmi Temple", "link": "/monuments/lakshmi-narayan-temple" }
+    ],
+    "outroImage": "/images/aw_outro_mural.jpg",
+    "outroCtaLabel": "View All Experiences & Trails",
+    "outroCtaLink": "/experiences"
+  },
+  "ecoTrailPage": {
+    "heroImage": "/images/et_hero.png",
+    "heading": "Eco Trail",
+    "cardImage1": "/images/et_card1.jpg",
+    "cardImage2": "/images/et_card2.jpg",
+    "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
+    "paragraphs": [
+      "Just beyond the monuments, the forest begins. The Orchha Wildlife Sanctuary runs along the Betwa River, a stretch of forest that borders the heritage complex and offers a very different kind of encounter with Orchha. Here, the river does not frame palaces — it winds through trees, opens onto islands, and carries the sounds of birds rather than history. The sanctuary is home to around ten eco points, each offering its own view of the Betwa and the forested landscape around it, guided by the forest department team stationed within.",
+      "Two of these eco points stand out. Jahaz Mahal sits in the middle of the Betwa — a structure shaped like a ship, with the river flowing on both sides, visible only from within the forest. Panchnadhi, also set within the Betwa, is a cluster of five riverside bats and one of the sanctuary's principal picnic spots. Across from the Orchha Chhatris, a dedicated birdwatching point draws visitors who come to spot the domestic and migratory birds that gather along this stretch of the river.",
+      "The eco trail is best experienced in the early morning or at dusk, when the Betwa is at its quietest and the forest at its most alive. The forest department team guides visitors through the sanctuary and to the eco points throughout the day."
+    ],
+    "dykImage": "/images/et_card3.jpg",
+    "dykText": "Visitors have recorded sightings of the Indian skimmer, sarus crane, river tern, white-rumped vulture, and various kingfisher and egret species along the riverbanks.",
+    "outroImage": "/images/et_outro.jpg",
+    "outroCtaLabel": "View All Experiences & Trails",
+    "outroCtaLink": "/experiences"
+  },
+  "riverKayakingPage": {
+    "heroImage": "/images/rk_hero_raft.jpg",
+    "heading": "River Kayaking",
+    "cardImage1": "/images/rk_hero_raft.jpg",
+    "cardImage2": "/images/rk_card_kayak_sunset.jpg",
+    "text1": "The Betwa River has been the lifeblood of Orchha for centuries — a sacred artery that shaped the city's geography and spirit. River Kayaking offers you the most intimate way to experience this ancient landscape: from the water itself, surrounded by the reflections of temples and the sounds of the forest.",
+    "text2": "Beginners and experienced paddlers are both welcome. Your guide will lead you through calm stretches dotted with wildlife, past the magnificent Orchha Chhatris, and through sections of gentle rapids that add a touch of adventure to the journey.",
+    "cost": "Indian: 899 INR&nbsp;&nbsp;|&nbsp;&nbsp;Foreigner: 2000 INR",
+    "bestTime": "9AM to 2PM",
+    "passengers": "6 People",
+    "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
+    "cardImage3": "/images/rk_card_rafting_ruins.jpg",
+    "cardImage4": "/images/rk_card_rafting_wide.jpg",
+    "didYouKnow": "Visitors have recorded sightings of the Indian skimmer, sarus crane, river tern, white-rumped vulture, and various kingfisher and egret species along the riverbanks.",
+    "outroImage": "/images/rk_hero.jpg",
+    "outroCtaLabel": "View All Experiences & Trails",
+    "outroCtaLink": "/experiences"
+  },
+  "religiousWalkPage": {
+    "heroImage": "/images/rt_hero.jpg",
+    "heading": "Religious Walk",
+    "text1": "Orchha is not just a heritage town - it is a living place of faith. The Religious Walk moves through the spiritual heart of the city: from the royal court of Ram Raja Temple, where a king still holds divine audience, to the soaring silence of Chaturbhuj Temple, built in anticipation of a god who never arrived. Along the way, you pass the sacred memorial of Lala Hardaul, whose legend still draws wedding blessings from across Bundelkhand, and the ancient Savan Bhado pillars that mark the passage of time and devotion alike.",
+    "text2": "A walk not just through temples - but through the faith that has kept Orchha alive for five centuries.",
+    "duration": "2.5 - 3 Hours",
+    "guided": "Heritage Walk",
+    "stops": [
+      { "n": 1, "name": "Ram Raja Temple", "image": "/images/rt_stop1.jpg" },
+      { "n": 2, "name": "Lakshmi Temple", "image": "/images/rt_stop2.jpg" },
+      { "n": 3, "name": "Chaturbhuj Temple", "image": "/images/rt_stop3.jpg" },
+      { "n": 4, "name": "Hardol Ki Mandir", "image": "/images/heritage_raja_ram.jpg" },
+      { "n": 5, "name": "Savan Bhado Pillars", "image": "/images/rt_stop5.jpg" },
+      { "n": 6, "name": "Kalpvriksha", "image": "/images/rt_stop6.jpg" }
+    ],
+    "outroImage": "/images/rt_stop2.jpg",
+    "outroCtaLabel": "View All Experiences & Trails",
+    "outroCtaLink": "/experiences"
+  },
   "soundLightShowPage": {
     "heading": "Light & Sound Show",
     "description": "Step into the living history of Orchha as the ancient fort comes alive after dark. The Orchha Sound & Light Show narrates the grandeur of the Bundela dynasty brought to life through dramatic light projections & immersive sound experiences across the fort's 16th-century ramparts.",

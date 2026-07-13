@@ -148,6 +148,7 @@ class PagesController < ApplicationController
     all = raw['experienceItems'] || []
     @exp  = all.find { |e| e['id'] == params[:id] }
     redirect_to '/experiences' and return unless @exp
+    @page = raw['artWalkPage'] || {}
     @home = raw['homePage'] || {}
     @audio_tracks = audio_tracks_for(raw, @exp['id'])
   rescue => e
@@ -157,6 +158,7 @@ class PagesController < ApplicationController
 
   def eco_trail
     raw = ContentStore.raw
+    @page = raw['ecoTrailPage'] || {}
     @home = raw['homePage'] || {}
     @audio_tracks = audio_tracks_for(raw, 'eco-trail')
   rescue => e
@@ -168,6 +170,7 @@ class PagesController < ApplicationController
     raw = ContentStore.raw
     all = raw['experienceItems'] || []
     @exp  = all.find { |e| e['id'] == 'river-kayaking' } || {}
+    @page = raw['riverKayakingPage'] || {}
     @home = raw['homePage'] || {}
     @audio_tracks = audio_tracks_for(raw, 'river-kayaking')
   rescue => e
@@ -180,6 +183,7 @@ class PagesController < ApplicationController
     raw = ContentStore.raw
     all = raw['experienceItems'] || []
     @exp  = all.find { |e| e['id'] == 'religious-walk' } || {}
+    @page = raw['religiousWalkPage'] || {}
     @home = raw['homePage'] || {}
     @audio_tracks = audio_tracks_for(raw, 'religious-walk')
   rescue => e
