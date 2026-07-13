@@ -4786,6 +4786,166 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
+   QR SCANNER (qrs-*) — floating module, MOBILE ONLY
+   ═══════════════════════════════════════════════════════════════════════ */
+.qrs-fab {
+  display: none; /* desktop: hidden */
+  position: fixed;
+  right: 16px;
+  bottom: 20px;
+  z-index: 3500;
+  width: 54px;
+  height: 54px;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: #6e1603;
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(47,8,0,0.4);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.qrs-fab svg { width: 26px; height: 26px; }
+.qrs-fab:active { transform: scale(0.92); }
+.qrs-fab-raised { bottom: 88px; } /* clear the fixed bottom action bar on mdet pages */
+
+.qrs-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4500;
+  background: #1a0e06;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 28px;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.qrs-overlay.open { display: flex; opacity: 1; }
+
+.qrs-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 0 14px;
+}
+.qrs-title {
+  font-family: 'Chivo', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #e7ded5;
+}
+.qrs-close {
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(231,222,213,0.4);
+  background: transparent;
+  color: #e7ded5;
+  cursor: pointer;
+}
+.qrs-close svg { width: 16px; height: 16px; }
+
+.qrs-viewport {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+}
+.qrs-viewport video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.qrs-frame {
+  position: absolute;
+  inset: 12%;
+  pointer-events: none;
+}
+.qrs-c {
+  position: absolute;
+  width: 34px;
+  height: 34px;
+  border: 3px solid #dbad6c;
+}
+.qrs-c1 { top: 0;    left: 0;  border-right: none; border-bottom: none; border-top-left-radius: 10px; }
+.qrs-c2 { top: 0;    right: 0; border-left: none;  border-bottom: none; border-top-right-radius: 10px; }
+.qrs-c3 { bottom: 0; left: 0;  border-right: none; border-top: none;    border-bottom-left-radius: 10px; }
+.qrs-c4 { bottom: 0; right: 0; border-left: none;  border-top: none;    border-bottom-right-radius: 10px; }
+.qrs-beam {
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #dbad6c, transparent);
+  animation: qrs-sweep 2.2s ease-in-out infinite;
+}
+@keyframes qrs-sweep {
+  0%, 100% { top: 4%; }
+  50%      { top: 94%; }
+}
+
+.qrs-status {
+  margin: 18px 0 0;
+  font-family: 'Gambetta Variable', serif;
+  font-size: 16px;
+  line-height: 22px;
+  color: #e7ded5;
+  text-align: center;
+}
+.qrs-result {
+  margin-top: 16px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+.qrs-result-text {
+  margin: 0;
+  max-width: 100%;
+  font-family: 'Chivo', sans-serif;
+  font-size: 14px;
+  color: #dbad6c;
+  word-break: break-all;
+  text-align: center;
+}
+.qrs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 28px;
+  border-radius: 24px;
+  border: 1.5px solid #dbad6c;
+  background: #dbad6c;
+  color: #1a0e06;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.qrs-btn-ghost { background: transparent; color: #dbad6c; }
+/* display rules above would defeat the hidden attribute */
+.qrs-result[hidden], .qrs-btn[hidden] { display: none; }
+
+@media (max-width: 900px) {
+  .qrs-fab { display: flex; } /* mobile only */
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
    SUPPORT US / DONATION PAGE (sup-*)
    ═══════════════════════════════════════════════════════════════════════ */
 .sup-header {
