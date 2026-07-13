@@ -510,9 +510,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 15px; padding: 8px 8px 14px;
   display: flex; flex-direction: column; gap: 4px;
   align-items: flex-end; width: 319px; flex-shrink: 0;
-  transition: box-shadow 0.2s;
+  transition: box-shadow 0.25s, transform 0.25s ease;
 }
-.news-card:hover { box-shadow: 0 4px 20px rgba(110,22,3,0.12); }
+.news-card:hover {
+  box-shadow: 0 10px 26px rgba(110,22,3,0.16);
+  transform: translateY(-5px) scale(1.01);
+}
 .news-card-body { display: flex; flex-direction: column; gap: 13px; width: 100%; }
 .news-card-img {
   position: relative; height: 222px; border-radius: 10px; overflow: hidden; flex-shrink: 0;
@@ -4646,6 +4649,140 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   .news-p-filter-row { flex-direction: column; align-items: flex-start; }
   .news-p-search input { width: 100%; }
   .news-p-grid { grid-template-columns: 1fr; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NEWS ARTICLE POPUP (npop-*) — shared by home + /news cards
+   ═══════════════════════════════════════════════════════════════════════ */
+.npop-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 4000;
+  background: rgba(47, 8, 0, 0.55);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.28s ease;
+}
+.npop-overlay.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.npop-dialog {
+  position: relative;
+  width: min(660px, 100%);
+  max-height: min(86vh, 780px);
+  overflow-y: auto;
+  background: #ecdfd3;
+  border: 0.9px solid rgba(110,22,3,0.25);
+  border-radius: 15px;
+  padding: 8px 8px 26px;
+  box-shadow: 0 30px 70px rgba(0,0,0,0.35);
+  /* pop: scale up with back-out overshoot */
+  transform: scale(0.82) translateY(28px);
+  opacity: 0;
+  transition: transform 0.36s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.22s ease;
+}
+.npop-overlay.open .npop-dialog {
+  transform: none;
+  opacity: 1;
+}
+.npop-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  z-index: 3;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(110,22,3,0.35);
+  background: rgba(236,223,211,0.92);
+  color: #6e1603;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.npop-close svg { width: 16px; height: 16px; }
+.npop-close:hover { background: #6e1603; color: #fff; transform: rotate(90deg); }
+.npop-photo {
+  position: relative;
+  height: 300px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.npop-photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.npop-logos {
+  position: absolute;
+  top: 13px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+.npop-logo-mpt { width: 44px; height: 30px; object-fit: contain; }
+.npop-logo-ii  { width: 30px; height: 39px; object-fit: contain; }
+.npop-body {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 18px 0 13px;
+}
+.npop-meta { display: flex; align-items: center; gap: 9px; }
+.npop-tag {
+  font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: #6e1603;
+}
+.npop-dot { width: 3px; height: 3px; border-radius: 50%; background: #6e1603; opacity: 0.6; }
+.npop-date {
+  font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 12px;
+  letter-spacing: 0.08em; text-transform: uppercase; color: #242424;
+}
+.npop-title {
+  margin: 0;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 500;
+  font-size: 27px;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  color: #6e1603;
+}
+.npop-text {
+  margin: 0;
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 500;
+  font-size: 16.5px;
+  line-height: 24px;
+  color: #000;
+}
+.npop-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 4px;
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #6e1603;
+  text-decoration: none;
+}
+.npop-link svg { width: 5px; height: 9px; }
+.npop-link:hover { text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .npop-overlay { padding: 16px 12px; }
+  .npop-photo { height: 200px; }
+  .npop-title { font-size: 22px; }
+  .npop-text { font-size: 15.5px; line-height: 22px; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════

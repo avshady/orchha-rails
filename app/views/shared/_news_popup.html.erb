@@ -1,0 +1,88 @@
+<%# News article popup — opens from any card carrying data-pop-* attributes.
+    Pop transition: backdrop fades, dialog scales up with a back-out overshoot. %>
+<div class="npop-overlay" id="npop-overlay" aria-hidden="true">
+  <div class="npop-dialog" role="dialog" aria-modal="true" aria-labelledby="npop-title">
+    <button class="npop-close" id="npop-close" aria-label="Close article">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="npop-photo">
+      <img id="npop-img" src="" alt="">
+      <div class="npop-logos">
+        <img src="/images/mpt_logo.png" class="npop-logo-mpt" alt="MPT">
+        <img src="/images/incredible_india.png" class="npop-logo-ii" alt="Incredible India">
+      </div>
+    </div>
+    <div class="npop-body">
+      <div class="npop-meta">
+        <span class="npop-tag" id="npop-tag"></span>
+        <span class="npop-dot"></span>
+        <span class="npop-date" id="npop-date"></span>
+      </div>
+      <h3 class="npop-title" id="npop-title"></h3>
+      <p class="npop-text" id="npop-text"></p>
+      <a class="npop-link" id="npop-link" target="_blank" rel="noopener" style="display:none">
+        Read full article
+        <svg viewBox="0 0 5 9" fill="none"><path d="M1 1l3 3.5L1 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const overlay = document.getElementById('npop-overlay');
+    if (!overlay) return;
+    const dialog   = overlay.querySelector('.npop-dialog');
+    const closeBtn = document.getElementById('npop-close');
+    const imgEl  = document.getElementById('npop-img');
+    const tagEl  = document.getElementById('npop-tag');
+    const dateEl = document.getElementById('npop-date');
+    const ttlEl  = document.getElementById('npop-title');
+    const txtEl  = document.getElementById('npop-text');
+    const lnkEl  = document.getElementById('npop-link');
+    let lastFocus = null;
+
+    function openNpop(card) {
+      const d = card.dataset;
+      imgEl.src = d.popImg || '';
+      imgEl.alt = d.popTitle || '';
+      tagEl.textContent  = d.popTag || '';
+      dateEl.textContent = d.popDate || '';
+      ttlEl.textContent  = d.popTitle || '';
+      txtEl.textContent  = d.popText || '';
+      // External links get a "Read full article" button; dead/internal ones don't.
+      if (d.popLink && /^https?:\/\//.test(d.popLink)) {
+        lnkEl.href = d.popLink;
+        lnkEl.style.display = '';
+      } else {
+        lnkEl.style.display = 'none';
+      }
+      lastFocus = document.activeElement;
+      overlay.classList.add('open');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      dialog.scrollTop = 0;
+      closeBtn.focus();
+    }
+
+    function closeNpop() {
+      overlay.classList.remove('open');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    document.querySelectorAll('[data-pop-title]').forEach(card => {
+      card.addEventListener('click', e => {
+        e.preventDefault();
+        openNpop(card);
+      });
+    });
+
+    closeBtn.addEventListener('click', closeNpop);
+    overlay.addEventListener('click', e => { if (e.target === overlay) closeNpop(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) closeNpop();
+    });
+  })();
+</script>

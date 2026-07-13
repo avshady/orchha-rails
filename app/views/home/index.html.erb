@@ -484,7 +484,9 @@
   <div class="news-track-wrap">
     <div class="news-track">
       <% nw_items.each do |c| %>
-      <a href="<%= c['link'] %>" class="news-card" data-tag="<%= c['tag'].to_s.downcase %>">
+      <a href="<%= c['link'] %>" class="news-card" data-tag="<%= c['tag'].to_s.downcase %>"
+         data-pop-title="<%= c['title'] %>" data-pop-tag="<%= c['tag'] %>" data-pop-date="<%= c['date'] %>"
+         data-pop-img="<%= c['image'] %>" data-pop-text="<%= c['excerpt'] %>" data-pop-link="<%= c['link'] %>">
         <div class="news-card-body">
           <div class="news-card-img">
             <img src="<%= c['image'] %>" alt="">
@@ -515,6 +517,8 @@
   </div>
   <a href="<%= nw['ctaLink'] || '/news' %>" class="trails-explore-btn">View More</a>
 </section>
+
+<%= render 'shared/news_popup' %>
 
 <%# ── VISIT ORCHHA ─────────────────────────────────── %>
 <% vs = @page['visit'] || {}

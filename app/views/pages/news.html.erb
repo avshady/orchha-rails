@@ -96,7 +96,9 @@
 
     <div class="news-p-grid" id="news-p-grid">
       <% items.each do |n| %>
-      <a href="<%= n['link'].presence || '#' %>" class="news-p-card" data-cat="<%= n['category'] || 'heritage' %>" data-search="<%= "#{n['heading']} #{n['text']}".downcase %>">
+      <a href="<%= n['link'].presence || '#' %>" class="news-p-card" data-cat="<%= n['category'] || 'heritage' %>" data-search="<%= "#{n['heading']} #{n['text']}".downcase %>"
+         data-pop-title="<%= n['heading'] %>" data-pop-tag="<%= (n['category'] || 'heritage').capitalize %>" data-pop-date="<%= n['date'] %>"
+         data-pop-img="<%= n['image'] %>" data-pop-text="<%= n['text'] %>" data-pop-link="<%= n['link'] %>">
         <div class="news-p-photo">
           <img src="<%= n['image'] %>" alt="<%= n['heading'] %>" loading="lazy">
           <div class="news-p-logos">
@@ -165,6 +167,8 @@
   </footer>
 
 </div><%# /.news-p-page %>
+
+<%= render 'shared/news_popup' %>
 
 <script>
   // ── Navbar dropdown ───────────────────────────────────────
