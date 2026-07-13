@@ -1301,6 +1301,8 @@
     "footer": {
       "copyright": "@2026ORCHHA",
       "org": "SABHYATA Foundation",
+      "email": "contact@orchha.com",
+      "phone": "+91 87963 83600",
       "links": [
         {
           "label": "Media & News",
@@ -1496,9 +1498,8 @@
       }
     ],
     "newOrchha": {
-      "image": "/images/history_new_orchha.jpg",
-      "heading": "The New Orchha",
-      "year": "2026"
+      "image": "/images/history_new_orchha_v2.jpg",
+      "heading": "Experience The New Orchha Living Heritage"
     },
     "newChapter": {
       "heading1": "A New",

@@ -637,8 +637,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .footer-logo-ii    { width: 75.584px;  height: auto; }
 .footer-logo-mptdc { width: 113.311px; height: auto; }
 .footer-logo-sabhyata { width: 160px; height: auto; }
+.footer-map-col {
+  display: flex; flex-direction: column; gap: 26px;
+  width: 574px; flex-shrink: 0;
+}
 .footer-map {
-  width: 574px; height: 328px;
+  width: 100%; height: 328px;
   border-radius: 22px; overflow: hidden;
   position: relative; flex-shrink: 0;
 }
@@ -653,6 +657,24 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 100%; height: 100%;
   border: 0;
 }
+.footer-contact {
+  display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+}
+.footer-contact-label {
+  font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 20px;
+  line-height: 24.03px; color: #fff; flex-shrink: 0;
+}
+.footer-contact-items {
+  display: flex; align-items: center; gap: 29px; flex-wrap: wrap;
+}
+.footer-contact-item {
+  display: flex; align-items: center; gap: 8px;
+  font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 16px;
+  color: rgba(255,255,255,0.68); text-decoration: none; white-space: nowrap;
+}
+.footer-contact-item svg { width: 21.831px; height: 21.831px; flex-shrink: 0; color: rgba(255,255,255,0.68); }
+.footer-contact-item:hover { color: #fff; }
+.footer-contact-item:hover svg { color: #fff; }
 .footer-divider {
   border: none; border-top: 1px solid rgba(255,255,255,0.25);
   width: 100%; margin: 0;
@@ -672,7 +694,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   /* Footer */
   .footer-container { padding: 0 48px; }
   .footer-inner { gap: 40px; }
-  .footer-map { width: 420px; height: 240px; flex-shrink: 0; }
+  .footer-map-col { width: 420px; flex-shrink: 0; }
+  .footer-map { height: 240px; }
   .footer-links { width: 220px; }
 
   /* Visit Orchha */
@@ -704,7 +727,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .footer-logo-ii    { width: 52px; }
   .footer-logo-mptdc { width: 80px; }
   .footer-logo-sabhyata { width: 120px; }
-  .footer-map { width: 100%; height: 220px; }
+  .footer-map-col { width: 100%; }
+  .footer-map { height: 220px; }
+  .footer-contact { gap: 10px 18px; }
+  .footer-contact-items { gap: 10px 24px; }
+  .footer-contact-item { font-size: 15px; }
   .footer-copy { font-size: 14px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
 
@@ -924,19 +951,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hist-new-orchha { margin-top: 80px; }
 .hist-new-orchha-img {
   width: 100%; height: 560px;
-  background-size: cover; background-position: center;
-  position: relative; display: flex; align-items: flex-end;
+  background-size: cover; background-position: center right;
+  position: relative; display: flex; align-items: flex-start;
 }
 .hist-new-orchha-overlay {
-  padding: 0 0 48px 120px;
+  padding: 89px 0 0 120px;
 }
 .hist-new-orchha-heading {
+  max-width: 652px; margin: 0;
   font-family: 'Scotch Display', serif; font-weight: 600; font-style: normal;
-  font-size: 74px; line-height: 0.95; color: #6e1603; text-transform: capitalize;
-}
-.hist-new-orchha-year {
-  font-family: 'Scotch Display', serif; font-weight: 600; font-style: normal;
-  font-size: 38px; color: #6e1603; margin-top: 8px;
+  font-size: 58px; line-height: 1.03; color: #6e1603; text-transform: capitalize;
 }
 
 /* ── A New Chapter ──────────────────────────────────── */
@@ -1041,9 +1065,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hist-tl-rtl .hist-tl-img,
   .hist-tl-rtl .hist-tl-year-badge { grid-column: 1; grid-row: auto; }
   .hist-tl-img { height: 220px; }
-  .hist-new-orchha-img { height: 340px; }
-  .hist-new-orchha-overlay { padding: 0 24px 32px; }
-  .hist-new-orchha-heading { font-size: 48px; }
+  .hist-new-orchha-img { height: 340px; background-position: 72% center; }
+  .hist-new-orchha-overlay { padding: 40px 24px 0; }
+  .hist-new-orchha-heading { font-size: 34px; max-width: 100%; }
   .hist-new-chapter { flex-direction: column; gap: 24px; }
   .hist-nc-heading { font-size: 42px; }
   .hist-quote-text { font-size: 32px; }
