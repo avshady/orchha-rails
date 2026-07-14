@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get "/events", to: "pages#events"
   get "/events/:id", to: "pages#event"
   get "/sabhyata", to: "pages#sabhyata"
+  get "/plan-your-visit", to: "pages#plan_your_visit"
+  get "/visit-orchha", to: "pages#visit_orchha"
   get "/experiences", to: "pages#experiences"
   get "/experiences/eco-trail", to: "pages#eco_trail"
   get "/experiences/river-kayaking", to: "pages#river_kayaking"

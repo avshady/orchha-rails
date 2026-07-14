@@ -1,10 +1,29 @@
-<%# Freedom Fighters of Orchha — bento photo grid matching the Figma design %>
+<%# Visit Orchha page — how to reach / travel / stay cards (Figma 3357-5972) %>
 <% ft       = (@home['footer'] || {})
    ft_links = ft['links'] || []
    nav      = @home['nav']   || {}
    dd       = nav['discoverDropdown'] || []
-   vs       = @home['visit'] || {}
-   fighters = @fighters.presence || []
+
+   heading_italic = @page['headingItalic'].presence || 'Visit'
+   heading_rest   = @page['headingRest'].presence   || 'Orchha'
+   explore_lbl    = @page['exploreLabel'].presence  || 'Explore'
+
+   reach_title  = @page['reachTitle'].presence || 'How to Reach Orchha'
+   reach_items  = @page['reachItems'].presence || [
+     { 'icon' => '/images/vo_icon_train.svg', 'title' => 'By Train', 'lines' => [ 'Jhansi Junction (18km)' ] },
+     { 'icon' => '/images/vo_icon_plane.svg', 'title' => 'By Air',   'lines' => [ 'Gwalior Airport (120km)', 'Bhopal Airport (175km)' ] },
+     { 'icon' => '/images/vo_icon_road.svg',  'title' => 'By Road',  'lines' => [ 'Well connected from Jhansi,', 'Gwalior & Khajuraho' ] }
+   ]
+   travel_title = @page['travelTitle'].presence || 'Travel Options'
+   travel_items = @page['travelItems'].presence || [
+     { 'icon' => '/images/vo_icon_taxi.svg',     'title' => 'Private Taxi & Cabs' },
+     { 'icon' => '/images/vo_icon_rickshaw.svg', 'title' => 'Auto Rickshaws' },
+     { 'icon' => '/images/vo_icon_bus.svg',      'title' => 'Ho-Ho E-Rickshaws & E-Buses' }
+   ]
+   travel_url   = @page['travelExploreUrl'].presence || '/hoho'
+   stay_title   = @page['stayTitle'].presence || 'Stay Options'
+   stay_body    = @page['stayBody'].presence  || 'Explore a range of private hotels, resorts & home stays!'
+   stay_url     = @page['stayExploreUrl'].presence || '/accommodation'
 %>
 
 <%# Sticky HOHO button %>
@@ -12,7 +31,7 @@
   <a href="/hoho">HOHO Service</a>
 </div>
 
-<div class="ff-page">
+<div class="vo-page">
 
   <%# ── NAVBAR ─────────────────────────────────────────── %>
   <div class="mon-nav-wrap">
@@ -63,59 +82,55 @@
     </div>
   </div>
 
-  <%# ── HEADER ─────────────────────────────────────────── %>
-  <header class="ff-header">
-    <h1 class="ff-heading">Freedom Fighters of Orchha</h1>
-    <p class="ff-subheading">Explore the stories of the unsung heroes of Orchha whose resilience, sacrifice, and commitment left a lasting mark on history.</p>
-  </header>
+  <%# ── HEADING ────────────────────────────────────────── %>
+  <h1 class="vo-heading"><em><%= heading_italic %></em> <%= heading_rest %></h1>
 
-  <%# ── BENTO PHOTO GRID ──────────────────────────────────── %>
-  <section class="ff-grid-wrap">
-    <div class="ff-grid">
-      <% fighters.each_with_index do |f, i| %>
-      <a href="/freedom-fighters/<%= f['id'] %>" class="ff-card ff-card-<%= i + 1 %>">
-        <img src="<%= f['image'] %>" alt="<%= f['name'] %>" loading="lazy">
-        <div class="ff-card-overlay"></div>
-        <div class="ff-card-logos">
-          <img src="/images/mpt_logo.png" class="aw-logo-mpt" alt="MPT">
-          <img src="/images/incredible_india.png" class="aw-logo-ii" alt="Incredible India">
+  <%# ── CARDS ──────────────────────────────────────────── %>
+  <div class="vo-cards">
+
+    <div class="vo-card">
+      <h2 class="vo-card-title"><%= reach_title %></h2>
+      <div class="vo-card-items">
+        <% reach_items.each do |item| %>
+        <div class="vo-item">
+          <span class="vo-item-icon"><img src="<%= item['icon'] %>" alt=""></span>
+          <span class="vo-item-divider" aria-hidden="true"></span>
+          <div class="vo-item-text">
+            <span class="vo-item-title"><%= item['title'] %></span>
+            <% (item['lines'] || []).each do |line| %>
+            <span class="vo-item-sub"><%= line %></span>
+            <% end %>
+          </div>
         </div>
-        <p class="ff-card-name"><%= f['name'] %></p>
-      </a>
-      <% end %>
-
-      <div class="ff-translate" aria-hidden="true">
-        <svg viewBox="0 0 24 24" fill="none" width="22" height="22"><path d="M4 5h9M8.5 3v2.5M6 8c1 2.5 3 4.5 6 6M11 8c-.7 3-3 6-7 7.5M14 21l4-9 4 9M15.5 18h5" stroke="#1a0a00" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>Translate</span>
-        <svg viewBox="0 0 10 6" fill="none" width="10" height="6"><path d="M1 1l4 4 4-4" stroke="#1a0a00" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-    </div>
-  </section>
-
-  <%# ── MARQUEE ────────────────────────────────────────────── %>
-  <div class="ff-marquee">
-    <div class="ff-marquee-track">
-      <% 2.times do %>
-        <% fighters.each do |f| %>
-        <span class="ff-marquee-item"><%= f['name'] %></span>
         <% end %>
-      <% end %>
-    </div>
-  </div>
-
-  <%# ── VISIT ORCHHA (reused) ──────────────────────────── %>
-  <div class="visit-wrap">
-    <div class="visit-section">
-      <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
-      <div class="visit-content">
-        <h2 class="visit-heading"><em>Visit</em> Orchha</h2>
-        <div class="visit-links">
-          <% (vs['links'] || [{'label'=>'How to Reach Orchha','url'=>'/reach'},{'label'=>'Travel Options','url'=>'/travel'},{'label'=>'Stay Options','url'=>'/stay'}]).each do |lnk| %>
-          <a href="<%= lnk['url'] %>" class="visit-link"><%= lnk['label'] %></a>
-          <% end %>
-        </div>
       </div>
     </div>
+
+    <div class="vo-card">
+      <h2 class="vo-card-title"><%= travel_title %></h2>
+      <div class="vo-card-items">
+        <% travel_items.each do |item| %>
+        <div class="vo-item">
+          <span class="vo-item-icon"><img src="<%= item['icon'] %>" alt=""></span>
+          <span class="vo-item-divider" aria-hidden="true"></span>
+          <div class="vo-item-text">
+            <span class="vo-item-title"><%= item['title'] %></span>
+            <% (item['lines'] || []).each do |line| %>
+            <span class="vo-item-sub"><%= line %></span>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <a href="<%= travel_url %>" class="vo-explore-btn"><%= explore_lbl %></a>
+    </div>
+
+    <div class="vo-card">
+      <h2 class="vo-card-title"><%= stay_title %></h2>
+      <p class="vo-card-body"><%= stay_body %></p>
+      <a href="<%= stay_url %>" class="vo-explore-btn"><%= explore_lbl %></a>
+    </div>
+
   </div>
 
   <%# ── FOOTER ─────────────────────────────────────────── %>
@@ -128,8 +143,8 @@
           <% end %>
         </div>
         <div class="footer-logos">
-          <img src="/images/incredible_india.png" alt="Incredible India" class="footer-logo-ii">
-          <img src="/images/mpt_logo.png" alt="MPTDC" class="footer-logo-mptdc">
+          <img src="/images/footer_logo_incredible_india.png" alt="Incredible India" class="footer-logo-ii">
+          <img src="/images/footer_logo_mptdc.png" alt="MPTDC" class="footer-logo-mptdc">
           <img src="/images/footer_logo_sabhyata.png" alt="Sabhyata Foundation" class="footer-logo-sabhyata">
         </div>
         <div class="footer-map-col">
@@ -159,36 +174,36 @@
     </div>
   </footer>
 
-</div><%# /.ff-page %>
+</div><%# /.vo-page %>
 
 <script>
   // ── Navbar dropdown ───────────────────────────────────────
-  const ffBtn = document.querySelector('.hist-nav-discover-btn');
-  const ffDd  = document.querySelector('.hist-nav-dropdown');
-  if (ffBtn && ffDd) {
-    let ffCloseTimer;
-    function openFfDd() {
-      clearTimeout(ffCloseTimer);
-      const r = ffBtn.getBoundingClientRect();
-      ffDd.style.top  = (r.bottom + 8) + 'px';
-      ffDd.style.left = r.left + 'px';
-      ffDd.classList.add('open');
-      ffBtn.classList.add('open');
-      ffBtn.setAttribute('aria-expanded', 'true');
+  const voBtn = document.querySelector('.hist-nav-discover-btn');
+  const voDd  = document.querySelector('.hist-nav-dropdown');
+  if (voBtn && voDd) {
+    let voDdCloseTimer;
+    function openVoDd() {
+      clearTimeout(voDdCloseTimer);
+      const r = voBtn.getBoundingClientRect();
+      voDd.style.top  = (r.bottom + 8) + 'px';
+      voDd.style.left = r.left + 'px';
+      voDd.classList.add('open');
+      voBtn.classList.add('open');
+      voBtn.setAttribute('aria-expanded', 'true');
     }
-    function closeFfDd() {
-      ffDd.classList.remove('open');
-      ffBtn.classList.remove('open');
-      ffBtn.setAttribute('aria-expanded', 'false');
+    function closeVoDd() {
+      voDd.classList.remove('open');
+      voBtn.classList.remove('open');
+      voBtn.setAttribute('aria-expanded', 'false');
     }
-    function scheduleCloseFfDd() { ffCloseTimer = setTimeout(closeFfDd, 200); }
-    ffBtn.addEventListener('mouseenter', openFfDd);
-    ffBtn.addEventListener('mouseleave', scheduleCloseFfDd);
-    ffDd.addEventListener('mouseenter', () => clearTimeout(ffCloseTimer));
-    ffDd.addEventListener('mouseleave', scheduleCloseFfDd);
-    ffBtn.addEventListener('click', e => { if (ffDd.classList.contains('open')) return; e.preventDefault(); openFfDd(); });
-    document.addEventListener('click', closeFfDd);
-    ffDd.addEventListener('click', e => e.stopPropagation());
+    function scheduleCloseVoDd() { voDdCloseTimer = setTimeout(closeVoDd, 200); }
+    voBtn.addEventListener('mouseenter', openVoDd);
+    voBtn.addEventListener('mouseleave', scheduleCloseVoDd);
+    voDd.addEventListener('mouseenter', () => clearTimeout(voDdCloseTimer));
+    voDd.addEventListener('mouseleave', scheduleCloseVoDd);
+    voBtn.addEventListener('click', e => { if (voDd.classList.contains('open')) return; e.preventDefault(); openVoDd(); });
+    document.addEventListener('click', closeVoDd);
+    voDd.addEventListener('click', e => e.stopPropagation());
   }
 
   // ── Mobile hamburger menu ───────────────────────────────────

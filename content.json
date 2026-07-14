@@ -1241,15 +1241,15 @@
       "links": [
         {
           "label": "How to Reach Orchha",
-          "url": "https://visit-orchha.netlify.app/"
+          "url": "/visit-orchha"
         },
         {
           "label": "Travel Options",
-          "url": "https://visit-orchha.netlify.app/"
+          "url": "/visit-orchha"
         },
         {
           "label": "Stay Options",
-          "url": "https://visit-orchha.netlify.app/"
+          "url": "/accommodation"
         }
       ]
     },
@@ -1460,13 +1460,15 @@
       {
         "id": "i1-1",
         "title": "Heritage Highlights Walk",
-        "image": "heritage_walk.webp",
+        "image": "/images/heritage_walk.webp",
+        "href": "/monuments",
         "desc": "Start your journey exploring the monumental legacy of Orchha. Visit the majestic Jahangir Mahal and the intricately designed Raj Mahal."
       },
       {
         "id": "i1-2",
         "title": "Sunset At Betwa",
-        "image": "sunset_betwa.webp",
+        "image": "/images/sunset_betwa.webp",
+        "href": "/experiences/sunset-betwa",
         "desc": "Conclude your single day trip with a serene view of the sun setting over the Betwa River and the glorious Chhatris."
       }
     ],
@@ -1474,25 +1476,29 @@
       {
         "id": "i2-1",
         "title": "Citadel Walk",
-        "image": "citadel_walk.webp",
+        "image": "/images/citadel_walk.webp",
+        "href": "/experiences/citadel-walk",
         "desc": "A comprehensive morning walk through the heart of the Orchha Fort complex, admiring its grandeur."
       },
       {
         "id": "i2-2",
         "title": "Religious Walk",
-        "image": "religious_walk.webp",
+        "image": "/images/religious_walk.webp",
+        "href": "/experiences/religious-walk",
         "desc": "Experience the spiritual side. Visit the Ram Raja Temple and Chaturbhuj Temple, taking part in the evening Aarti."
       },
       {
         "id": "i2-3",
         "title": "River Kayaking",
-        "image": "river_kayaking.webp",
+        "image": "/images/river_kayaking.webp",
+        "href": "/experiences/river-kayaking",
         "desc": "Add some adventure to your second day by kayaking down the Betwa River through the dense forests."
       },
       {
         "id": "i2-4",
         "title": "Art Walk",
-        "image": "art_walk.webp",
+        "image": "/images/art_walk.webp",
+        "href": "/experiences/art-walk",
         "desc": "Discover the hidden murals of Laxminarayan Temple depicting scenes from ancient epics."
       }
     ],
@@ -1500,31 +1506,36 @@
       {
         "id": "i3-1",
         "title": "Detailed Citadel & Art Tour",
-        "image": "art_walk.webp",
+        "image": "/images/art_walk.webp",
+        "href": "/experiences/citadel-walk",
         "desc": "Dive deep into the murals, sculptures, and architectural intricacies of the fort and temples over a fully guided tour."
       },
       {
         "id": "i3-2",
         "title": "Eco Trail Nature Walk",
-        "image": "eco_trail.webp",
+        "image": "/images/eco_trail.webp",
+        "href": "/experiences/eco-trail",
         "desc": "Step into the Orchha Wildlife Sanctuary across the river for a tranquil walk amidst flora and fauna."
       },
       {
         "id": "i3-3",
         "title": "River Kayaking & Camping",
-        "image": "river_kayaking.webp",
+        "image": "/images/river_kayaking.webp",
+        "href": "/experiences/river-kayaking",
         "desc": "An extended kayaking route with an overnight camping experience by the riverside under the stars."
       },
       {
         "id": "i3-4",
         "title": "Village Cultural Experience",
-        "image": "heritage_walk.webp",
+        "image": "/images/heritage_walk.webp",
+        "href": "/experiences",
         "desc": "Interact with the local communities, try local cuisines, and witness rural arts and crafts firsthand."
       },
       {
         "id": "i3-5",
         "title": "Sunset At Betwa",
-        "image": "sunset_betwa.webp",
+        "image": "/images/sunset_betwa.webp",
+        "href": "/experiences/sunset-betwa",
         "desc": "Conclude your expansive trip with the unforgettable sunset views over the Betwa River and Chhatris."
       }
     ]
@@ -2039,5 +2050,62 @@
         { "name": "Betwa Riverside Ghats", "image": "/images/hoho_stop_betwaghat.jpg", "distanceFromPrev": "900 meter", "durationFromPrev": "4 minutes" }
       ]
     }
-  ]
+  ],
+  "sabhyataPage": {
+    "aboutHeadingItalic": "About",
+    "aboutHeadingRest": "Sabhyata Foundation",
+    "aboutParagraphs": [
+      "Established in June 2018 under Section 8 of the Indian Companies Act, 2013, Sabhyata Foundation is committed to preserving and promoting India\u2019s cultural and heritage ecosystem through sustainable development, responsible tourism and immersive visitor experiences.",
+      "The Foundation works towards developing world-class heritage infrastructure, improving visitor amenities and curating meaningful cultural experiences that deepen public engagement with India\u2019s rich history and living traditions. Through collaborative partnerships and community-focused initiatives, Sabhyata Foundation aims to make heritage more accessible, engaging and relevant for future generations.",
+      "As a Smarak Sarathi under the Government of India\u2019s Adopt a Heritage 2.0 initiative, the Foundation currently supports these iconic Delhi landmarks - Purana Qila, Safdarjung Tomb, Humayun\u2019s Tomb and Mehrauli Archaeological Park. It has also been actively associated with Red Fort, a UNESCO World Heritage Site, in partnership with Dalmia Bharat Ltd. under the Adopt a Heritage 1.0 initiative.",
+      "At its core, Sabhyata Foundation believes that heritage is a shared legacy - one that must be protected, celebrated and continually reimagined to inspire generations to come."
+    ],
+    "sitesHeadingItalic": "Other",
+    "sitesHeadingRest": "Sabhyata Sites",
+    "sitesBody": "India's monuments are living expressions of its civilisational journey - guardians of stories, craftsmanship, traditions, and collective memory. At Sabhyata Foundation, we believe these heritage sites are more than architectural landmarks; they are cultural ecosystems that connect people with their roots and inspire future generations. Explore these remarkable places not simply as destinations, but as enduring symbols of India's diverse heritage, where every stone, carving, and corridor carries a story waiting to be discovered.",
+    "exploreLabel": "Explore More",
+    "exploreUrl": "https://sabhyatafoundation.com/our-monuments/",
+    "sites": [
+      { "name": "Mehrauli Archaeological Park", "image": "/images/sabhyata_mehrauli.jpg", "column": 1, "width": 520, "aspect": "520/569", "labelPosition": "below" },
+      { "name": "Purana Qila", "image": "/images/sabhyata_purana_qila.jpg", "column": 2, "width": 520, "aspect": "520/223", "labelPosition": "above" },
+      { "name": "Red Fort", "image": "/images/sabhyata_red_fort.jpg", "column": 2, "width": 489, "aspect": "489/256", "labelPosition": "above" },
+      { "name": "Humayun's Tomb", "image": "/images/sabhyata_humayuns_tomb.jpg", "column": 3, "width": 436, "aspect": "436/568", "labelPosition": "above" }
+    ]
+  },
+  "planYourVisitPage": {
+    "heroTitlePre": "Plan",
+    "heroTitleItalic": "Your",
+    "heroTitlePost": "Visit",
+    "heroSub": "Based On The Number Of Days You Want To Explore The Hidden Gems And Cultural Tapestry Of Orchha.",
+    "dayLabels": [ "1 DAY", "2 DAYS", "3+ DAYS" ],
+    "cardButtonLabel": "Explore",
+    "visitHeadingItalic": "Visit",
+    "visitHeadingRest": "Orchha",
+    "visitLinks": [
+      { "label": "How to Reach Orchha", "url": "/visit-orchha" },
+      { "label": "Travel Options", "url": "/visit-orchha" },
+      { "label": "Stay Options", "url": "/accommodation" }
+    ]
+  },
+  "visitOrchhaPage": {
+    "headingItalic": "Visit",
+    "headingRest": "Orchha",
+    "reachTitle": "How to Reach Orchha",
+    "reachItems": [
+      { "icon": "/images/vo_icon_train.svg", "title": "By Train", "lines": [ "Jhansi Junction (18km)" ] },
+      { "icon": "/images/vo_icon_plane.svg", "title": "By Air", "lines": [ "Gwalior Airport (120km)", "Bhopal Airport (175km)" ] },
+      { "icon": "/images/vo_icon_road.svg", "title": "By Road", "lines": [ "Well connected from Jhansi,", "Gwalior & Khajuraho" ] }
+    ],
+    "travelTitle": "Travel Options",
+    "travelItems": [
+      { "icon": "/images/vo_icon_taxi.svg", "title": "Private Taxi & Cabs" },
+      { "icon": "/images/vo_icon_rickshaw.svg", "title": "Auto Rickshaws" },
+      { "icon": "/images/vo_icon_bus.svg", "title": "Ho-Ho E-Rickshaws & E-Buses" }
+    ],
+    "travelExploreUrl": "/hoho",
+    "stayTitle": "Stay Options",
+    "stayBody": "Explore a range of private hotels, resorts & home stays!",
+    "stayExploreUrl": "/accommodation",
+    "exploreLabel": "Explore"
+  }
 }

@@ -19,6 +19,9 @@ module AdminHelper
     "riverKayakingPage" => "River Kayaking Page",
     "religiousWalkPage" => "Religious Walk Page",
     "supportUsPage"     => "Support Us Page Settings",
+    "sabhyataPage"      => "Sabhyata Foundation Page",
+    "planYourVisitPage" => "Plan Your Visit Page Settings",
+    "visitOrchhaPage"   => "Visit Orchha Page",
     "newsPage"          => "News Page Settings",
     "newsItems"         => "News",
     "museums"           => "Museums",
@@ -83,6 +86,13 @@ module AdminHelper
           ] },
         { label: "Light & Sound Show", path: admin_edit_section_path("soundLightShowPage"), match: %r{/sections/soundLightShowPage} },
         { label: "Citadel Walk", path: admin_edit_section_path("citadelWalkPage"), match: %r{/sections/citadelWalkPage} },
+        { label: "Plan Your Visit", path: admin_edit_section_path("planYourVisitPage"), match: %r{/(sections/planYourVisitPage|collections/itineraries)},
+          children: [
+            { label: "Page Content", path: admin_edit_section_path("planYourVisitPage"), match: %r{/sections/planYourVisitPage} },
+            { label: "Itineraries", path: admin_collection_path("itineraries"), match: %r{/collections/itineraries} }
+          ] },
+        { label: "Visit Orchha", path: admin_edit_section_path("visitOrchhaPage"), match: %r{/sections/visitOrchhaPage} },
+        { label: "Sabhyata Foundation", path: admin_edit_section_path("sabhyataPage"), match: %r{/sections/sabhyataPage} },
         { label: "Support Us", path: admin_edit_section_path("supportUsPage"), match: %r{/sections/supportUsPage} },
         { label: "Custom Pages", path: admin_pages_path, match: %r{/admin/pages} }
       ] },
@@ -93,7 +103,6 @@ module AdminHelper
             { label: "Page Settings", path: admin_edit_section_path("newsPage"), match: %r{/sections/newsPage} }
           ] },
         { label: "Museums", path: admin_collection_path("museums"), match: %r{/collections/museums} },
-        { label: "Itineraries", path: admin_collection_path("itineraries"), match: %r{/collections/itineraries} },
         { label: "Freedom Fighters", path: admin_collection_path("freedomFighters"), match: %r{/collections/freedomFighters} },
         { label: "HOHO Services", path: admin_collection_path("hohoServices"), match: %r{/collections/hohoServices} },
         { label: "Audio Guides", path: admin_collection_path("audioGuides"), match: %r{/collections/audioGuides} },

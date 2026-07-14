@@ -3943,119 +3943,143 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   SABHYATA FOUNDATION PAGE — horizontal scroll-jack, 3 panels
+   SABHYATA FOUNDATION PAGE — horizontal scroll-jack (Figma 3278-10903)
    ═══════════════════════════════════════════════════════════════════════ */
+
+/* Standard beige-pill nav, fixed above the scroll-jack panels */
+.sab-nav-fixed {
+  position: fixed;
+  top: 43px;
+  left: 0;
+  right: 0;
+  z-index: 600;
+}
+
 .sab-panel {
   background: #e7ded5;
   display: flex;
-  align-items: stretch;
-  border-top: 1px solid rgba(110,22,3,0.18);
-  border-bottom: 1px solid rgba(110,22,3,0.18);
+  align-items: flex-start;
 }
-.sab-left {
-  flex: 0 0 46%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 64px 48px 64px 80px;
-}
+
 .sab-heading {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
   font-size: 56px;
   line-height: 1.08;
   color: #6e1603;
-  margin: 0 0 24px 0;
+  margin: 0;
 }
 .sab-heading em { font-style: italic; }
+.sab-heading-xl {
+  font-size: clamp(50px, 7vw, 102px);
+  line-height: 1.073;
+  text-transform: capitalize;
+}
 .sab-body {
-  font-family: 'Gambetta Variable', serif;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 1.65;
-  color: #1a0e06;
-  margin: 0 0 20px 0;
-  max-width: 480px;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 400;
+  font-size: 17.5px;
+  line-height: 1.243;
+  color: #000;
+  margin: 0 0 22px 0;
 }
 .sab-body:last-child { margin-bottom: 0; }
 
-.sab-right {
-  flex: 1;
-  display: flex;
-  align-items: flex-end;
-  gap: 20px;
-  padding: 48px 60px 48px 24px;
+/* Panel 1: big heading left (vertically deeper), body copy column right */
+.sab-about-heading-col {
+  padding-top: 30vh;
+  padding-left: 9vw;
 }
-.sab-img {
-  border-radius: 10px;
-  overflow: hidden;
+.sab-about-body-col {
+  padding-top: 17.5vh;
+  width: 520px;
   flex-shrink: 0;
 }
-.sab-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.sab-img-tall  { flex: 1 1 0; aspect-ratio: 436 / 603; }
-.sab-img-short { flex: 1 1 0; aspect-ratio: 489 / 438; align-self: center; }
-.sab-img-equal { flex: 1 1 0; aspect-ratio: 443 / 491; align-self: center; }
+.sab-sites-body { font-weight: 500; }
 
-/* Panel 2: Credibility stats */
-.sab-stats {
-  display: flex;
-  align-items: flex-start;
-  gap: 40px;
-  margin-top: 8px;
-}
-.sab-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.sab-stat-num {
-  font-family: 'Scotch Display', serif;
-  font-weight: 700;
-  font-size: 56px;
-  line-height: 1;
-  color: #6e1603;
-}
-.sab-stat-label {
-  font-family: 'Gambetta Variable', serif;
-  font-weight: 500;
-  font-size: 22px;
-  line-height: 1.2;
-  color: #1a0e06;
-}
-
-/* Panel 3: Site labels */
-.sab-site-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  flex: 1 1 0;
-  align-self: flex-end;
-}
-/* .sab-img's flex:1 1 0 is meant for the row context (2 images side by side in
-   .sab-right); inside this column-direction wrapper it fights aspect-ratio
-   sizing (flex-basis:0 on the main/vertical axis collapses height to 0), so
-   reset it back to a plain block sized purely by aspect-ratio + width:100% */
-.sab-site-wrap .sab-img { flex: none; width: 100%; align-self: stretch; }
-.sab-site-label {
+/* Panel 2: Other Sabhyata Sites — heading, intro, explore button */
+.sab-sites-text { padding-top: 19vh; }
+.sab-sites-text .sab-heading-xl { margin-bottom: 56px; }
+.sab-panel-sites .sab-sites-body { margin-bottom: 44px; max-width: 770px; }
+.sab-explore-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 42px;
+  border: 3.5px solid #6e1603;
+  border-radius: 40px;
   font-family: 'Chivo', sans-serif;
   font-weight: 700;
-  font-size: 12px;
-  letter-spacing: 0.1em;
+  font-size: clamp(18px, 1.9vw, 27px);
   text-transform: uppercase;
   color: #6e1603;
+  text-decoration: none;
+  transition: background-color .2s, color .2s;
+}
+.sab-explore-btn:hover { background: #6e1603; color: #fff; }
+
+/* Panel 3: site photos with labels, stacked into columns */
+.sab-panel-photos { gap: 46px; padding-top: 18vh; }
+.sab-site-col {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex-shrink: 0;
+}
+.sab-site-item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.sab-site-photo {
+  border-radius: 12px;
+  overflow: hidden;
+}
+.sab-site-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.sab-site-name {
+  font-family: 'Chivo', sans-serif;
+  font-weight: 700;
+  font-size: clamp(18px, 2vw, 29px);
+  text-transform: uppercase;
+  color: #6e1603;
+  line-height: 1.1;
+}
+.sab-site-name-below { text-align: right; }
+.sab-site-name-above { text-align: left; }
+
+/* ── Desktop: panels hug their content so section gaps match Figma ── */
+@media (min-width: 901px) {
+  .sab-about-heading-col { flex: 0 0 55vw; }
+  .sab-panel-sites {
+    width: auto;
+    min-width: 0;
+    padding-left: 100px;
+    padding-right: 0;
+  }
+  .sab-sites-text { width: min(790px, 55vw); }
+  .sab-panel-photos {
+    width: auto;
+    min-width: 0;
+    padding-left: 170px;
+    padding-right: 16vw;
+  }
 }
 
 /* ── Mobile ─────────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .sab-panel { flex-direction: column; height: auto; }
-  .sab-left { flex: none; width: 100%; padding: 56px 20px 8px; }
-  .sab-panel:first-child .sab-left { padding-top: 110px; }
-  .sab-heading { font-size: 34px; }
-  .sab-body { font-size: 15.5px; max-width: 100%; }
-  .sab-right { padding: 20px 20px 56px; align-items: flex-end; }
-  .sab-stats { gap: 28px; flex-wrap: wrap; }
-  .sab-stat-num { font-size: 40px; }
-  .sab-stat-label { font-size: 16px; }
+  .sab-nav-fixed { top: 20px; }
+  .sab-panel { flex-direction: column; height: auto; align-items: stretch; }
+  .sab-about-heading-col { flex: none; width: 100%; padding: 110px 20px 8px; }
+  .sab-about-body-col { flex: none; width: 100%; max-width: 100%; padding: 24px 20px 56px; }
+  .sab-heading-xl { font-size: clamp(40px, 11vw, 54px); }
+  .sab-body { font-size: 15.5px; }
+  .sab-panel-sites { padding: 40px 0 56px; }
+  .sab-sites-text { padding: 0 20px; }
+  .sab-sites-text .sab-heading-xl { margin-bottom: 24px; }
+  .sab-panel-sites .sab-sites-body { margin-bottom: 32px; }
+  .sab-explore-btn { padding: 12px 30px; border-width: 3px; }
+  .sab-panel-photos { flex-direction: column; gap: 40px; padding: 24px 20px 64px; }
+  .sab-site-col { width: 100% !important; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
@@ -5513,4 +5537,414 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   .cw-logo-mpt { height: 20px; }
   .cw-logo-ii  { height: 22px; }
   .cw-card-name { font-size: 26px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PLAN YOUR VISIT PAGE (pyv-*) — day slider + itinerary cards
+   ═══════════════════════════════════════════════════════════════════════ */
+.pyv-page {
+  background: #e7ded5;
+  min-height: 100vh;
+  padding-top: 43px;
+}
+
+/* ── Hero ───────────────────────────────────────────────── */
+.pyv-hero {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 88px 32px 30px;
+  text-align: center;
+}
+.pyv-hero-title {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: clamp(57px, 6.4vw, 93px);
+  letter-spacing: -1px;
+  line-height: 1;
+  color: #6e1603;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1);
+}
+.pyv-hero-title em { font-style: italic; }
+.pyv-hero-sub {
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 500;
+  margin: 18px auto 0;
+  max-width: 720px;
+  font-size: 19px;
+  line-height: 1.3;
+  text-transform: capitalize;
+  color: #000;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity .8s cubic-bezier(.4,0,.2,1) .2s, transform .8s cubic-bezier(.4,0,.2,1) .2s;
+}
+.pyv-hero-title.visible, .pyv-hero-sub.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Day slider ─────────────────────────────────────────── */
+.pyv-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 0 32px;
+}
+.pyv-slider {
+  position: relative;
+  height: 32px;
+  width: 100%;
+  max-width: 372px;
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.pyv-sl-track, .pyv-sl-fill {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: 4px;
+  transform: translateY(-50%);
+  border-radius: 2px;
+  pointer-events: none;
+}
+.pyv-sl-track { width: 100%; background: rgba(110,22,3,0.18); }
+.pyv-sl-fill  { width: 0%; background: #6e1603; }
+.pyv-sl-dot {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #e7ded5;
+  border: 2px solid #6e1603;
+  pointer-events: none;
+  transition: background-color .25s;
+}
+.pyv-sl-dot.filled { background: #6e1603; }
+.pyv-sl-dot[data-dot="0"] { left: 0%; }
+.pyv-sl-dot[data-dot="1"] { left: 50%; }
+.pyv-sl-dot[data-dot="2"] { left: 100%; }
+.pyv-sl-thumb {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  width: 22px;
+  height: 22px;
+  transform: translate(-50%, -50%);
+  background: #6e1603;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(110,22,3,0.35);
+  cursor: grab;
+}
+.pyv-sl-thumb:active { cursor: grabbing; }
+.pyv-labels {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 412px;
+  margin-top: 20px;
+  padding: 0 20px;
+}
+.pyv-lbl {
+  font-family: 'Chivo', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: #6e1603;
+  opacity: 0.55;
+  padding: 2px 4px;
+  transition: opacity .25s;
+}
+.pyv-lbl.active { opacity: 1; font-weight: 700; }
+
+/* ── Itinerary cards ────────────────────────────────────── */
+.pyv-grid-wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 64px 80px;
+}
+.pyv-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  column-gap: 40px;
+  row-gap: 56px;
+  min-height: 500px;
+}
+/* the hidden attribute must beat display:grid above */
+.pyv-grid[hidden] { display: none; }
+.pyv-card-link { text-decoration: none; display: block; }
+.pyv-article {
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1);
+}
+.pyv-article.visible { opacity: 1; transform: translateY(0); }
+.pyv-img-wrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  border: 6px solid #6e1603;
+  background: #d1bfae;
+  overflow: hidden;
+}
+.pyv-img-wrap img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.pyv-card-link:hover .pyv-img-wrap img { transform: scale(1.05); }
+.pyv-card-h {
+  margin: 22px 0 0;
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: clamp(26px, 3.6vw, 40px);
+  line-height: 1.05;
+  color: #6e1603;
+}
+.pyv-card-p {
+  margin: 10px 0 0;
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(0,0,0,0.85);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.pyv-card-btn {
+  margin-top: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+  height: 38px;
+  padding: 0 20px;
+  border: 1.8px solid #6e1603;
+  border-radius: 58px;
+  font-family: 'Chivo', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6e1603;
+  transition: background-color .2s, color .2s;
+}
+.pyv-card-link:hover .pyv-card-btn { background: #6e1603; color: #fff; }
+
+/* ── Visit Orchha card ──────────────────────────────────── */
+.pyv-visit {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 130px;
+}
+.pyv-visit-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 343px;
+  background: #e5d5c2;
+  border-radius: 11px;
+  padding: 40px 64px 40px 53px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1);
+}
+.pyv-visit-card.visible { opacity: 1; transform: translateY(0); }
+.pyv-visit-links {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+.pyv-visit-link {
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 1.3;
+  color: #000;
+  text-decoration: none;
+  transition: opacity .18s;
+}
+.pyv-visit-link:hover { opacity: 0.7; }
+.pyv-visit-heading {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: clamp(64px, 7.5vw, 109px);
+  line-height: 0.96;
+  text-align: right;
+  color: #6e1603;
+  margin: 0;
+}
+.pyv-visit-heading em { font-style: italic; font-weight: 400; }
+
+/* .footer sits directly below — give it breathing room */
+.pyv-page .footer { margin-top: 85px; }
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .pyv-hero { padding: 56px 24px 16px; }
+  .pyv-hero-title { font-size: clamp(38px, 10.4vw, 70px); letter-spacing: -0.5px; }
+  .pyv-hero-sub { margin-top: 16px; max-width: 40ch; font-size: clamp(12px, 2.9vw, 15px); line-height: 1.35; }
+  .pyv-slider-wrap { padding: 16px 24px 28px; }
+  .pyv-labels { padding: 0; }
+  .pyv-grid-wrap { padding: 0 24px 48px; }
+  .pyv-grid { grid-template-columns: 1fr; row-gap: 40px; min-height: auto; }
+  .pyv-card-h { margin-top: 16px; }
+  .pyv-visit { padding: 0; }
+  .pyv-visit-card {
+    border-radius: 0;
+    background: #e7ded5;
+    border-top: 1px solid rgba(110,22,3,0.12);
+    min-height: 0;
+    padding: 32px 24px 20px;
+    align-items: flex-start;
+  }
+  .pyv-visit-links { gap: 16px; padding-top: 4px; }
+  .pyv-visit-link { font-size: 14px; }
+  .pyv-visit-heading { font-size: clamp(32px, 11.2vw, 45px); }
+  .pyv-page .footer { margin-top: 40px; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   VISIT ORCHHA PAGE (vo-*) — reach / travel / stay cards (Figma 3357-5972)
+   ═══════════════════════════════════════════════════════════════════════ */
+.vo-page {
+  background: #e7ded5;
+  min-height: 100vh;
+  padding-top: 43px;
+}
+.vo-heading {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: clamp(44px, 4.4vw, 62px);
+  line-height: 0.95;
+  text-align: center;
+  color: #6e1603;
+  margin: 66px 0 0;
+}
+.vo-heading em { font-style: italic; }
+
+.vo-cards {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 46px;
+  max-width: 1300px;
+  margin: 64px auto 0;
+  padding: 0 32px 110px;
+}
+.vo-card {
+  flex: 0 1 387px;
+  min-height: 382px;
+  border: 3px solid #6e1603;
+  border-radius: 10px;
+  padding: 22px 21px 26px;
+  display: flex;
+  flex-direction: column;
+}
+.vo-card-title {
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: normal;
+  color: #6e1603;
+  margin: 0 0 26px;
+}
+.vo-card-items {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.vo-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.vo-item-icon {
+  flex-shrink: 0;
+  width: 29px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.vo-item-icon img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.vo-item-divider {
+  flex-shrink: 0;
+  width: 0;
+  align-self: stretch;
+  min-height: 48px;
+  border-left: 1.5px dashed #cbb0a5;
+  transform: skewX(-8deg);
+}
+.vo-item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.vo-item-title {
+  font-family: 'Chivo', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: #000;
+}
+.vo-item-sub {
+  font-family: 'Chivo', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-transform: capitalize;
+  color: #626262;
+}
+.vo-card-body {
+  font-family: 'Chivo', sans-serif;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.01em;
+  color: #000;
+  max-width: 302px;
+  margin: 0;
+}
+.vo-explore-btn {
+  margin-top: auto;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 26px;
+  border: 1.5px solid #6e1603;
+  border-radius: 22px;
+  font-family: 'Chivo', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: #6e1603;
+  text-decoration: none;
+  transition: background-color .2s, color .2s;
+}
+.vo-explore-btn:hover { background: #6e1603; color: #fff; }
+/* Cards without a button (How to Reach) keep their items top-aligned */
+.vo-card-items + .vo-explore-btn { margin-top: 32px; }
+
+/* ── Mobile ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .vo-heading { margin-top: 48px; }
+  .vo-cards {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-top: 40px;
+    padding: 0 24px 64px;
+  }
+  .vo-card { flex: none; width: 100%; max-width: 420px; min-height: 0; }
 }

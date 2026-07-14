@@ -1,9 +1,8 @@
 class PagesController < ApplicationController
-
   def history
     raw = ContentStore.raw
-    @page = raw['historyPage'] || {}
-    @home = raw['homePage'] || {}
+    @page = raw["historyPage"] || {}
+    @home = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}
@@ -12,9 +11,9 @@ class PagesController < ApplicationController
 
   def monuments
     raw = ContentStore.raw
-    @page = raw['monumentsPage'] || {}
-    @monuments = (raw['monuments'] || []).select { |m| m['visible'] != false }
-    @home = raw['homePage'] || {}
+    @page = raw["monumentsPage"] || {}
+    @monuments = (raw["monuments"] || []).select { |m| m["visible"] != false }
+    @home = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}
@@ -24,8 +23,8 @@ class PagesController < ApplicationController
 
   def freedom_fighters
     raw = ContentStore.raw
-    @fighters = raw['freedomFighters'] || []
-    @home = raw['homePage'] || {}
+    @fighters = raw["freedomFighters"] || []
+    @home = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @fighters = []
@@ -34,19 +33,19 @@ class PagesController < ApplicationController
 
   def freedom_fighter
     raw = ContentStore.raw
-    all = raw['freedomFighters'] || []
-    @fighter = all.find { |f| f['id'] == params[:id] }
-    redirect_to '/freedom-fighters' and return unless @fighter
-    @home = raw['homePage'] || {}
+    all = raw["freedomFighters"] || []
+    @fighter = all.find { |f| f["id"] == params[:id] }
+    redirect_to "/freedom-fighters" and return unless @fighter
+    @home = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
-    redirect_to '/freedom-fighters'
+    redirect_to "/freedom-fighters"
   end
 
   def hoho
     raw = ContentStore.raw
-    @services = raw['hohoServices'] || []
-    @home = raw['homePage'] || {}
+    @services = raw["hohoServices"] || []
+    @home = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @services = []
@@ -55,9 +54,9 @@ class PagesController < ApplicationController
 
   def accommodation
     raw = ContentStore.raw
-    @page  = raw['accommodationPage'] || {}
-    @items = raw['accommodations'] || []
-    @home  = raw['homePage'] || {}
+    @page  = raw["accommodationPage"] || {}
+    @items = raw["accommodations"] || []
+    @home  = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}; @items = []; @home = {}
@@ -65,9 +64,9 @@ class PagesController < ApplicationController
 
   def museums
     raw = ContentStore.raw
-    @page  = raw['museumsPage'] || {}
-    @items = (raw['museums'] || []).select { |m| m['visible'] != false }
-    @home  = raw['homePage'] || {}
+    @page  = raw["museumsPage"] || {}
+    @items = (raw["museums"] || []).select { |m| m["visible"] != false }
+    @home  = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}; @items = []; @home = {}
@@ -75,9 +74,9 @@ class PagesController < ApplicationController
 
   def art_frescoes
     raw = ContentStore.raw
-    @page  = raw['artFrescoesPage'] || {}
-    @items = raw['artFrescoes'] || []
-    @home  = raw['homePage'] || {}
+    @page  = raw["artFrescoesPage"] || {}
+    @items = raw["artFrescoes"] || []
+    @home  = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}; @items = []; @home = {}
@@ -85,9 +84,9 @@ class PagesController < ApplicationController
 
   def news
     raw = ContentStore.raw
-    @page  = raw['newsPage'] || {}
-    @items = (raw['newsItems'] || []).select { |n| n['visible'] != false }
-    @home  = raw['homePage'] || {}
+    @page  = raw["newsPage"] || {}
+    @items = (raw["newsItems"] || []).select { |n| n["visible"] != false }
+    @home  = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}; @items = []; @home = {}
@@ -95,9 +94,9 @@ class PagesController < ApplicationController
 
   def events
     raw = ContentStore.raw
-    @page  = raw['eventsPage'] || {}
-    @items = (raw['events'] || []).select { |ev| ev['visible'] != false }
-    @home  = raw['homePage'] || {}
+    @page  = raw["eventsPage"] || {}
+    @items = (raw["events"] || []).select { |ev| ev["visible"] != false }
+    @home  = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}; @items = []; @home = {}
@@ -105,27 +104,49 @@ class PagesController < ApplicationController
 
   def event
     raw = ContentStore.raw
-    all = raw['events'] || []
-    @event = all.find { |ev| ev['id'] == params[:id] }
-    redirect_to '/events' and return unless @event
-    @home = raw['homePage'] || {}
+    all = raw["events"] || []
+    @event = all.find { |ev| ev["id"] == params[:id] }
+    redirect_to "/events" and return unless @event
+    @home = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
-    redirect_to '/events'
+    redirect_to "/events"
   end
 
   def sabhyata
     raw = ContentStore.raw
-    @home = raw['homePage'] || {}
+    @page = raw["sabhyataPage"] || {}
+    @home = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}
+    @home = {}
+  end
+
+  def plan_your_visit
+    raw = ContentStore.raw
+    @page        = raw["planYourVisitPage"] || {}
+    @itineraries = raw["itineraries"] || {}
+    @home        = raw["homePage"] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}; @itineraries = {}; @home = {}
+  end
+
+  def visit_orchha
+    raw = ContentStore.raw
+    @page = raw["visitOrchhaPage"] || {}
+    @home = raw["homePage"] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}
     @home = {}
   end
 
   def support_us
     raw = ContentStore.raw
-    @page = raw['supportUsPage'] || {}
-    @home = raw['homePage'] || {}
+    @page = raw["supportUsPage"] || {}
+    @home = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}
@@ -134,10 +155,10 @@ class PagesController < ApplicationController
 
   def experiences
     raw = ContentStore.raw
-    @page     = raw['experiencesPage'] || {}
-    @items    = raw['experienceItems'] || []
-    @cuisine  = raw['cuisineItems'] || []
-    @home     = raw['homePage'] || {}
+    @page     = raw["experiencesPage"] || {}
+    @items    = raw["experienceItems"] || []
+    @cuisine  = raw["cuisineItems"] || []
+    @home     = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}; @items = []; @cuisine = []; @home = {}
@@ -145,22 +166,22 @@ class PagesController < ApplicationController
 
   def experience_detail
     raw = ContentStore.raw
-    all = raw['experienceItems'] || []
-    @exp  = all.find { |e| e['id'] == params[:id] }
-    redirect_to '/experiences' and return unless @exp
-    @page = raw['artWalkPage'] || {}
-    @home = raw['homePage'] || {}
-    @audio_tracks = audio_tracks_for(raw, @exp['id'])
+    all = raw["experienceItems"] || []
+    @exp  = all.find { |e| e["id"] == params[:id] }
+    redirect_to "/experiences" and return unless @exp
+    @page = raw["artWalkPage"] || {}
+    @home = raw["homePage"] || {}
+    @audio_tracks = audio_tracks_for(raw, @exp["id"])
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
-    redirect_to '/experiences'
+    redirect_to "/experiences"
   end
 
   def eco_trail
     raw = ContentStore.raw
-    @page = raw['ecoTrailPage'] || {}
-    @home = raw['homePage'] || {}
-    @audio_tracks = audio_tracks_for(raw, 'eco-trail')
+    @page = raw["ecoTrailPage"] || {}
+    @home = raw["homePage"] || {}
+    @audio_tracks = audio_tracks_for(raw, "eco-trail")
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @home = {}
@@ -168,11 +189,11 @@ class PagesController < ApplicationController
 
   def river_kayaking
     raw = ContentStore.raw
-    all = raw['experienceItems'] || []
-    @exp  = all.find { |e| e['id'] == 'river-kayaking' } || {}
-    @page = raw['riverKayakingPage'] || {}
-    @home = raw['homePage'] || {}
-    @audio_tracks = audio_tracks_for(raw, 'river-kayaking')
+    all = raw["experienceItems"] || []
+    @exp  = all.find { |e| e["id"] == "river-kayaking" } || {}
+    @page = raw["riverKayakingPage"] || {}
+    @home = raw["homePage"] || {}
+    @audio_tracks = audio_tracks_for(raw, "river-kayaking")
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @exp = {}
@@ -181,11 +202,11 @@ class PagesController < ApplicationController
 
   def religious_walk
     raw = ContentStore.raw
-    all = raw['experienceItems'] || []
-    @exp  = all.find { |e| e['id'] == 'religious-walk' } || {}
-    @page = raw['religiousWalkPage'] || {}
-    @home = raw['homePage'] || {}
-    @audio_tracks = audio_tracks_for(raw, 'religious-walk')
+    all = raw["experienceItems"] || []
+    @exp  = all.find { |e| e["id"] == "religious-walk" } || {}
+    @page = raw["religiousWalkPage"] || {}
+    @home = raw["homePage"] || {}
+    @audio_tracks = audio_tracks_for(raw, "religious-walk")
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @exp = {}
@@ -194,8 +215,8 @@ class PagesController < ApplicationController
 
   def sound_light_show
     raw = ContentStore.raw
-    @page = raw['soundLightShowPage'] || {}
-    @home = raw['homePage'] || {}
+    @page = raw["soundLightShowPage"] || {}
+    @home = raw["homePage"] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}
@@ -204,9 +225,9 @@ class PagesController < ApplicationController
 
   def citadel_walk
     raw = ContentStore.raw
-    @page = raw['citadelWalkPage'] || {}
-    @home = raw['homePage'] || {}
-    @audio_tracks = audio_tracks_for(raw, 'citadel-walk')
+    @page = raw["citadelWalkPage"] || {}
+    @home = raw["homePage"] || {}
+    @audio_tracks = audio_tracks_for(raw, "citadel-walk")
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     @page = {}
@@ -215,15 +236,15 @@ class PagesController < ApplicationController
 
   def monument
     raw = ContentStore.raw
-    all = raw['monuments'] || []
-    @monument = all.find { |m| m['id'] == params[:id] }
-    redirect_to '/monuments' and return unless @monument
-    @home = raw['homePage'] || {}
-    @all_monuments = all.select { |m| m['visible'] != false }
-    @audio_tracks = audio_tracks_for(raw, @monument['id'])
+    all = raw["monuments"] || []
+    @monument = all.find { |m| m["id"] == params[:id] }
+    redirect_to "/monuments" and return unless @monument
+    @home = raw["homePage"] || {}
+    @all_monuments = all.select { |m| m["visible"] != false }
+    @audio_tracks = audio_tracks_for(raw, @monument["id"])
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
-    redirect_to '/monuments'
+    redirect_to "/monuments"
   end
 
   private
@@ -231,9 +252,9 @@ class PagesController < ApplicationController
   # Language tracks for a page's audio guide, from the audioGuides collection.
   # Returns [] when no visible guide matches, so views fall back gracefully.
   def audio_tracks_for(raw, id)
-    guide = (raw['audioGuides'] || []).find { |g| g['id'] == id && g['visible'] != false }
-    tracks = guide && guide['tracks']
+    guide = (raw["audioGuides"] || []).find { |g| g["id"] == id && g["visible"] != false }
+    tracks = guide && guide["tracks"]
     return [] unless tracks.is_a?(Array)
-    tracks.select { |t| t.is_a?(Hash) && t['audio'].to_s.strip.present? }
+    tracks.select { |t| t.is_a?(Hash) && t["audio"].to_s.strip.present? }
   end
 end

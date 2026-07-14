@@ -1,54 +1,80 @@
-<%# About Sabhyata Foundation page — horizontal scroll-jacking, 3 panels %>
+<%# About Sabhyata Foundation page — Figma 3278-10903, horizontal scroll-jacking, 3 panels %>
 <% nav = (@home['nav'] || {})
    dd  = nav['discoverDropdown'] || []
+
+   about_italic = @page['aboutHeadingItalic'].presence || 'About'
+   about_rest   = @page['aboutHeadingRest'].presence   || 'Sabhyata Foundation'
+   about_paras  = @page['aboutParagraphs'].presence    || [
+     "Established in June 2018 under Section 8 of the Indian Companies Act, 2013, Sabhyata Foundation is committed to preserving and promoting India’s cultural and heritage ecosystem through sustainable development, responsible tourism and immersive visitor experiences.",
+     "The Foundation works towards developing world-class heritage infrastructure, improving visitor amenities and curating meaningful cultural experiences that deepen public engagement with India’s rich history and living traditions. Through collaborative partnerships and community-focused initiatives, Sabhyata Foundation aims to make heritage more accessible, engaging and relevant for future generations.",
+     "As a Smarak Sarathi under the Government of India’s Adopt a Heritage 2.0 initiative, the Foundation currently supports these iconic Delhi landmarks - Purana Qila, Safdarjung Tomb, Humayun’s Tomb and Mehrauli Archaeological Park. It has also been actively associated with Red Fort, a UNESCO World Heritage Site, in partnership with Dalmia Bharat Ltd. under the Adopt a Heritage 1.0 initiative.",
+     "At its core, Sabhyata Foundation believes that heritage is a shared legacy - one that must be protected, celebrated and continually reimagined to inspire generations to come."
+   ]
+   sites_italic = @page['sitesHeadingItalic'].presence || 'Other'
+   sites_rest   = @page['sitesHeadingRest'].presence   || 'Sabhyata Sites'
+   sites_body   = @page['sitesBody'].presence || "India's monuments are living expressions of its civilisational journey - guardians of stories, craftsmanship, traditions, and collective memory. At Sabhyata Foundation, we believe these heritage sites are more than architectural landmarks; they are cultural ecosystems that connect people with their roots and inspire future generations. Explore these remarkable places not simply as destinations, but as enduring symbols of India's diverse heritage, where every stone, carving, and corridor carries a story waiting to be discovered."
+   explore_lbl  = @page['exploreLabel'].presence || 'Explore More'
+   explore_url  = @page['exploreUrl'].presence   || 'https://sabhyatafoundation.com/our-monuments/'
+   sites        = @page['sites'].presence || [
+     { 'name' => 'Mehrauli Archaeological Park', 'image' => '/images/sabhyata_mehrauli.jpg',      'column' => 1, 'width' => 520, 'aspect' => '520/569', 'labelPosition' => 'below' },
+     { 'name' => 'Purana Qila',                  'image' => '/images/sabhyata_purana_qila.jpg',   'column' => 2, 'width' => 520, 'aspect' => '520/223', 'labelPosition' => 'above' },
+     { 'name' => 'Red Fort',                     'image' => '/images/sabhyata_red_fort.jpg',      'column' => 2, 'width' => 489, 'aspect' => '489/256', 'labelPosition' => 'above' },
+     { 'name' => "Humayun's Tomb",               'image' => '/images/sabhyata_humayuns_tomb.jpg', 'column' => 3, 'width' => 436, 'aspect' => '436/568', 'labelPosition' => 'above' }
+   ]
+   # Group sites into vertical columns; records without a column each get their own.
+   site_columns = sites.each_with_index.group_by { |s, i| (s['column'].presence || i + 1).to_i }.sort.map { |_, group| group.map(&:first) }
 %>
 
 <div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
 
-<%# Fixed nav — outside scroll wrapper %>
-<div class="mdet-nav-wrap">
-  <nav class="mdet-navbar">
-    <div class="mdet-nav-links">
-      <div class="mdet-nav-discover">
-        <a href="/" class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
-          Discover Orchha
-          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </a>
+<%# Fixed nav — standard beige pill (same as other content pages), floats above the scroll-jack %>
+<div class="sab-nav-fixed">
+  <div class="mon-nav-wrap">
+    <nav class="hist-navbar">
+      <div class="nav-links">
+        <div class="nav-discover">
+          <a href="/" class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+            Discover Orchha
+            <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-link">News</a>
+        <a href="https://pages.razorpay.com/pl_PWE9fVFc9oLCel/view" target="_blank" rel="noopener" class="hist-nav-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-link">Sabhyata Foundation</a>
       </div>
-      <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
-      <a href="/news"            class="mdet-nav-link">News</a>
-      <a href="/support-us"      class="mdet-nav-link">Support Us</a>
-      <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
-    </div>
-    <button class="mdet-nav-hamburger" id="mdet-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-    <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-book-btn">Book Tickets</a>
-  </nav>
+      <button class="hist-nav-hamburger" id="hist-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-book-btn">Book Tickets</a>
+    </nav>
 
-  <div class="mdet-nav-mobile-menu" id="mdet-nav-mobile-menu">
-    <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
-      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    </button>
-    <div class="mdet-nav-mobile-links">
-      <a href="/" class="mdet-nav-mobile-link">Home</a>
+    <div class="hist-nav-mobile-menu" id="hist-nav-mobile-menu">
+      <button class="hist-nav-mobile-close" id="hist-nav-mobile-close-btn" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="hist-nav-mobile-links">
+        <a href="/" class="hist-nav-mobile-link">Home</a>
+        <% dd.each do |item| %>
+        <a href="<%= item['url'] %>" class="hist-nav-mobile-link"><%= item['label'] %></a>
+        <% end %>
+        <a href="/plan-your-visit" class="hist-nav-mobile-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-mobile-link">News</a>
+        <a href="https://pages.razorpay.com/pl_PWE9fVFc9oLCel/view" target="_blank" rel="noopener" class="hist-nav-mobile-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-mobile-link">Sabhyata Foundation</a>
+      </div>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-nav-mobile-book-btn">Book Tickets</a>
+    </div>
+
+    <%# Discover dropdown — kept outside .hist-navbar because its backdrop-filter
+        creates a new containing block for position:fixed descendants %>
+    <div class="hist-nav-dropdown" role="menu">
       <% dd.each do |item| %>
-      <a href="<%= item['url'] %>" class="mdet-nav-mobile-link"><%= item['label'] %></a>
+      <a href="<%= item['url'] %>" class="hist-nav-dropdown-item" role="menuitem"><%= item['label'] %></a>
       <% end %>
-      <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
-      <a href="/news" class="mdet-nav-mobile-link">News</a>
-      <a href="/support-us" class="mdet-nav-mobile-link">Support Us</a>
-      <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
     </div>
-    <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-nav-mobile-book-btn">Book Tickets</a>
-  </div>
-
-  <%# Discover dropdown — kept outside .mdet-navbar because its backdrop-filter
-      creates a new containing block for position:fixed descendants %>
-  <div class="mdet-nav-dropdown" role="menu">
-    <% dd.each do |item| %>
-    <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
-    <% end %>
   </div>
 </div>
 
@@ -58,18 +84,13 @@
 
       <%# ══ PANEL 1 — ABOUT SABHYATA FOUNDATION ══════════════ %>
       <section class="mdet-panel sab-panel">
-        <div class="sab-left">
-          <h1 class="sab-heading"><em>About</em> Sabhyata<br>Foundation</h1>
-          <p class="sab-body">Sabhyata Foundation is a heritage-led initiative committed to reviving and reinterpreting India's cultural landmarks through research, design, and community stewardship. Our work blends scholarship with lived experience so that monuments are preserved as living spaces, not museum pieces.</p>
-          <p class="sab-body">At Orchha, our approach joins careful conservation with interpretive experiences, educational programmes for local students, and partnerships with artisan communities — so that the heritage economy becomes a source of livelihood alongside tourism.</p>
+        <div class="sab-about-heading-col">
+          <h1 class="sab-heading sab-heading-xl"><em><%= about_italic %></em><br><%= about_rest %></h1>
         </div>
-        <div class="sab-right">
-          <div class="sab-img sab-img-tall">
-            <img src="/images/sabhyata_about_1.jpg" alt="Orchha heritage site — aerial view of historical monument">
-          </div>
-          <div class="sab-img sab-img-short">
-            <img src="/images/sabhyata_about_2.jpg" alt="Orchha heritage monument with surrounding greenery">
-          </div>
+        <div class="sab-about-body-col">
+          <% about_paras.each do |para| %>
+          <p class="sab-body"><%= para %></p>
+          <% end %>
         </div>
 
         <div class="mdet-scroll-hint" id="mdet-scroll-hint">
@@ -78,52 +99,36 @@
         </div>
       </section>
 
-      <%# ══ PANEL 2 — INSTITUTIONAL CREDIBILITY ═══════════════ %>
-      <section class="mdet-panel sab-panel sab-panel-cred">
-        <div class="sab-left">
-          <h2 class="sab-heading">Institutional<br><em>Credibility</em></h2>
-          <div class="sab-stats">
-            <div class="sab-stat">
-              <span class="sab-stat-num" data-target="100000" id="sab-stat-school">0</span>
-              <span class="sab-stat-label">School Visits</span>
-            </div>
-            <div class="sab-stat">
-              <span class="sab-stat-num" data-target="100" id="sab-stat-walk">0</span>
-              <span class="sab-stat-label">Walk through</span>
-            </div>
-          </div>
-        </div>
-        <div class="sab-right">
-          <div class="sab-img sab-img-equal">
-            <img src="/images/sabhyata_school_1.jpg" alt="School students visiting Orchha heritage site">
-          </div>
-          <div class="sab-img sab-img-equal">
-            <img src="/images/sabhyata_school_2.jpg" alt="Guided school group at historical monument">
-          </div>
+      <%# ══ PANEL 2 — OTHER SABHYATA SITES ═════════════════════ %>
+      <section class="mdet-panel sab-panel sab-panel-sites">
+        <div class="sab-sites-text">
+          <h2 class="sab-heading sab-heading-xl"><em><%= sites_italic %></em><br><%= sites_rest %></h2>
+          <% if sites_body %>
+          <p class="sab-body sab-sites-body"><%= sites_body %></p>
+          <% end %>
+          <a href="<%= explore_url %>" target="_blank" rel="noopener" class="sab-explore-btn"><%= explore_lbl %></a>
         </div>
       </section>
 
-      <%# ══ PANEL 3 — OTHER SABHYATA SITES ═════════════════════ %>
-      <section class="mdet-panel sab-panel">
-        <div class="sab-left">
-          <h2 class="sab-heading"><em>Other</em><br>Sabhyata Sites</h2>
-          <p class="sab-body">Beyond Orchha, Sabhyata Foundation stewards heritage revival across multiple sites — working with state tourism boards, archaeologists, and local craft communities to reinterpret the stories each monument holds.</p>
-          <p class="sab-body">Each project is approached as a long-term stewardship, not a restoration one-off — with ongoing conservation cycles, community interpreters, and programmes that let every visit leave something behind for the site and its custodians.</p>
-        </div>
-        <div class="sab-right">
-          <div class="sab-site-wrap">
-            <span class="sab-site-label">Site More</span>
-            <div class="sab-img sab-img-tall">
-              <img src="/images/sabhyata_site_1.jpg" alt="Sabhyata Foundation heritage site — monuments">
+      <%# ══ PANEL 3 — SITE PHOTOS ══════════════════════════════ %>
+      <section class="mdet-panel sab-panel sab-panel-photos">
+        <% site_columns.each do |column| %>
+        <div class="sab-site-col" style="width: min(<%= column.map { |s| (s['width'].presence || 520).to_i }.max %>px, 34vw)">
+          <% column.each do |site| %>
+          <div class="sab-site-item">
+            <% if site['labelPosition'] == 'above' %>
+            <span class="sab-site-name sab-site-name-above"><%= site['name'] %></span>
+            <% end %>
+            <div class="sab-site-photo" style="aspect-ratio: <%= site['aspect'].presence || '520/569' %>">
+              <img src="<%= site['image'] %>" alt="<%= site['name'] %> — Sabhyata Foundation heritage site">
             </div>
+            <% if site['labelPosition'] != 'above' %>
+            <span class="sab-site-name sab-site-name-below"><%= site['name'] %></span>
+            <% end %>
           </div>
-          <div class="sab-site-wrap">
-            <span class="sab-site-label">Site More</span>
-            <div class="sab-img sab-img-short">
-              <img src="/images/sabhyata_site_2.jpg" alt="Purana Qila — heritage site managed by Sabhyata Foundation">
-            </div>
-          </div>
+          <% end %>
         </div>
+        <% end %>
       </section>
 
     </div><%# /mdet-track %>
@@ -155,37 +160,9 @@
     updateHoriz();
   }
 
-  // ── Animated stat counters ──────────────────────────────────
-  let countersRun = false;
-  function runCounters() {
-    if (countersRun) return;
-    countersRun = true;
-    document.querySelectorAll('.sab-stat-num[data-target]').forEach(el => {
-      const target = parseInt(el.dataset.target, 10);
-      const dur = 1600;
-      const t0 = performance.now();
-      const isSchool = el.id === 'sab-stat-school';
-      (function tick(now) {
-        const p = Math.min((now - t0) / dur, 1);
-        const eased = 1 - Math.pow(1 - p, 3);
-        const v = Math.round(eased * target);
-        el.textContent = v.toLocaleString('en-IN') + (isSchool ? '+' : '');
-        if (p < 1) requestAnimationFrame(tick);
-        else el.textContent = target.toLocaleString('en-IN') + (isSchool ? '+' : '');
-      })(t0);
-    });
-  }
-  const credPanel = document.querySelector('.sab-panel-cred');
-  if (credPanel) {
-    const io = new IntersectionObserver(entries => {
-      if (entries[0].isIntersecting) { runCounters(); io.disconnect(); }
-    }, { threshold: 0.3 });
-    io.observe(credPanel);
-  }
-
   // ── Navbar dropdown ───────────────────────────────────────
-  const btn = document.querySelector('.mdet-discover-btn');
-  const dd  = document.querySelector('.mdet-nav-dropdown');
+  const btn = document.querySelector('.hist-nav-discover-btn');
+  const dd  = document.querySelector('.hist-nav-dropdown');
   if (btn && dd) {
     let ddCloseTimer;
     function openDd()  {
@@ -213,26 +190,23 @@
   }
 
   // ── Mobile hamburger menu ─────────────────────────────────
-  const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
-  const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
-  const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
-  if (mdetHamburgerBtn && mdetMobileMenu) {
-    function openMdetMobileMenu() {
-      mdetMobileMenu.classList.add('open');
-      mdetHamburgerBtn.setAttribute('aria-expanded', 'true');
+  const histHamburgerBtn = document.getElementById('hist-nav-hamburger-btn');
+  const histMobileMenu   = document.getElementById('hist-nav-mobile-menu');
+  const histMobileClose  = document.getElementById('hist-nav-mobile-close-btn');
+  if (histHamburgerBtn && histMobileMenu) {
+    function openHistMobileMenu() {
+      histMobileMenu.classList.add('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
     }
-    function closeMdetMobileMenu() {
-      mdetMobileMenu.classList.remove('open');
-      mdetHamburgerBtn.setAttribute('aria-expanded', 'false');
+    function closeHistMobileMenu() {
+      histMobileMenu.classList.remove('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }
-    mdetHamburgerBtn.addEventListener('click', openMdetMobileMenu);
-    if (mdetMobileClose) mdetMobileClose.addEventListener('click', closeMdetMobileMenu);
-    mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
+    histHamburgerBtn.addEventListener('click', openHistMobileMenu);
+    if (histMobileClose) histMobileClose.addEventListener('click', closeHistMobileMenu);
+    histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
   }
-
-  // Mobile: counters fire immediately since section isn't scroll-gated
-  if (isMobile) runCounters();
 })();
 </script>
