@@ -102,6 +102,7 @@
         <% end %>
       </div>
       <p class="aof-empty" id="aof-empty" style="display:none;">No frescoes found in this category yet.</p>
+      <button type="button" class="aof-load-more" id="aof-load-more" style="display:none;">Load More</button>
 
     </div>
   </section>
@@ -214,27 +215,37 @@
     histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
   }
 
-  // ── Filter by category ───────────────────────────────
+  // ── Filter by category (paged: 10 at a time via Load More) ──
   const aofCards = Array.from(document.querySelectorAll('.aof-card'));
   const aofTabs  = Array.from(document.querySelectorAll('.aof-tab'));
   const aofEmpty = document.getElementById('aof-empty');
+  const aofMore  = document.getElementById('aof-load-more');
+  const AOF_PAGE = 10;
+  let aofCat = 'all';
+  let aofLimit = AOF_PAGE;
 
-  function applyAofFilter(cat) {
-    let visible = 0;
-    aofCards.forEach(card => {
-      const show = cat === 'all' || card.dataset.cat === cat;
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
-    });
-    aofEmpty.style.display = visible === 0 ? 'block' : 'none';
+  function applyAofFilter() {
+    const matching = aofCards.filter(card => aofCat === 'all' || card.dataset.cat === aofCat);
+    aofCards.forEach(card => { card.style.display = 'none'; });
+    matching.slice(0, aofLimit).forEach(card => { card.style.display = ''; });
+    aofEmpty.style.display = matching.length === 0 ? 'block' : 'none';
+    if (aofMore) aofMore.style.display = matching.length > aofLimit ? 'inline-flex' : 'none';
   }
+
+  if (aofMore) aofMore.addEventListener('click', () => {
+    aofLimit += AOF_PAGE;
+    applyAofFilter();
+  });
 
   function activateAofTab(tab) {
     aofTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
     tab.classList.add('active');
     tab.setAttribute('aria-selected','true');
-    applyAofFilter(tab.dataset.cat);
+    aofCat = tab.dataset.cat;
+    aofLimit = AOF_PAGE;   // filter change restarts at the first 10
+    applyAofFilter();
   }
+  applyAofFilter();
 
   aofTabs.forEach(tab => {
     tab.addEventListener('click', () => activateAofTab(tab));
