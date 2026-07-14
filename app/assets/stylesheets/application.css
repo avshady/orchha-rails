@@ -1586,14 +1586,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ═══════════════════════════════════════════════════════════
    PANEL 2 — INFO (name + year + description + photos)
    ═══════════════════════════════════════════════════════════ */
+/* Panel width = content + 78px gutters (not 100vw): the old centered
+   1440px grid clipped the description column on narrower desktops and
+   left viewport-dependent gaps on wide ones. */
 .mdet-info {
   background: #e7ded5;
   display: flex; align-items: flex-start;
+  width: auto;
 }
 .mdet-info-inner {
-  width: 100%; height: 100vh;
-  max-width: 1440px; margin: 0 auto;
-  padding: 0 0 0 78px;
+  height: 100vh;
+  padding: 0 78px;
   display: grid;
   grid-template-columns: 421px 353px 614px;
   column-gap: 30px;
@@ -1643,12 +1646,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex; flex-direction: column; justify-content: flex-end;
   padding-bottom: 11.4vh;
 }
-/* Wildlife Sanctuary DYK: full 1440px width, elements shifted right */
-[data-monument="wildlife-sanctuary"] .mdet-dyk { width: 1440px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-heading { left: 632px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-card1 { left: 1056px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-card2 { left: 632px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-text  { left: 1056px; max-width: 353px; }
+/* Wildlife Sanctuary DYK: wider panel, elements shifted right (same 78px trailing gutter) */
+[data-monument="wildlife-sanctuary"] .mdet-dyk { width: 1507px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-heading { left: 652px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-card1 { left: 1076px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-card2 { left: 652px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-text  { left: 1076px; max-width: 353px; }
 .mdet-desc {
   font-family: 'Gambetta Variable', serif; font-weight: 500;
   font-size: 20px; line-height: 23.9px; letter-spacing: -0.2px;
@@ -1670,7 +1673,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mdet-dyk {
   background: #e7ded5;
   display: flex; align-items: flex-start;
-  width: 720px; flex-shrink: 0;
+  /* content (card1 right edge 733) + 78px trailing gutter */
+  width: 811px; flex-shrink: 0;
 }
 .mdet-dyk-inner {
   width: 100%; height: 100vh;
@@ -1680,14 +1684,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* "Did you Know?" — left column, aligned with card2 (card2 right=379, gap=41, card1 at 420) */
 .mdet-dyk-heading {
   position: absolute;
-  left: 58px; top: 26.4vh;
+  left: 78px; top: 26.4vh;
   font-family: 'Scotch Display', serif; font-weight: 600;
   font-size: 70px; line-height: 1.043; color: #6e1603; margin: 0;
 }
 /* Card 1 — upper-right (shifted left to fit 720px panel: left=420, width=293 → right=713) */
 .mdet-dyk-card1 {
   position: absolute;
-  left: 420px; top: 19.7vh;
+  left: 440px; top: 19.7vh;
   display: flex;
   width: 293px; height: 248px;
   padding: 13px 20px;
@@ -1701,7 +1705,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Card 2 — lower-left (left:58, width:321 → right:379, gap:41px before card1 at 420) */
 .mdet-dyk-card2 {
   position: absolute;
-  left: 58px; top: 51.6vh;
+  left: 78px; top: 51.6vh;
   display: flex;
   width: 321px; height: 293px;
   padding: 13px 20px;
@@ -1719,7 +1723,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Body text — aligned with card1 left, max-width fits within 720px */
 .mdet-dyk-text {
   position: absolute;
-  left: 420px; top: 54.9vh;
+  left: 440px; top: 54.9vh;
   max-width: 290px;
   font-family: 'Gambetta Variable', serif; font-weight: 500;
   font-size: 20px; line-height: 23.9px; letter-spacing: -0.2px;
@@ -1792,6 +1796,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: #e7ded5;
   position: relative;
   overflow: hidden;
+  /* fixed to the Figma canvas width so % positions render identically on
+     every screen instead of drifting with the viewport */
+  width: 1440px; flex-shrink: 0;
 }
 .mdet-closeup-inner {
   position: absolute; inset: 0;
@@ -1822,7 +1829,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ═══════════════════════════════════════════════════════════
    PANEL — EXPERIENCES
    ═══════════════════════════════════════════════════════════ */
-.mdet-experiences { background: #e7ded5; }
+/* Fixed width (content ends 1066 + 78px gutter) so the gap to the next
+   section doesn't balloon on wide screens */
+.mdet-experiences { background: #e7ded5; width: 1144px; flex-shrink: 0; }
 .mdet-experiences-inner { position: absolute; inset: 0; }
 /* Card container — 847×301px per Figma spec */
 .mdet-exp-card {
@@ -1891,7 +1900,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: #e7ded5;
   position: relative;
   overflow: hidden;
-  width: 1266px; flex-shrink: 0;
+  /* content (card2 right edge 1116) + 78px trailing gutter */
+  width: 1194px; flex-shrink: 0;
 }
 .mdet-paintings-inner {
   position: absolute; inset: 0;
@@ -1961,7 +1971,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mdet-arti-inner {
   width: 100%;
   height: 100vh;
-  padding: 0 80px;
+  padding: 0 78px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
