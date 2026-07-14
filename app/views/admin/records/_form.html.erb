@@ -37,10 +37,11 @@
         <% end %>
       <% else %>
         <% str = value.to_s %>
-        <% if str.length > 90 || str.include?("\n") %>
-          <textarea name="record[<%= field %>]" rows="4" class="adm-input"><%= str %></textarea>
-        <% elsif media_field?(field) %>
+        <% if media_field?(field) && !str.include?("\n") %>
+          <%# media paths can be long (ActiveStorage proxy URLs) — keep the Browse picker %>
           <input type="text" name="record[<%= field %>]" value="<%= str %>" class="adm-input" data-image-field="1">
+        <% elsif str.length > 90 || str.include?("\n") %>
+          <textarea name="record[<%= field %>]" rows="4" class="adm-input"><%= str %></textarea>
         <% elsif field == "id" %>
           <input type="text" name="record[<%= field %>]" value="<%= str %>" class="adm-input" id="adm-id-field"
                  <%= "readonly" unless new_record %> style="<%= 'background:#eee6da; color:#7a6a58;' unless new_record %>">

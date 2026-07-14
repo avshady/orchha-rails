@@ -474,7 +474,9 @@
               return inp;
             }
             const str = String(val == null ? '' : val);
-            if (str.length > 90 || str.includes('\n')) {
+            // Media paths can be long (ActiveStorage proxy URLs) — check the
+            // media-name test before the long-string textarea fallback.
+            if (!OBJ_MEDIA_RE.test(key) && (str.length > 90 || str.includes('\n'))) {
               const ta = document.createElement('textarea');
               ta.rows = 3; ta.className = 'adm-input'; ta.value = str;
               ta.addEventListener('input', () => { row[key] = ta.value; sync(); });
