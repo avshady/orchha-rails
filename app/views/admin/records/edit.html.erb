@@ -1,4 +1,32 @@
 <h2 class="adm-page-title">Edit record #<%= @index + 1 %> in <%= key_label(@key) %></h2>
+
+<%# Monument / experience pages play language audio tracks from the
+    audioGuides collection — surface that editor right here. %>
+<% if %w[monuments experienceItems].include?(@key) && @record.is_a?(Hash) && @record["id"].present?
+     guides = ContentStore.fetch("audioGuides")
+     guides = guides.is_a?(Array) ? guides : []
+     guide_index = guides.find_index { |g| g.is_a?(Hash) && g["id"] == @record["id"] }
+%>
+  <div class="adm-card" style="margin-bottom:18px; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:16px 20px;">
+    <div>
+      <div style="font-weight:700; color:#6e1603; margin-bottom:3px;">Audio Guide</div>
+      <div class="adm-muted" style="font-size:13px;">
+        <% if guide_index
+             tracks = (guides[guide_index]["tracks"] || []).select { |t| t.is_a?(Hash) && t["audio"].to_s.strip != "" } %>
+          <%= tracks.any? ? "#{tracks.length} language #{'track'.pluralize(tracks.length)} configured." : "No language tracks yet — add languages and upload audio." %>
+        <% else %>
+          No audio guide exists for this page yet — create one with the id <code><%= @record["id"] %></code>.
+        <% end %>
+      </div>
+    </div>
+    <% if guide_index %>
+      <a href="<%= admin_edit_collection_record_path("audioGuides", guide_index) %>" class="adm-btn adm-btn-outline" style="white-space:nowrap;">Manage audio guide →</a>
+    <% else %>
+      <a href="<%= admin_new_collection_record_path("audioGuides") %>" class="adm-btn adm-btn-outline" style="white-space:nowrap;">Create audio guide →</a>
+    <% end %>
+  </div>
+<% end %>
+
 <div class="adm-card">
   <%= render "form", record: @record, key: @key, url: admin_collection_record_path(@key, @index), method: :patch %>
 </div>

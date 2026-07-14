@@ -132,6 +132,16 @@ module AdminHelper
     name.to_s == "tracks"
   end
 
+  # Array of flat objects (all scalar values) — rendered as repeatable
+  # field-rows instead of a raw JSON textarea. Media-named fields inside
+  # each row get the thumbnail + Browse picker.
+  def object_list_field?(value)
+    value.is_a?(Array) && value.any? &&
+      value.all? do |v|
+        v.is_a?(Hash) && v.values.all? { |x| x.nil? || x.is_a?(String) || x.is_a?(Numeric) || x == true || x == false }
+      end
+  end
+
   # Array of image/video path strings — rendered with a repeatable
   # thumbnail + Browse editor instead of a raw JSON textarea.
   def image_list_field?(name, value)

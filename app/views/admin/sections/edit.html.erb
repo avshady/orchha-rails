@@ -7,7 +7,7 @@
 
 <div class="adm-card">
   <%= form_with url: admin_section_path(@block.key), method: :patch, local: true do %>
-    <%= render "fields", data: @block.data, prefix: "section", depth: 0 %>
+    <%= render "fields", data: @data, prefix: "section", depth: 0 %>
     <div style="display:flex; gap:12px; margin-top:20px;">
       <button type="submit" class="adm-btn">Save</button>
       <a href="<%= admin_root_path %>" class="adm-btn adm-btn-outline">Cancel</a>

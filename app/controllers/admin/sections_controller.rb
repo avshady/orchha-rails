@@ -9,12 +9,14 @@ module Admin
       unless @block.data.is_a?(Hash)
         redirect_to admin_collection_path(@block.key),
           alert: "#{@block.key} is a collection — use the record manager."
+        return
       end
+      @data = seed_merged(@block.key, @block.data)
     end
 
     def update
       submitted = params.fetch(:section, {}).to_unsafe_h
-      @block.update!(data: apply_nested(@block.data, submitted))
+      @block.update!(data: apply_nested(seed_merged(@block.key, @block.data), submitted))
       redirect_to admin_root_path, notice: "#{@block.key} saved."
     rescue JSON::ParserError => e
       redirect_to admin_edit_section_path(@block.key),
@@ -25,6 +27,16 @@ module Admin
 
     def set_block
       @block = ContentBlock.find_by!(key: params[:key])
+    end
+
+    # The editor derives its fields from the data's shape, so a stale DB copy
+    # hides keys added to content.json later (e.g. visit.bgImage on an old
+    # deploy). Merge the seed underneath: seed keys show with DB values on top.
+    def seed_merged(key, data)
+      seed = JSON.parse(File.read(Rails.root.join("content.json")))[key]
+      seed.is_a?(Hash) && data.is_a?(Hash) ? seed.deep_merge(data) : data
+    rescue StandardError
+      data
     end
 
     # Merges submitted form values into the existing structure, casting each

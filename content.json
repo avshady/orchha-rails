@@ -880,7 +880,10 @@
     { "id": "sheesh-mahal", "title": "Sheesh Mahal", "tracks": [], "visible": true },
     { "id": "shiva-temple", "title": "Shiva Temple", "tracks": [], "visible": true },
     { "id": "baroodkhana", "title": "Baroodkhana", "tracks": [], "visible": true },
-    { "id": "wildlife-sanctuary", "title": "Wildlife Sanctuary", "tracks": [], "visible": true }
+    { "id": "wildlife-sanctuary", "title": "Wildlife Sanctuary", "tracks": [], "visible": true },
+    { "id": "sunset-betwa", "title": "Sunset at Betwa", "tracks": [], "visible": true },
+    { "id": "sound-light-show", "title": "Light & Sound Show", "tracks": [], "visible": true },
+    { "id": "night-walk", "title": "Night Walk", "tracks": [], "visible": true }
   ],
   "citadelWalkPage": {
     "heading": "Citadel Walk",
