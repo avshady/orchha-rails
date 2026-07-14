@@ -1,0 +1,228 @@
+<%# Visit Orchha page — how to reach / travel / stay cards (Figma 3357-5972) %>
+<% ft       = (@home['footer'] || {})
+   ft_links = ft['links'] || []
+   nav      = @home['nav']   || {}
+   dd       = nav['discoverDropdown'] || []
+
+   heading_italic = @page['headingItalic'].presence || 'Visit'
+   heading_rest   = @page['headingRest'].presence   || 'Orchha'
+   explore_lbl    = @page['exploreLabel'].presence  || 'Explore'
+
+   reach_title  = @page['reachTitle'].presence || 'How to Reach Orchha'
+   reach_items  = @page['reachItems'].presence || [
+     { 'icon' => '/images/vo_icon_train.svg', 'title' => 'By Train', 'lines' => [ 'Jhansi Junction (18km)' ] },
+     { 'icon' => '/images/vo_icon_plane.svg', 'title' => 'By Air',   'lines' => [ 'Gwalior Airport (120km)', 'Bhopal Airport (175km)' ] },
+     { 'icon' => '/images/vo_icon_road.svg',  'title' => 'By Road',  'lines' => [ 'Well connected from Jhansi,', 'Gwalior & Khajuraho' ] }
+   ]
+   travel_title = @page['travelTitle'].presence || 'Travel Options'
+   travel_items = @page['travelItems'].presence || [
+     { 'icon' => '/images/vo_icon_taxi.svg',     'title' => 'Private Taxi & Cabs' },
+     { 'icon' => '/images/vo_icon_rickshaw.svg', 'title' => 'Auto Rickshaws' },
+     { 'icon' => '/images/vo_icon_bus.svg',      'title' => 'Ho-Ho E-Rickshaws & E-Buses' }
+   ]
+   travel_url   = @page['travelExploreUrl'].presence || '/hoho'
+   stay_title   = @page['stayTitle'].presence || 'Stay Options'
+   stay_body    = @page['stayBody'].presence  || 'Explore a range of private hotels, resorts & home stays!'
+   stay_url     = @page['stayExploreUrl'].presence || '/accommodation'
+%>
+
+<%# Sticky HOHO button %>
+<div class="sticky-hoho">
+  <a href="/hoho">HOHO Service</a>
+</div>
+
+<div class="vo-page">
+
+  <%# ── NAVBAR ─────────────────────────────────────────── %>
+  <div class="mon-nav-wrap">
+    <nav class="hist-navbar">
+      <div class="nav-links">
+        <div class="nav-discover">
+          <a href="/" class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+            Discover Orchha
+            <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-link">News</a>
+        <a href="/support-us" class="hist-nav-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-link">Sabhyata Foundation</a>
+      </div>
+      <button class="hist-nav-hamburger" id="hist-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-book-btn">Book Tickets</a>
+    </nav>
+
+    <div class="hist-nav-mobile-menu" id="hist-nav-mobile-menu">
+      <button class="hist-nav-mobile-close" id="hist-nav-mobile-close-btn" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="hist-nav-mobile-links">
+        <a href="/" class="hist-nav-mobile-link">Home</a>
+        <% dd.each do |item| %>
+        <a href="<%= item['url'] %>" class="hist-nav-mobile-link"><%= item['label'] %></a>
+        <% end %>
+        <a href="/plan-your-visit" class="hist-nav-mobile-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-mobile-link">News</a>
+        <a href="/support-us" class="hist-nav-mobile-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-mobile-link">Sabhyata Foundation</a>
+      </div>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-nav-mobile-book-btn">Book Tickets</a>
+    </div>
+
+    <%# Discover dropdown — kept outside .hist-navbar because its backdrop-filter
+        creates a new containing block for position:fixed descendants %>
+    <div class="hist-nav-dropdown" role="menu">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="hist-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+      <% end %>
+    </div>
+  </div>
+
+  <%# ── HEADING ────────────────────────────────────────── %>
+  <h1 class="vo-heading"><em><%= heading_italic %></em> <%= heading_rest %></h1>
+
+  <%# ── CARDS ──────────────────────────────────────────── %>
+  <div class="vo-cards">
+
+    <div class="vo-card">
+      <h2 class="vo-card-title"><%= reach_title %></h2>
+      <div class="vo-card-items">
+        <% reach_items.each do |item| %>
+        <div class="vo-item">
+          <span class="vo-item-icon"><img src="<%= item['icon'] %>" alt=""></span>
+          <span class="vo-item-divider" aria-hidden="true"></span>
+          <div class="vo-item-text">
+            <span class="vo-item-title"><%= item['title'] %></span>
+            <% (item['lines'] || []).each do |line| %>
+            <span class="vo-item-sub"><%= line %></span>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="vo-card">
+      <h2 class="vo-card-title"><%= travel_title %></h2>
+      <div class="vo-card-items">
+        <% travel_items.each do |item| %>
+        <div class="vo-item">
+          <span class="vo-item-icon"><img src="<%= item['icon'] %>" alt=""></span>
+          <span class="vo-item-divider" aria-hidden="true"></span>
+          <div class="vo-item-text">
+            <span class="vo-item-title"><%= item['title'] %></span>
+            <% (item['lines'] || []).each do |line| %>
+            <span class="vo-item-sub"><%= line %></span>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <a href="<%= travel_url %>" class="vo-explore-btn"><%= explore_lbl %></a>
+    </div>
+
+    <div class="vo-card">
+      <h2 class="vo-card-title"><%= stay_title %></h2>
+      <p class="vo-card-body"><%= stay_body %></p>
+      <a href="<%= stay_url %>" class="vo-explore-btn"><%= explore_lbl %></a>
+    </div>
+
+  </div>
+
+  <%# ── FOOTER ─────────────────────────────────────────── %>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <% ft_links.each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="footer-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+        <div class="footer-logos">
+          <img src="/images/incredible_india.png" alt="Incredible India" class="footer-logo-ii">
+          <img src="/images/mpt_logo.png" alt="MPTDC" class="footer-logo-mptdc">
+          <img src="/images/footer_logo_sabhyata.png" alt="Sabhyata Foundation" class="footer-logo-sabhyata">
+        </div>
+        <div class="footer-map-col">
+          <div class="footer-map">
+            <iframe src="https://www.google.com/maps?q=Orchha,+Madhya+Pradesh,+India&z=14&output=embed" loading="lazy" title="Orchha location map" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+          <div class="footer-contact">
+            <span class="footer-contact-label">Contact Us:</span>
+            <div class="footer-contact-items">
+              <a href="mailto:<%= ft['email'] || 'contact@orchha.com' %>" class="footer-contact-item">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m4 6.5 8 6.5 8-6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <%= ft['email'] || 'contact@orchha.com' %>
+              </a>
+              <a href="tel:<%= (ft['phone'] || '+91 87963 83600').gsub(/[^\d+]/, '') %>" class="footer-contact-item">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.4 3.6h3l1.6 4.4-2.1 1.6a12.4 12.4 0 0 0 5.5 5.5l1.6-2.1 4.4 1.6v3a1.5 1.5 0 0 1-1.6 1.5A16.9 16.9 0 0 1 3.9 5.2a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <%= ft['phone'] || '+91 87963 83600' %>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span class="footer-copy"><%= ft['copyright'] || '@2026ORCHHA' %></span>
+        <span class="footer-copy"><%= ft['org'] || 'SABHYATA Foundation' %></span>
+      </div>
+    </div>
+  </footer>
+
+</div><%# /.vo-page %>
+
+<script>
+  // ── Navbar dropdown ───────────────────────────────────────
+  const voBtn = document.querySelector('.hist-nav-discover-btn');
+  const voDd  = document.querySelector('.hist-nav-dropdown');
+  if (voBtn && voDd) {
+    let voDdCloseTimer;
+    function openVoDd() {
+      clearTimeout(voDdCloseTimer);
+      const r = voBtn.getBoundingClientRect();
+      voDd.style.top  = (r.bottom + 8) + 'px';
+      voDd.style.left = r.left + 'px';
+      voDd.classList.add('open');
+      voBtn.classList.add('open');
+      voBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeVoDd() {
+      voDd.classList.remove('open');
+      voBtn.classList.remove('open');
+      voBtn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleCloseVoDd() { voDdCloseTimer = setTimeout(closeVoDd, 200); }
+    voBtn.addEventListener('mouseenter', openVoDd);
+    voBtn.addEventListener('mouseleave', scheduleCloseVoDd);
+    voDd.addEventListener('mouseenter', () => clearTimeout(voDdCloseTimer));
+    voDd.addEventListener('mouseleave', scheduleCloseVoDd);
+    voBtn.addEventListener('click', e => { if (voDd.classList.contains('open')) return; e.preventDefault(); openVoDd(); });
+    document.addEventListener('click', closeVoDd);
+    voDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ───────────────────────────────────
+  const histHamburgerBtn = document.getElementById('hist-nav-hamburger-btn');
+  const histMobileMenu   = document.getElementById('hist-nav-mobile-menu');
+  const histMobileClose  = document.getElementById('hist-nav-mobile-close-btn');
+  if (histHamburgerBtn && histMobileMenu) {
+    function openHistMobileMenu() {
+      histMobileMenu.classList.add('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeHistMobileMenu() {
+      histMobileMenu.classList.remove('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    histHamburgerBtn.addEventListener('click', openHistMobileMenu);
+    if (histMobileClose) histMobileClose.addEventListener('click', closeHistMobileMenu);
+    histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
+  }
+</script>

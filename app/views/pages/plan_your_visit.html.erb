@@ -1,0 +1,335 @@
+<%# Plan Your Visit page — day-based itinerary planner %>
+<% ft       = (@home['footer'] || {})
+   ft_links = ft['links'] || []
+   nav      = @home['nav']   || {}
+   dd       = nav['discoverDropdown'] || []
+
+   title_pre    = @page['heroTitlePre'].presence    || 'Plan'
+   title_italic = @page['heroTitleItalic'].presence || 'Your'
+   title_post   = @page['heroTitlePost'].presence   || 'Visit'
+   hero_sub     = @page['heroSub'].presence || 'Based On The Number Of Days You Want To Explore The Hidden Gems And Cultural Tapestry Of Orchha.'
+   day_labels   = @page['dayLabels'].presence || [ '1 DAY', '2 DAYS', '3+ DAYS' ]
+   card_btn     = @page['cardButtonLabel'].presence || 'Explore'
+   visit_italic = @page['visitHeadingItalic'].presence || 'Visit'
+   visit_rest   = @page['visitHeadingRest'].presence   || 'Orchha'
+   visit_links  = @page['visitLinks'].presence || [
+     { 'label' => 'How to Reach Orchha', 'url' => '/visit-orchha' },
+     { 'label' => 'Travel Options',      'url' => '/visit-orchha' },
+     { 'label' => 'Stay Options',        'url' => '/accommodation' }
+   ]
+
+   # Older CMS records carry bare filenames and no link — normalize here.
+   fallback_hrefs = {
+     'i1-1' => '/monuments',            'i1-2' => '/experiences/sunset-betwa',
+     'i2-1' => '/experiences/citadel-walk', 'i2-2' => '/experiences/religious-walk',
+     'i2-3' => '/experiences/river-kayaking', 'i2-4' => '/experiences/art-walk',
+     'i3-1' => '/experiences/citadel-walk', 'i3-2' => '/experiences/eco-trail',
+     'i3-3' => '/experiences/river-kayaking', 'i3-4' => '/experiences',
+     'i3-5' => '/experiences/sunset-betwa'
+   }
+   itinerary_img  = ->(it) { img = it['image'].to_s; img.start_with?('/', 'http') ? img : "/images/#{img}" }
+   itinerary_href = ->(it) { it['href'].presence || fallback_hrefs[it['id']] || '/experiences' }
+%>
+
+<%# Sticky HOHO button %>
+<div class="sticky-hoho">
+  <a href="/hoho">HOHO Service</a>
+</div>
+
+<div class="pyv-page">
+
+  <%# ── NAVBAR ─────────────────────────────────────────── %>
+  <div class="mon-nav-wrap">
+    <nav class="hist-navbar">
+      <div class="nav-links">
+        <div class="nav-discover">
+          <a href="/" class="hist-nav-link hist-nav-discover-btn" aria-expanded="false" aria-haspopup="true">
+            Discover Orchha
+            <svg viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+        <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-link">News</a>
+        <a href="/support-us" class="hist-nav-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-link">Sabhyata Foundation</a>
+      </div>
+      <button class="hist-nav-hamburger" id="hist-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-book-btn">Book Tickets</a>
+    </nav>
+
+    <div class="hist-nav-mobile-menu" id="hist-nav-mobile-menu">
+      <button class="hist-nav-mobile-close" id="hist-nav-mobile-close-btn" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="hist-nav-mobile-links">
+        <a href="/" class="hist-nav-mobile-link">Home</a>
+        <% dd.each do |item| %>
+        <a href="<%= item['url'] %>" class="hist-nav-mobile-link"><%= item['label'] %></a>
+        <% end %>
+        <a href="/plan-your-visit" class="hist-nav-mobile-link">Plan Your Visit</a>
+        <a href="/news" class="hist-nav-mobile-link">News</a>
+        <a href="/support-us" class="hist-nav-mobile-link">Support Us</a>
+        <a href="/sabhyata" class="hist-nav-mobile-link">Sabhyata Foundation</a>
+      </div>
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-nav-mobile-book-btn">Book Tickets</a>
+    </div>
+
+    <%# Discover dropdown — kept outside .hist-navbar because its backdrop-filter
+        creates a new containing block for position:fixed descendants %>
+    <div class="hist-nav-dropdown" role="menu">
+      <% dd.each do |item| %>
+      <a href="<%= item['url'] %>" class="hist-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+      <% end %>
+    </div>
+  </div>
+
+  <%# ── HERO ───────────────────────────────────────────── %>
+  <section class="pyv-hero">
+    <h1 class="pyv-hero-title" id="pyv-h1"><%= title_pre %> <em><%= title_italic %></em> <%= title_post %></h1>
+    <p class="pyv-hero-sub" id="pyv-sub"><%= hero_sub %></p>
+  </section>
+
+  <%# ── PLANNER ────────────────────────────────────────── %>
+  <section class="pyv-planner">
+
+    <div class="pyv-slider-wrap">
+      <div class="pyv-slider" id="pyv-slider" role="slider" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" tabindex="0" aria-label="Select number of days">
+        <div class="pyv-sl-track"></div>
+        <div class="pyv-sl-fill" id="pyv-sl-fill"></div>
+        <div class="pyv-sl-dot" data-dot="0"></div>
+        <div class="pyv-sl-dot" data-dot="1"></div>
+        <div class="pyv-sl-dot" data-dot="2"></div>
+        <div class="pyv-sl-thumb" id="pyv-sl-thumb"></div>
+      </div>
+      <div class="pyv-labels">
+        <% day_labels.each_with_index do |lbl, i| %>
+        <button type="button" class="pyv-lbl<%= ' active' if i.zero? %>" data-step="<%= i %>"><%= lbl %></button>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="pyv-grid-wrap">
+      <% [ 'day-1', 'day-2', 'day-3' ].each_with_index do |day_key, i| %>
+      <div class="pyv-grid" data-step="<%= i %>" <%= 'hidden'.html_safe unless i.zero? %>>
+        <% (@itineraries[day_key] || []).each do |it| %>
+        <a class="pyv-card-link" href="<%= itinerary_href.call(it) %>">
+          <article class="pyv-article">
+            <div class="pyv-img-wrap">
+              <img src="<%= itinerary_img.call(it) %>" alt="<%= it['title'] %>" loading="lazy" decoding="async">
+            </div>
+            <h3 class="pyv-card-h"><%= it['title'] %></h3>
+            <p class="pyv-card-p"><%= it['desc'] %></p>
+            <span class="pyv-card-btn"><%= card_btn %></span>
+          </article>
+        </a>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+
+  </section>
+
+  <%# ── VISIT ORCHHA CARD ──────────────────────────────── %>
+  <section class="pyv-visit">
+    <div class="pyv-visit-card" id="pyv-visit-card">
+      <div class="pyv-visit-links">
+        <% visit_links.each do |lnk| %>
+        <a href="<%= lnk['url'] %>" class="pyv-visit-link"><%= lnk['label'] %></a>
+        <% end %>
+      </div>
+      <h2 class="pyv-visit-heading"><em><%= visit_italic %></em><br><%= visit_rest %></h2>
+    </div>
+  </section>
+
+  <%# ── FOOTER ─────────────────────────────────────────── %>
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-inner">
+        <div class="footer-links">
+          <% ft_links.each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="footer-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
+        <div class="footer-logos">
+          <img src="/images/incredible_india.png" alt="Incredible India" class="footer-logo-ii">
+          <img src="/images/mpt_logo.png" alt="MPTDC" class="footer-logo-mptdc">
+          <img src="/images/footer_logo_sabhyata.png" alt="Sabhyata Foundation" class="footer-logo-sabhyata">
+        </div>
+        <div class="footer-map-col">
+          <div class="footer-map">
+            <iframe src="https://www.google.com/maps?q=Orchha,+Madhya+Pradesh,+India&z=14&output=embed" loading="lazy" title="Orchha location map" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          </div>
+          <div class="footer-contact">
+            <span class="footer-contact-label">Contact Us:</span>
+            <div class="footer-contact-items">
+              <a href="mailto:<%= ft['email'] || 'contact@orchha.com' %>" class="footer-contact-item">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6.5A1.5 1.5 0 0 1 4.5 5h15A1.5 1.5 0 0 1 21 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 17.5v-11Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="m4 6.5 8 6.5 8-6.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <%= ft['email'] || 'contact@orchha.com' %>
+              </a>
+              <a href="tel:<%= (ft['phone'] || '+91 87963 83600').gsub(/[^\d+]/, '') %>" class="footer-contact-item">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5.4 3.6h3l1.6 4.4-2.1 1.6a12.4 12.4 0 0 0 5.5 5.5l1.6-2.1 4.4 1.6v3a1.5 1.5 0 0 1-1.6 1.5A16.9 16.9 0 0 1 3.9 5.2a1.5 1.5 0 0 1 1.5-1.6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+                <%= ft['phone'] || '+91 87963 83600' %>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span class="footer-copy"><%= ft['copyright'] || '@2026ORCHHA' %></span>
+        <span class="footer-copy"><%= ft['org'] || 'SABHYATA Foundation' %></span>
+      </div>
+    </div>
+  </footer>
+
+</div><%# /.pyv-page %>
+
+<script>
+  // ── Day slider + itinerary grids ────────────────────────────
+  (function () {
+    const slider  = document.getElementById('pyv-slider');
+    const thumb   = document.getElementById('pyv-sl-thumb');
+    const fill    = document.getElementById('pyv-sl-fill');
+    const dots    = Array.from(document.querySelectorAll('.pyv-sl-dot'));
+    const labels  = Array.from(document.querySelectorAll('.pyv-lbl'));
+    const grids   = Array.from(document.querySelectorAll('.pyv-grid'));
+    if (!slider) return;
+
+    let currentStep = 0;
+    let isDragging  = false;
+
+    function paintTrack(step, animate) {
+      const percent = step * 50;
+      thumb.style.transition = animate ? 'left 0.25s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
+      fill.style.transition  = animate ? 'width 0.25s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
+      thumb.style.left = percent + '%';
+      fill.style.width = percent + '%';
+      dots.forEach((dot, i) => dot.classList.toggle('filled', i <= step));
+    }
+
+    function showGrid(step) {
+      grids.forEach(grid => {
+        const active = Number(grid.dataset.step) === step;
+        grid.hidden = !active;
+        if (active) {
+          grid.querySelectorAll('.pyv-article').forEach((card, idx) => {
+            card.classList.remove('visible');
+            setTimeout(() => card.classList.add('visible'), 50 + idx * 80);
+          });
+        }
+      });
+    }
+
+    function setStep(step, animate = true) {
+      currentStep = Math.max(0, Math.min(step, 2));
+      slider.setAttribute('aria-valuenow', String(currentStep + 1));
+      paintTrack(currentStep, animate);
+      labels.forEach((btn, idx) => btn.classList.toggle('active', idx === currentStep));
+      showGrid(currentStep);
+    }
+
+    function dragPct(e) {
+      const rect = slider.getBoundingClientRect();
+      return Math.max(0, Math.min((e.clientX - rect.left) / rect.width, 1));
+    }
+
+    slider.addEventListener('pointerdown', e => {
+      isDragging = true;
+      slider.setPointerCapture(e.pointerId);
+      const pct = dragPct(e);
+      thumb.style.transition = 'none';
+      fill.style.transition = 'none';
+      thumb.style.left = (pct * 100) + '%';
+      fill.style.width = (pct * 100) + '%';
+    });
+    slider.addEventListener('pointermove', e => {
+      if (!isDragging) return;
+      const pct = dragPct(e);
+      thumb.style.left = (pct * 100) + '%';
+      fill.style.width = (pct * 100) + '%';
+      dots.forEach((dot, i) => dot.classList.toggle('filled', i <= Math.round(pct * 2)));
+    });
+    slider.addEventListener('pointerup', e => {
+      if (!isDragging) return;
+      isDragging = false;
+      slider.releasePointerCapture(e.pointerId);
+      setStep(Math.round(dragPct(e) * 2), true);
+    });
+    slider.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); setStep(currentStep + 1); }
+      else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault(); setStep(currentStep - 1); }
+    });
+    labels.forEach((btn, idx) => btn.addEventListener('click', () => setStep(idx)));
+
+    // Hero reveal + initial state
+    const h1  = document.getElementById('pyv-h1');
+    const sub = document.getElementById('pyv-sub');
+    if (h1)  requestAnimationFrame(() => h1.classList.add('visible'));
+    if (sub) setTimeout(() => sub.classList.add('visible'), 200);
+    setStep(0, false);
+
+    // Visit Orchha card slide-up reveal
+    const visitCard = document.getElementById('pyv-visit-card');
+    if (visitCard) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+      io.observe(visitCard);
+    }
+  })();
+
+  // ── Navbar dropdown ───────────────────────────────────────
+  const pyvBtn = document.querySelector('.hist-nav-discover-btn');
+  const pyvDd  = document.querySelector('.hist-nav-dropdown');
+  if (pyvBtn && pyvDd) {
+    let pyvDdCloseTimer;
+    function openPyvDd() {
+      clearTimeout(pyvDdCloseTimer);
+      const r = pyvBtn.getBoundingClientRect();
+      pyvDd.style.top  = (r.bottom + 8) + 'px';
+      pyvDd.style.left = r.left + 'px';
+      pyvDd.classList.add('open');
+      pyvBtn.classList.add('open');
+      pyvBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closePyvDd() {
+      pyvDd.classList.remove('open');
+      pyvBtn.classList.remove('open');
+      pyvBtn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleClosePyvDd() { pyvDdCloseTimer = setTimeout(closePyvDd, 200); }
+    pyvBtn.addEventListener('mouseenter', openPyvDd);
+    pyvBtn.addEventListener('mouseleave', scheduleClosePyvDd);
+    pyvDd.addEventListener('mouseenter', () => clearTimeout(pyvDdCloseTimer));
+    pyvDd.addEventListener('mouseleave', scheduleClosePyvDd);
+    pyvBtn.addEventListener('click', e => { if (pyvDd.classList.contains('open')) return; e.preventDefault(); openPyvDd(); });
+    document.addEventListener('click', closePyvDd);
+    pyvDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ───────────────────────────────────
+  const histHamburgerBtn = document.getElementById('hist-nav-hamburger-btn');
+  const histMobileMenu   = document.getElementById('hist-nav-mobile-menu');
+  const histMobileClose  = document.getElementById('hist-nav-mobile-close-btn');
+  if (histHamburgerBtn && histMobileMenu) {
+    function openHistMobileMenu() {
+      histMobileMenu.classList.add('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeHistMobileMenu() {
+      histMobileMenu.classList.remove('open');
+      histHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    histHamburgerBtn.addEventListener('click', openHistMobileMenu);
+    if (histMobileClose) histMobileClose.addEventListener('click', closeHistMobileMenu);
+    histMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeHistMobileMenu));
+  }
+</script>

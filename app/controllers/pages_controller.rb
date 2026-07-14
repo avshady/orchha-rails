@@ -116,9 +116,31 @@ class PagesController < ApplicationController
 
   def sabhyata
     raw = ContentStore.raw
+    @page = raw['sabhyataPage'] || {}
     @home = raw['homePage'] || {}
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}
+    @home = {}
+  end
+
+  def plan_your_visit
+    raw = ContentStore.raw
+    @page        = raw['planYourVisitPage'] || {}
+    @itineraries = raw['itineraries'] || {}
+    @home        = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}; @itineraries = {}; @home = {}
+  end
+
+  def visit_orchha
+    raw = ContentStore.raw
+    @page = raw['visitOrchhaPage'] || {}
+    @home = raw['homePage'] || {}
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}
     @home = {}
   end
 
