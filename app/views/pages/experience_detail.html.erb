@@ -4,10 +4,10 @@
    pg  = @page || {}
    gallery = (pg['galleryImages'].presence || ['/images/aw_card1.jpg', '/images/aw_card2.jpg', '/images/aw_mural_large.jpg'])
    stops = (pg['stops'].presence || [
-     { 'num' => 1, 'image' => '/images/rm_closeup_main.jpg',  'name' => 'Raja Mahal',        'link' => '/monuments/raja-mahal' },
-     { 'num' => 2, 'image' => '/images/jm_closeup_main.jpg',  'name' => 'Jahangir Mahal',    'link' => '/monuments/jahangir-mahal' },
-     { 'num' => 3, 'image' => '/images/rpm_closeup_main.jpg', 'name' => 'Rai Praveen Mahal', 'link' => '/monuments/rai-praveen-mahal' },
-     { 'num' => 4, 'image' => '/images/lnt_closeup_main.jpg', 'name' => 'Lakshmi Temple',    'link' => '/monuments/lakshmi-narayan-temple' }
+     { 'num' => 1, 'image' => '/images/aw_stop1.jpg', 'name' => 'Raja Mahal',        'link' => '/monuments/raja-mahal' },
+     { 'num' => 2, 'image' => '/images/aw_stop2.jpg', 'name' => 'Jahangir Mahal',    'link' => '/monuments/jahangir-mahal' },
+     { 'num' => 3, 'image' => '/images/aw_stop3.jpg', 'name' => 'Rai Praveen Mahal', 'link' => '/monuments/rai-praveen-mahal' },
+     { 'num' => 4, 'image' => '/images/aw_stop4.jpg', 'name' => 'Lakshmi Temple',    'link' => '/monuments/lakshmi-narayan-temple' }
    ])
 %>
 
@@ -152,7 +152,13 @@
             <h2 class="aw-transit-heading"><%= raw(pg['transitHeading'] || 'The Walk<br>Through Time') %></h2>
             <p class="aw-transit-sub"><%= raw(pg['transitSub'] || 'A journey through four icon monuments.<br>One artistic legacy.') %></p>
           </div>
-          <img src="<%= pg['vignetteImage'] || '/images/aw_vignette.jpg' %>" class="aw-vignette-img" alt="Bundela battle fresco — Raja Mahal mural">
+          <div class="aw-mcard aw-walk-card">
+            <img src="<%= pg['vignetteImage'] || '/images/aw_walkcard.jpg' %>" alt="Bundela fresco — Raja Mahal mural">
+            <div class="aw-mcard-logos">
+              <img src="/images/mpt_logo.png"         class="aw-logo-mpt" alt="MPT">
+              <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
+            </div>
+          </div>
         </div>
 
         <%# Right col: numbered step line + 4 monument cards %>

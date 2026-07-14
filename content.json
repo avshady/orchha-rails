@@ -1007,12 +1007,12 @@
     "galleryCtaLink": "/experiences",
     "transitHeading": "The Walk<br>Through Time",
     "transitSub": "A journey through four icon monuments.<br>One artistic legacy.",
-    "vignetteImage": "/images/aw_vignette.jpg",
+    "vignetteImage": "/images/aw_walkcard.jpg",
     "stops": [
-      { "num": 1, "image": "/images/rm_closeup_main.jpg", "name": "Raja Mahal", "link": "/monuments/raja-mahal" },
-      { "num": 2, "image": "/images/jm_closeup_main.jpg", "name": "Jahangir Mahal", "link": "/monuments/jahangir-mahal" },
-      { "num": 3, "image": "/images/rpm_closeup_main.jpg", "name": "Rai Praveen Mahal", "link": "/monuments/rai-praveen-mahal" },
-      { "num": 4, "image": "/images/lnt_closeup_main.jpg", "name": "Lakshmi Temple", "link": "/monuments/lakshmi-narayan-temple" }
+      { "num": 1, "image": "/images/aw_stop1.jpg", "name": "Raja Mahal", "link": "/monuments/raja-mahal" },
+      { "num": 2, "image": "/images/aw_stop2.jpg", "name": "Jahangir Mahal", "link": "/monuments/jahangir-mahal" },
+      { "num": 3, "image": "/images/aw_stop3.jpg", "name": "Rai Praveen Mahal", "link": "/monuments/rai-praveen-mahal" },
+      { "num": 4, "image": "/images/aw_stop4.jpg", "name": "Lakshmi Temple", "link": "/monuments/lakshmi-narayan-temple" }
     ],
     "outroImage": "/images/aw_outro_mural.jpg",
     "outroCtaLabel": "View All Experiences & Trails",

@@ -2412,20 +2412,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .aw-hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(0,0,0,0.68) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.55) 100%);
+  background: linear-gradient(180deg, rgb(0,0,0) 13.02%, rgba(0,0,0,0.55) 17.83%, rgba(0,0,0,0) 42.06%);
 }
 
-/* "Art walk video" label */
+/* "Art walk video" label (Figma: Scotch Display 61.3px white at 120,137) */
 .aw-video-label {
   position: absolute;
-  top: 90px; left: 50px;
-  font-family: 'Chivo', sans-serif;
-  font-weight: 700;
-  font-size: 38px;
-  color: #6e1603;
+  top: 16.7vh; left: 120px;
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: 61.311px;
+  color: #fff;
   margin: 0;
   z-index: 2;
-  line-height: 1.1;
+  line-height: 68px;
 }
 
 /* shared mural card base */
@@ -2470,20 +2470,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .aw-heading {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
-  font-size: 56px;
-  line-height: 1.08;
+  font-size: 61.311px;
+  line-height: 68px;
   color: #6e1603;
-  margin: 0 0 24px 0;
+  margin: 0 0 13px 0;
 }
 
 .aw-body {
   font-family: 'Gambetta', serif;
   font-weight: 500;
-  font-size: 17px;
-  line-height: 1.65;
-  color: #1a0e06;
-  margin: 0 0 36px 0;
-  max-width: 480px;
+  font-size: 21px;
+  line-height: 29px;
+  color: #000;
+  margin: 0 0 26px 0;
+  max-width: 601px;
 }
 
 /* Stats with circle icons */
@@ -2498,7 +2498,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: 14px;
 }
 .aw-stat-icon {
-  width: 44px; height: 44px;
+  width: 57px; height: 57px;
   flex-shrink: 0;
 }
 .aw-stat-text {
@@ -2509,15 +2509,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .aw-stat-lbl {
   font-family: 'Gambetta', serif;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 18.68px;
   color: #6e1603;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.19px;
 }
 .aw-stat-num {
   font-family: 'Gambetta', serif;
   font-weight: 700;
-  font-size: 28px;
-  line-height: 1;
+  font-size: 32.577px;
+  line-height: 1.1;
   color: #6e1603;
   white-space: nowrap;
 }
@@ -2658,31 +2658,29 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 
 /* ── Panel 3 (light): Walk Through Time + vignette mural ── */
 /* ── Panel 3: Walk Through Time + Monument Cards (combined) ── */
+/* Figma 3265-6642 geometry: panel spans canvas 2880..5499 (2619px).
+   Left column at 62px; timeline group (4×385px cards, 93px gaps) at 650px. */
 .aw-transit-panel {
   background: #e7ded5;
   position: relative;
   overflow: hidden;
   border-top: 1px solid rgba(110, 22, 3, 0.22);
   border-bottom: 1px solid rgba(110, 22, 3, 0.22);
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
+  width: 2619px;
+  flex-shrink: 0;
+  display: block;
   padding: 0;
 }
 
-/* Left column: heading + subtitle + vignette */
+/* Left column: heading + subtitle + fresco photo card */
 .aw-tr-left {
-  flex: 0 0 28%;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 64px 28px 0 72px;
+  position: absolute;
+  left: 62px; top: 18.8vh;
+  width: 434px;
 }
 .aw-transit-text {
   position: relative;
   z-index: 2;
-  flex-shrink: 0;
 }
 .aw-transit-heading {
   font-family: 'Scotch Display', serif;
@@ -2695,51 +2693,45 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .aw-transit-sub {
   font-family: 'Gambetta', serif;
   font-weight: 500;
-  font-size: 19px;
-  line-height: 1.55;
-  color: #1a0e06;
-  margin: 18px 0 0;
+  font-size: 21px;
+  line-height: 26px;
+  color: #000;
+  margin: 4px 0 0;
 }
-.aw-vignette-img {
-  position: absolute;
-  bottom: -6%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 105%;
-  height: auto;
-  aspect-ratio: 565 / 706;
-  object-fit: contain;
-  display: block;
-  z-index: 1;
+.aw-walk-card {
+  position: relative;
+  margin-top: 14px;
+  width: 426px;
+  height: min(347px, 42.4vh);
 }
+.aw-walk-card > img:first-child { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Right column: step indicator + cards */
 .aw-tr-right {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 56px 0 20px;
+  position: absolute;
+  left: 650px; top: 26.9vh;
+  width: 1819px;
 }
 
 /* Card grid with dashed step line */
 .aw-card-grid {
   position: relative;
   display: flex;
-  gap: 18px;
+  gap: 93px;
   width: 100%;
 }
 .aw-card-grid::before {
   content: '';
   position: absolute;
   top: 22px;
-  left: 12.5%;
-  right: 12.5%;
+  /* from first to last dot centre (cards are 385px wide) */
+  left: 192px;
+  right: 192px;
   border-top: 1.5px dashed rgba(110, 22, 3, 0.45);
   z-index: 0;
 }
 .aw-tc {
-  flex: 1;
+  flex: 0 0 385px;
   min-width: 0;
   display: flex;
   flex-direction: column;
@@ -2759,8 +2751,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #e7ded5;
   font-family: 'Chivo', sans-serif;
   font-weight: 700;
-  font-size: 20px;
-  margin-bottom: 34px;
+  font-size: 27px;
+  margin-bottom: 37px;
 }
 .aw-tc-body {
   width: 100%;
@@ -2771,10 +2763,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .aw-tc-photo {
   position: relative;
   width: 100%;
-  aspect-ratio: 228 / 226;
+  height: min(256px, 31.3vh);
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 16px;
+  margin-bottom: 13px;
 }
 .aw-tc-photo > img {
   width: 100%;
@@ -2783,36 +2775,34 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .aw-tc-logos {
   position: absolute;
-  top: 13px;
+  top: 10px;
   left: 0;
   right: 0;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+  padding: 0 16px;
 }
-.aw-slogo-mpt { height: 22px; }
-.aw-slogo-ii  { height: 28px; }
+.aw-slogo-mpt { height: 24px; }
+.aw-slogo-ii  { height: 31px; }
 .aw-tc-name {
   font-family: 'Scotch Display', serif;
-  font-weight: 600;
-  font-size: 28px;
-  line-height: 1.2;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 48.548px;
   color: #6e1603;
   text-align: center;
-  margin: 0 0 14px;
-  min-height: 2.4em;      /* reserve 2 lines so single-line names keep buttons aligned */
-  display: flex; align-items: center; justify-content: center;
+  margin: 0 0 13px;
 }
 .aw-tc-btn {
   display: inline-block;
-  padding: 9px 24px;
+  padding: 11px 26px;
   border: 1.5px solid #6e1603;
   background: rgba(255, 255, 255, 0.01);
   color: #6e1603;
   border-radius: 22px;
   font-family: 'Chivo', sans-serif;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 18px;
   text-decoration: none;
   white-space: nowrap;
   transition: background 0.15s, color 0.15s;
@@ -3532,23 +3522,21 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .aw-gallery-btn { position: static; align-self: flex-start; }
 
   /* Panel 3: Walk Through Time + Monument Cards — stacked */
-  .aw-transit-panel { flex-direction: column; height: auto; }
+  .aw-transit-panel { display: flex; flex-direction: column; height: auto; }
   .aw-tr-left {
-    flex: none; width: 100%; position: relative;
-    padding: 56px 20px 0; min-height: 300px;
+    position: static; width: 100%;
+    padding: 56px 20px 0;
   }
   .aw-transit-heading { font-size: 36px; line-height: 1.12; }
-  .aw-transit-sub { font-size: 16px; }
-  .aw-vignette-img {
-    position: relative; bottom: auto; left: auto; top: auto;
-    transform: none; width: 100%; margin-top: 20px;
-  }
-  .aw-tr-right { padding: 24px 20px 56px; }
+  .aw-transit-sub { font-size: 16px; margin-top: 10px; }
+  .aw-walk-card { width: 100%; height: auto; aspect-ratio: 426 / 347; margin-top: 20px; }
+  .aw-tr-right { position: static; width: 100%; padding: 24px 20px 56px; }
   .aw-card-grid { flex-direction: column; gap: 24px; }
   .aw-card-grid::before { display: none; }
-  .aw-tc { width: 100%; }
+  .aw-tc { width: 100%; flex: none; }
+  .aw-tc-photo { height: auto; aspect-ratio: 385 / 256; }
   .aw-tc-body { padding: 12px 12px 24px; }
-  .aw-tc-name { font-size: 26px; }
+  .aw-tc-name { font-size: 26px; line-height: 1.2; }
 
   /* Panel 4: Outro */
   .aw-walk-panel { height: 100vh !important; min-height: 480px; }
