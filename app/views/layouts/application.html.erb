@@ -12,5 +12,40 @@
   <body>
     <%= yield %>
     <%= render 'shared/qr_scanner' %>
+
+    <script>
+      // Auto-hide the floating nav on scroll-jack pages: visible briefly on
+      // load, then tucked away — reveal by moving the cursor to the top edge
+      // or hovering the bar. Pointer-only, so touch devices keep it visible.
+      (function () {
+        var nav = document.querySelector('.mdet-nav-wrap, .lss-nav-fixed');
+        if (!nav) return;
+        if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+        var REVEAL_ZONE = 110;   // px from top that reveals the bar
+        var HIDE_DELAY  = 1600;  // ms after the cursor leaves before tucking away
+        var hideTimer = null, hovering = false;
+
+        function show() { clearTimeout(hideTimer); nav.classList.remove('nav-autohidden'); }
+        function scheduleHide() {
+          clearTimeout(hideTimer);
+          hideTimer = setTimeout(function () { if (!hovering) nav.classList.add('nav-autohidden'); }, HIDE_DELAY);
+        }
+
+        window.addEventListener('mousemove', function (e) {
+          if (e.clientY <= REVEAL_ZONE) show();
+          else if (!hovering) scheduleHide();
+        }, { passive: true });
+
+        nav.addEventListener('mouseenter', function () { hovering = true; show(); });
+        nav.addEventListener('mouseleave', function () { hovering = false; scheduleHide(); });
+        nav.addEventListener('focusin', show);
+        nav.addEventListener('focusout', scheduleHide);
+
+        // Show on load, then tuck away after a beat.
+        show();
+        hideTimer = setTimeout(function () { if (!hovering) nav.classList.add('nav-autohidden'); }, 2200);
+      })();
+    </script>
   </body>
 </html>
