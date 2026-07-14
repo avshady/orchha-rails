@@ -255,36 +255,42 @@
           upload.value = '';
         });
 
-        // Enhance image fields: Browse button + live thumbnail
+        // Enhance image fields: Browse button + live thumbnail. Each field is
+        // wrapped in its own try/catch and marked done, so one problematic
+        // field can't abort enhancement of the rest (and re-runs are no-ops).
         document.querySelectorAll('input[data-image-field]').forEach(input => {
-          const row = document.createElement('div');
-          row.className = 'adm-imgfield';
-          input.parentNode.insertBefore(row, input);
-          const thumb = document.createElement('span');
-          thumb.className = 'adm-imgfield-thumb';
-          thumb.style.cssText += 'display:flex; align-items:center; justify-content:center; background:#e8ddcf; overflow:hidden; font-size:17px;';
-          function isVideoUrl(v) { return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(v); }
-          function syncThumb() {
-            const v = input.value.trim();
-            if (!v) { thumb.style.display = 'none'; return; }
-            thumb.style.display = 'flex';
-            if (isVideoUrl(v)) {
-              thumb.textContent = '🎞';
-            } else {
-              thumb.innerHTML = '<img src="' + v + '" style="width:100%; height:100%; object-fit:cover;" onerror="this.replaceWith(\'🖼\')">';
+          try {
+            if (input.dataset.imgfieldReady) return;
+            input.dataset.imgfieldReady = '1';
+            const row = document.createElement('div');
+            row.className = 'adm-imgfield';
+            input.parentNode.insertBefore(row, input);
+            const thumb = document.createElement('span');
+            thumb.className = 'adm-imgfield-thumb';
+            thumb.style.cssText += 'display:flex; align-items:center; justify-content:center; background:#e8ddcf; overflow:hidden; font-size:17px;';
+            function isVideoUrl(v) { return /\.(mp4|webm|mov|m4v)(\?|$)/i.test(v); }
+            function syncThumb() {
+              const v = input.value.trim();
+              if (!v) { thumb.style.display = 'none'; return; }
+              thumb.style.display = 'flex';
+              if (isVideoUrl(v)) {
+                thumb.textContent = '🎞';
+              } else {
+                thumb.innerHTML = '<img src="' + v + '" style="width:100%; height:100%; object-fit:cover;" onerror="this.replaceWith(\'🖼\')">';
+              }
             }
-          }
-          const btn = document.createElement('button');
-          btn.type = 'button';
-          btn.className = 'adm-btn adm-btn-outline';
-          btn.style.cssText = 'padding:7px 14px; font-size:13px; white-space:nowrap;';
-          btn.textContent = 'Browse…';
-          btn.addEventListener('click', () => admOpenMediaModal(input));
-          row.appendChild(thumb);
-          row.appendChild(input);
-          row.appendChild(btn);
-          input.addEventListener('input', syncThumb);
-          syncThumb();
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'adm-btn adm-btn-outline';
+            btn.style.cssText = 'padding:7px 14px; font-size:13px; white-space:nowrap;';
+            btn.textContent = 'Browse…';
+            btn.addEventListener('click', () => admOpenMediaModal(input));
+            row.appendChild(thumb);
+            row.appendChild(input);
+            row.appendChild(btn);
+            input.addEventListener('input', syncThumb);
+            syncThumb();
+          } catch (e) { console.error('image-field enhance failed', input.name, e); }
         });
 
         // Repeatable audio-track editor: language + uploadable audio per row,
