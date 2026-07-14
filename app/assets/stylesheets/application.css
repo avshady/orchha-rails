@@ -152,7 +152,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .hero-btn-group { display: flex; align-items: center; padding-right: 31px; flex-shrink: 0; }
 .hero-explore-btn {
   background: rgba(0,0,0,0.2); border: 1.5px solid #fff;
-  border-radius: 22.312px; padding: 11px 26px;
+  border-radius: 22px; padding: 11px 26px;
   font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 18px;
   color: #fff; white-space: nowrap; transition: background 0.2s;
   display: flex; align-items: center; justify-content: center;
@@ -225,9 +225,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .center-btn { display: flex; justify-content: center; margin-top: 48px; }
 .btn-outline-dark {
   display: inline-flex; align-items: center; justify-content: center;
-  border: 1.5px solid #1a0a00; border-radius: 40px; padding: 13px 48px;
-  font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 15px;
-  color: #1a0a00; letter-spacing: 0.06em; text-transform: uppercase;
+  border: 1.5px solid #1a0a00; border-radius: 22px; padding: 11px 26px;
+  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 18px;
+  color: #1a0a00;
   transition: background 0.2s, color 0.2s;
 }
 .btn-outline-dark:hover { background: #1a0a00; color: #e7ded5; }
@@ -369,7 +369,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .trails-explore-btn {
   background: rgba(255,255,255,0.01); border: 1.5px solid #6e1603;
-  border-radius: 22.312px; padding: 11px 26px;
+  border-radius: 22px; padding: 11px 26px;
   font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 18px;
   color: #6e1603; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center;
   transition: background 0.2s;
@@ -974,7 +974,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   justify-self: center; white-space: nowrap; z-index: 1;
 }
 .hist-tl-heading {
-  font-family: 'Scotch Display', serif; font-weight: 700; font-style: normal;
+  font-family: 'Scotch Display', serif; font-weight: 600; font-style: normal;
   font-size: 33px; line-height: 1.001; color: #6e1603; text-transform: capitalize;
   margin-bottom: 28px;
 }
@@ -1612,8 +1612,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mdet-discover-btn.open svg { transform: rotate(180deg); }
 .mdet-book-btn {
   background: linear-gradient(73deg, rgb(219,173,108) 6%, rgb(222,186,134) 95%);
-  border-radius: 28.5px; padding: 9px 20px 8px;
-  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 14px;
+  border-radius: 28.5px; padding: 9px 18px 8px;
+  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 16px;
   color: #000; text-transform: uppercase; white-space: nowrap; text-decoration: none;
   letter-spacing: 0.04em; flex-shrink: 0;
 }
@@ -1929,7 +1929,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: -0.8px; margin: 0; white-space: nowrap;
 }
 .mdet-exp-desc {
-  font-family: 'Inter', sans-serif; font-weight: 500; font-style: normal;
+  font-family: 'Chivo', sans-serif; font-weight: 500; font-style: normal;
   font-size: 16px; line-height: 21px; color: #000; margin: 0;
   word-break: break-word;
 }
@@ -2212,7 +2212,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   text-align: left;
 }
 .exp-subheading {
-  font-family: 'Gambetta', serif;
+  font-family: 'Gambetta Variable', serif;
   font-weight: 500;
   font-size: 20px;
   color: #000;
@@ -2423,7 +2423,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   box-sizing: border-box;
 }
 .exp-cuisine-name {
-  font-family: 'Gambetta', serif;
+  font-family: 'Gambetta Variable', serif;
   font-weight: 600;
   font-size: 26px;
   line-height: 29.5px;
@@ -2531,7 +2531,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .aw-body {
-  font-family: 'Gambetta', serif;
+  font-family: 'Gambetta Variable', serif;
   font-weight: 500;
   font-size: 21px;
   line-height: 29px;
@@ -2561,14 +2561,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   gap: 2px;
 }
 .aw-stat-lbl {
-  font-family: 'Gambetta', serif;
+  font-family: 'Gambetta Variable', serif;
   font-weight: 500;
   font-size: 18.68px;
   color: #6e1603;
   letter-spacing: -0.19px;
 }
 .aw-stat-num {
-  font-family: 'Gambetta', serif;
+  font-family: 'Gambetta Variable', serif;
   font-weight: 700;
   font-size: 32.577px;
   line-height: 1.1;
@@ -2688,7 +2688,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0 0 16px 0;
 }
 .aw-right-sub {
-  font-family: 'Gambetta', serif;
+  font-family: 'Gambetta Variable', serif;
   font-weight: 500;
   font-size: 19px;
   line-height: 1.55;
@@ -2745,7 +2745,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0;
 }
 .aw-transit-sub {
-  font-family: 'Gambetta', serif;
+  font-family: 'Gambetta Variable', serif;
   font-weight: 500;
   font-size: 21px;
   line-height: 26px;
@@ -2840,7 +2840,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .aw-slogo-ii  { height: 31px; }
 .aw-tc-name {
   font-family: 'Scotch Display', serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 36px;
   line-height: 48.548px;
   color: #6e1603;
@@ -2953,7 +2953,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   white-space: nowrap;
 }
 .et-body {
-  font-family: 'Gambetta', serif;
+  font-family: 'Gambetta Variable', serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.195;
@@ -3001,7 +3001,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .et-know-card-a { aspect-ratio: 321 / 293; max-height: 40vh; }
 .et-know-card-b { aspect-ratio: 293 / 248; max-height: 40vh; }
 .et-know-text {
-  font-family: 'Gambetta', serif;
+  font-family: 'Gambetta Variable', serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 1.195;
@@ -3835,11 +3835,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: block;
   align-self: flex-start;
   margin-top: auto;
-  padding: 10px 30px;
+  padding: 11px 26px;
   border: 1.5px solid #fff;
   border-radius: 22px;
-  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 15px;
-  color: #fff; text-transform: uppercase; text-decoration: none; letter-spacing: 0.02em;
+  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 18px;
+  color: #fff; text-decoration: none;
   transition: background 0.15s;
 }
 .acc-book-btn:hover { background: rgba(255,255,255,0.12); }
@@ -3958,7 +3958,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   -webkit-appearance: none;
   background: rgba(255,255,255,0.01);
   border: 1.5px solid #6e1603;
-  border-radius: 22.312px;
+  border-radius: 22px;
   padding: 8px 38px 8px 23px;
   font-family: 'Chivo', sans-serif;
   font-weight: 600;
@@ -4250,13 +4250,12 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 16px 42px;
-  border: 3.5px solid #6e1603;
-  border-radius: 40px;
+  padding: 11px 26px;
+  border: 1.5px solid #6e1603;
+  border-radius: 22px;
   font-family: 'Chivo', sans-serif;
-  font-weight: 700;
-  font-size: clamp(18px, 1.9vw, 27px);
-  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 18px;
   color: #6e1603;
   text-decoration: none;
   transition: background-color .2s, color .2s;
@@ -4661,9 +4660,9 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 .hoho-book-btn {
   display: flex; align-items: center; justify-content: center; gap: 12px;
   width: 100%; height: 62px;
-  background: #6e1603; border-radius: 96px;
-  font-family: 'Chivo', sans-serif; font-weight: 700;
-  font-size: 22px; letter-spacing: 0.02em;
+  background: #6e1603; border-radius: 22px;
+  font-family: 'Chivo', sans-serif; font-weight: 600;
+  font-size: 18px; letter-spacing: 0.02em;
   color: #fff; text-transform: uppercase;
   text-decoration: none;
 }
@@ -5311,7 +5310,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 .sup-pay-btn {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 11px 26px;
-  border: 1.5px solid #6e1603; border-radius: 22.3px;
+  border: 1.5px solid #6e1603; border-radius: 22px;
   background: rgba(255,255,255,0.01);
   font-family: 'Chivo', sans-serif; font-weight: 600;
   font-size: 18px; color: #6e1603;
@@ -5561,7 +5560,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
   white-space: nowrap;
   display: inline-flex; align-items: center; justify-content: center;
-  background: rgba(0,0,0,0.2); border: 1.5px solid #fff; border-radius: 22.3px;
+  background: rgba(0,0,0,0.2); border: 1.5px solid #fff; border-radius: 22px;
   padding: 11px 26px;
   font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 18px; color: #fff;
   text-decoration: none;
@@ -5949,12 +5948,12 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   align-self: flex-start;
   height: 38px;
   padding: 0 20px;
-  border: 1.8px solid #6e1603;
-  border-radius: 58px;
+  border: 1.5px solid #6e1603;
+  border-radius: 22px;
   font-family: 'Chivo', sans-serif;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   color: #6e1603;
   transition: background-color .2s, color .2s;
