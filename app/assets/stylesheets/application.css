@@ -3942,26 +3942,24 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   SABHYATA FOUNDATION PAGE — horizontal scroll-jack, 3 panels (Figma 3278-10903)
+   SABHYATA FOUNDATION PAGE — horizontal scroll-jack (Figma 3278-10903)
    ═══════════════════════════════════════════════════════════════════════ */
+
+/* Standard beige-pill nav, fixed above the scroll-jack panels */
+.sab-nav-fixed {
+  position: fixed;
+  top: 43px;
+  left: 0;
+  right: 0;
+  z-index: 600;
+}
+
 .sab-panel {
   background: #e7ded5;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
 }
 
-/* Panel 1: About — big heading left, body copy right */
-.sab-about-heading-col {
-  flex: 0 0 47%;
-  display: flex;
-  align-items: center;
-  padding-left: 9vw;
-}
-.sab-about-body-col {
-  flex: 1;
-  max-width: 560px;
-  padding-right: 48px;
-}
 .sab-heading {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
@@ -3972,32 +3970,36 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 }
 .sab-heading em { font-style: italic; }
 .sab-heading-xl {
-  font-size: clamp(50px, 6.4vw, 95px);
+  font-size: clamp(50px, 7vw, 102px);
   line-height: 1.073;
   text-transform: capitalize;
 }
 .sab-body {
   font-family: 'Chivo', sans-serif;
   font-weight: 400;
-  font-size: 17px;
-  line-height: 1.35;
+  font-size: 17.5px;
+  line-height: 1.243;
   color: #000;
-  margin: 0 0 18px 0;
+  margin: 0 0 22px 0;
 }
 .sab-body:last-child { margin-bottom: 0; }
 
+/* Panel 1: big heading left (vertically deeper), body copy column right */
+.sab-about-heading-col {
+  padding-top: 30vh;
+  padding-left: 9vw;
+}
+.sab-about-body-col {
+  padding-top: 17.5vh;
+  width: 520px;
+  flex-shrink: 0;
+}
+.sab-sites-body { font-weight: 500; }
+
 /* Panel 2: Other Sabhyata Sites — heading, intro, explore button */
-.sab-panel-sites { justify-content: center; }
-.sab-sites-text {
-  max-width: 920px;
-  padding: 0 48px;
-}
-.sab-sites-text .sab-heading-xl { margin-bottom: 40px; }
-.sab-sites-body {
-  font-weight: 500;
-  max-width: 770px;
-  margin-bottom: 48px;
-}
+.sab-sites-text { padding-top: 19vh; }
+.sab-sites-text .sab-heading-xl { margin-bottom: 56px; }
+.sab-panel-sites .sab-sites-body { margin-bottom: 44px; max-width: 770px; }
 .sab-explore-btn {
   display: inline-flex;
   align-items: center;
@@ -4015,20 +4017,15 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 }
 .sab-explore-btn:hover { background: #6e1603; color: #fff; }
 
-/* Panel 3: Site photos with labels */
-.sab-panel-photos {
-  justify-content: center;
-  align-items: center;
-  gap: 46px;
-}
+/* Panel 3: site photos with labels */
+.sab-panel-photos { gap: 46px; padding-top: 19vh; }
 .sab-site-col {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 16px;
   width: min(520px, 34vw);
+  flex-shrink: 0;
 }
-/* Purana Qila column rides higher, mirroring the Figma composition */
-.sab-site-col-short { align-self: flex-start; padding-top: 18vh; }
 .sab-site-photo {
   border-radius: 12px;
   overflow: hidden;
@@ -4047,21 +4044,39 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 .sab-site-name-below { text-align: right; }
 .sab-site-name-above { text-align: left; }
 
+/* ── Desktop: panels hug their content so section gaps match Figma ── */
+@media (min-width: 901px) {
+  .sab-about-heading-col { flex: 0 0 55vw; }
+  .sab-panel-sites {
+    width: auto;
+    min-width: 0;
+    padding-left: 100px;
+    padding-right: 0;
+  }
+  .sab-sites-text { width: min(790px, 55vw); }
+  .sab-panel-photos {
+    width: auto;
+    min-width: 0;
+    padding-left: 170px;
+    padding-right: 16vw;
+  }
+}
+
 /* ── Mobile ─────────────────────────────────────────────────── */
 @media (max-width: 900px) {
+  .sab-nav-fixed { top: 20px; }
   .sab-panel { flex-direction: column; height: auto; align-items: stretch; }
   .sab-about-heading-col { flex: none; width: 100%; padding: 110px 20px 8px; }
-  .sab-about-body-col { flex: none; max-width: 100%; padding: 24px 20px 56px; }
+  .sab-about-body-col { flex: none; width: 100%; max-width: 100%; padding: 24px 20px 56px; }
   .sab-heading-xl { font-size: clamp(40px, 11vw, 54px); }
   .sab-body { font-size: 15.5px; }
-  .sab-panel-sites { padding: 56px 0; }
+  .sab-panel-sites { padding: 40px 0 56px; }
   .sab-sites-text { padding: 0 20px; }
   .sab-sites-text .sab-heading-xl { margin-bottom: 24px; }
-  .sab-sites-body { margin-bottom: 32px; }
+  .sab-panel-sites .sab-sites-body { margin-bottom: 32px; }
   .sab-explore-btn { padding: 12px 30px; border-width: 3px; }
   .sab-panel-photos { flex-direction: column; gap: 40px; padding: 24px 20px 64px; }
   .sab-site-col { width: 100%; }
-  .sab-site-col-short { align-self: stretch; padding-top: 0; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
