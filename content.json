@@ -1390,6 +1390,8 @@
     "celebrate": {
       "heading": "Celebrate<br>With Us",
       "subtitle": "Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.",
+      "ctaLabel": "View More",
+      "ctaLink": "/events",
       "cards": [
         {
           "name": "Vivaha Panchami",

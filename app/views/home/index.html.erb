@@ -416,6 +416,7 @@
     <div class="celebrate-text">
       <h2 class="celebrate-title"><%= raw(cb['heading'] || "Celebrate<br>With Us") %></h2>
       <p class="celebrate-subtitle"><%= cb['subtitle'] || 'Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.' %></p>
+      <a href="<%= cb['ctaLink'].presence || '/events' %>" class="celebrate-view-more"><%= cb['ctaLabel'].presence || 'View More' %></a>
     </div>
     <% 3.times do |i|
          c    = cbc[i] || cbd[i]
