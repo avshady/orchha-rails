@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     get    "collections/:key",                    to: "collections#show",  as: :collection
     get    "collections/:key/records/new",        to: "records#new",       as: :new_collection_record
     post   "collections/:key/records",            to: "records#create",    as: :collection_records
+    post   "collections/:key/records/bulk",       to: "records#bulk_create", as: :bulk_collection_records
     get    "collections/:key/records/:index/edit", to: "records#edit",     as: :edit_collection_record
     patch  "collections/:key/records/:index",     to: "records#update",    as: :collection_record
     delete "collections/:key/records/:index",     to: "records#destroy"

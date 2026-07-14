@@ -27,6 +27,33 @@ module Admin
         alert: "Invalid JSON in a structured field — nothing saved. #{e.message.truncate(120)}"
     end
 
+    # Bulk image upload: select a whole folder (or any multi-selection) of
+    # images and append one record per file, tagged with the chosen category
+    # so they land in the right filter on the public page.
+    def bulk_create
+      files = Array(params[:files]).select { |f| f.respond_to?(:tempfile) }
+      category = params[:category].presence
+      if files.empty?
+        return redirect_to admin_collection_path(@key), alert: "No images selected."
+      end
+
+      stamp = Time.now.to_i
+      files.each_with_index do |file, i|
+        blob = ActiveStorage::Blob.create_and_upload!(
+          io: file.tempfile,
+          filename: file.original_filename,
+          content_type: file.content_type
+        )
+        record = { "id" => "#{@key.underscore.dasherize}-#{stamp}-#{@records.length + 1}",
+                   "image" => rails_storage_proxy_path(blob) }
+        record["category"] = category if category
+        @records << record
+      end
+      save_collection
+      redirect_to admin_collection_path(@key),
+        notice: "#{files.length} image#{'s' unless files.length == 1} uploaded#{category ? " to “#{category}”" : ''}."
+    end
+
     def edit
       @index = params[:index].to_i
       # Merge the content.json seed under the DB record so keys added to the

@@ -13,6 +13,35 @@
   </div>
 </div>
 
+<% if @key == "artFrescoes" %>
+<% cats = ((ContentStore.fetch("artFrescoesPage")["filterCategories"] rescue nil) ||
+           [{ "label" => "Lakshmi Narayan Temple", "value" => "lakshmi-narayan-temple" },
+            { "label" => "Raja Mahal", "value" => "raja-mahal" }]).reject { |c| c["value"] == "all" } %>
+<div class="adm-card" style="margin-bottom:20px;">
+  <h3 style="margin:0 0 6px; color:#6e1603;">Bulk upload images</h3>
+  <p class="adm-muted" style="margin:0 0 14px; font-size:13px;">
+    Select a whole folder of images (or multi-select files) and they will all be added
+    to the chosen filter category in one go.
+  </p>
+  <%= form_with url: admin_bulk_collection_records_path(@key), method: :post, multipart: true,
+        html: { style: "display:flex; align-items:center; gap:12px; flex-wrap:wrap;" } do %>
+    <label style="display:flex; align-items:center; gap:8px; font-size:14px;">
+      Category
+      <select name="category" class="adm-input" style="width:auto;">
+        <% cats.each do |c| %>
+        <option value="<%= c['value'] %>"><%= c['label'] %></option>
+        <% end %>
+      </select>
+    </label>
+    <input type="file" name="files[]" multiple accept="image/*" required
+           style="font-size:13px;"
+           onchange="this.form.querySelector('[data-count]').textContent = this.files.length + ' image' + (this.files.length === 1 ? '' : 's') + ' selected';">
+    <span class="adm-muted" data-count style="font-size:13px;"></span>
+    <button type="submit" class="adm-btn">Upload all</button>
+  <% end %>
+</div>
+<% end %>
+
 <div class="adm-card">
   <table class="adm-table">
     <thead>

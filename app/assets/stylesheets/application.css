@@ -4795,6 +4795,18 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   overflow: hidden;
   aspect-ratio: 387 / 317;
   background: #d9d9d9;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+}
+/* Paintings pop up large on hover so details are readable up close.
+   Edge columns grow inward so the enlarged tile stays on screen. */
+@media (hover: hover) and (pointer: fine) {
+  .aof-card:hover {
+    transform: scale(1.55);
+    z-index: 30;
+    box-shadow: 0 26px 64px rgba(20, 8, 2, 0.45);
+  }
+  .aof-card:nth-child(3n + 1) { transform-origin: left center; }
+  .aof-card:nth-child(3n)     { transform-origin: right center; }
 }
 .aof-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .aof-card-logos {
