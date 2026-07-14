@@ -946,6 +946,91 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
 
+/* ── Mobile timeline — sticky scroll-jack (hidden on desktop) ── */
+.history-mobile { display: none; }
+@media (max-width: 900px) {
+  .history-mobile {
+    --history-count: 1;
+    --history-progress: 0;
+    display: block;
+    position: relative;
+    height: calc(var(--history-count) * 100svh);
+    background: #e7ded5;
+  }
+  .history-mobile__sticky {
+    position: sticky; top: 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-rows: minmax(300px, 52svh) 1fr;
+    height: 100svh; min-height: 620px;
+    padding: 72px 24px 42px;
+    overflow: hidden;
+  }
+  .history-mobile__visuals,
+  .history-mobile__content { position: relative; }
+
+  .history-mobile__visual {
+    position: absolute; top: 50%; left: 50%;
+    width: min(52vw, 210px); aspect-ratio: 1.4;
+    margin: 0; overflow: hidden; border-radius: 8px;
+    opacity: 0; filter: blur(1.25px);
+    transform: translate(-50%, -50%) translate3d(50px, 14px, 0) scale(.82) rotate(3deg);
+    transition: transform 700ms cubic-bezier(.22, 1, .36, 1), opacity 500ms ease, filter 600ms ease;
+    will-change: transform, opacity, filter;
+    box-shadow: 0 10px 30px rgba(110,22,3,0.18);
+  }
+  .history-mobile__visual img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .history-mobile__visual.is-previous {
+    z-index: 1; opacity: .42; filter: blur(1.25px);
+    transform: translate(-50%, -50%) translate3d(-72px, -38px, 0) scale(.87) rotate(-4deg);
+  }
+  .history-mobile__visual.is-active {
+    z-index: 3; opacity: 1; filter: blur(0);
+    transform: translate(-50%, -50%) translate3d(0, 0, 0) scale(1) rotate(0);
+  }
+  .history-mobile__visual.is-next {
+    z-index: 2; opacity: .5; filter: blur(1.25px);
+    transform: translate(-50%, -50%) translate3d(76px, 42px, 0) scale(.78) rotate(4deg);
+  }
+
+  .history-mobile__story {
+    position: absolute; inset: 0;
+    opacity: 0; pointer-events: none;
+    transform: translate3d(0, 28px, 0);
+    transition: opacity 360ms ease, transform 650ms cubic-bezier(.22, 1, .36, 1);
+    will-change: transform, opacity;
+  }
+  .history-mobile__story.is-active { opacity: 1; pointer-events: auto; transform: translate3d(0, 0, 0); }
+  .history-mobile__year {
+    margin: 0 0 10px; color: #6e1603;
+    font-family: 'Scotch Display', Georgia, serif;
+    font-size: clamp(34px, 9vw, 46px); font-style: italic; font-weight: 600; line-height: .9;
+  }
+  .history-mobile__story h3 {
+    margin: 0 0 14px; color: #6e1603;
+    font-family: 'Scotch Display', Georgia, serif;
+    font-size: clamp(25px, 7vw, 36px); font-weight: 600; line-height: 1;
+  }
+  .history-mobile__story > p:last-child {
+    max-width: 38rem; margin: 0; color: #1a0a00;
+    font-family: 'Gambetta Variable', Georgia, serif;
+    font-size: 15px; line-height: 1.5;
+  }
+
+  .history-mobile__progress {
+    position: absolute; top: 18%; right: 12px;
+    width: 3px; height: 64%; overflow: hidden; border-radius: 10px;
+    background: rgba(110,22,3,0.18);
+  }
+  .history-mobile__progress span {
+    position: absolute; inset: 0; background: #6e1603;
+    transform: scaleY(var(--history-progress)); transform-origin: top; will-change: transform;
+  }
+}
+@media (max-width: 900px) and (prefers-reduced-motion: reduce) {
+  .history-mobile__visual, .history-mobile__story { transition-duration: 1ms; }
+}
+
 /* ── The New Orchha ─────────────────────────────────── */
 .hist-new-orchha { margin-top: 80px; }
 .hist-new-orchha-img {
@@ -1058,13 +1143,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hist-hero-image { height: 320px; width: 100%; }
   .hist-hero-heading { font-size: 40px; }
   .hist-page-title { font-size: 36px; }
-  .hist-timeline-line { display: none; }
-  .hist-tl-entry { grid-template-columns: 1fr; gap: 16px; }
-  .hist-tl-year-badge { justify-self: start; }
-  .hist-tl-rtl .hist-tl-text,
-  .hist-tl-rtl .hist-tl-img,
-  .hist-tl-rtl .hist-tl-year-badge { grid-column: 1; grid-row: auto; }
-  .hist-tl-img { height: 220px; }
+  .hist-timeline-desktop { display: none; }  /* replaced by .history-mobile scroll-jack */
   .hist-new-orchha-img { height: 340px; background-position: 72% center; }
   .hist-new-orchha-overlay { padding: 40px 24px 0; }
   .hist-new-orchha-heading { font-size: 34px; max-width: 100%; }
