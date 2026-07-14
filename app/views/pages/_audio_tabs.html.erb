@@ -8,9 +8,10 @@
    show_audio_guide  = config['showAudioGuide']  != false
    show_virtual_tour = config['showVirtualTour'] != false
    show_translate    = config['showTranslate']   != false
+   vtour_url = config['virtualTourUrl'].to_s.strip
    extra_tabs = []
-   extra_tabs << 'Virtual Tour' if show_virtual_tour
-   extra_tabs << 'Translate'    if show_translate
+   extra_tabs << { label: 'Virtual Tour', href: vtour_url.presence } if show_virtual_tour
+   extra_tabs << { label: 'Translate',    href: config['translateUrl'].to_s.strip.presence } if show_translate
    has_audio = show_audio_guide && tracks.any?
 %>
 <% if show_audio_guide || extra_tabs.any? %>
@@ -50,7 +51,11 @@
   </div>
   <% end %>
   <% extra_tabs.each do |t| %>
-    <button class="mdet-action-tab"><%= t %></button>
+    <% if t[:href] %>
+      <a class="mdet-action-tab" href="<%= t[:href] %>" target="_blank" rel="noopener"><%= t[:label] %></a>
+    <% else %>
+      <button class="mdet-action-tab"><%= t[:label] %></button>
+    <% end %>
   <% end %>
 </div>
 <% end %>

@@ -29,7 +29,10 @@ module Admin
 
     def edit
       @index = params[:index].to_i
-      @record = @records.fetch(@index)
+      # Merge the content.json seed under the DB record so keys added to the
+      # seed after a deploy (e.g. show* toggles, virtualTourUrl) surface in the
+      # form even when this record's DB copy predates them. DB values win.
+      @record = seed_merged_record(@records.fetch(@index))
     rescue IndexError
       redirect_to admin_collection_path(@key), alert: "Record not found."
     end
@@ -37,7 +40,10 @@ module Admin
     def update
       index = params[:index].to_i
       existing = @records.fetch(index)
-      @records[index] = apply_fields(existing, existing, submitted_fields)
+      # Cast submitted values against the seed-merged shape so newly-surfaced
+      # keys (e.g. a boolean toggle absent from this DB record) get the right
+      # type; preserve the existing record's other fields as the base.
+      @records[index] = apply_fields(seed_merged_record(existing), existing, submitted_fields)
       save_collection
       redirect_to admin_collection_path(@key), notice: "Record updated."
     rescue JSON::ParserError => e
@@ -82,6 +88,30 @@ module Admin
 
     def submitted_fields
       params.fetch(:record, {}).to_unsafe_h
+    end
+
+    # Seed record from content.json matching this DB record (by id, else by
+    # a same-shape sibling), merged underneath so the DB values take priority
+    # but seed-only keys still appear. Returns the record unchanged on any
+    # failure so editing never breaks.
+    def seed_merged_record(db_record)
+      return db_record unless db_record.is_a?(Hash)
+      seed_list = seed_collection
+      return db_record unless seed_list.is_a?(Array)
+      seed_rec =
+        if db_record["id"].present?
+          seed_list.find { |r| r.is_a?(Hash) && r["id"] == db_record["id"] }
+        end
+      seed_rec ||= seed_list.find { |r| r.is_a?(Hash) }
+      seed_rec.is_a?(Hash) ? seed_rec.merge(db_record) : db_record
+    rescue StandardError
+      db_record
+    end
+
+    def seed_collection
+      @seed_collection ||= JSON.parse(File.read(Rails.root.join("content.json")))[@key]
+    rescue StandardError
+      nil
     end
 
     def blank_template(sample)
