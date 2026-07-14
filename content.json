@@ -1007,7 +1007,6 @@
     "galleryCtaLink": "/experiences",
     "transitHeading": "The Walk<br>Through Time",
     "transitSub": "A journey through four icon monuments.<br>One artistic legacy.",
-    "vignetteImage": "/images/aw_walkcard.jpg",
     "stops": [
       { "num": 1, "image": "/images/aw_stop1.jpg", "name": "Raja Mahal", "link": "/monuments/raja-mahal" },
       { "num": 2, "image": "/images/aw_stop2.jpg", "name": "Jahangir Mahal", "link": "/monuments/jahangir-mahal" },

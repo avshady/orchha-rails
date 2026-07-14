@@ -2752,13 +2752,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #000;
   margin: 4px 0 0;
 }
-.aw-walk-card {
-  position: relative;
-  margin-top: 14px;
-  width: 426px;
-  height: min(347px, 42.4vh);
-}
-.aw-walk-card > img:first-child { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Right column: step indicator + cards */
 .aw-tr-right {
@@ -3617,7 +3610,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
   .aw-transit-heading { font-size: 36px; line-height: 1.12; }
   .aw-transit-sub { font-size: 16px; margin-top: 10px; }
-  .aw-walk-card { width: 100%; height: auto; aspect-ratio: 426 / 347; margin-top: 20px; }
   .aw-tr-right { position: static; width: 100%; padding: 24px 20px 56px; }
   .aw-card-grid { flex-direction: column; gap: 24px; }
   .aw-card-grid::before { display: none; }
@@ -5579,7 +5571,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   }
   .lss-strip > * { position: static !important; width: auto !important; }
   /* keep containing blocks for their absolutely-positioned children */
-  .lss-strip .lss-hero-card, .lss-strip .lss-carousel {
+  .lss-strip .lss-hero-card, .lss-strip .lss-carousel { /* (aw-walk-card removed) */
     position: relative !important;
     left: 0 !important; top: 0 !important;
   }
