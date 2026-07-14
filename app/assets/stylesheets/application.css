@@ -1693,7 +1693,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   left: 440px; top: 19.7vh;
   display: flex;
-  width: 293px; height: 248px;
+  width: 293px; height: min(248px, 30.3vh);
   padding: 13px 20px;
   flex-direction: column;
   justify-content: space-between;
@@ -1707,7 +1707,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   position: absolute;
   left: 78px; top: 51.6vh;
   display: flex;
-  width: 321px; height: 293px;
+  width: 321px; height: min(293px, 35.8vh);
   padding: 13px 20px;
   flex-direction: column;
   justify-content: space-between;
@@ -1723,7 +1723,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Body text — aligned with card1 left, max-width fits within 720px */
 .mdet-dyk-text {
   position: absolute;
-  left: 440px; top: 54.9vh;
+  /* 40px below card1, wherever its (viewport-scaled) bottom lands */
+  left: 440px; top: calc(19.7vh + min(248px, 30.3vh) + 40px);
   max-width: 290px;
   font-family: 'Gambetta Variable', serif; font-weight: 500;
   font-size: 20px; line-height: 23.9px; letter-spacing: -0.2px;
@@ -1813,7 +1814,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .mdet-closeup-view360 {
   position: absolute;
-  left: 241px; top: 44.7%;
+  /* just below the two-line 70px heading (top 26%), viewport-independent */
+  left: 241px; top: calc(26% + 153px);
 }
 .mdet-closeup-main {
   position: absolute;
@@ -1885,11 +1887,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Four photos in a row below the card */
 .mdet-exp-photos {
   position: absolute;
-  left: 164px; top: 64.8vh;
+  /* 34px below the 301px experiences card (top 25vh - 9.5px) */
+  left: 164px; top: calc(25vh + 325.5px);
   display: flex; gap: 34px;
 }
 .mdet-exp-photo {
-  width: 186px; height: 187px; flex-shrink: 0;
+  /* never taller than the space left under the card row */
+  width: 186px; height: min(187px, 75vh - 329px); flex-shrink: 0;
   border-radius: 7px;
 }
 /* Extra gap between 2nd and 3rd photo (column break) */
@@ -1912,19 +1916,23 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: 'Scotch Display', serif; font-weight: 600;
   font-size: 70px; line-height: 1.043; color: #6e1603; margin: 0;
 }
+/* Card heights shrink on short viewports (px value = design height at
+   818px-tall canvas); dependent elements are anchored below the card
+   they follow instead of at a free-floating vh, so nothing overlaps on
+   short laptop screens. */
 .mdet-paintings-card1 {
   position: absolute;
   left: 78px; top: 43vh;
-  width: 368px; height: 363px;
+  width: 368px; height: min(363px, 44.4vh);
 }
 .mdet-paintings-card2 {
   position: absolute;
   left: 503px; top: 20vh;
-  width: 346px; height: 338px;
+  width: 346px; height: min(338px, 41.3vh);
 }
 .mdet-paintings-view-more {
   position: absolute;
-  left: 496px; top: 65vh;
+  left: 496px; top: calc(20vh + min(338px, 41.3vh) + 30px);
 }
 
 /* ── Panel 6: Outro / View All Monuments ───────────────── */
