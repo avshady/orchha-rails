@@ -2066,8 +2066,10 @@
     "exploreLabel": "Explore More",
     "exploreUrl": "https://sabhyatafoundation.com/our-monuments/",
     "sites": [
-      { "name": "Mehrauli Archaeological Park", "image": "/images/sabhyata_mehrauli.jpg", "size": "tall", "labelPosition": "below" },
-      { "name": "Purana Qila", "image": "/images/sabhyata_purana_qila.jpg", "size": "short", "labelPosition": "above" }
+      { "name": "Mehrauli Archaeological Park", "image": "/images/sabhyata_mehrauli.jpg", "column": 1, "width": 520, "aspect": "520/569", "labelPosition": "below" },
+      { "name": "Purana Qila", "image": "/images/sabhyata_purana_qila.jpg", "column": 2, "width": 520, "aspect": "520/223", "labelPosition": "above" },
+      { "name": "Red Fort", "image": "/images/sabhyata_red_fort.jpg", "column": 2, "width": 489, "aspect": "489/256", "labelPosition": "above" },
+      { "name": "Humayun's Tomb", "image": "/images/sabhyata_humayuns_tomb.jpg", "column": 3, "width": 436, "aspect": "436/568", "labelPosition": "above" }
     ]
   },
   "planYourVisitPage": {

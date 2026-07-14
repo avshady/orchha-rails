@@ -16,9 +16,13 @@
    explore_lbl  = @page['exploreLabel'].presence || 'Explore More'
    explore_url  = @page['exploreUrl'].presence   || 'https://sabhyatafoundation.com/our-monuments/'
    sites        = @page['sites'].presence || [
-     { 'name' => 'Mehrauli Archaeological Park', 'image' => '/images/sabhyata_mehrauli.jpg',    'size' => 'tall',  'labelPosition' => 'below' },
-     { 'name' => 'Purana Qila',                  'image' => '/images/sabhyata_purana_qila.jpg', 'size' => 'short', 'labelPosition' => 'above' }
+     { 'name' => 'Mehrauli Archaeological Park', 'image' => '/images/sabhyata_mehrauli.jpg',      'column' => 1, 'width' => 520, 'aspect' => '520/569', 'labelPosition' => 'below' },
+     { 'name' => 'Purana Qila',                  'image' => '/images/sabhyata_purana_qila.jpg',   'column' => 2, 'width' => 520, 'aspect' => '520/223', 'labelPosition' => 'above' },
+     { 'name' => 'Red Fort',                     'image' => '/images/sabhyata_red_fort.jpg',      'column' => 2, 'width' => 489, 'aspect' => '489/256', 'labelPosition' => 'above' },
+     { 'name' => "Humayun's Tomb",               'image' => '/images/sabhyata_humayuns_tomb.jpg', 'column' => 3, 'width' => 436, 'aspect' => '436/568', 'labelPosition' => 'above' }
    ]
+   # Group sites into vertical columns; records without a column each get their own.
+   site_columns = sites.each_with_index.group_by { |s, i| (s['column'].presence || i + 1).to_i }.sort.map { |_, group| group.map(&:first) }
 %>
 
 <div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
@@ -38,7 +42,7 @@
         </div>
         <a href="/plan-your-visit" class="hist-nav-link">Plan Your Visit</a>
         <a href="/news" class="hist-nav-link">News</a>
-        <a href="/support-us" class="hist-nav-link">Support Us</a>
+        <a href="https://pages.razorpay.com/pl_PWE9fVFc9oLCel/view" target="_blank" rel="noopener" class="hist-nav-link">Support Us</a>
         <a href="/sabhyata" class="hist-nav-link">Sabhyata Foundation</a>
       </div>
       <button class="hist-nav-hamburger" id="hist-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
@@ -58,7 +62,7 @@
         <% end %>
         <a href="/plan-your-visit" class="hist-nav-mobile-link">Plan Your Visit</a>
         <a href="/news" class="hist-nav-mobile-link">News</a>
-        <a href="/support-us" class="hist-nav-mobile-link">Support Us</a>
+        <a href="https://pages.razorpay.com/pl_PWE9fVFc9oLCel/view" target="_blank" rel="noopener" class="hist-nav-mobile-link">Support Us</a>
         <a href="/sabhyata" class="hist-nav-mobile-link">Sabhyata Foundation</a>
       </div>
       <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="hist-nav-mobile-book-btn">Book Tickets</a>
@@ -108,16 +112,20 @@
 
       <%# ══ PANEL 3 — SITE PHOTOS ══════════════════════════════ %>
       <section class="mdet-panel sab-panel sab-panel-photos">
-        <% sites.each do |site| %>
-        <div class="sab-site-col sab-site-col-<%= site['size'] == 'short' ? 'short' : 'tall' %>">
-          <% if site['labelPosition'] == 'above' %>
-          <span class="sab-site-name sab-site-name-above"><%= site['name'] %></span>
-          <% end %>
-          <div class="sab-site-photo sab-site-photo-<%= site['size'] == 'short' ? 'short' : 'tall' %>">
-            <img src="<%= site['image'] %>" alt="<%= site['name'] %> — Sabhyata Foundation heritage site">
+        <% site_columns.each do |column| %>
+        <div class="sab-site-col" style="width: min(<%= column.map { |s| (s['width'].presence || 520).to_i }.max %>px, 34vw)">
+          <% column.each do |site| %>
+          <div class="sab-site-item">
+            <% if site['labelPosition'] == 'above' %>
+            <span class="sab-site-name sab-site-name-above"><%= site['name'] %></span>
+            <% end %>
+            <div class="sab-site-photo" style="aspect-ratio: <%= site['aspect'].presence || '520/569' %>">
+              <img src="<%= site['image'] %>" alt="<%= site['name'] %> — Sabhyata Foundation heritage site">
+            </div>
+            <% if site['labelPosition'] != 'above' %>
+            <span class="sab-site-name sab-site-name-below"><%= site['name'] %></span>
+            <% end %>
           </div>
-          <% if site['labelPosition'] != 'above' %>
-          <span class="sab-site-name sab-site-name-below"><%= site['name'] %></span>
           <% end %>
         </div>
         <% end %>
