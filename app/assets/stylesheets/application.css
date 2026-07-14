@@ -3226,36 +3226,52 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .nav-hamburger svg path, .mdet-nav-hamburger svg path { stroke: #fff; }
 .hist-nav-hamburger svg path { stroke: #6e1603; }
 
-/* Full-screen mobile menu overlay — shared visual language across systems */
+/* Mobile menu — cream side drawer sliding in from the left, ORCHHA
+   wordmark up top, left-aligned maroon links (shared across systems) */
 .nav-mobile-menu, .hist-nav-mobile-menu, .mdet-nav-mobile-menu {
-  position: fixed; inset: 0; z-index: 9999;
-  background: rgba(26, 10, 3, 0.97);
-  backdrop-filter: blur(24px) saturate(160%); -webkit-backdrop-filter: blur(24px) saturate(160%);
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  gap: 32px;
+  position: fixed; top: 0; left: 0; bottom: 0; z-index: 9999;
+  width: min(82vw, 420px);
+  background: #ece3da;
+  box-shadow: 24px 0 80px rgba(10, 4, 0, 0.35);
+  display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start;
+  gap: 0;
+  padding: 96px 20px 32px 48px;
   opacity: 0; pointer-events: none;
-  transform: translateY(-16px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform: translateX(-100%);
+  transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-mobile-menu::before, .hist-nav-mobile-menu::before, .mdet-nav-mobile-menu::before {
+  content: 'ORCHHA';
+  position: absolute; top: 34px; left: 48px;
+  font-family: 'Scotch Display', serif; font-weight: 600;
+  font-size: 30px; line-height: 1;
+  letter-spacing: 0.08em;
+  color: #6e1603;
 }
 .nav-mobile-menu.open, .hist-nav-mobile-menu.open, .mdet-nav-mobile-menu.open {
-  opacity: 1; pointer-events: auto; transform: translateY(0);
+  opacity: 1; pointer-events: auto; transform: translateX(0);
 }
 .nav-mobile-close, .hist-nav-mobile-close, .mdet-nav-mobile-close {
-  position: absolute; top: 24px; right: 24px;
+  position: absolute; top: 28px; right: 12px;
   width: 44px; height: 44px;
   display: flex; align-items: center; justify-content: center;
   background: none; border: none; cursor: pointer;
 }
-.nav-mobile-close svg, .hist-nav-mobile-close svg, .mdet-nav-mobile-close svg { width: 26px; height: 26px; }
-.nav-mobile-close svg path, .hist-nav-mobile-close svg path, .mdet-nav-mobile-close svg path { stroke: #fff; }
+.nav-mobile-close svg, .hist-nav-mobile-close svg, .mdet-nav-mobile-close svg { width: 22px; height: 22px; }
+.nav-mobile-close svg path, .hist-nav-mobile-close svg path, .mdet-nav-mobile-close svg path { stroke: #6e1603; stroke-width: 1.6; }
 .nav-mobile-links, .hist-nav-mobile-links, .mdet-nav-mobile-links {
-  display: flex; flex-direction: column; align-items: center; gap: 26px;
-  max-height: 70vh; overflow-y: auto; padding: 8px 24px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 30px;
+  flex: 1 1 auto; min-height: 0; overflow-y: auto;
+  padding: 4px 12px 28px 0;
+  scrollbar-width: none;
 }
+.nav-mobile-links::-webkit-scrollbar,
+.hist-nav-mobile-links::-webkit-scrollbar,
+.mdet-nav-mobile-links::-webkit-scrollbar { display: none; }
 .nav-mobile-link, .hist-nav-mobile-link, .mdet-nav-mobile-link {
-  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 22px;
-  color: #fff; text-transform: uppercase; letter-spacing: 0.04em;
-  text-decoration: none; text-align: center;
+  font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 16px;
+  color: #6e1603; text-transform: uppercase; letter-spacing: 0.09em;
+  text-decoration: none; text-align: left;
 }
 .nav-mobile-book-btn, .hist-nav-mobile-book-btn, .mdet-nav-mobile-book-btn {
   background: linear-gradient(73deg, rgb(219,173,108) 6%, rgb(222,186,134) 95%);
@@ -3265,8 +3281,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: 0.04em;
 }
 .nav-mobile-cta-row {
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; flex-wrap: wrap; padding: 0 16px;
+  display: flex; align-items: center; justify-content: flex-start;
+  gap: 12px; flex-wrap: wrap;
+  margin-top: auto; padding: 18px 12px 0 0; flex-shrink: 0;
 }
 .nav-mobile-cta-row .nav-mobile-book-btn,
 .nav-mobile-cta-row .hist-nav-mobile-book-btn,
