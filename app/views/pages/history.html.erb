@@ -162,7 +162,7 @@
       <h2 class="hist-nc-heading"><%= nc['heading'] || 'A New Chapter for an Ancient Kingdom' %></h2>
       <div class="hist-nc-body">
         <% (nc['paragraphs'] || []).each do |para| %>
-        <p><%= raw(para) %></p>
+        <p><%= raw(paragraph_html(para)) %></p>
         <% end %>
       </div>
     </div>
@@ -186,7 +186,7 @@
       <div class="hist-mptb-body">
         <div class="hist-mptb-text">
           <% (mp['paragraphs'] || []).each do |para| %>
-          <p><%= para %></p>
+          <p><%= paragraph_html(para) %></p>
           <% end %>
         </div>
         <div class="hist-mptb-images">
