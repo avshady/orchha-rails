@@ -108,7 +108,7 @@
                 <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
               </div>
             </div>
-            <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-outline-btn">Book Tickets</a>
+            <a href="<%= @monument['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="mdet-outline-btn">Book Tickets</a>
           </div>
           <%# Col 2: year + name (above), second photo (below) %>
           <div class="mdet-info-col2">
@@ -161,11 +161,11 @@
                   <tbody>
                     <% season['rows'].each do |row| %>
                     <tr>
-                      <td><%= row['time'] %></td>
-                      <td><%= row['arti'] %></td>
-                      <td><%= row['bhog'] %></td>
-                      <td><%= row['donation'] %></td>
-                      <td><%= row['remark'] %></td>
+                      <td data-label="Time"><%= row['time'] %></td>
+                      <td data-label="Arti"><%= row['arti'] %></td>
+                      <td data-label="Bhog"><%= row['bhog'] %></td>
+                      <td data-label="Pooja / Donation"><%= row['donation'] %></td>
+                      <td data-label="Remark"><%= row['remark'] %></td>
                     </tr>
                     <% end %>
                   </tbody>

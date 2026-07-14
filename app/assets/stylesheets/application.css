@@ -3348,13 +3348,48 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .mdet-name-subtitle { font-size: 32px; }
   .mdet-desc, .mdet-desc p { font-size: 16px; line-height: 1.55; }
 
-  /* Panel 3: Arti & Bhog schedule — 2 seasons stack, tables scroll within their own card */
+  /* Panel 3: Arti & Bhog schedule — 2 seasons stack; on phones each table
+     row becomes a stacked card (time + arti headline, labelled details) so
+     everything is readable without horizontal scrolling (Figma 3240-12973/
+     13029 carry the same data; only the presentation adapts). */
   .mdet-arti { width: 100% !important; }
   .mdet-arti-inner { height: auto; padding: 56px 20px; }
   .mdet-arti-heading { font-size: 28px; margin-bottom: 24px; }
   .mdet-arti-tables { flex-direction: column; gap: 32px; }
-  .mdet-arti-card { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
-  .mdet-arti-table { min-width: 560px; }
+  .mdet-arti-card { overflow: visible; }
+  .mdet-arti-table { min-width: 0; display: block; }
+  .mdet-arti-table thead { display: none; }
+  .mdet-arti-table tbody { display: block; }
+  .mdet-arti-table tbody tr {
+    display: block;
+    padding: 13px 16px;
+    border-bottom: 1px solid rgba(110,22,3,0.15);
+  }
+  .mdet-arti-table tbody tr:nth-child(even) { background: rgba(110,22,3,0.045); }
+  .mdet-arti-table td {
+    display: block;
+    padding: 0; border: none !important;
+    white-space: normal; text-align: left;
+    font-size: 14.5px; line-height: 1.45;
+  }
+  .mdet-arti-table td:empty { display: none; }
+  /* headline line: TIME — Arti name */
+  .mdet-arti-table td[data-label="Time"] {
+    display: inline; font-weight: 700; color: #6e1603; font-size: 16px;
+  }
+  .mdet-arti-table td[data-label="Arti"] { display: inline; font-weight: 600; font-size: 16px; }
+  .mdet-arti-table td[data-label="Arti"]:not(:empty)::before { content: " — "; color: #6e1603; }
+  /* detail lines with their column label */
+  .mdet-arti-table td[data-label="Bhog"],
+  .mdet-arti-table td[data-label="Pooja / Donation"],
+  .mdet-arti-table td[data-label="Remark"] { margin-top: 5px; }
+  .mdet-arti-table td[data-label="Bhog"]::before,
+  .mdet-arti-table td[data-label="Pooja / Donation"]::before,
+  .mdet-arti-table td[data-label="Remark"]::before {
+    content: attr(data-label) ": ";
+    font-family: 'Chivo', sans-serif; font-weight: 700; font-size: 11.5px;
+    letter-spacing: 0.06em; text-transform: uppercase; color: #6e1603;
+  }
 
   /* Panel 4: Did You Know — absolute canvas → stacked flow */
   .mdet-dyk { width: 100% !important; }
