@@ -229,12 +229,22 @@
     aofEmpty.style.display = visible === 0 ? 'block' : 'none';
   }
 
+  function activateAofTab(tab) {
+    aofTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
+    tab.classList.add('active');
+    tab.setAttribute('aria-selected','true');
+    applyAofFilter(tab.dataset.cat);
+  }
+
   aofTabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      aofTabs.forEach(t => { t.classList.remove('active'); t.setAttribute('aria-selected','false'); });
-      tab.classList.add('active');
-      tab.setAttribute('aria-selected','true');
-      applyAofFilter(tab.dataset.cat);
-    });
+    tab.addEventListener('click', () => activateAofTab(tab));
   });
+
+  // Pre-select a category when linked as /art-frescoes?filter=<value>
+  // (e.g. the "View more" button on a monument's Paintings section).
+  const aofRequested = new URLSearchParams(window.location.search).get('filter');
+  if (aofRequested) {
+    const match = aofTabs.find(t => t.dataset.cat === aofRequested);
+    if (match) activateAofTab(match);
+  }
 </script>
