@@ -2822,7 +2822,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: linear-gradient(to bottom, rgba(10,4,0,0.55) 0%, transparent 38%);
 }
 
-/* ── Panel 2: Eco Trail Content (Figma 3265-7019 geometry, 1440×818 ref) ── */
+/* ── Panel 2: Eco Trail Content (Figma 3265-7019 geometry, 1440×818 ref).
+   Panel sizes to its content (96px lead-in, 78px trailing gutter) so the
+   gap to Did You Know is constant instead of growing with the viewport. ── */
 .et-content-panel {
   background: #e7ded5;
   display: flex;
@@ -2831,25 +2833,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-top: 1px solid rgba(110, 22, 3, 0.22);
   border-bottom: 1px solid rgba(110, 22, 3, 0.22);
   overflow: hidden;
-  padding: 0 clamp(40px, 6.6vw, 96px);
-  gap: clamp(28px, 4vw, 58px);
+  width: 1685px;
+  flex-shrink: 0;
+  padding: 0 78px 0 96px;
+  gap: 57px;
 }
 .et-col { display: flex; flex-direction: column; min-width: 0; }
 .et-col-book {
-  flex: 0 1 clamp(300px, 29.2vw, 421px);
+  flex: 0 0 421px;
   justify-content: center;
   align-items: center;
   gap: clamp(24px, 5vh, 42px);
   padding-bottom: 4vh;
 }
 .et-col-mid {
-  flex: 0 1 clamp(250px, 24.5vw, 353px);
+  flex: 0 0 353px;
   justify-content: flex-start;
   padding-top: 24.8vh;
   gap: 24px;
 }
 .et-col-body {
-  flex: 0 1 623px;
+  flex: 0 0 623px;
   justify-content: flex-end;
   padding-bottom: 11.4vh;
 }
@@ -2861,8 +2865,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-shrink: 0;
 }
 .et-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.et-card-tall  { aspect-ratio: 421 / 429; }
-.et-card-short { aspect-ratio: 353 / 415; }
+.et-card-tall  { aspect-ratio: 421 / 429; max-height: 56vh; }
+.et-card-short { aspect-ratio: 353 / 415; max-height: 55vh; }
 .et-card-logos {
   position: absolute;
   top: 13px; left: 0; right: 0;
@@ -2886,7 +2890,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .et-heading {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
-  font-size: clamp(44px, 4.9vw, 70px);
+  font-size: 70px;
   line-height: 1.043;
   color: #6e1603;
   margin: 0;
@@ -2897,7 +2901,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .et-body {
   font-family: 'Gambetta', serif;
   font-weight: 500;
-  font-size: clamp(15px, 1.39vw, 20px);
+  font-size: 20px;
   line-height: 1.195;
   letter-spacing: -0.2px;
   color: #000;
@@ -2906,43 +2910,46 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .et-body:last-child { margin-bottom: 0; }
 
-/* ── Panel 3: Did You Know? ── */
+/* ── Panel 3: Did You Know? — fixed width, 50px lead-in so the gap from
+   the description column is the design's 128px (78 + 50) on any screen ── */
 .et-know-panel {
   background: #e7ded5;
   display: flex;
   flex-direction: row;
   align-items: stretch;
-  justify-content: center;
+  justify-content: flex-start;
   border-bottom: 1px solid rgba(110, 22, 3, 0.22);
   overflow: hidden;
-  padding: 0 clamp(40px, 5vw, 72px);
-  gap: clamp(28px, 3.3vw, 47px);
+  width: 789px;
+  flex-shrink: 0;
+  padding: 0 78px 0 50px;
+  gap: 47px;
 }
 .et-know-left {
-  flex: 0 1 clamp(240px, 22.3vw, 321px);
+  flex: 0 0 321px;
   padding-top: 26.4vh;
   gap: clamp(36px, 7.3vh, 60px);
 }
 .et-know-right {
-  flex: 0 1 clamp(220px, 20.3vw, 293px);
+  flex: 0 0 293px;
   padding-top: 19.7vh;
   gap: 40px;
 }
 .et-know-heading {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
-  font-size: clamp(44px, 4.9vw, 70px);
+  font-size: 70px;
   line-height: 1.043;
   color: #6e1603;
   margin: 0;
   text-transform: capitalize;
 }
-.et-know-card-a { aspect-ratio: 321 / 293; }
-.et-know-card-b { aspect-ratio: 293 / 248; }
+.et-know-card-a { aspect-ratio: 321 / 293; max-height: 40vh; }
+.et-know-card-b { aspect-ratio: 293 / 248; max-height: 40vh; }
 .et-know-text {
   font-family: 'Gambetta', serif;
   font-weight: 500;
-  font-size: clamp(15px, 1.39vw, 20px);
+  font-size: 20px;
   line-height: 1.195;
   letter-spacing: -0.2px;
   color: #000;
