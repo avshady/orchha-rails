@@ -5353,7 +5353,6 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   display: flex; align-items: flex-end; justify-content: space-between; gap: 1vw;
 }
 .lss-hero-feature { display: flex; flex-direction: column; gap: 0.55vh; }
-.lss-hero-feature svg { width: 1.8vw; height: 1.8vw; }
 .lss-hero-feature > div { display: flex; flex-direction: column; gap: 0.35vh; }
 .lss-feature-label { font-family: 'Gambetta Variable', serif; font-weight: 600; font-size: 1.428vw; line-height: 1.2; color: #d0a259; }
 .lss-feature-value { font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 0.944vw; color: #ffedcf; white-space: nowrap; }
@@ -5366,29 +5365,22 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   font-size: 4.258vw; line-height: 1.109; color: #6e1603; text-transform: capitalize;
   margin: 0;
 }
-.lss-heading-rule {
-  position: absolute; left: 53.96vw; top: 40.7vh; width: 25.33vw;
-  height: 1px; background: rgba(110,22,3,0.45);
-}
-.lss-heading-rule::after {
-  content: ''; position: absolute; right: -0.6vw; top: 50%; transform: translateY(-50%);
-  width: 0.884vw; height: 0.884vw; background: #6e1603; border-radius: 0.15vw;
-}
 .lss-description {
   position: absolute; left: 53.82vw; top: 43.15vh; width: 28.96vw;
   font-family: 'Gambetta Variable', serif; font-weight: 500;
   font-size: 1.597vw; line-height: 1.26; color: #000; margin: 0;
 }
+/* Standard outline pill button, same as the rest of the site */
 .lss-book-btn {
   position: absolute; left: 53.82vw; top: 74.57vh;
-  display: inline-flex; align-items: center; gap: 0.9vw;
-  background: #6e1603; border-radius: 0.625vw; padding: 0 1vw;
-  height: 6.02vh; width: 15vw; justify-content: center;
-  font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 1.736vw; color: #fff;
-  text-decoration: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1.5px solid #6e1603; background: rgba(255,255,255,0.01);
+  border-radius: 22px; padding: 11px 26px;
+  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 18px;
+  color: #6e1603; text-decoration: none; white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
 }
-.lss-book-btn:hover { background: #571102; }
-.lss-book-btn svg { width: 1.736vw; height: 0.8vw; }
+.lss-book-btn:hover { background: #6e1603; color: #fff; }
 
 /* ── Show times / pricing column (x1321) ── */
 .lss-col-heading {
@@ -5398,7 +5390,6 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   font-size: 2.044vw; letter-spacing: -0.02em;
   color: #6e1603; text-transform: capitalize; margin: 0;
 }
-.lss-col-heading svg { width: 2.22vw; height: 2.22vw; flex-shrink: 0; }
 .lss-times-heading { left: 92.85vw; top: 19.56vh; }
 .lss-pricing-heading { left: 92.95vw; top: 49.88vh; }
 
@@ -5410,7 +5401,6 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 }
 .lss-times-col { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 1.35vh; }
 .lss-times-title { display: flex; align-items: center; gap: 0.55vw; font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 1.423vw; letter-spacing: -0.02em; color: #6e1603; text-transform: capitalize; }
-.lss-times-title svg { width: 1.74vw; height: 1.74vw; flex-shrink: 0; }
 .lss-times-row { display: flex; flex-direction: column; padding-left: 1.36vw; border-left: 1px solid rgba(110,22,3,0.4); }
 .lss-times-lang { font-family: 'Gambetta Variable', serif; font-weight: 600; font-size: 1.246vw; line-height: 1.21; color: #6e1603; }
 .lss-times-hrs { font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 0.824vw; color: #000; }
@@ -5421,8 +5411,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   width: 28.26vw; height: 23.6vh;
   display: flex; align-items: center; padding: 1.4vw 1.1vw; gap: 1.1vw;
 }
-.lss-price-col { flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.35vh; }
-.lss-price-col svg { width: 3.19vw; height: 3.19vw; margin-bottom: 0.7vh; }
+.lss-price-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0.35vh; }
 .lss-price-label { font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 0.944vw; color: #000; margin: 0; }
 .lss-price-value { font-family: 'Gambetta Variable', serif; font-weight: 700; font-size: 2.36vw; line-height: 1.21; color: #6e1603; margin: 0; }
 .lss-price-sub { font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 0.944vw; color: #000; margin: 0; }
@@ -5448,18 +5437,18 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   font-size: 4.258vw; line-height: 1.109; color: #6e1603; text-transform: capitalize;
   margin: 0;
 }
-.lss-guideline-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 3.06vh; }
-.lss-guideline-item { display: flex; align-items: center; gap: 1.1vw; }
-.lss-guideline-icon {
-  flex-shrink: 0; width: 3.588vw; height: 3.588vw; border-radius: 50%;
-  background: rgba(110,22,3,0.08);
-  display: flex; align-items: center; justify-content: center;
+.lss-guideline-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2.2vh; }
+.lss-guideline-item { display: flex; align-items: baseline; gap: 0.85vw; }
+.lss-guideline-item::before {
+  content: '\2192'; /* → */
+  flex-shrink: 0;
+  color: #6e1603;
+  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 1.4vw; line-height: 1;
 }
-.lss-guideline-icon svg { width: 1.8vw; height: 1.8vw; }
 .lss-guideline-item span:last-child {
   font-family: 'Gambetta Variable', serif; font-weight: 500;
-  font-size: 1.331vw; line-height: 1.13; color: #000;
-  width: 20.08vw;
+  font-size: 1.331vw; line-height: 1.25; color: #000;
+  width: 22vw;
 }
 
 /* ── Gallery (x2314 y132; grid x2320 y215 738x496) ── */
@@ -5469,14 +5458,44 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   font-size: 4.258vw; line-height: 1.109; color: #6e1603; white-space: nowrap;
   margin: 0;
 }
-.lss-gallery-grid {
+/* fading carousel in the old grid's footprint */
+.lss-carousel {
   position: absolute; left: 161.11vw; top: 26.28vh;
   width: 51.25vw; height: 60.64vh;
-  display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr);
-  column-gap: 1.32vw; row-gap: 2.32vh;
+  border-radius: 0.9vw; overflow: hidden;
+  border: 0.881px solid rgba(110,22,3,0.25);
+  background: rgba(110,22,3,0.04);
 }
-.lss-gallery-tile { position: relative; border-radius: 0.56vw; overflow: hidden; border: 0.881px solid rgba(110,22,3,0.25); }
-.lss-gallery-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lss-carousel-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transition: opacity 480ms ease;
+  pointer-events: none;
+}
+.lss-carousel-slide.is-active { opacity: 1; pointer-events: auto; }
+.lss-carousel-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lss-car-btn {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(231,222,213,0.92); border: 1px solid rgba(110,22,3,0.35);
+  color: #6e1603; font-size: 26px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 2;
+  transition: background 0.15s;
+  padding: 0 0 3px;
+}
+.lss-car-btn:hover { background: #e7ded5; }
+.lss-car-prev { left: 14px; }
+.lss-car-next { right: 14px; }
+.lss-car-dots {
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%);
+  display: flex; gap: 8px; z-index: 2;
+}
+.lss-car-dots span {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(231,222,213,0.55);
+  transition: background 0.15s, transform 0.15s;
+}
+.lss-car-dots span.is-active { background: #e7ded5; transform: scale(1.25); }
 
 /* ── Scroll hint (first viewport) ── */
 .lss-scroll-hint {
@@ -5512,7 +5531,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   }
   .lss-strip > * { position: static !important; width: auto !important; }
   /* keep containing blocks for their absolutely-positioned children */
-  .lss-strip .lss-hero-card, .lss-strip .lss-heading-rule {
+  .lss-strip .lss-hero-card, .lss-strip .lss-carousel {
     position: relative !important;
     left: 0 !important; top: 0 !important;
   }
@@ -5520,35 +5539,24 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   .lss-hero-card { height: 380px; border-radius: 18px; }
   .lss-hero-feature-row { left: 20px; right: 20px; bottom: 20px; flex-wrap: wrap; gap: 18px 14px; justify-content: flex-start; }
   .lss-hero-feature { flex: 1 1 calc(50% - 20px); }
-  .lss-hero-feature svg { width: 26px; height: 26px; }
   .lss-feature-label { font-size: 18px; }
   .lss-feature-value { font-size: 13px; white-space: normal; }
   .lss-feature-divider { display: none; }
 
   .lss-heading { font-size: 38px; }
-  .lss-heading-rule { height: 1px; margin: -6px 0; }
-  .lss-heading-rule::after { width: 9px; height: 9px; right: 0; border-radius: 2px; }
   .lss-description { font-size: 17px; line-height: 1.5; }
-  .lss-book-btn {
-    width: auto !important; height: auto; align-self: flex-start;
-    padding: 12px 22px; gap: 12px;
-    border-radius: 9px; font-size: 19px;
-  }
-  .lss-book-btn svg { width: 22px; height: 10px; }
+  .lss-book-btn { align-self: flex-start; }
 
-  .lss-col-heading { font-size: 24px; gap: 9px; }
-  .lss-col-heading svg { width: 26px; height: 26px; }
+  .lss-col-heading { font-size: 24px; }
   .lss-card { border-radius: 18px; }
   .lss-times-card { height: auto; padding: 20px; gap: 18px; }
   .lss-times-col { gap: 12px; }
-  .lss-times-title { font-size: 17px; gap: 7px; }
-  .lss-times-title svg { width: 20px; height: 20px; }
+  .lss-times-title { font-size: 17px; }
   .lss-times-row { padding-left: 14px; }
   .lss-times-lang { font-size: 16px; }
   .lss-times-hrs { font-size: 11px; }
 
   .lss-pricing-card { height: auto; padding: 22px 14px; gap: 14px; }
-  .lss-price-col svg { width: 42px; height: 42px; }
   .lss-price-label, .lss-price-sub { font-size: 13px; }
   .lss-price-value { font-size: 30px; }
 
@@ -5556,19 +5564,16 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 
   .lss-guideline-block { gap: 14px; }
   .lss-guideline-heading { font-size: 38px; }
-  .lss-guideline-list { gap: 20px; }
-  .lss-guideline-item { gap: 14px; }
-  .lss-guideline-icon { width: 46px; height: 46px; }
-  .lss-guideline-icon svg { width: 24px; height: 24px; }
+  .lss-guideline-list { gap: 16px; }
+  .lss-guideline-item { gap: 10px; }
+  .lss-guideline-item::before { font-size: 16px; }
   .lss-guideline-item span:last-child { font-size: 16px; line-height: 1.3; width: auto; }
 
   .lss-gallery-heading { font-size: 38px; white-space: normal; }
-  .lss-gallery-grid {
-    height: auto;
-    grid-template-columns: repeat(2, 1fr); grid-template-rows: auto;
-    gap: 12px;
-  }
-  .lss-gallery-tile { aspect-ratio: 233 / 153; border-radius: 8px; }
+  .lss-carousel { height: auto; aspect-ratio: 233 / 153; border-radius: 12px; }
+  .lss-car-btn { width: 38px; height: 38px; font-size: 22px; }
+  .lss-car-prev { left: 10px; }
+  .lss-car-next { right: 10px; }
 
   .lss-scroll-hint { display: none; }
 
