@@ -75,11 +75,10 @@
       <%# Hero content: left text + right image %>
       <div class="hist-hero-content">
         <div class="hist-hero-text">
-          <h1 class="hist-hero-heading">
-            <%= hero['heading1'] || 'A Kingdom Built' %><br>
-            <%= hero['heading2'] || 'on the Betwa' %>
-          </h1>
+          <%# Figma 3168-10955..57: heading line 1, then subtitle, then line 2 %>
+          <h1 class="hist-hero-heading"><%= hero['heading1'] || 'A Kingdom Built' %></h1>
           <p class="hist-hero-subtitle"><%= hero['subtitle'] || '' %></p>
+          <p class="hist-hero-heading hist-hero-heading--below" aria-hidden="true"><%= hero['heading2'] || 'on the Betwa' %></p>
         </div>
         <div class="hist-hero-image">
           <img src="<%= hero['image'] || '/images/history_hero.jpg' %>" alt="Orchha Heritage">
@@ -170,7 +169,9 @@
 
   <%# ── QUOTE ──────────────────────────────────────────── %>
   <section class="hist-quote-section">
-    <div class="hist-quote-mark">&ldquo;</div>
+    <div class="hist-quote-markrow" aria-hidden="true">
+      <img src="/images/quote_mark.svg" alt="" class="hist-quote-mark">
+    </div>
     <p class="hist-quote-text"><%= qt['text'] || '' %></p>
     <a href="<%= qt['buttonUrl'] || '/sabhyata' %>" class="hist-quote-btn"><%= qt['buttonLabel'] || 'About Sabhyata' %></a>
   </section>
