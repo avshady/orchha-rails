@@ -1737,7 +1737,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: #ecdfd3;
   border: 0.944px solid rgba(110,22,3,0.25);
   border-radius: 16.055px;
-  overflow: hidden;
+  /* no overflow:hidden — the Experiences pill straddles the top edge
+     (translate -50%) and was getting its upper half clipped (Figma 3255-6679) */
 }
 /* "Experiences" pill — center at 507px from card left, straddles top edge */
 .mdet-exp-label {
