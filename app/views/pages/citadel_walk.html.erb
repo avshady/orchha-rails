@@ -149,7 +149,7 @@
 </div><%# /mdet-wrapper %>
 
 <%# Fixed bottom action bar (shared audio guide player) %>
-<%= render 'audio_tabs', tracks: @audio_tracks, label: (p['audioTrack'].presence || 'Citadel Walk') %>
+<%= render 'audio_tabs', tracks: @audio_tracks, label: (p['audioTrack'].presence || 'Citadel Walk'), config: @page %>
 
 <script>
 (function() {

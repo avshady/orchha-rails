@@ -1,12 +1,21 @@
 <%# Shared fixed action-tabs bar with a real audio guide player.
     locals: tracks (Array of {language, audio}), label (String fallback),
-            extra_tabs (Array of tab labels, default Virtual Tour + Translate). %>
+            config (Hash with CMS visibility flags showAudioGuide /
+            showVirtualTour / showTranslate — default all shown). %>
 <% tracks = (local_assigns[:tracks] || []).select { |t| t['audio'].to_s.strip.present? }
    label  = local_assigns[:label] || 'Audio Guide'
-   extra_tabs = local_assigns.fetch(:extra_tabs, ['Virtual Tour', 'Translate'])
-   has_audio = tracks.any?
+   config = local_assigns[:config].is_a?(Hash) ? local_assigns[:config] : {}
+   show_audio_guide  = config['showAudioGuide']  != false
+   show_virtual_tour = config['showVirtualTour'] != false
+   show_translate    = config['showTranslate']   != false
+   extra_tabs = []
+   extra_tabs << 'Virtual Tour' if show_virtual_tour
+   extra_tabs << 'Translate'    if show_translate
+   has_audio = show_audio_guide && tracks.any?
 %>
+<% if show_audio_guide || extra_tabs.any? %>
 <div class="mdet-action-tabs" id="mdet-action-tabs">
+  <% if show_audio_guide %>
   <div class="mdet-audio-wrap">
     <div class="mdet-audio-panel<%= ' mdet-audio-panel--live' if has_audio %>" id="mdet-audio-panel"
          <%= "data-tracks=#{tracks.to_json.encode(xml: :attr)}".html_safe if has_audio %>>
@@ -39,10 +48,12 @@
     </div>
     <button class="mdet-action-tab" id="mdet-audio-btn">Audio Guide</button>
   </div>
+  <% end %>
   <% extra_tabs.each do |t| %>
     <button class="mdet-action-tab"><%= t %></button>
   <% end %>
 </div>
+<% end %>
 
 <% if has_audio %>
 <script>

@@ -35,6 +35,9 @@
     {
       "id": "orchha-fort-complex",
       "number": "01",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Orchha Fort Complex",
       "category": "BUNDELI",
       "year": "1501",
@@ -85,6 +88,9 @@
     {
       "id": "ram-raja-temple",
       "number": "02",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Ram Raja Temple",
       "category": "BUNDELI",
       "description": "The only temple in India where Ram is worshipped as a king. The temple was originally a palace and is the centre of devotion in Orchha, where Lord Ram holds the title of the reigning king.",
@@ -214,6 +220,9 @@
     {
       "id": "chaturbhuj-temple",
       "number": "03",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Chaturbhuj Temple",
       "category": "BUNDELI",
       "description": "Built to receive a god who chose to stay elsewhere. The Chaturbhuj Temple - named after the four-armed Vishnu - stands as Orchha's most magnificent monument and its most poignant one.",
@@ -243,6 +252,9 @@
     {
       "id": "raja-mahal",
       "number": "02",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Raja Mahal",
       "category": "BUNDELI",
       "description": "Orchha's first palace, built in 1501. Its ceilings are painted with murals spanning all twenty-four avatars of Vishnu — among the oldest surviving frescoes in Orchha.",
@@ -276,6 +288,9 @@
     {
       "id": "jahangir-mahal",
       "number": "05",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Jahangir Mahal",
       "category": "MUGHAL",
       "description": "Built by Bir Singh Deo in 1605 to welcome Emperor Jahangir, this five-storeyed palace blends Mughal arches with Rajput balconies across 236 rooms.",
@@ -305,6 +320,9 @@
     {
       "id": "sundar-mahal",
       "number": "06",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Sundar Mahal",
       "category": "BUNDELI",
       "description": "A palace used by Dhurjban, son of Jhujhar Singh, after he converted to Islam. It later became a centre of Sufi culture in Orchha, and pilgrims still visit the dargah within.",
@@ -318,6 +336,9 @@
     {
       "id": "lakshmi-narayan-temple",
       "number": "07",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Lakshmi Narayan Temple",
       "category": "BUNDELI",
       "image": "/images/lnt_info_main.jpg",
@@ -350,6 +371,9 @@
     {
       "id": "orchha-chhatris",
       "number": "08",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Orchha Chhatris",
       "nameSubtitle": "(Cenotaphs)",
       "year": "1970",
@@ -379,6 +403,9 @@
     {
       "id": "hanuman-mandir",
       "number": "09",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Hanuman Mandir",
       "category": "BUNDELI",
       "description": "An ancient temple dedicated to Lord Hanuman located within the town of Orchha. The temple is an important centre of worship and attracts devotees from across the region.",
@@ -392,6 +419,9 @@
     {
       "id": "rai-praveen-mahal",
       "number": "10",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Rai Praveen Mahal",
       "category": "BUNDELI",
       "year": "1618",
@@ -420,6 +450,9 @@
     {
       "id": "teen-dasiyon-ki-haveli",
       "number": "11",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Teen Dasiyon Ki Haveli",
       "category": "BUNDELI",
       "year": "1618",
@@ -448,6 +481,9 @@
     {
       "id": "sheesh-mahal",
       "number": "12",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Sheesh Mahal",
       "category": "BUNDELI",
       "description": "The Palace of Mirrors, now converted into a heritage hotel by Madhya Pradesh Tourism. Its rooms are decorated with mirror work and offer a royal experience overlooking the Orchha Fort.",
@@ -461,6 +497,9 @@
     {
       "id": "shiva-temple",
       "number": "13",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Shiva Temple",
       "category": "BUNDELI",
       "year": "1618",
@@ -489,6 +528,9 @@
     {
       "id": "baroodkhana",
       "number": "14",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Baroodkhana",
       "category": "BUNDELI",
       "year": "1508",
@@ -517,6 +559,9 @@
     {
       "id": "wildlife-sanctuary",
       "number": "15",
+      "showAudioGuide": true,
+      "showVirtualTour": true,
+      "showTranslate": true,
       "name": "Wildlife Sanctuary",
       "category": "NATURE",
       "panelCount": 5,
@@ -886,6 +931,9 @@
     { "id": "night-walk", "title": "Night Walk", "tracks": [], "visible": true }
   ],
   "citadelWalkPage": {
+    "showAudioGuide": true,
+    "showVirtualTour": true,
+    "showTranslate": true,
     "heading": "Citadel Walk",
     "description": "Behind the Kateela Darwaza - its doors still studded with the iron spikes that once stopped war elephants - lies the world that built Orchha. The Citadel Walk takes you deep into the fort complex, from the palace where the kingdom began to the armoury that kept it standing, from the residence of a queen's most devoted companions to a temple that once held five Shivalingas consecrated to rival the holiest shrines in India. Raja Mahal, Jahangir Mahal, Rai Praveen Mahal, the Barud Khana, Teen Dasiyon ki Haveli, Shiva Temple - and more await within these walls.",
     "heroImage": "/images/ct_entrance.jpg",
@@ -909,6 +957,9 @@
     ]
   },
   "artWalkPage": {
+    "showAudioGuide": true,
+    "showVirtualTour": true,
+    "showTranslate": true,
     "heroImage": "/images/aw_hero.jpg",
     "heroLabel": "Art walk video",
     "heading": "Four Monuments.<br>Centuries of Colour.",
@@ -936,6 +987,9 @@
     "outroCtaLink": "/experiences"
   },
   "ecoTrailPage": {
+    "showAudioGuide": true,
+    "showVirtualTour": true,
+    "showTranslate": true,
     "heroImage": "/images/et_hero.png",
     "heading": "Eco Trail",
     "cardImage1": "/images/et_card1.jpg",
@@ -953,6 +1007,9 @@
     "outroCtaLink": "/experiences"
   },
   "riverKayakingPage": {
+    "showAudioGuide": true,
+    "showVirtualTour": true,
+    "showTranslate": true,
     "heroImage": "/images/rk_hero_raft.jpg",
     "heading": "River Kayaking",
     "cardImage1": "/images/rk_hero_raft.jpg",
@@ -971,6 +1028,9 @@
     "outroCtaLink": "/experiences"
   },
   "religiousWalkPage": {
+    "showAudioGuide": true,
+    "showVirtualTour": true,
+    "showTranslate": true,
     "heroImage": "/images/rt_hero.jpg",
     "heading": "Religious Walk",
     "text1": "Orchha is not just a heritage town - it is a living place of faith. The Religious Walk moves through the spiritual heart of the city: from the royal court of Ram Raja Temple, where a king still holds divine audience, to the soaring silence of Chaturbhuj Temple, built in anticipation of a god who never arrived. Along the way, you pass the sacred memorial of Lala Hardaul, whose legend still draws wedding blessings from across Bundelkhand, and the ancient Savan Bhado pillars that mark the passage of time and devotion alike.",

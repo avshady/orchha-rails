@@ -336,7 +336,7 @@
 </div><%# /mdet-wrapper %>
 
 <%# Fixed bottom-right action tabs %>
-<%= render 'audio_tabs', tracks: @audio_tracks, label: (@monument['name'].presence || 'Audio Guide') %>
+<%= render 'audio_tabs', tracks: @audio_tracks, label: (@monument['name'].presence || 'Audio Guide'), config: @monument %>
 
 
 <script>
