@@ -484,6 +484,26 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 28px; line-height: 35.488px; color: #fff; word-break: break-word;
 }
 
+/* ── Shared hover animation for every image card on the home page
+   (same lift + shadow as the news cards, plus a gentle image zoom) ── */
+.journey-card, .heritage-big-card, .heritage-small-card, .trails-card,
+.cuisine-card, .celebrate-card {
+  transition: box-shadow 0.25s, transform 0.25s ease;
+}
+.journey-card:hover, .heritage-big-card:hover, .heritage-small-card:hover,
+.trails-card:hover, .cuisine-card:hover, .celebrate-card:hover {
+  box-shadow: 0 10px 26px rgba(110,22,3,0.16);
+  transform: translateY(-5px) scale(1.01);
+}
+.jcard-bg { overflow: hidden; }
+.jcard-bg img, .hcard-bg img { transition: transform 0.35s ease; }
+.journey-card:hover .jcard-bg img,
+.heritage-big-card:hover .hcard-bg img, .heritage-small-card:hover .hcard-bg img,
+.trails-card:hover .hcard-bg img,
+.cuisine-card:hover .hcard-bg img, .celebrate-card:hover .hcard-bg img {
+  transform: scale(1.05);
+}
+
 /* ── NEWS ────────────────────────────────────────────── */
 .news-section {
   background: rgba(189,165,140,0.19); padding: 56px 0 40px;
@@ -769,6 +789,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .celebrate-title { font-size: 38px; }
   .celebrate-subtitle { width: 100%; font-size: 17px; }
   .celebrate-card { width: 240px; height: 260px; }
+  /* card names scale down on phones so they don't blanket the photo */
+  .jcard-name, .hcard-name, .celebrate-card-name {
+    font-size: 20px; line-height: 1.25; white-space: normal;
+  }
+  .cuisine-card-name { font-size: 19px; line-height: 1.25; }
+  .hcard-desc { font-size: 13px; }
 
   /* Cuisine */
   .cuisine-section { padding: 40px 0 50px; gap: 20px; }
