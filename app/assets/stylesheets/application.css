@@ -1796,34 +1796,34 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: #e7ded5;
   position: relative;
   overflow: hidden;
-  /* fixed to the Figma canvas width so % positions render identically on
-     every screen instead of drifting with the viewport */
-  width: 1440px; flex-shrink: 0;
+  /* content compressed to the shared 78px gutters (Figma spacing kept
+     between elements, just without the dead lead-in) */
+  width: 1317px; flex-shrink: 0;
 }
 .mdet-closeup-inner {
   position: absolute; inset: 0;
 }
 .mdet-closeup-heading {
   position: absolute;
-  left: 16.3%; top: 26%;       /* 235/1440, 213/818 */
-  width: 20.5%;                 /* 295/1440 */
+  left: 78px; top: 26%;
+  width: 295px;
   font-family: 'Scotch Display', serif; font-weight: 600;
   font-size: 70px; line-height: 1.043; color: #6e1603; margin: 0;
   text-align: right;
 }
 .mdet-closeup-view360 {
   position: absolute;
-  left: 27.6%; top: 44.7%;     /* 398/1440, 366/818 */
+  left: 241px; top: 44.7%;
 }
 .mdet-closeup-main {
   position: absolute;
-  left: 40.1%; top: 22.7%;     /* 577/1440, 186/818 */
-  width: 31.4%; height: 56.5%; /* 452/1440, 462/818 */
+  left: 420px; top: 22.7%;
+  width: 452px; height: 56.5%;
 }
 .mdet-closeup-side {
   position: absolute;
-  left: 74.2%; top: 50.4%;     /* 1069/1440, 412/818 */
-  width: 22.7%; height: 38.1%; /* 327/1440, 312/818 */
+  left: 912px; top: 50.4%;
+  width: 327px; height: 38.1%;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -1900,31 +1900,31 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: #e7ded5;
   position: relative;
   overflow: hidden;
-  /* content (card2 right edge 1116) + 78px trailing gutter */
-  width: 1194px; flex-shrink: 0;
+  /* content compressed to the shared 78px gutters */
+  width: 927px; flex-shrink: 0;
 }
 .mdet-paintings-inner {
   position: absolute; inset: 0;
 }
 .mdet-paintings-heading {
   position: absolute;
-  left: 407px; top: 27.5vh;
+  left: 140px; top: 27.5vh;
   font-family: 'Scotch Display', serif; font-weight: 600;
   font-size: 70px; line-height: 1.043; color: #6e1603; margin: 0;
 }
 .mdet-paintings-card1 {
   position: absolute;
-  left: 345px; top: 43vh;
+  left: 78px; top: 43vh;
   width: 368px; height: 363px;
 }
 .mdet-paintings-card2 {
   position: absolute;
-  left: 770px; top: 20vh;
+  left: 503px; top: 20vh;
   width: 346px; height: 338px;
 }
 .mdet-paintings-view-more {
   position: absolute;
-  left: 763px; top: 65vh;
+  left: 496px; top: 65vh;
 }
 
 /* ── Panel 6: Outro / View All Monuments ───────────────── */
