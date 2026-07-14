@@ -1431,9 +1431,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: 0 40px;
   z-index: 600;
 }
-/* Auto-hide floating nav (scroll-jack pages) — tucked away until the
-   cursor moves near the top edge or hovers the bar. See layout JS. */
-.mdet-nav-wrap, .lss-nav-fixed {
+/* Auto-hide nav (all pages) — tucked away until the cursor moves near
+   the top edge or hovers the bar. See layout JS. */
+.mdet-nav-wrap, .lss-nav-fixed, .navbar, .hist-navbar {
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
 }
 .nav-autohidden {

@@ -14,17 +14,20 @@
     <%= render 'shared/qr_scanner' %>
 
     <script>
-      // Auto-hide the floating nav on scroll-jack pages: visible briefly on
-      // load, then tucked away — reveal by moving the cursor to the top edge
-      // or hovering the bar. Pointer-only, so touch devices keep it visible.
+      // Auto-hide the nav on every page: visible briefly on load, then
+      // tucked away — reveal by moving the cursor to the top edge or
+      // hovering the bar. Pointer-only, so touch devices keep it visible.
       (function () {
-        var nav = document.querySelector('.mdet-nav-wrap, .lss-nav-fixed');
+        // Outermost fixed wrapper on scroll-jack pages; otherwise the
+        // in-flow bar (home .navbar / listing pages' .hist-navbar).
+        var nav = document.querySelector('.mdet-nav-wrap, .lss-nav-fixed') ||
+                  document.querySelector('.navbar, .hist-navbar');
         if (!nav) return;
         if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
 
         var REVEAL_ZONE = 110;   // px from top that reveals the bar
         var HIDE_DELAY  = 1600;  // ms after the cursor leaves before tucking away
-        var hideTimer = null, hovering = false;
+        var hideTimer = null, hovering = 0;
 
         function show() { clearTimeout(hideTimer); nav.classList.remove('nav-autohidden'); }
         function scheduleHide() {
@@ -37,10 +40,16 @@
           else if (!hovering) scheduleHide();
         }, { passive: true });
 
-        nav.addEventListener('mouseenter', function () { hovering = true; show(); });
-        nav.addEventListener('mouseleave', function () { hovering = false; scheduleHide(); });
-        nav.addEventListener('focusin', show);
-        nav.addEventListener('focusout', scheduleHide);
+        // The Discover dropdown lives outside the bar — count it as part of
+        // the hover region so the nav doesn't tuck away mid-navigation.
+        var regions = [nav];
+        document.querySelectorAll('.nav-dropdown, .hist-nav-dropdown, .mdet-nav-dd').forEach(function (dd) { regions.push(dd); });
+        regions.forEach(function (el) {
+          el.addEventListener('mouseenter', function () { hovering++; show(); });
+          el.addEventListener('mouseleave', function () { hovering = Math.max(0, hovering - 1); scheduleHide(); });
+          el.addEventListener('focusin', show);
+          el.addEventListener('focusout', scheduleHide);
+        });
 
         // Show on load, then tuck away after a beat.
         show();
