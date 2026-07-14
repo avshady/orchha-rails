@@ -1160,7 +1160,9 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hist-mptb-images { display: none; }
 }
 @media (max-width: 900px) {
-  .hist-hero-content { flex-direction: column; padding-top: 32px; }
+  /* the nav is fixed on mobile and no longer occupies hero flow — pad the
+     hero so "A Kingdom Built" clears the pinned bar like other pages */
+  .hist-hero-content { flex-direction: column; padding-top: 110px; }
   .hist-hero-text { flex: none; padding-top: 0; }
   /* height:auto — the contain-fit painting otherwise letterboxes, reading
      as dead space between it and the page title */
