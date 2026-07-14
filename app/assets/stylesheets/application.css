@@ -2814,7 +2814,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: linear-gradient(to bottom, rgba(10,4,0,0.55) 0%, transparent 38%);
 }
 
-/* ── Panel 2: Eco Trail Content ── */
+/* ── Panel 2: Eco Trail Content (Figma 3265-7019 geometry, 1440×818 ref) ── */
 .et-content-panel {
   background: #e7ded5;
   display: flex;
@@ -2823,15 +2823,27 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-top: 1px solid rgba(110, 22, 3, 0.22);
   border-bottom: 1px solid rgba(110, 22, 3, 0.22);
   overflow: hidden;
+  padding: 0 clamp(40px, 6.6vw, 96px);
+  gap: clamp(28px, 4vw, 58px);
 }
-.et-left {
-  flex: 0 0 38%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  padding: 40px 24px 40px 72px;
-  gap: 14px;
-  overflow: hidden;
+.et-col { display: flex; flex-direction: column; min-width: 0; }
+.et-col-book {
+  flex: 0 1 clamp(300px, 29.2vw, 421px);
+  justify-content: center;
+  align-items: center;
+  gap: clamp(24px, 5vh, 42px);
+  padding-bottom: 4vh;
+}
+.et-col-mid {
+  flex: 0 1 clamp(250px, 24.5vw, 353px);
+  justify-content: flex-start;
+  padding-top: 24.8vh;
+  gap: 24px;
+}
+.et-col-body {
+  flex: 0 1 623px;
+  justify-content: flex-end;
+  padding-bottom: 11.4vh;
 }
 .et-card {
   position: relative;
@@ -2861,32 +2873,28 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-size: 18px;
   text-decoration: none;
   white-space: nowrap;
-  margin-top: 4px;
 }
 .et-book-btn:hover { background: #6e1603; color: #e7ded5; }
-.et-right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 56px 72px 56px 28px;
-}
 .et-heading {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
-  font-size: 70px;
+  font-size: clamp(44px, 4.9vw, 70px);
   line-height: 1.043;
   color: #6e1603;
-  margin: 0 0 24px;
+  margin: 0;
   text-transform: capitalize;
+  /* the heading overhangs its column in the design (412px over a 353px card) */
+  white-space: nowrap;
 }
 .et-body {
   font-family: 'Gambetta', serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.68;
-  color: #1a0e06;
-  margin: 0 0 14px;
+  font-weight: 500;
+  font-size: clamp(15px, 1.39vw, 20px);
+  line-height: 1.195;
+  letter-spacing: -0.2px;
+  color: #000;
+  margin: 0 0 12px;
+  white-space: pre-line;
 }
 .et-body:last-child { margin-bottom: 0; }
 
@@ -2895,47 +2903,42 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   background: #e7ded5;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch;
+  justify-content: center;
   border-bottom: 1px solid rgba(110, 22, 3, 0.22);
   overflow: hidden;
+  padding: 0 clamp(40px, 5vw, 72px);
+  gap: clamp(28px, 3.3vw, 47px);
 }
 .et-know-left {
-  flex: 0 0 36%;
-  padding: 56px 28px 56px 72px;
-  display: flex;
-  align-items: center;
+  flex: 0 1 clamp(240px, 22.3vw, 321px);
+  padding-top: 26.4vh;
+  gap: clamp(36px, 7.3vh, 60px);
+}
+.et-know-right {
+  flex: 0 1 clamp(220px, 20.3vw, 293px);
+  padding-top: 19.7vh;
+  gap: 40px;
 }
 .et-know-heading {
   font-family: 'Scotch Display', serif;
   font-weight: 600;
-  font-size: 72px;
-  line-height: 1.05;
+  font-size: clamp(44px, 4.9vw, 70px);
+  line-height: 1.043;
   color: #6e1603;
   margin: 0;
+  text-transform: capitalize;
 }
-.et-know-right {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 36px;
-  padding: 56px 72px 56px 16px;
-}
-.et-know-card {
-  flex: 0 0 46%;
-  position: relative;
-  border-radius: 10px;
-  overflow: hidden;
-  aspect-ratio: 321 / 240;
-}
-.et-know-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.et-know-card-a { aspect-ratio: 321 / 293; }
+.et-know-card-b { aspect-ratio: 293 / 248; }
 .et-know-text {
-  flex: 1;
   font-family: 'Gambetta', serif;
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 1.68;
-  color: #1a0e06;
+  font-weight: 500;
+  font-size: clamp(15px, 1.39vw, 20px);
+  line-height: 1.195;
+  letter-spacing: -0.2px;
+  color: #000;
+  max-width: 342px;
 }
 
 /* ── Panel 4: Outro ── */
@@ -2945,6 +2948,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.et-outro-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.31);
+  z-index: 0;
 }
 .et-outro-bg {
   position: absolute;
@@ -3533,20 +3543,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   /* Panel 1: Hero */
   .et-hero-panel { height: 100vh !important; min-height: 520px; }
 
-  /* Panel 2: Content — two stacked cards left + heading/body right → single column */
-  .et-content-panel { flex-direction: column; height: auto; }
-  .et-left { flex: none; width: 100%; padding: 40px 20px 0; }
-  .et-right { padding: 24px 20px 56px; }
-  .et-heading { font-size: 40px; }
+  /* Panel 2: Content — three design columns → single column */
+  .et-content-panel { flex-direction: column; height: auto; padding: 40px 20px 56px; gap: 24px; }
+  .et-col-book, .et-col-mid, .et-col-body { flex: none; width: 100%; padding: 0; }
+  .et-col-mid { order: -1; gap: 20px; }
+  .et-col-book { align-items: center; gap: 20px; }
+  .et-heading { font-size: 40px; white-space: normal; }
   .et-body { font-size: 15px; }
 
-  /* Panel 3: Did You Know? — heading left + card/text right → single column */
-  .et-know-panel { flex-direction: column; height: auto; }
-  .et-know-left { flex: none; width: 100%; padding: 40px 20px 8px; }
+  /* Panel 3: Did You Know? — two design columns → single column */
+  .et-know-panel { flex-direction: column; height: auto; padding: 40px 20px 56px; gap: 24px; }
+  .et-know-left, .et-know-right { flex: none; width: 100%; padding: 0; gap: 20px; }
   .et-know-heading { font-size: 36px; }
-  .et-know-right { flex-direction: column; gap: 20px; padding: 8px 20px 56px; }
   .et-know-card { flex: none; width: 100%; }
-  .et-know-text { font-size: 15px; }
+  .et-know-text { font-size: 15px; max-width: none; }
 
   /* Panel 4: Outro */
   .et-outro-panel { height: 100vh !important; min-height: 480px; }
