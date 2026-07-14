@@ -24,6 +24,8 @@
                   document.querySelector('.navbar, .hist-navbar');
         if (!nav) return;
         if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+        // Never auto-hide at mobile widths — the bar stays pinned there.
+        if (window.matchMedia('(max-width: 900px)').matches) return;
 
         var REVEAL_ZONE = 110;   // px from top that reveals the bar
         var HIDE_DELAY  = 1600;  // ms after the cursor leaves before tucking away
