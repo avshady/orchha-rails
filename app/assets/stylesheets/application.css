@@ -2548,7 +2548,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* "Art walk video" label (Figma: Scotch Display 61.3px white at 120,137) */
 .aw-video-label {
   position: absolute;
-  top: 16.7vh; left: 120px;
+  /* never slides under the fixed navbar on short viewports */
+  top: max(16.7vh, 124px); left: 120px;
   font-family: 'Scotch Display', serif;
   font-weight: 600;
   font-size: 61.311px;
@@ -2678,19 +2679,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Card 2 — medium, top-right, offset down */
 .aw-gc2 {
   width: 228px; height: 229px;
-  top: 100px; left: 295px;
+  top: 107px; left: 320px;
 }
 /* Card 3 — medium, below card 1 */
 .aw-gc3 {
   width: 228px; height: 228px;
-  top: 290px; left: 40px;
+  top: 323px; left: 53px;
 }
 
 /* View Art Gallery button — below Card 2 */
 .aw-gallery-btn {
+  /* right of the bottom-left collage card, per Figma (2502,588 rel 2185,176) */
   position: absolute;
-  bottom: 68px;
-  right: 40px;
+  left: 317px;
+  top: 412px;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2831,6 +2833,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #000;
   margin: 4px 0 0;
 }
+/* CMS-managed mural card below "The Walk Through Time" (Figma 3612:6461) */
+.aw-walk-card {
+  position: relative;
+  margin-top: 14px;
+  width: 426px;
+  height: min(347px, 42.4vh);
+}
+.aw-walk-card > img:first-child { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Right column: step indicator + cards */
 .aw-tr-right {
@@ -3718,6 +3728,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
   .aw-transit-heading { font-size: 36px; line-height: 1.12; }
   .aw-transit-sub { font-size: 16px; margin-top: 10px; }
+  .aw-walk-card { width: 100%; height: auto; aspect-ratio: 426 / 347; margin-top: 20px; }
   .aw-tr-right { position: static; width: 100%; padding: 24px 20px 56px; }
   .aw-card-grid { flex-direction: column; gap: 24px; }
   .aw-card-grid::before { display: none; }

@@ -1033,6 +1033,7 @@
     "galleryCtaLabel": "View Art Gallery",
     "galleryCtaLink": "/experiences",
     "transitHeading": "The Walk<br>Through Time",
+    "vignetteImage": "/images/aw_walkcard.jpg",
     "transitSub": "A journey through four icon monuments.<br>One artistic legacy.",
     "stops": [
       { "num": 1, "image": "/images/aw_stop1.jpg", "name": "Raja Mahal", "link": "/monuments/raja-mahal" },
