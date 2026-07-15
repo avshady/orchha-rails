@@ -15,8 +15,9 @@
    main_img    = @monument['detailImage'].presence || @monument['image'].presence || '/images/history_new_orchha.jpg'
    detail_desc = @monument['detailDescriptionHtml'] || h(@monument['detailDescription'] || @monument['description'] || '')
    has_subs = subs.any?
+   extra_gallery = gallery.drop(1)
    # panelCount override allows per-monument control when DYK or Experiences panel widths differ
-   panel_count = @monument['panelCount'] || (3 + (@monument['didYouKnow'] || @monument['dykHtml'] ? 0.5 : 0) + (arti ? 2 : 0) + (has_subs ? 1.5 : 0) + (closeup.any? ? 1 : 0) + (paintings_imgs.any? ? 0.879 : 0) + (experiences.any? ? 1 : 0))
+   panel_count = @monument['panelCount'] || (3 + (@monument['didYouKnow'] || @monument['dykHtml'] ? 0.5 : 0) + (arti ? 2 : 0) + (has_subs ? 1.5 : 0) + (closeup.any? ? 1 : 0) + (paintings_imgs.any? ? 0.879 : 0) + (experiences.any? ? 1 : 0) + (extra_gallery.any? ? 1 : 0))
 %>
 
 <%# HOHO sticky tab %>
@@ -131,6 +132,23 @@
           </div>
         </div>
       </section>
+
+      <%# ══ PANEL: GALLERY — CMS-managed extra photos (galleryImages[1..]) ══ %>
+      <% if extra_gallery.any? %>
+      <section class="mdet-panel mdet-gallery">
+        <div class="mdet-gallery-inner">
+          <% extra_gallery.each do |photo| %>
+          <div class="mdet-photo-card mdet-gallery-photo">
+            <img src="<%= photo %>" alt="<%= @monument['name'] %>">
+            <div class="mdet-card-logos">
+              <img src="/images/mpt_logo.png"         alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png"  alt="Incredible India" class="mdet-logo-ii">
+            </div>
+          </div>
+          <% end %>
+        </div>
+      </section>
+      <% end %>
 
       <%# ══ PANEL 3: ARTI & BHOG SCHEDULE (2 viewports wide) ══ %>
       <% if arti %>
