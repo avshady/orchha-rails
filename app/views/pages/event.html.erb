@@ -76,7 +76,7 @@
 
   <%# ── Hero card ──────────────────────────────────────────── %>
   <div class="evd-hero">
-    <%= hero_media_tag(@event['heroImage'].presence || @event['image'], alt: @event['name']) %>
+    <%= render 'hero_media', config: @event, fallback: @event['image'], alt: @event['name'] %>
     <div class="evd-hero-logos">
       <img src="/images/mpt_logo.png" class="aw-logo-mpt" alt="MPT">
       <img src="/images/incredible_india.png" class="aw-logo-ii" alt="Incredible India">

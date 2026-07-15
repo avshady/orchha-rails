@@ -71,7 +71,7 @@
 
   <%# ── HERO (image or video) with centred title ───────────── %>
   <section class="sbw-hero">
-    <%= hero_media_tag(pg['heroImage'].presence || '/images/exp_sunset_betwa.jpg', alt: pg['heading'].presence || 'Sunset At Betwa') %>
+    <%= render 'hero_media', config: pg, fallback: '/images/exp_sunset_betwa.jpg', alt: pg['heading'].presence || 'Sunset At Betwa' %>
     <div class="sbw-hero-overlay"></div>
     <h1 class="sbw-title"><%= pg['heading'].presence || 'Sunset At Betwa' %></h1>
     <div class="evd-hero-logos">

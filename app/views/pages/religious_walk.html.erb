@@ -81,7 +81,7 @@
       <%# ══ PANEL 1 — HERO (Ram Raja Temple entrance) ═════════════ %>
       <section class="mdet-panel et-hero-panel">
         <div class="et-hero-bg">
-          <%= hero_media_tag(pg['heroImage'].presence || '/images/rt_hero.jpg', alt: 'Ram Raja Temple entrance, Orchha', style: 'object-position: center 30%;') %>
+          <%= render 'hero_media', config: pg, fallback: '/images/rt_hero.jpg', alt: 'Ram Raja Temple entrance, Orchha', image_style: 'object-position: center 30%;' %>
           <div class="et-hero-overlay"></div>
         </div>
         <div class="mdet-scroll-hint" id="mdet-scroll-hint">
