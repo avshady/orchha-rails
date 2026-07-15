@@ -1022,7 +1022,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     height: 100svh; min-height: 600px;
     /* large bottom padding lifts the (centered) wheel + story towards the
        top of the frame, trimming the blank band under the page title */
-    padding: 16px 20px 22svh 0;
+    padding: 16px 20px 12svh 0;
     overflow: hidden;
   }
 
@@ -1034,8 +1034,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     height: 100%;
   }
   .history-mobile__visual {
-    position: absolute; top: 50%; left: 34%;
-    width: min(52vw, 230px); aspect-ratio: 131 / 87;
+    position: absolute; top: 50%; left: 53%;
+    width: min(42vw, 190px); aspect-ratio: 131 / 87;
     margin: 0; overflow: hidden; border-radius: 6px;
     transform: translate(-50%, -50%);
     will-change: transform, filter, opacity;
@@ -1052,6 +1052,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     min-width: 0;
     min-height: 42svh;
     padding-left: 10px;
+    margin-left: 14px;
   }
   .history-mobile__story {
     position: absolute; inset: 0;
@@ -1220,7 +1221,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .hist-timeline-desktop { display: none; }  /* replaced by .history-mobile scroll-jack */
   /* pull the section up into the blank bottom band of the timeline's final
      sticky frame (story text sits in the upper half, so no collision) */
-  .hist-new-orchha { margin-top: -20svh; position: relative; z-index: 2; }
+  .hist-new-orchha { margin-top: -26svh; position: relative; z-index: 2; }
   .hist-new-orchha-img { height: 340px; background-position: 72% center; }
   .hist-new-orchha-overlay { padding: 40px 24px 0; }
   .hist-new-orchha-heading { font-size: 34px; max-width: 100%; }
@@ -2948,6 +2949,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ═══════════════════════════════════════════════════════════════════════
    DARWAZAS PAGE (dz-*) — monument-page design system
    ═══════════════════════════════════════════════════════════════════════ */
+/* Darwazas writeup: the long heading wraps inside its column instead of
+   overhanging into the description */
+.dz-info .mdet-name { width: 353px; }
+
 .dz-body {
   font-family: 'Gambetta Variable', serif; font-weight: 500;
   font-size: 20px; line-height: 23.9px; letter-spacing: -0.2px;
@@ -2990,7 +2995,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
     flex-direction: column; align-items: stretch;
     gap: 20px; padding: 48px 20px;
   }
-  .dz-gate-text { flex: none; width: 100%; }
+  /* flatten the text column so the group label can sit above the photo */
+  .dz-gate-text { display: contents; }
+  .dz-group-label { order: 1; margin: 0; }
+  .dz-gate-photo { order: 2; }
+  .dz-gate-name { order: 3; margin: 0; }
+  .dz-gate-subtitle { order: 4; margin: 0; }
+  .dz-group-intro { order: 5; }
+  .dz-body { order: 6; margin: 0; }
   .dz-body { font-size: 16px; line-height: 1.5; }
   .dz-gate-photo { flex: none; width: 100%; height: auto; aspect-ratio: 421 / 340; }
   .dz-gate-name { font-size: 32px; }
