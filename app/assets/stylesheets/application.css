@@ -1680,6 +1680,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mdet-info-col2 {
   display: flex; flex-direction: column;
   padding-top: 22.6vh;
+  padding-bottom: 6vh;
+  min-height: 0;
 }
 .mdet-info-meta { margin-bottom: 5.2vh; }
 .mdet-year {
@@ -1695,9 +1697,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   overflow-wrap: break-word;
 }
 .mdet-name-subtitle {
-  font-size: 65px;
+  /* its own smaller line so bracketed subtitles fit the column */
+  display: block;
+  font-size: 44px;
+  line-height: 1.15;
 }
-.mdet-photo-second { width: 100%; height: 37.4vh; }
+/* shrinks when a tall heading eats into the column instead of
+   running off the bottom of the panel */
+.mdet-photo-second { width: 100%; flex: 0 1 auto; height: 37.4vh; min-height: 150px; }
 /* Col 3: description bottom-aligned so it sits low beside the photo,
    clear of the heading (also protects very long texts from clipping) */
 .mdet-info-col3 {
