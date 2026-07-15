@@ -1696,8 +1696,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mdet-photo-second { width: 100%; height: 37.4vh; }
 /* Col 3: description aligned with top of photo card in col 1 */
 .mdet-info-col3 { padding-top: 21vh; padding-left: 40px; }
-/* Baroodkhana: taller secondary card + bottom-aligned description */
-[data-monument="baroodkhana"] .mdet-photo-second { height: 52.2vh; }
+/* Baroodkhana: bottom-aligned description (secondary card uses the
+   standard 37.4vh height like every other monument) */
 [data-monument="baroodkhana"] .mdet-info-col3 {
   padding-top: 0;
   display: flex; flex-direction: column; justify-content: flex-end;
