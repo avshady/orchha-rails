@@ -1,4 +1,4 @@
-<%# Experiences & Trails page %>
+<%# Experiences & Walks page %>
 <% ft       = (@home['footer'] || {})
    ft_links = ft['links'] || []
    vs       = @home['visit'] || {}
@@ -7,7 +7,6 @@
    cats     = @page['filterCategories'] || [
      {'label'=>'ALL','value'=>'all'},
      {'label'=>'WALKS','value'=>'walks'},
-     {'label'=>'TRAILS','value'=>'trails'},
      {'label'=>'EVENING EXPERIENCES','value'=>'evening-experiences'},
      {'label'=>'ADVENTURE','value'=>'adventure'}
    ]
@@ -74,7 +73,7 @@
 
   <%# ── HEADER ─────────────────────────────────────────── %>
   <header class="exp-header">
-    <h1 class="exp-heading"><%= @page['heading'] || 'Experiences and Trails' %></h1>
+    <h1 class="exp-heading"><%= @page['heading'] || 'Experiences & Walks' %></h1>
     <p class="exp-subheading"><%= @page['subheading'] || 'Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.' %></p>
   </header>
 

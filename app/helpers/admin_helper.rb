@@ -6,7 +6,7 @@ module AdminHelper
     "monumentsPage"     => "Monuments Page Settings",
     "monuments"         => "Monuments",
     "experiencesPage"   => "Experiences Page Settings",
-    "experienceItems"   => "Experiences & Trails",
+    "experienceItems"   => "Experiences & Walks",
     "cuisineItems"      => "Cuisine Items",
     "eventsPage"        => "Events Page Settings",
     "events"            => "Events",

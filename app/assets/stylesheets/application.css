@@ -2221,7 +2221,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Header */
 .exp-header {
   padding: 80px 120px 48px;
-  text-align: left;
+  text-align: center;
 }
 .exp-heading {
   font-family: 'Scotch Display', serif;
@@ -2230,14 +2230,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #6e1603;
   margin: 0 0 20px 0;
   line-height: 1.05;
-  text-align: left;
+  text-align: center;
 }
 .exp-subheading {
   font-family: 'Gambetta Variable', serif;
   font-weight: 500;
   font-size: 20px;
   color: #000;
-  margin: 0;
+  margin: 0 auto;
   max-width: 588px;
   line-height: 1.5;
   text-align: left;

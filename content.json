@@ -1556,7 +1556,7 @@
           "url": "/monuments"
         },
         {
-          "label": "Experiences & Trails",
+          "label": "Experiences & Walks",
           "url": "/experiences"
         },
         {
@@ -1747,7 +1747,7 @@
     }
   },
   "experiencesPage": {
-    "heading": "Experiences and Trails",
+    "heading": "Experiences & Walks",
     "subheading": "Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.",
     "filterCategories": [
       {
@@ -1757,10 +1757,6 @@
       {
         "label": "WALKS",
         "value": "walks"
-      },
-      {
-        "label": "TRAILS",
-        "value": "trails"
       },
       {
         "label": "EVENING EXPERIENCES",
@@ -1783,7 +1779,7 @@
       "id": "eco-trail",
       "name": "Eco Trail",
       "image": "/images/ws_exp_photo1.jpg",
-      "category": "trails"
+      "category": "walks"
     },
     {
       "id": "river-kayaking",
@@ -1801,7 +1797,7 @@
       "id": "religious-walk",
       "name": "Religious Walk",
       "image": "/images/exp_religious_trail.jpg",
-      "category": "trails"
+      "category": "walks"
     },
     {
       "id": "citadel-walk",
