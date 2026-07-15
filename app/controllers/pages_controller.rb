@@ -277,6 +277,10 @@ class PagesController < ApplicationController
   end
 
   def monument
+    # Darwazas has a dedicated grouped-gates page; its listing card lives
+    # with the monuments, so /monuments/darwazas forwards there.
+    redirect_to "/darwazas" and return if params[:id] == "darwazas"
+
     raw = ContentStore.raw
     all = raw["monuments"] || []
     @monument = all.find { |m| m["id"] == params[:id] }

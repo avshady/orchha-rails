@@ -667,7 +667,8 @@
       ],
       "visible": true,
       "filterCategory": "wildlife"
-    }
+    },
+    {"id": "darwazas", "number": "16", "name": "Darwazas of Orchha", "category": "BUNDELI", "filterCategory": "fort-complex", "year": "1530", "description": "The historic gateways of Orchha — defence gates, welcome torans, and a colonial-era addition — together form a complete record of the town's history in stone.", "image": "/images/ct_entrance.jpg", "visible": true}
   ],
   "experiences": [
     {
@@ -1707,10 +1708,6 @@
         {
           "label": "Art of Orchha",
           "url": "/art-frescoes"
-        },
-        {
-          "label": "Darwazas of Orchha",
-          "url": "/darwazas"
         }
       ]
     }
