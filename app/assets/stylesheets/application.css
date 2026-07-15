@@ -1689,8 +1689,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mdet-name {
   font-family: 'Scotch Display', serif; font-weight: 600;
   font-size: 70px; line-height: 1.043; color: #6e1603; margin: 0;
-  /* wraps inside the column so long names never crowd the description */
+  /* wraps inside the column so long names never crowd the description;
+     break-word guards against single unbreakable words overflowing */
   width: 353px;
+  overflow-wrap: break-word;
 }
 .mdet-name-subtitle {
   font-size: 65px;
