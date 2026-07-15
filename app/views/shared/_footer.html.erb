@@ -1,10 +1,11 @@
 <%# Site footer. locals:
-      ft         — @home['footer'] hash (links, email, phone, copyright, org, virtualTourUrl)
-      alt_logos  — true on pages that ship the footer_logo_* image variants %>
-<% ft_links  = ft['links'] || []
-   alt_logos = local_assigns.fetch(:alt_logos, false)
-   ii_logo   = alt_logos ? '/images/footer_logo_incredible_india.png' : '/images/incredible_india.png'
-   mpt_logo  = alt_logos ? '/images/footer_logo_mptdc.png'            : '/images/mpt_logo.png'
+      ft — @home['footer'] hash (links, email, phone, copyright, org, virtualTourUrl)
+    Always uses the high-res footer_logo_* assets — the bare
+    incredible_india.png / mpt_logo.png are 56-80px sources and blur at
+    footer size. %>
+<% ft_links = ft['links'] || []
+   ii_logo  = '/images/footer_logo_incredible_india.png'
+   mpt_logo = '/images/footer_logo_mptdc.png'
 %>
 <footer class="footer">
   <div class="footer-container">
