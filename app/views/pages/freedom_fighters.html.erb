@@ -85,8 +85,11 @@
     <div class="ff-grid">
       <% fighters.each_with_index do |f, i| %>
       <a href="/freedom-fighters/<%= f['id'] %>" class="ff-card ff-card-<%= i + 1 %>">
+        <%# solid maroon card until a real portrait is uploaded via CMS %>
+        <% if f['image'].present? && !f['image'].include?('ff_placeholder') %>
         <img src="<%= f['image'] %>" alt="<%= f['name'] %>" loading="lazy">
         <div class="ff-card-overlay"></div>
+        <% end %>
         <div class="ff-card-logos">
           <img src="/images/mpt_logo.png" class="aw-logo-mpt" alt="MPT">
           <img src="/images/incredible_india.png" class="aw-logo-ii" alt="Incredible India">
