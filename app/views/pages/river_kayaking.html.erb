@@ -106,7 +106,9 @@
           <div class="rkc-info-row"><span class="rkc-info-label">No. Of Passenger -</span> <span><%= pg['passengers'] || '6 People' %></span></div>
         </div>
 
+        <% if pg['showBookTickets'] != false %>
         <a href="<%= pg['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="mdet-outline-btn rkc-book">Book Tickets</a>
+        <% end %>
 
         <h2 class="rkc-heading rkc-dyk-heading">Did you<br>Know?</h2>
 

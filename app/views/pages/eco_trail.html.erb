@@ -84,7 +84,9 @@
               <img src="/images/incredible_india.png" class="aw-logo-ii"  alt="Incredible India">
             </div>
           </div>
+          <% if pg['showBookTickets'] != false %>
           <a href="<%= pg['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="et-book-btn">Book Tickets</a>
+          <% end %>
         </div>
 
         <%# Col 2: heading above the second photo card %>

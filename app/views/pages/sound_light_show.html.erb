@@ -101,7 +101,9 @@
         <h1 class="lss-heading"><%= p['heading'] || 'Light & Sound Show' %></h1>
         <div class="lss-desc-col">
           <p class="lss-description"><%= p['description'] %></p>
+          <% if p['showBookTickets'] != false %>
           <a href="<%= p['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="lss-book-btn">Book Tickets</a>
+          <% end %>
         </div>
 
         <%# Show times column (Figma x1321 y160) %>

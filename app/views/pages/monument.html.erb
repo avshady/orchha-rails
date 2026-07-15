@@ -103,7 +103,9 @@
                 <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
               </div>
             </div>
+            <% if @monument['showBookTickets'] != false %>
             <a href="<%= @monument['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="mdet-outline-btn">Book Tickets</a>
+            <% end %>
           </div>
           <%# Col 2: year + name (above), second photo (below) %>
           <div class="mdet-info-col2">
