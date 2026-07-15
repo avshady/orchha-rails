@@ -2436,11 +2436,25 @@
       "detailText": "Route: Ram Raja Temple to the riverside ghats — a short, direct hop ideal for covering the old town core on foot-free comfort. E-rickshaws run continuously through the day; just flag one down at any of the marked pickup points near the temple square.",
       "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
       "visible": true,
-      "routeName": "Ram Raja Temple to the Ghats",
+      "routeName": "Full Orchha Circuit",
       "routeSubtitle": "Hop on. Discover Orchha with every stop",
       "stops": [
-        { "name": "Ram Raja Temple", "image": "/images/hoho_stop_ramraja.jpg" },
-        { "name": "Betwa Riverside Ghats", "image": "/images/hoho_stop_betwaghat.jpg", "distanceFromPrev": "900 meter", "durationFromPrev": "4 minutes" }
+        {
+          "name": "Orchha Parking",
+          "image": "/images/hoho_stop_parking.jpg"
+        },
+        {
+          "name": "Citadel (Raja and Jahangir Mahal)",
+          "image": "/images/hoho_stop_citadel.jpg",
+          "distanceFromPrev": "1300 meter",
+          "durationFromPrev": "8 minutes"
+        },
+        {
+          "name": "Rai Praveen Mahal",
+          "image": "/images/hoho_stop_raipraveen.jpg",
+          "distanceFromPrev": "900 meter",
+          "durationFromPrev": "4 minutes"
+        }
       ]
     }
   ],

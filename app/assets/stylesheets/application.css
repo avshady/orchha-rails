@@ -4902,17 +4902,21 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   font-style: italic; font-size: 14px; color: #6e1603;
 }
 
-.hoho-stops-timeline { list-style: none; margin: 0; padding: 18px 0 0; overflow: hidden; }
+.hoho-stops-timeline { list-style: none; margin: 0; padding: 18px 0 0; overflow: hidden; position: relative; }
+/* one continuous dashed rail from the first stop marker to the last */
+.hoho-stops-timeline::before {
+  content: ""; position: absolute; left: 11px; top: 40px; bottom: 22px;
+  border-left: 2px dashed rgba(110, 22, 3, 0.35);
+}
 .hoho-stop-row { display: flex; gap: 12px; margin-bottom: 18px; }
 .hoho-stop-row:last-child { margin-bottom: 0; }
-.hoho-stop-rail { position: relative; width: 24px; flex-shrink: 0; }
-.hoho-stop-icon { display: block; width: 24px; height: 24px; }
-.hoho-stop-icon svg { width: 100%; height: 100%; }
-.hoho-stop-row:not(:last-child) .hoho-stop-rail::before {
-  content: ""; position: absolute; left: 50%; top: 24px; bottom: -18px;
-  width: 2px; transform: translateX(-50%);
-  background: rgba(110, 22, 3, 0.25);
+/* marker bottom-aligned so it centers on the stop photo, not the segment chip */
+.hoho-stop-rail {
+  position: relative; width: 24px; flex-shrink: 0;
+  display: flex; flex-direction: column; justify-content: flex-end;
 }
+.hoho-stop-icon { display: block; width: 24px; height: 24px; margin-bottom: 10px; position: relative; }
+.hoho-stop-icon svg { width: 100%; height: 100%; }
 .hoho-stop-content { flex: 1; min-width: 0; }
 .hoho-segment-chip {
   display: flex; align-items: center; gap: 6px;
@@ -4949,6 +4953,8 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   .hoho-stat-label { font-size: 13px; }
   .hoho-book-btn { font-size: 18px; height: 54px; }
   .hoho-stop-photo { width: 60px; height: 36px; }
+  .hoho-stop-icon { margin-bottom: 6px; }
+  .hoho-stops-timeline::before { top: 36px; bottom: 18px; }
   .hoho-stop-name { font-size: 14px; }
   .hoho-segment-chip { font-size: 11px; padding: 3px 10px; }
   .hoho-route-name, .hoho-route-subtitle { font-size: 13px; }
