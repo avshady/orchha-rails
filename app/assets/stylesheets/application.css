@@ -5896,18 +5896,18 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   text-align: center;
 }
 .pyv-hero-title {
+  /* matches the listing-page title style (.exp-heading / .mon-heading) */
   font-family: 'Scotch Display', serif;
   font-weight: 600;
-  font-size: clamp(57px, 6.4vw, 93px);
-  letter-spacing: -1px;
-  line-height: 1;
+  font-size: 62px;
+  line-height: 1.05;
   color: #6e1603;
   margin: 0;
   opacity: 0;
   transform: translateY(28px);
   transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1);
 }
-.pyv-hero-title em { font-style: italic; }
+.pyv-hero-title em { font-style: normal; }
 .pyv-hero-sub {
   font-family: 'Gambetta Variable', serif;
   font-weight: 500;
@@ -6027,7 +6027,6 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 .pyv-img-wrap {
   position: relative;
   aspect-ratio: 4 / 3;
-  border: 6px solid #6e1603;
   background: #d1bfae;
   overflow: hidden;
 }
@@ -6131,7 +6130,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 /* ── Mobile ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .pyv-hero { padding: 56px 24px 16px; }
-  .pyv-hero-title { font-size: clamp(38px, 10.4vw, 70px); letter-spacing: -0.5px; }
+  .pyv-hero-title { font-size: 40px; }
   .pyv-hero-sub { margin-top: 16px; max-width: 40ch; font-size: clamp(12px, 2.9vw, 15px); line-height: 1.35; }
   .pyv-slider-wrap { padding: 16px 24px 28px; }
   .pyv-labels { padding: 0; }
