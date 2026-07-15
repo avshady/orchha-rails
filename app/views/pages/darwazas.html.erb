@@ -1,0 +1,258 @@
+<%# Darwazas of Orchha — the town's historic gates. Same design system as
+    the monument pages: horizontal scroll-jack, beige panels, photo cards. %>
+<% nav = (@home['nav'] || {})
+   dd  = nav['discoverDropdown'] || []
+   pg  = @page || {}
+   groups = pg['groups'].presence || []
+   gate_count = groups.sum { |g| (g['gates'] || []).length }
+   panel_count = 2 + gate_count * 0.85 + 0.6 + 1
+%>
+
+<div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
+
+<%# Fixed nav (mdet system) %>
+<div class="mdet-nav-wrap">
+  <nav class="mdet-navbar">
+    <div class="mdet-nav-links">
+      <div class="mdet-nav-discover">
+        <a href="/" class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
+      <a href="/news"            class="mdet-nav-link">News</a>
+      <a href="https://pages.razorpay.com/pl_PWE9fVFc9oLCel/view" target="_blank" rel="noopener"      class="mdet-nav-link">Support Us</a>
+      <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
+    </div>
+    <button class="mdet-nav-hamburger" id="mdet-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-book-btn">Book Tickets</a>
+  </nav>
+
+  <div class="mdet-nav-mobile-menu" id="mdet-nav-mobile-menu">
+    <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="/" class="nav-mobile-wordmark" aria-label="Home">ORCHHA</a>
+    <div class="mdet-nav-mobile-links">
+      <div class="nav-mobile-group">
+        <button type="button" class="mdet-nav-mobile-link nav-mobile-group-btn" aria-expanded="false">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-mobile-group-items">
+          <% dd.each do |item| %>
+          <a href="<%= item['url'] %>" class="mdet-nav-mobile-link nav-mobile-sub-link"><%= item['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
+      <a href="/news" class="mdet-nav-mobile-link">News</a>
+      <a href="https://pages.razorpay.com/pl_PWE9fVFc9oLCel/view" target="_blank" rel="noopener" class="mdet-nav-mobile-link">Support Us</a>
+      <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
+    </div>
+    <div class="nav-mobile-cta-row">
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-nav-mobile-book-btn">Book Tickets</a>
+      <a href="/hoho" class="mdet-nav-mobile-book-btn nav-mobile-hoho-btn">HOHO Service</a>
+    </div>
+  </div>
+
+  <%# Discover dropdown — kept outside .mdet-navbar because its backdrop-filter
+      creates a new containing block for position:fixed descendants %>
+  <div class="mdet-nav-dropdown" role="menu">
+    <% dd.each do |item| %>
+    <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+    <% end %>
+  </div>
+</div>
+
+<div class="mdet-wrapper dz-wrapper" data-panels="<%= panel_count %>">
+  <div class="mdet-sticky">
+    <div class="mdet-track" id="mdet-track">
+
+      <%# ══ SECTION 1 — HERO VIDEO ═════════════════════════════ %>
+      <section class="mdet-panel mdet-hero">
+        <div class="mdet-hero-bg">
+          <%= render 'hero_media', config: pg, fallback: pg['heroImage'].presence || '/images/ct_entrance.jpg', alt: 'Darwazas of Orchha' %>
+          <div class="mdet-hero-overlay"></div>
+        </div>
+        <div class="mdet-scroll-hint" id="mdet-scroll-hint">
+          <span>Scroll to explore</span>
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </section>
+
+      <%# ══ SECTION 2 — WRITEUP ════════════════════════════════ %>
+      <section class="mdet-panel dz-intro-panel">
+        <div class="dz-intro-meta">
+          <% if pg['year'].present? %><p class="mdet-year"><%= pg['year'] %></p><% end %>
+          <h1 class="dz-heading"><%= pg['heading'] || 'Darwazas of Orchha' %></h1>
+        </div>
+        <div class="dz-intro-body">
+          <% (pg['intro'].presence || []).each do |para| %>
+          <p class="dz-body"><%= paragraph_html(para) %></p>
+          <% end %>
+        </div>
+      </section>
+
+      <%# ══ GATE PANELS (grouped) ══════════════════════════════ %>
+      <% groups.each do |group| %>
+        <% (group['gates'] || []).each_with_index do |gate, gi| %>
+        <section class="mdet-panel dz-gate-panel">
+          <div class="dz-gate-photo mdet-photo-card">
+            <img src="<%= gate['image'].presence || '/images/dz_placeholder.svg' %>" alt="<%= gate['name'] %>">
+            <div class="mdet-card-logos">
+              <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+            </div>
+          </div>
+          <div class="dz-gate-text">
+            <% if gi.zero? && group['label'].present? %>
+            <p class="dz-group-label"><%= group['label'] %></p>
+            <% end %>
+            <h2 class="dz-gate-name"><%= gate['name'] %></h2>
+            <% if gate['subtitle'].present? %><p class="dz-gate-subtitle"><%= gate['subtitle'] %></p><% end %>
+            <% if gi.zero? && group['intro'].present? %>
+            <p class="dz-body dz-group-intro"><%= group['intro'] %></p>
+            <% end %>
+            <p class="dz-body"><%= gate['body'] %></p>
+          </div>
+        </section>
+        <% end %>
+      <% end %>
+
+      <%# ══ DID YOU KNOW? (same panel as monument pages) ═══════ %>
+      <% if pg['dykText'].present? %>
+      <section class="mdet-panel mdet-dyk">
+        <div class="mdet-dyk-inner">
+          <h2 class="mdet-dyk-heading">Did you<br>Know?</h2>
+          <div class="mdet-dyk-card1"<% if pg['dykImage1'].present? %> style="background-image: url('<%= pg['dykImage1'] %>')"<% end %>>
+            <div class="mdet-dyk-card-logos">
+              <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+            </div>
+            <div></div>
+          </div>
+          <div class="mdet-dyk-card2"<% if pg['dykImage2'].present? %> style="background-image: url('<%= pg['dykImage2'] %>')"<% end %>>
+            <div class="mdet-dyk-card-logos">
+              <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+              <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+            </div>
+            <div></div>
+          </div>
+          <p class="mdet-dyk-text"><%= pg['dykText'] %></p>
+        </div>
+      </section>
+      <% end %>
+
+      <%# ══ OUTRO ══════════════════════════════════════════════ %>
+      <section class="mdet-panel mdet-outro">
+        <div class="mdet-outro-bg">
+          <img src="<%= pg['outroImage'].presence || '/images/ct_entrance.jpg' %>" alt="Orchha gateway">
+        </div>
+        <div class="mdet-outro-overlay"></div>
+        <a href="<%= pg['outroCtaLink'].presence || '/monuments' %>" class="mdet-outro-btn"><%= pg['outroCtaLabel'].presence || 'View All Monuments' %></a>
+      </section>
+
+    </div><%# /mdet-track %>
+  </div><%# /mdet-sticky %>
+</div><%# /mdet-wrapper %>
+
+<%# Fixed bottom action bar %>
+<%= render 'audio_tabs', tracks: @audio_tracks, label: 'Darwazas', config: @page %>
+
+<script>
+(function() {
+  const isMobile = window.matchMedia('(max-width: 900px)').matches;
+
+  const wrapper = document.querySelector('.dz-wrapper');
+  const sticky  = document.querySelector('.mdet-sticky');
+  const hint    = document.getElementById('mdet-scroll-hint');
+  const tabs    = document.getElementById('mdet-action-tabs');
+
+  if (wrapper && sticky && !isMobile) {
+    const panels = parseFloat(wrapper.dataset.panels || '6');
+    wrapper.style.height = (panels * 100) + 'vh';
+
+    function updateHoriz() {
+      const wrapperTop  = wrapper.offsetTop;
+      const totalScroll = wrapper.offsetHeight - window.innerHeight;
+      const progress    = Math.max(0, Math.min(1, (window.scrollY - wrapperTop) / totalScroll));
+      const maxScroll   = sticky.scrollWidth - window.innerWidth;
+      sticky.scrollLeft = progress * maxScroll;
+      if (hint) hint.style.opacity = progress > 0.01 ? '0' : '1';
+      const isPast = window.scrollY > wrapper.offsetTop + wrapper.offsetHeight;
+      if (tabs) tabs.style.display = isPast ? 'none' : 'flex';
+    }
+
+    window.addEventListener('scroll', updateHoriz, { passive: true });
+    updateHoriz();
+  }
+
+  const audioBtn   = document.getElementById('mdet-audio-btn');
+  const audioPanel = document.getElementById('mdet-audio-panel');
+  if (audioBtn && audioPanel) {
+    audioBtn.addEventListener('click', () => audioPanel.classList.toggle('open'));
+  }
+
+  const navBtn = document.querySelector('.mdet-discover-btn');
+  const navDd  = document.querySelector('.mdet-nav-dropdown');
+  if (navBtn && navDd) {
+    let navDdCloseTimer;
+    function openDd() {
+      clearTimeout(navDdCloseTimer);
+      const r = navBtn.getBoundingClientRect();
+      navDd.style.top  = (r.bottom + 8) + 'px';
+      navDd.style.left = r.left + 'px';
+      navDd.classList.add('open');
+      navBtn.classList.add('open');
+      navBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDd() {
+      navDd.classList.remove('open');
+      navBtn.classList.remove('open');
+      navBtn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleCloseDd() { navDdCloseTimer = setTimeout(closeDd, 200); }
+    navBtn.addEventListener('mouseenter', openDd);
+    navBtn.addEventListener('mouseleave', scheduleCloseDd);
+    navDd.addEventListener('mouseenter', () => clearTimeout(navDdCloseTimer));
+    navDd.addEventListener('mouseleave', scheduleCloseDd);
+    navBtn.addEventListener('click', e => { if (navDd.classList.contains('open')) return; e.preventDefault(); openDd(); });
+    document.addEventListener('click', closeDd);
+    navDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ─────────────────────────────────
+  const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
+  const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
+  const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
+  if (mdetHamburgerBtn && mdetMobileMenu) {
+    function openMdetMobileMenu() {
+      mdetMobileMenu.classList.add('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMdetMobileMenu() {
+      mdetMobileMenu.classList.remove('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    mdetHamburgerBtn.addEventListener('click', openMdetMobileMenu);
+    if (mdetMobileClose) mdetMobileClose.addEventListener('click', closeMdetMobileMenu);
+    mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
+  }
+
+  // Collapsible Discover group inside the mobile drawer
+  const groupBtn = document.querySelector('.nav-mobile-group-btn');
+  if (groupBtn) {
+    groupBtn.addEventListener('click', () => {
+      const group = groupBtn.closest('.nav-mobile-group');
+      const open = group.classList.toggle('open');
+      groupBtn.setAttribute('aria-expanded', String(open));
+    });
+  }
+})();
+</script>

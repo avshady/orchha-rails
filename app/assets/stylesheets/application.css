@@ -2945,6 +2945,75 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .aw-tc-btn:hover { background: #6e1603; color: #fff; }
 
+/* ═══════════════════════════════════════════════════════════════════════
+   DARWAZAS PAGE (dz-*) — monument-page design system
+   ═══════════════════════════════════════════════════════════════════════ */
+/* Writeup panel: heading column + intro text, fixed width + 78px gutters */
+.dz-intro-panel {
+  background: #e7ded5;
+  display: flex; align-items: center; gap: 57px;
+  width: 1235px; flex-shrink: 0;
+  padding: 0 78px;
+  border-top: 1px solid rgba(110,22,3,0.22);
+  border-bottom: 1px solid rgba(110,22,3,0.22);
+}
+.dz-intro-meta { flex: 0 0 400px; }
+.dz-heading {
+  font-family: 'Scotch Display', serif; font-weight: 600;
+  font-size: 70px; line-height: 1.043; color: #6e1603; margin: 0;
+}
+.dz-intro-body { flex: 0 0 623px; }
+.dz-body {
+  font-family: 'Gambetta Variable', serif; font-weight: 500;
+  font-size: 20px; line-height: 23.9px; letter-spacing: -0.2px;
+  color: #000; margin: 0 0 12px;
+}
+.dz-body:last-child { margin-bottom: 0; }
+
+/* Gate panels: photo card + label/name/body, fixed width + gutters */
+.dz-gate-panel {
+  background: #e7ded5;
+  display: flex; align-items: center; gap: 57px;
+  width: 1195px; flex-shrink: 0;
+  padding: 0 78px;
+  border-bottom: 1px solid rgba(110,22,3,0.22);
+}
+.dz-gate-photo {
+  flex: 0 0 421px; height: min(429px, 52.4vh);
+}
+.dz-gate-photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.dz-gate-text { flex: 0 0 561px; }
+.dz-group-label {
+  font-family: 'Chivo', sans-serif; font-weight: 700;
+  font-size: 14px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: #6e1603; margin: 0 0 12px;
+}
+.dz-gate-name {
+  font-family: 'Scotch Display', serif; font-weight: 600;
+  font-size: 44px; line-height: 1.05; color: #6e1603; margin: 0 0 6px;
+  text-transform: capitalize;
+}
+.dz-gate-subtitle {
+  font-family: 'Gambetta Variable', serif; font-weight: 500; font-style: italic;
+  font-size: 21px; color: #000; margin: 0 0 16px;
+}
+.dz-group-intro { opacity: 0.85; }
+
+@media (max-width: 900px) {
+  .dz-intro-panel, .dz-gate-panel {
+    width: 100% !important; height: auto !important;
+    flex-direction: column; align-items: stretch;
+    gap: 20px; padding: 48px 20px;
+  }
+  .dz-intro-meta, .dz-intro-body, .dz-gate-text { flex: none; width: 100%; }
+  .dz-heading { font-size: 42px; }
+  .dz-body { font-size: 16px; line-height: 1.5; }
+  .dz-gate-photo { flex: none; width: 100%; height: auto; aspect-ratio: 421 / 340; }
+  .dz-gate-name { font-size: 32px; }
+  .dz-gate-subtitle { font-size: 17px; }
+}
+
+
 /* ═══════════════════════════════════════════════════════════════
    ECO TRAIL PAGE  (et-*)
    ═══════════════════════════════════════════════════════════════ */

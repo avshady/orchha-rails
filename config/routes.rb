@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   get "/freedom-fighters/:id", to: "pages#freedom_fighter"
   get "/hoho", to: "pages#hoho"
   get "/art-frescoes", to: "pages#art_frescoes"
+  get "/darwazas", to: "pages#darwazas"
   get "/news", to: "pages#news"
   get "/support-us", to: "pages#support_us"
   get "up" => "rails/health#show", as: :rails_health_check

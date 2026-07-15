@@ -1019,6 +1019,75 @@
     { "id": "sound-light-show", "title": "Light & Sound Show", "tracks": [], "visible": true },
     { "id": "night-walk", "title": "Night Walk", "tracks": [], "visible": true }
   ],
+  "darwazasPage": {
+    "heading": "Darwazas of Orchha",
+    "heroVideo": "",
+    "heroImage": "/images/ct_entrance.jpg",
+    "intro": [
+      "A kingdom's gates tell you everything about what it feared, what it celebrated, and who came after it was gone.",
+      "When Orchha was founded in 1530 CE, four great gateways were built alongside Raja Mahal to protect the new capital. Three stood in the town's outer perimeter; one guarded the fort itself. Over the following century, two more gates were raised — not for defence, but for welcome. And in 1940, one final gate was added by a British army that had no connection to the kingdom at all. Together, these Darwazas of Orchha form a complete record of the town's history — in stone, in strategy, and in the stories each one still carries."
+    ],
+    "groups": [
+      {
+        "label": "The Defence Gates",
+        "intro": "",
+        "gates": [
+          {
+            "name": "Bhanderi Darwaza",
+            "subtitle": "now: Ramnagar Darwaza",
+            "image": "",
+            "body": "The main entrance to Orchha — the gate through which the town received travellers from Jhansi, Datia, and Bhandar. As the principal gateway, it was also the site of every major battle between the Bundela rulers and the Mughal forces, most of them fought by Dewan Hardaul. Over time, a village called Ramnagar grew up on the other side of this gate, and locals began calling it the Ramnagar Darwaza — the name by which it is known today."
+          },
+          {
+            "name": "Sainyr Darwaza",
+            "subtitle": "now: Gudhrai Darwaza",
+            "image": "",
+            "body": "On the hill above Sainyr village, the Bundela rulers maintained a small cantonment — a watchtower post from which enemies could be spotted far across the landscape. The Sainyr Darwaza was built to allow troops to move through jungle routes to and from this outpost. Like the Bhanderi Darwaza, its original name has been displaced — people now call it the Gudhrai Darwaza."
+          },
+          {
+            "name": "Kateela Darwaza",
+            "subtitle": "",
+            "image": "/images/ct_entrance.jpg",
+            "body": "To enter the fort, one had to cross the Adwara Nala bridge and pass through the Kateela Darwaza — the most heavily fortified of Orchha's gates. The gate stands within the fort's perimeter wall, which is flanked by the Adwara Nala. Its massive wooden doors are studded with iron spikes. The reason was precise: enemy armies of that era would use war elephants to break through gates by ramming them with their heads. The iron spikes, pressing into an elephant's skull, acted as an ankush, a goad, forcing the animal to retreat. The name Kateela, meaning spiked or thorny, comes directly from this detail."
+          }
+        ]
+      },
+      {
+        "label": "The Welcome Gates",
+        "intro": "In 1631 CE, when Ram Raja Sarkar arrived in Orchha, two toran gateways were built specifically to receive him. Their design was drawn from the tradition of festive welcome arches, the kind once made with wood, cloth, and kalash for celebrations, but rendered permanently in brick and lime.",
+        "gates": [
+          {
+            "name": "Ganesh Darwaza",
+            "subtitle": "",
+            "image": "",
+            "body": "The first of the two welcome gates, with Ganesh — the first among Hindu deities — installed above the arch. Lime-carved leaf garlands adorn the top, and kalash are carved on both sides. It stands as a permanent toran, built to honour a divine arrival."
+          }
+        ]
+      },
+      {
+        "label": "The British-Era Gate",
+        "intro": "",
+        "gates": [
+          {
+            "name": "Pratham Darwaza",
+            "subtitle": "",
+            "image": "",
+            "body": "The gate now known as Pratham Darwaza — the First Gate — near Kushnagar did not exist during the Orchha Riyasat. Entry to the town was always through the Bhanderi Darwaza, some distance away. Around 1940, when the British army established a camp in Orchha, they broke through the existing parapet wall and constructed this gate from cement and broken stone to allow army vehicles to pass. It has no connection to the Bundela kingdom — it is an entirely colonial-era addition."
+          }
+        ]
+      }
+    ],
+    "dykText": "The iron spikes on Kateela Darwaza weren't decorative — they stopped war elephants from breaking the gate. Acting like an ankush, they forced elephants to retreat. “Kateela” means spiked.",
+    "dykImage1": "/images/ct_entrance.jpg",
+    "dykImage2": "",
+    "outroImage": "/images/ct_entrance.jpg",
+    "outroCtaLabel": "View All Monuments",
+    "outroCtaLink": "/monuments",
+    "showAudioGuide": false,
+    "showVirtualTour": false,
+    "showTranslate": true,
+    "virtualTourUrl": ""
+  },
   "citadelWalkPage": {
     "showAudioGuide": true,
     "showVirtualTour": true,
@@ -1638,6 +1707,10 @@
         {
           "label": "Art of Orchha",
           "url": "/art-frescoes"
+        },
+        {
+          "label": "Darwazas of Orchha",
+          "url": "/darwazas"
         }
       ]
     }

@@ -14,6 +14,7 @@ module AdminHelper
     "accommodations"    => "Hotels & Homestays",
     "soundLightShowPage" => "Light & Sound Show Page",
     "citadelWalkPage"   => "Citadel Walk Page",
+    "darwazasPage"      => "Darwazas Page",
     "artWalkPage"       => "Art Walk Page",
     "ecoTrailPage"      => "Eco Trail Page",
     "riverKayakingPage" => "River Kayaking Page",
@@ -60,10 +61,11 @@ module AdminHelper
             { label: "Hero Slideshow", path: admin_edit_hero_path, match: %r{/admin/hero} }
           ] },
         { label: "History", path: admin_edit_section_path("historyPage"), match: %r{/sections/historyPage} },
-        { label: "Monuments", path: admin_collection_path("monuments"), match: %r{/(collections|sections)/monuments},
+        { label: "Monuments", path: admin_collection_path("monuments"), match: %r{/((collections|sections)/monuments|sections/darwazasPage)},
           children: [
             { label: "All Monuments", path: admin_collection_path("monuments"), match: %r{/collections/monuments} },
-            { label: "Page Settings", path: admin_edit_section_path("monumentsPage"), match: %r{/sections/monumentsPage} }
+            { label: "Page Settings", path: admin_edit_section_path("monumentsPage"), match: %r{/sections/monumentsPage} },
+            { label: "Darwazas Page", path: admin_edit_section_path("darwazasPage"), match: %r{/sections/darwazasPage} }
           ] },
         { label: "Experiences", path: admin_collection_path("experienceItems"), match: %r{/(collections/(experienceItems|cuisineItems)|sections/(experiencesPage|artWalkPage|ecoTrailPage|riverKayakingPage|religiousWalkPage|citadelWalkPage))},
           children: [
