@@ -2979,10 +2979,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .et-col-book {
   flex: 0 0 421px;
   justify-content: center;
-  align-items: center;
+  /* Book Tickets sits right-aligned under the tall card per Figma 3265:7033 */
+  align-items: flex-end;
   gap: clamp(24px, 5vh, 42px);
   padding-bottom: 4vh;
 }
+.et-col-book .et-card-tall { align-self: stretch; }
 .et-col-mid {
   flex: 0 0 353px;
   justify-content: flex-start;
@@ -3155,7 +3157,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .rkc-card4 { left: 138.19vw; top: 19.68vh; width: 20.35vw; aspect-ratio: 293 / 248; }
 .rkc-body {
   position: absolute;
-  left: 68.61vw; bottom: 26.65vh;
+  left: 68.61vw;
   width: 34.1vw;
   font-family: 'Gambetta Variable', serif;
   font-weight: 500;
@@ -3164,11 +3166,26 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: -0.01em;
   color: #000;
 }
+/* two write-ups per Figma 3261-7802: rafting (upper) + boat ride (lower) */
+.rkc-body1 { bottom: 52.08vh; }
+.rkc-body2 { bottom: 28.61vh; }
+.rkc-note {
+  position: absolute;
+  left: 68.61vw; top: 86.07vh;
+  width: 34.1vw;
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 500;
+  font-size: clamp(9px, 0.83vw, 12px);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: #000;
+  margin: 0;
+}
 .rkc-body p { margin: 0 0 0.9em; }
 .rkc-body p:last-child { margin-bottom: 0; }
 .rkc-info {
   position: absolute;
-  left: 68.61vw; top: 76.04vh;
+  left: 68.61vw;
   width: 24.4vw;
   background: #704214;
   border-radius: 4px;
@@ -3177,6 +3194,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-direction: column;
   gap: 0.55vh;
 }
+.rkc-info1 { top: 48.78vh; }
+.rkc-info2 { top: 73.59vh; }
 .rkc-info-row {
   font-family: 'Gambetta Variable', serif;
   font-size: clamp(9px, 0.99vw, 15px);

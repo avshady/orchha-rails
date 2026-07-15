@@ -103,16 +103,33 @@
           </div>
         </div>
 
-        <div class="rkc-body">
-          <p><%= pg['text1'].presence || exp['text1'] || "The Betwa River has been the lifeblood of Orchha for centuries — a sacred artery that shaped the city's geography and spirit. River Kayaking offers you the most intimate way to experience this ancient landscape: from the water itself, surrounded by the reflections of temples and the sounds of the forest." %></p>
-          <p><%= pg['text2'].presence || exp['text2'] || "Beginners and experienced paddlers are both welcome. Your guide will lead you through calm stretches dotted with wildlife, past the magnificent Orchha Chhatris, and through sections of gentle rapids that add a touch of adventure to the journey." %></p>
+        <%# Write-up 1 — rafting (Figma 3261:7820) + its Price/Timings card %>
+        <div class="rkc-body rkc-body1">
+          <% (pg['text1'].presence || exp['text1'] || "Enjoy beginner-friendly rafting on Grade I–II rapids, ideal for families, first-time rafters and adventure enthusiasts seeking a scenic river experience.\nDuration: Approx. 1–1.5 hours").to_s.split("\n").each do |para| %>
+          <p><%= para %></p>
+          <% end %>
         </div>
 
-        <div class="rkc-info">
-          <div class="rkc-info-row"><span class="rkc-info-label">Price -</span> <span><%= raw(pg['cost'] || 'Indian: 899 INR&nbsp;&nbsp;|&nbsp;&nbsp;Foreigner: 2000 INR') %></span></div>
-          <div class="rkc-info-row"><span class="rkc-info-label">Best Time To Visit -</span> <span><%= pg['bestTime'] || '9AM to 2PM' %></span></div>
-          <div class="rkc-info-row"><span class="rkc-info-label">No. Of Passenger -</span> <span><%= pg['passengers'] || '6 People' %></span></div>
+        <div class="rkc-info rkc-info1">
+          <div class="rkc-info-row"><span class="rkc-info-label">Price -</span> <span><%= raw(pg['raftPrice'].presence || 'Approx. ₹550 – ₹2,000 per person') %></span></div>
+          <div class="rkc-info-row"><span class="rkc-info-label">Timings -</span> <span><%= pg['raftTimings'].presence || 'Typically 10:00 AM – 4:00 PM' %></span></div>
+          <div class="rkc-info-row"><span class="rkc-info-label">No. Of Passenger -</span> <span><%= pg['raftPassengers'].presence || 'Upto 6 persons per raft' %></span></div>
         </div>
+
+        <%# Write-up 2 — boat ride (Figma 3707:6495) + its Price/Best-time card %>
+        <div class="rkc-body rkc-body2">
+          <% (pg['text2'].presence || exp['text2'] || "Relax with a tranquil boat ride along the Betwa River and witness breathtaking views of Orchha's iconic chhatris and riverside heritage.").to_s.split("\n").each do |para| %>
+          <p><%= para %></p>
+          <% end %>
+        </div>
+
+        <div class="rkc-info rkc-info2">
+          <div class="rkc-info-row"><span class="rkc-info-label">Price -</span> <span><%= raw(pg['cost'].presence || 'Approx. ₹100 – ₹500') %></span></div>
+          <div class="rkc-info-row"><span class="rkc-info-label">Best Time To Visit -</span> <span><%= pg['bestTime'].presence || 'Sunrise & Sunset' %></span></div>
+          <div class="rkc-info-row"><span class="rkc-info-label">No. Of Passenger -</span> <span><%= pg['passengers'].presence || '4–8 persons' %></span></div>
+        </div>
+
+        <p class="rkc-note"><%= pg['note'].presence || '*October to March is considered the ideal time to enjoy river activities in Orchha. Activities are subject to weather conditions and river water levels.' %></p>
 
         <% if pg['showBookTickets'] != false %>
         <a href="<%= pg['bookUrl'].presence || 'https://www.tezticket.com/tickets/buy?event=SF' %>" target="_blank" rel="noopener" class="mdet-outline-btn rkc-book">Book Tickets</a>
