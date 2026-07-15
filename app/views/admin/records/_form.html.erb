@@ -25,7 +25,7 @@
           <textarea name="record[<%= field %>]" spellcheck="false" rows="6" data-imagelist-json
             class="adm-input adm-json-field" style="font-family:ui-monospace,Menlo,monospace; font-size:12.5px;"><%= JSON.pretty_generate(value) %></textarea>
           <span class="adm-muted" style="font-size:12px;">One image per row — pick from the media library or paste a path.</span>
-        <% elsif object_list_field?(value) %>
+        <% elsif object_list_field?(value, field) %>
           <div data-objectlist-editor></div>
           <textarea name="record[<%= field %>]" spellcheck="false" rows="6" data-objectlist-json
             class="adm-input adm-json-field" style="font-family:ui-monospace,Menlo,monospace; font-size:12.5px;"><%= JSON.pretty_generate(value) %></textarea>

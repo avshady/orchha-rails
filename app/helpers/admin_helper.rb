@@ -161,7 +161,13 @@ module AdminHelper
   # Array of flat objects (all scalar values) — rendered as repeatable
   # field-rows instead of a raw JSON textarea. Media-named fields inside
   # each row get the thumbnail + Browse picker.
-  def object_list_field?(value)
+  # Empty arrays for these names still get the card editor (an "Add entry"
+  # button with the right columns) instead of a bare JSON textarea.
+  OBJECT_LIST_FIELDS = %w[experiences subMonuments stops gates cards seasons rows].freeze
+
+  def object_list_field?(value, name = nil)
+    return true if value == [] && OBJECT_LIST_FIELDS.include?(name.to_s)
+
     value.is_a?(Array) && value.any? &&
       value.all? do |v|
         v.is_a?(Hash) && v.values.all? { |x| x.nil? || x.is_a?(String) || x.is_a?(Numeric) || x == true || x == false }

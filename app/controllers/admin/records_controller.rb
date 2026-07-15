@@ -4,6 +4,21 @@ module Admin
   class RecordsController < BaseController
     before_action :load_collection
 
+    # Section content fields every monument can add via the CMS even when the
+    # record doesn't carry them yet (pairs with the show* section toggles).
+    SECTION_SCAFFOLDS = {
+      "monuments" => {
+        "galleryImages"    => [],
+        "paintingImages"   => [],
+        "closeUpImages"    => [],
+        "dykImages"        => [],
+        "didYouKnow"       => "",
+        "experiences"      => [],
+        "experiencePhotos" => [],
+        "subMonuments"     => []
+      }
+    }.freeze
+
     def new
       # Blank template shaped like the first record so all fields show up.
       @record = @records.first.is_a?(Hash) ? blank_template(@records.first) : {}
@@ -59,7 +74,7 @@ module Admin
       # Merge the content.json seed under the DB record so keys added to the
       # seed after a deploy (e.g. show* toggles, virtualTourUrl) surface in the
       # form even when this record's DB copy predates them. DB values win.
-      @record = seed_merged_record(@records.fetch(@index))
+      @record = scaffolded(seed_merged_record(@records.fetch(@index)))
     rescue IndexError
       redirect_to admin_collection_path(@key), alert: "Record not found."
     end
@@ -70,7 +85,7 @@ module Admin
       # Cast submitted values against the seed-merged shape so newly-surfaced
       # keys (e.g. a boolean toggle absent from this DB record) get the right
       # type; preserve the existing record's other fields as the base.
-      @records[index] = apply_fields(seed_merged_record(existing), existing, submitted_fields)
+      @records[index] = apply_fields(scaffolded(seed_merged_record(existing)), existing, submitted_fields)
       save_collection
       redirect_to admin_collection_path(@key), notice: "Record updated."
     rescue JSON::ParserError => e
@@ -111,6 +126,11 @@ module Admin
 
     def save_collection
       @block.update!(data: @records)
+    end
+
+    def scaffolded(record)
+      defaults = SECTION_SCAFFOLDS[@key]
+      defaults ? defaults.merge(record) : record
     end
 
     def submitted_fields

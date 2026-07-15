@@ -550,7 +550,14 @@
             add.style.cssText = 'align-self:flex-start; padding:8px 16px; font-size:13px;';
             add.textContent = '+ Add entry';
             add.addEventListener('click', () => {
-              const template = items[items.length - 1] || {};
+              const FIELD_TEMPLATES = {
+                experiences:  { title: '', description: '', icon: '' },
+                subMonuments: { name: '', image: '', id: '' },
+                stops:        { num: 1, image: '', name: '', link: '' },
+                gates:        { name: '', subtitle: '', image: '', body: '' }
+              };
+              const nameMatch = (json.getAttribute('name') || '').match(/\[([^\]]+)\]$/);
+              const template = items[items.length - 1] || FIELD_TEMPLATES[nameMatch && nameMatch[1]] || {};
               const fresh = {};
               Object.keys(template).forEach(k => {
                 const v = template[k];
