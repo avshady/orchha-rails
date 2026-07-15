@@ -5962,7 +5962,8 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   position: relative;
   height: 32px;
   width: 100%;
-  max-width: 372px;
+  /* six stops need breathing room (was 372px for three) */
+  max-width: 680px;
   cursor: pointer;
   touch-action: none;
   user-select: none;
@@ -6010,7 +6011,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 412px;
+  max-width: 740px;
   margin-top: 20px;
   padding: 0 20px;
 }

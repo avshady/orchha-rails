@@ -1727,73 +1727,115 @@
       }
     ],
     "day-4": [
-      {
-        "id": "i4-1",
-        "title": "Museums of Orchha",
-        "image": "/images/museum_topchi_haveli.jpg",
-        "href": "/museums",
-        "desc": "Spend the morning at Topchi Ki Haveli, Baroodkhana, and the Azad memorial — museums that keep Orchha's past close at hand."
-      },
-      {
-        "id": "i4-2",
-        "title": "Art of Orchha Gallery",
-        "image": "/images/art_fresco_1.jpg",
-        "href": "/art-frescoes",
-        "desc": "Study the Bundela frescoes of Raja Mahal and Lakshmi Narayan Temple up close in the curated gallery of Orchha's painted heritage."
-      },
-      {
-        "id": "i4-3",
-        "title": "Light & Sound Show",
-        "image": "/images/exp_light_sound.jpg",
-        "href": "/experiences/sound-light-show",
-        "desc": "End the day with the fort brought alive after dark — dramatic light projections and immersive sound across the 16th-century ramparts."
-      }
+          {
+                "id": "i4-1",
+                "title": "Museums of Orchha",
+                "image": "/images/museum_topchi_haveli.jpg",
+                "href": "/museums",
+                "desc": "Give the morning to Topchi Ki Haveli, Baroodkhana, and the Azad memorial — three small museums that hold the town's memory in objects, arms, and archives."
+          },
+          {
+                "id": "i4-2",
+                "title": "Art of Orchha Gallery",
+                "image": "/images/art_fresco_1.jpg",
+                "href": "/art-frescoes",
+                "desc": "Study the Bundela frescoes of Raja Mahal and Lakshmi Narayan Temple up close — court scenes, epics, and pigments that have held their colour for four centuries."
+          },
+          {
+                "id": "i4-3",
+                "title": "Rai Praveen Mahal",
+                "image": "/images/rpm_info_main.jpg",
+                "href": "/monuments/rai-praveen-mahal",
+                "desc": "Visit the palace built for the poet-dancer whose verses stopped an emperor — an afternoon of gardens, pavilions, and one of Orchha's best stories."
+          },
+          {
+                "id": "i4-4",
+                "title": "Sunset at Betwa",
+                "image": "/images/exp_sunset_betwa.jpg",
+                "href": "/experiences/sunset-betwa",
+                "desc": "Walk down to the ghats as the light turns gold and the chhatris double themselves in the river — Orchha's most photographed hour."
+          },
+          {
+                "id": "i4-5",
+                "title": "Light & Sound Show",
+                "image": "/images/exp_light_sound.jpg",
+                "href": "/experiences/sound-light-show",
+                "desc": "Close the day at the fort after dark, when projections and narration carry the Bundela story across the 16th-century ramparts."
+          }
     ],
     "day-5": [
-      {
-        "id": "i5-1",
-        "title": "HOHO Sightseeing Circuit",
-        "image": "/images/hoho_ebus.jpg",
-        "href": "/hoho",
-        "desc": "Hop on the electric bus circuit and cover Orchha's landmarks at your own pace, hopping off wherever a monument calls."
-      },
-      {
-        "id": "i5-2",
-        "title": "Freedom Fighters of Orchha",
-        "image": "/images/museum_azad_memorial.jpg",
-        "href": "/freedom-fighters",
-        "desc": "Trace the stories of the region's martyrs and the memorial sites that honour Bundelkhand's role in India's independence movement."
-      },
-      {
-        "id": "i5-3",
-        "title": "Night Walk",
-        "image": "/images/ct_night.jpg",
-        "href": "/experiences/night-walk",
-        "desc": "See the citadel in a different light on a guided evening walk, when the crowds thin and the stone glows under the night sky."
-      }
+          {
+                "id": "i5-1",
+                "title": "HOHO Sightseeing Circuit",
+                "image": "/images/hoho_ebus.jpg",
+                "href": "/hoho",
+                "desc": "Hop on the electric bus loop and cover the outlying landmarks at your own pace — hop off wherever a gateway, ghat, or garden calls."
+          },
+          {
+                "id": "i5-2",
+                "title": "Lakshmi Narayan Temple",
+                "image": "/images/lnt_info_main.jpg",
+                "href": "/monuments/lakshmi-narayan-temple",
+                "desc": "Climb to the hilltop temple that is half shrine, half fortress, and home to the most vivid Bundeli murals in Orchha."
+          },
+          {
+                "id": "i5-3",
+                "title": "Wildlife Sanctuary",
+                "image": "/images/ws_info_main.jpg",
+                "href": "/monuments/wildlife-sanctuary",
+                "desc": "Cross the Betwa into the forest — ten eco points, riverside picnic spots, and the birdlife that shares the river with the monuments."
+          },
+          {
+                "id": "i5-4",
+                "title": "Freedom Fighters of Orchha",
+                "image": "/images/museum_azad_memorial.jpg",
+                "href": "/freedom-fighters",
+                "desc": "Trace the stories of the region's martyrs and the memorial sites that honour Bundelkhand's part in India's independence movement."
+          },
+          {
+                "id": "i5-5",
+                "title": "Night Walk",
+                "image": "/images/ct_night.jpg",
+                "href": "/experiences/night-walk",
+                "desc": "End with the citadel by night on a guided evening walk, when the crowds thin and the stone glows under the floodlights."
+          }
     ],
     "day-6": [
-      {
-        "id": "i6-1",
-        "title": "Festivals & Events",
-        "image": "/images/card_events.jpg",
-        "href": "/events",
-        "desc": "Check what's on during your stay — Orchha's calendar of festivals and cultural events adds a living layer to the heritage."
-      },
-      {
-        "id": "i6-2",
-        "title": "Riverside Morning",
-        "image": "/images/eco_trail.webp",
-        "href": "/experiences/eco-trail",
-        "desc": "Return to the sanctuary for an early birdwatching session along the Betwa before the town wakes up."
-      },
-      {
-        "id": "i6-3",
-        "title": "Unhurried Orchha",
-        "image": "/images/heritage_walk.webp",
-        "href": "/accommodation",
-        "desc": "Keep the last day slow — revisit a favourite courtyard, browse the bazaar, and unwind at your hotel or homestay."
-      }
+          {
+                "id": "i6-1",
+                "title": "Jahangir Mahal at Leisure",
+                "image": "/images/jm_info_main.jpg",
+                "href": "/monuments/jahangir-mahal",
+                "desc": "Return to the grandest palace without a checklist — climb to the upper terraces for the view you missed the first time."
+          },
+          {
+                "id": "i6-2",
+                "title": "Riverside Morning",
+                "image": "/images/eco_trail.webp",
+                "href": "/experiences/eco-trail",
+                "desc": "An early birdwatching session along the Betwa before the town wakes — skimmers, terns, and kingfishers over still water."
+          },
+          {
+                "id": "i6-3",
+                "title": "Citadel Courtyards, Second Look",
+                "image": "/images/citadel_walk.webp",
+                "href": "/experiences/citadel-walk",
+                "desc": "Retrace the citadel walk slowly, lingering in the courtyards, stepwells, and gateways that a first visit rushes past."
+          },
+          {
+                "id": "i6-4",
+                "title": "Festivals & Events",
+                "image": "/images/card_events.jpg",
+                "href": "/events",
+                "desc": "Check what's on during your stay — Orchha's calendar of festivals and cultural events adds a living layer to the heritage."
+          },
+          {
+                "id": "i6-5",
+                "title": "Unhurried Orchha",
+                "image": "/images/heritage_walk.webp",
+                "href": "/accommodation",
+                "desc": "Keep the farewell slow — browse the bazaar, revisit a favourite courtyard, and unwind at your hotel or homestay before the journey home."
+          }
     ]
   },
   "historyPage": {
