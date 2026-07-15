@@ -292,7 +292,10 @@
       <section class="mdet-panel mdet-closeup">
         <div class="mdet-closeup-inner">
           <h2 class="mdet-closeup-heading">In Focus</h2>
-          <a href="#" class="mdet-outline-btn mdet-closeup-view360">View 360</a>
+          <%# View 360 opens this monument's virtual tour; hidden when none is set %>
+          <% if @monument['virtualTourUrl'].present? %>
+          <a href="<%= @monument['virtualTourUrl'] %>" target="_blank" rel="noopener" class="mdet-outline-btn mdet-closeup-view360">View 360</a>
+          <% end %>
           <div class="mdet-photo-card mdet-closeup-main">
             <img src="<%= closeup[0] %>" alt="">
             <div class="mdet-card-logos">
