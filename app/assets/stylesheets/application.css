@@ -1904,14 +1904,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ═══════════════════════════════════════════════════════════
    PANEL — GALLERY (CMS-managed extra photos)
    ═══════════════════════════════════════════════════════════ */
-.mdet-gallery { background: #e7ded5; }
+/* Panel sizes to its content (78px gutters) like the other sections,
+   instead of centring a couple of cards inside a full viewport width. */
+.mdet-gallery { background: #e7ded5; width: auto; display: flex; }
 .mdet-gallery-inner {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
+  height: 100%;
+  display: flex; align-items: center;
   gap: 44px; padding: 0 78px;
 }
 .mdet-gallery-photo {
-  width: 421px; height: 56.5%; max-width: 34vw;
+  width: 421px; height: 56.5%; flex-shrink: 0;
 }
 
 /* ═══════════════════════════════════════════════════════════
