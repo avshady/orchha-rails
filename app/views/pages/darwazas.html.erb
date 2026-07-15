@@ -84,16 +84,41 @@
         </div>
       </section>
 
-      <%# ══ SECTION 2 — WRITEUP ════════════════════════════════ %>
-      <section class="mdet-panel dz-intro-panel">
-        <div class="dz-intro-meta">
-          <% if pg['year'].present? %><p class="mdet-year"><%= pg['year'] %></p><% end %>
-          <h1 class="dz-heading"><%= pg['heading'] || 'Darwazas of Orchha' %></h1>
-        </div>
-        <div class="dz-intro-body">
-          <% (pg['intro'].presence || []).each do |para| %>
-          <p class="dz-body"><%= paragraph_html(para) %></p>
-          <% end %>
+      <%# ══ SECTION 2 — WRITEUP (same info panel as monument pages) ══ %>
+      <section class="mdet-panel mdet-info">
+        <div class="mdet-info-inner">
+          <%# Col 1: main photo %>
+          <div class="mdet-info-col1">
+            <div class="mdet-photo-card mdet-photo-main">
+              <img src="<%= pg['introImage1'].presence || '/images/dz_placeholder.svg' %>" alt="Darwazas of Orchha">
+              <div class="mdet-card-logos">
+                <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+                <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+              </div>
+            </div>
+          </div>
+          <%# Col 2: year + heading above, second photo below %>
+          <div class="mdet-info-col2">
+            <div class="mdet-info-meta">
+              <% if pg['year'].present? %><p class="mdet-year"><%= pg['year'] %></p><% end %>
+              <h1 class="mdet-name"><%= pg['heading'] || 'Darwazas of Orchha' %></h1>
+            </div>
+            <div class="mdet-photo-card mdet-photo-second">
+              <img src="<%= pg['introImage2'].presence || '/images/dz_placeholder.svg' %>" alt="">
+              <div class="mdet-card-logos">
+                <img src="/images/mpt_logo.png"        alt="MPT"             class="mdet-logo-mpt">
+                <img src="/images/incredible_india.png" alt="Incredible India" class="mdet-logo-ii">
+              </div>
+            </div>
+          </div>
+          <%# Col 3: writeup %>
+          <div class="mdet-info-col3">
+            <div class="mdet-desc">
+              <% (pg['intro'].presence || []).each do |para| %>
+              <p><%= paragraph_html(para) %></p>
+              <% end %>
+            </div>
+          </div>
         </div>
       </section>
 
