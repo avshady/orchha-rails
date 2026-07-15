@@ -77,8 +77,8 @@
   <section class="msm-section">
     <div class="msm-grid">
       <% if feature %>
-      <% feat_tag = feature['detailPage'].present? && feature['detailPage'] != '#' ? 'a' : 'div' %>
-      <<%= feat_tag %> <%= feat_tag == 'a' ? "href=\"#{feature['detailPage']}\"".html_safe : '' %> class="msm-card msm-card-feature">
+      <% feat_href = feature['detailPage'].present? && feature['detailPage'] != '#' ? feature['detailPage'] : "/museums/#{feature['id']}" %>
+      <a href="<%= feat_href %>" class="msm-card msm-card-feature">
         <img src="<%= feature['image'] %>" alt="<%= feature['name'] %>" class="msm-card-img">
         <div class="msm-card-shade"></div>
         <div class="msm-card-logos">
@@ -86,13 +86,13 @@
           <img src="/images/incredible_india.png" class="msm-logo-ii" alt="Incredible India">
         </div>
         <h3 class="msm-card-name"><%= feature['name'] %></h3>
-      </<%= feat_tag %>>
+      </a>
       <% end %>
 
       <div class="msm-col">
         <% rest.each do |m| %>
-        <% m_tag = m['detailPage'].present? && m['detailPage'] != '#' ? 'a' : 'div' %>
-        <<%= m_tag %> <%= m_tag == 'a' ? "href=\"#{m['detailPage']}\"".html_safe : '' %> class="msm-card msm-card-small">
+        <% m_href = m['detailPage'].present? && m['detailPage'] != '#' ? m['detailPage'] : "/museums/#{m['id']}" %>
+        <a href="<%= m_href %>" class="msm-card msm-card-small">
           <img src="<%= m['image'] %>" alt="<%= m['name'] %>" class="msm-card-img">
           <div class="msm-card-shade"></div>
           <div class="msm-card-logos">
@@ -100,7 +100,7 @@
             <img src="/images/incredible_india.png" class="msm-logo-ii" alt="Incredible India">
           </div>
           <h3 class="msm-card-name"><%= m['name'] %></h3>
-        </<%= m_tag %>>
+        </a>
         <% end %>
       </div>
     </div>
