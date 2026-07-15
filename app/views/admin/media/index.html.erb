@@ -1,8 +1,8 @@
 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:20px;">
   <h2 class="adm-page-title" style="margin-bottom:0;">Media</h2>
   <label class="adm-btn">
-    Upload new
-    <input type="file" id="adm-page-upload" accept="image/*,video/*" style="display:none;">
+    Upload files
+    <input type="file" id="adm-page-upload" accept="image/*,video/*,audio/*" multiple style="display:none;">
   </label>
 </div>
 
@@ -51,16 +51,29 @@
 </div>
 
 <script>
+  // Bulk upload: select any number of files (or a whole folder's worth);
+  // they upload sequentially with progress shown on the button.
   document.getElementById('adm-page-upload').addEventListener('change', async function() {
     if (!this.files.length) return;
-    const fd = new FormData();
-    fd.append('file', this.files[0]);
-    const resp = await fetch('<%= admin_media_path %>', {
-      method: 'POST',
-      headers: { 'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content },
-      body: fd
-    });
-    if (resp.ok) { window.location.reload(); }
-    else { alert('Upload failed'); }
+    const files = Array.from(this.files);
+    const label = this.closest('label');
+    const original = label.firstChild.textContent;
+    const csrf = document.querySelector('meta[name="csrf-token"]').content;
+    let done = 0, failed = [];
+    for (const file of files) {
+      label.firstChild.textContent = `Uploading ${done + 1}/${files.length}…`;
+      const fd = new FormData();
+      fd.append('file', file);
+      try {
+        const resp = await fetch('<%= admin_media_path %>', {
+          method: 'POST', headers: { 'X-CSRF-Token': csrf }, body: fd
+        });
+        if (!resp.ok) failed.push(file.name);
+      } catch (e) { failed.push(file.name); }
+      done++;
+    }
+    label.firstChild.textContent = original;
+    if (failed.length) alert('Failed to upload: ' + failed.join(', '));
+    window.location.reload();
   });
 </script>
