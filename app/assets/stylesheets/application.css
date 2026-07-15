@@ -5760,7 +5760,8 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 }
 
 .cw-strip {
-  width: 410.69vw;
+  /* was 410.69vw before the "Other places" divider was removed */
+  width: 397.56vw;
   background: #e7ded5;
 }
 
@@ -5797,10 +5798,14 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   font-size: 2.262vw; line-height: 1.21; color: #6e1603; white-space: nowrap;
 }
 
-/* ── Timeline line (card-1 center → card-10 center at y270) ── */
+/* ── Timeline line (card-1 center → card-10 center at y270) —
+      evenly spaced round dots per the Figma refinement ── */
 .cw-timeline-line {
-  position: absolute; left: 75.07vw; top: 33.01vh; width: 311.81vw;
-  border-top: 2px dashed rgba(141, 20, 12, 0.45);
+  position: absolute; left: 75.07vw; top: 33.01vh; width: 298.68vw;
+  height: 3px;
+  background-image: radial-gradient(circle, rgba(141, 20, 12, 0.55) 1.5px, transparent 1.6px);
+  background-size: 14px 3px;
+  background-repeat: repeat-x;
 }
 
 /* ── Numbered monument cards (row1 x888, row2 x3467, y248) ── */
@@ -5810,7 +5815,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   list-style: none; margin: 0; padding: 0;
 }
 .cw-cards-1 { left: 61.67vw; }
-.cw-cards-2 { left: 240.76vw; }
+.cw-cards-2 { left: 227.63vw; }
 .cw-card { width: 26.74vw; display: flex; flex-direction: column; align-items: center; }
 .cw-card-num {
   width: 3.056vw; height: 3.056vw; border-radius: 50%;
@@ -5839,16 +5844,6 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   margin: 0;
 }
 
-/* ── "Other places" rotated divider (center x3326 y457) ── */
-.cw-other-places {
-  position: absolute; left: 230.97vw; top: 55.87vh;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  white-space: nowrap;
-  font-family: 'Chivo', sans-serif; font-weight: 700;
-  font-size: 2.907vw; text-transform: uppercase; text-align: center;
-  color: #8d140c; opacity: 0.22;
-}
-
 /* ── Mobile: vertical stack ─────────────────────────────── */
 @media (max-width: 900px) {
   .cw-strip {
@@ -5859,7 +5854,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   }
   .cw-strip > * { position: static !important; width: auto !important; }
 
-  .cw-timeline-line, .cw-other-places { display: none; }
+  .cw-timeline-line { display: none; }
 
   .cw-intro { gap: 14px; }
   .cw-heading { font-size: 38px; }

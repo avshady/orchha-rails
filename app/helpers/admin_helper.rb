@@ -64,10 +64,11 @@ module AdminHelper
             { label: "All Monuments", path: admin_collection_path("monuments"), match: %r{/collections/monuments} },
             { label: "Page Settings", path: admin_edit_section_path("monumentsPage"), match: %r{/sections/monumentsPage} }
           ] },
-        { label: "Experiences", path: admin_collection_path("experienceItems"), match: %r{/(collections/(experienceItems|cuisineItems)|sections/(experiencesPage|artWalkPage|ecoTrailPage|riverKayakingPage|religiousWalkPage))},
+        { label: "Experiences", path: admin_collection_path("experienceItems"), match: %r{/(collections/(experienceItems|cuisineItems)|sections/(experiencesPage|artWalkPage|ecoTrailPage|riverKayakingPage|religiousWalkPage|citadelWalkPage))},
           children: [
             { label: "All Experiences", path: admin_collection_path("experienceItems"), match: %r{/collections/experienceItems} },
             { label: "Art Walk Page", path: admin_edit_section_path("artWalkPage"), match: %r{/sections/artWalkPage} },
+            { label: "Citadel Walk Page", path: admin_edit_section_path("citadelWalkPage"), match: %r{/sections/citadelWalkPage} },
             { label: "Eco Trail Page", path: admin_edit_section_path("ecoTrailPage"), match: %r{/sections/ecoTrailPage} },
             { label: "River Kayaking Page", path: admin_edit_section_path("riverKayakingPage"), match: %r{/sections/riverKayakingPage} },
             { label: "Religious Walk Page", path: admin_edit_section_path("religiousWalkPage"), match: %r{/sections/religiousWalkPage} },
@@ -85,7 +86,6 @@ module AdminHelper
             { label: "Page Settings", path: admin_edit_section_path("accommodationPage"), match: %r{/sections/accommodationPage} }
           ] },
         { label: "Light & Sound Show", path: admin_edit_section_path("soundLightShowPage"), match: %r{/sections/soundLightShowPage} },
-        { label: "Citadel Walk", path: admin_edit_section_path("citadelWalkPage"), match: %r{/sections/citadelWalkPage} },
         { label: "Plan Your Visit", path: admin_edit_section_path("planYourVisitPage"), match: %r{/(sections/planYourVisitPage|collections/itineraries)},
           children: [
             { label: "Page Content", path: admin_edit_section_path("planYourVisitPage"), match: %r{/sections/planYourVisitPage} },
