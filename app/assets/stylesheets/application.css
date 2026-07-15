@@ -1710,12 +1710,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex; flex-direction: column; justify-content: flex-end;
   padding-bottom: 11.4vh;
 }
-/* Wildlife Sanctuary DYK: wider panel, elements shifted right (same 78px trailing gutter) */
-[data-monument="wildlife-sanctuary"] .mdet-dyk { width: 1507px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-heading { left: 652px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-card1 { left: 1076px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-card2 { left: 652px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-text  { left: 1076px; max-width: 353px; }
+/* Wildlife Sanctuary DYK: cluster sits ~144px after the writeup per Figma
+   3255-6450 (was +586px further right); same 78px trailing gutter */
+[data-monument="wildlife-sanctuary"] .mdet-dyk { width: 921px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-heading { left: 66px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-card1 { left: 490px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-card2 { left: 66px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-text  { left: 490px; max-width: 353px; }
 .mdet-desc {
   font-family: 'Gambetta Variable', serif; font-weight: 500;
   font-size: 20px; line-height: 23.9px; letter-spacing: -0.2px;
