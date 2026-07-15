@@ -819,6 +819,10 @@
       "month": "january",
       "category": "upcoming",
       "image": "/images/evt_new_year.jpg",
+      "heroImage": "",
+      "description": "The New Year period brings a vibrant festive atmosphere to Orchha, with visitors gathering at temples, heritage sites and the Betwa riverfront for prayers, evening aartis and cultural experiences.",
+      "estimatedVisitors": "~1,00,000 Annually",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -828,6 +832,10 @@
       "month": "",
       "category": "ongoing",
       "image": "/images/evt_pushya_nakshatra.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -837,6 +845,10 @@
       "month": "january",
       "category": "upcoming",
       "image": "/images/evt_makar_sankranti.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -846,6 +858,10 @@
       "month": "march",
       "category": "upcoming",
       "image": "/images/evt_ram_janmotsav.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -855,6 +871,10 @@
       "month": "august",
       "category": "upcoming",
       "image": "/images/evt_sawan_teej.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -864,6 +884,10 @@
       "month": "november",
       "category": "upcoming",
       "image": "/images/evt_deepawali.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -873,6 +897,10 @@
       "month": "december",
       "category": "upcoming",
       "image": "/images/evt_ram_vivah_mandap.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -882,6 +910,10 @@
       "month": "december",
       "category": "upcoming",
       "image": "/images/evt_ram_vivah_yatra.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     }
   ],
