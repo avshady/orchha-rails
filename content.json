@@ -107,11 +107,11 @@
       "year": "17th Century",
       "heroImage": "/images/heritage_raja_ram.jpg",
       "detailImage": "/images/rrm_info1.jpg",
-      "detailDescriptionHtml": "<p>In the early 17th century, Maharani Kunwar Ganesh - a deeply devoted follower of Ram Ji - set out from Orchha on foot for Ayodhya, determined to bring Ram Lalla back to her kingdom. Ram Ji appeared to her and agreed, but on three conditions she would have to honour completely.</p><p>First, he would travel only during the auspicious Pushya Nakshatra - halting whenever it ended, resuming only when it returned. Second, upon reaching Orchha, he would not be the consort of the queen or a guest of her husband, King Madhukar Shah. He would be the sovereign - Ram Raja Sarkar, the King of Orchha. Third, the very first place the queen seated him upon arrival would be his permanent home. He would not be moved from it, ever. Maharani Kunwar Ganesh accepted.</p><p>The journey - slow, sacred, bound by the rhythms of the stars - eventually brought Ram Lalla to Orchha in 1631 CE. On arriving, the queen placed the idol in her own palace quarters, the Nau Chaukiya Mahal, intending it to be temporary while the grand Chaturbhuj Temple was made ready. But a condition is a condition. Ram Ji had been seated. He would not move. The palace became his court, and Orchha became his kingdom. The Chaturbhuj Temple, built with such care and anticipation, stands empty to this day. And in the Nau Chaukiya Mahal - now Raja Ram Temple - a king still holds court, just as he has for nearly four hundred years.</p>",
+      "detailDescriptionHtml": "<p>In the early 17th century, Maharani Kunwar Ganesh - a deeply devoted follower of Ram Ji - set out from Orchha on foot for Ayodhya, determined to bring Ram Lalla back to her kingdom. Ram Ji appeared to her and agreed, but on three conditions she would have to honour completely.</p><p>First, he would travel only during the auspicious Pushya Nakshatra - halting whenever it ended, resuming only when it returned. Second, upon reaching Orchha, he would not be the consort of the queen or a guest of her husband, King Madhukar Shah. He would be the sovereign - Ram Raja Sarkar, the King of Orchha. Third, the very first place the queen seated him upon arrival would be his permanent home. He would not be moved from it, ever. Maharani Kunwar Ganesh accepted.</p><p>The journey - slow, sacred, bound by the rhythms of the stars - eventually brought Ram Lalla to Orchha in 1631 CE. On arriving, the queen placed the idol in her own palace quarters, the Nau Chaukiya Mahal, intending it to be temporary while the grand Chaturbhuj Temple was made ready. But a condition is a condition. Ram Ji had been seated. He would not move. The palace became his court, and Orchha became his kingdom. The Chaturbhuj Temple, built with such care and anticipation, stands empty to this day. And in the Nau Chaukiya Mahal - now Ram Raja Temple - a king still holds court, just as he has for nearly four hundred years.</p>",
       "galleryImages": [
         "/images/rrm_info2.jpg"
       ],
-      "didYouKnow": "Raja Ram Temple follows the daily schedule of a royal court, not a house of worship. The temple opens and closes at the hours a king would receive his subjects. Armed sentries stand guard at the gates around the clock, a guard of honor is offered at every aarti, and no one — including any head of state — ranks above Ram Raja Sarkar within Orchha. This royal protocol has been observed without interruption since 1631 CE.",
+      "didYouKnow": "Ram Raja Temple follows the daily schedule of a royal court, not a house of worship. The temple opens and closes at the hours a king would receive his subjects. Armed sentries stand guard at the gates around the clock, a guard of honor is offered at every aarti, and no one — including any head of state — ranks above Ram Raja Sarkar within Orchha. This royal protocol has been observed without interruption since 1631 CE.",
       "dykImages": [
         "/images/rrm_dyk2.jpg",
         "/images/rrm_dyk1.jpg"
@@ -1246,7 +1246,7 @@
       "heading": "Reflection of Heritage",
       "subtitle": "Each Monument in Orchha is a Chapter. Together, they tell the Story of a Kingdom.",
       "bigCard": {
-        "name": "Raja Ram Temple",
+        "name": "Ram Raja Temple",
         "date": "Est. 1589 CE",
         "description": "The only temple in India where Ram is worshipped as a king — and where a queen's devotion became a timeless tale.",
         "image": "/images/heritage_raja_ram.jpg",
@@ -1314,7 +1314,7 @@
           "link": "/trails/citadel"
         },
         {
-          "name": "Religious Trail",
+          "name": "Religious Walk",
           "image": "/images/heritage_raja_ram.jpg",
           "link": "/trails/religious"
         },
@@ -1685,7 +1685,7 @@
       {
         "year": "2026",
         "heading": "Modern Day Revival",
-        "body": "Today, Orchha is one of Madhya Pradesh's most significant heritage towns — a living site where daily aarti at Raja Ram Temple, stone carving traditions, and centuries-old festival observances continue uninterrupted. With Sabhyata Foundation's stewardship and a commitment to honouring this inheritance thoughtfully, Orchha marks a new chapter.",
+        "body": "Today, Orchha is one of Madhya Pradesh's most significant heritage towns — a living site where daily aarti at Ram Raja Temple, stone carving traditions, and centuries-old festival observances continue uninterrupted. With Sabhyata Foundation's stewardship and a commitment to honouring this inheritance thoughtfully, Orchha marks a new chapter.",
         "image": "/images/history_tl_2026.jpg"
       }
     ],
@@ -1769,7 +1769,7 @@
     },
     {
       "id": "religious-walk",
-      "name": "Religious Trail",
+      "name": "Religious Walk",
       "image": "/images/exp_religious_trail.jpg",
       "category": "trails"
     },
