@@ -1887,8 +1887,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .mdet-closeup-view360 {
   position: absolute;
-  /* just below the two-line 70px heading (top 26%), viewport-independent */
-  left: 241px; top: calc(26% + 153px);
+  /* just below the single-line "In Focus" heading (top 26%) */
+  left: 241px; top: calc(26% + 88px);
 }
 .mdet-closeup-main {
   position: absolute;
@@ -1917,14 +1917,15 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ═══════════════════════════════════════════════════════════
    PANEL — EXPERIENCES
    ═══════════════════════════════════════════════════════════ */
-/* Fixed width (content ends 1066 + 78px gutter) so the gap to the next
-   section doesn't balloon on wide screens */
-.mdet-experiences { background: #e7ded5; width: 1144px; flex-shrink: 0; }
+/* Fixed width per Figma 3255-6450: card starts 140px after the DYK text
+   (78px of that is the DYK panel's trailing gutter), content 847 wide,
+   150px gap before the outro */
+.mdet-experiences { background: #e7ded5; width: 1059px; flex-shrink: 0; }
 .mdet-experiences-inner { position: absolute; inset: 0; }
 /* Card container — 847×301px per Figma spec */
 .mdet-exp-card {
   position: absolute;
-  left: 164px; top: calc(25vh - 9.5px);
+  left: 62px; top: calc(25vh - 9.5px);
   width: 847px; height: 301px;
   background: #ecdfd3;
   border: 0.944px solid rgba(110,22,3,0.25);
@@ -1932,10 +1933,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   /* no overflow:hidden — the Experiences pill straddles the top edge
      (translate -50%) and was getting its upper half clipped (Figma 3255-6679) */
 }
-/* "Experiences" pill — center at 507px from card left, straddles top edge */
+/* "Experiences" pill — centred on the card, straddles its top edge */
 .mdet-exp-label {
   position: absolute;
-  left: 507px; top: 0;
+  left: 50%; top: 0;
   transform: translate(-50%, -50%);
   display: inline-flex; justify-content: center; align-items: center;
   gap: 16.49px;
@@ -1946,13 +1947,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 65.959px;
   white-space: nowrap;
 }
-/* Experience items — absolutely positioned within 847×301 card */
-/* Left col icon at 98px→text at 168px; Right col icon at 567px→text at 640px */
-.mdet-exp-item { position: absolute; display: flex; align-items: flex-start; }
-.mdet-exp-item:nth-of-type(1) { left: 98px;  top: 47px; }  /* Nature Walks      */
-.mdet-exp-item:nth-of-type(2) { left: 567px; top: 47px; }  /* Bird Watching     */
-.mdet-exp-item:nth-of-type(3) { left: 98px;  top: 177px; } /* Riverside Trails  */
-.mdet-exp-item:nth-of-type(4) { left: 567px; top: 177px; } /* Sunrise Photography */
+/* Experience items — absolutely positioned within 847×301 card.
+   Figma 3255-6450: left col icon at 63px, text at 168px; right col icon at
+   488px, text at 584px */
+.mdet-exp-item { position: absolute; display: flex; align-items: flex-start; gap: 34px; }
+.mdet-exp-item:nth-of-type(1) { left: 63px;  top: 47px; }  /* Nature Walks      */
+.mdet-exp-item:nth-of-type(2) { left: 488px; top: 47px; }  /* Bird Watching     */
+.mdet-exp-item:nth-of-type(3) { left: 63px;  top: 177px; } /* Riverside Trails  */
+.mdet-exp-item:nth-of-type(4) { left: 488px; top: 177px; } /* Sunrise Photography */
 .mdet-exp-icon { width: 71.007px; height: 70px; flex-shrink: 0; margin-top: 13px; object-fit: contain; }
 .mdet-exp-text  { display: flex; flex-direction: column; gap: 4px; }
 .mdet-exp-title {
@@ -1973,8 +1975,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Four photos in a row below the card */
 .mdet-exp-photos {
   position: absolute;
-  /* 34px below the 301px experiences card (top 25vh - 9.5px) */
-  left: 164px; top: calc(25vh + 325.5px);
+  /* 34px below the 301px experiences card, spanning its full width */
+  left: 62px; top: calc(25vh + 325.5px);
   display: flex; gap: 34px;
 }
 .mdet-exp-photo {
@@ -1982,9 +1984,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 186px; height: min(187px, 75vh - 329px); flex-shrink: 0;
   border-radius: 7px;
 }
-/* Extra gap between 2nd and 3rd photo (column break) */
-.mdet-exp-photo:nth-child(2) { margin-right: 56px; }
-
 /* ── Panel: Paintings ──────────────────────────────────── */
 .mdet-paintings {
   background: #e7ded5;
@@ -2294,7 +2293,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   margin: 0 auto;
   max-width: 588px;
   line-height: 1.5;
-  text-align: left;
+  text-align: center;
 }
 
 /* Filter row */
@@ -2305,34 +2304,33 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: 0 120px 40px;
   gap: 24px;
 }
+/* same filter-pill style as the other listing pages (.mon-tab) */
 .exp-filter-tabs {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: wrap;
 }
 .exp-tab {
   font-family: 'Chivo', sans-serif;
-  font-weight: 500;
-  font-size: 19.412px;
+  font-weight: 700;
+  font-size: 17px;
   color: #6e1603;
   text-transform: uppercase;
   background: none;
   border: none;
-  padding: 7px 18px;
-  border-radius: 37px;
+  padding: 8px 24px;
+  border-radius: 99px;
   cursor: pointer;
   letter-spacing: 0.02em;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.18s, color 0.18s;
   white-space: nowrap;
 }
 .exp-tab.active {
   background: #6e1603;
   color: #fff;
-  font-weight: 700;
-  font-size: 18.788px;
 }
+.exp-tab:not(.active):hover { background: rgba(110,22,3,0.08); }
 .exp-search {
   position: relative;
   width: 297px;
@@ -3205,7 +3203,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   white-space: nowrap;
 }
 .rkc-info-label { font-weight: 700; }
-.rkc-book { position: absolute; left: 25.28vw; top: 78.73vh; }
+.rkc-book {
+  position: absolute; left: 25.28vw;
+  /* Figma position, but never above card1's bottom edge (21.03vh tall
+     card + 29.79vw height) on wide/short viewports */
+  top: max(78.73vh, calc(21.03vh + 29.79vw + 30px));
+}
 .rkc-dyk-heading { left: 112.64vw; top: 26.41vh; width: auto; white-space: nowrap; }
 .rkc-dyk-text {
   position: absolute;
@@ -3656,7 +3659,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
   .mdet-exp-photos { position: static; flex-wrap: wrap; gap: 12px; }
   .mdet-exp-photo { width: calc(50% - 6px); height: auto; aspect-ratio: 1; }
-  .mdet-exp-photo:nth-child(2) { margin-right: 0; }
 
   /* Panel: Sub-monuments — dashed connector removed, cards stack */
   .mdet-sub { width: 100% !important; }
