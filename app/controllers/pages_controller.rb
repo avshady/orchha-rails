@@ -186,6 +186,16 @@ class PagesController < ApplicationController
     redirect_to "/experiences"
   end
 
+  def sunset_betwa
+    raw = ContentStore.raw
+    @page = raw["sunsetBetwaPage"] || {}
+    @home = raw["homePage"] || {}
+    @audio_tracks = audio_tracks_for(raw, "sunset-betwa")
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}; @home = {}; @audio_tracks = []
+  end
+
   def museum
     raw = ContentStore.raw
     all = raw["museums"] || []

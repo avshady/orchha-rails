@@ -17,6 +17,7 @@ module AdminHelper
     "artWalkPage"       => "Art Walk Page",
     "ecoTrailPage"      => "Eco Trail Page",
     "riverKayakingPage" => "River Kayaking Page",
+    "sunsetBetwaPage"   => "Sunset At Betwa Page",
     "religiousWalkPage" => "Religious Walk Page",
     "supportUsPage"     => "Support Us Page Settings",
     "sabhyataPage"      => "Sabhyata Foundation Page",
@@ -72,6 +73,7 @@ module AdminHelper
             { label: "Eco Trail Page", path: admin_edit_section_path("ecoTrailPage"), match: %r{/sections/ecoTrailPage} },
             { label: "River Kayaking Page", path: admin_edit_section_path("riverKayakingPage"), match: %r{/sections/riverKayakingPage} },
             { label: "Religious Walk Page", path: admin_edit_section_path("religiousWalkPage"), match: %r{/sections/religiousWalkPage} },
+            { label: "Sunset At Betwa Page", path: admin_edit_section_path("sunsetBetwaPage"), match: %r{/sections/sunsetBetwaPage} },
             { label: "Cuisine Items", path: admin_collection_path("cuisineItems"), match: %r{/collections/cuisineItems} },
             { label: "Page Settings", path: admin_edit_section_path("experiencesPage"), match: %r{/sections/experiencesPage} }
           ] },

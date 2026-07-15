@@ -1,0 +1,268 @@
+<%# Sunset At Betwa — hero + slider carousel gallery + "To Be Self Explored"
+    tag. CMS-first (sunsetBetwaPage section), mobile-first. The audio guide /
+    virtual tour tabs are CMS-toggled off for this page; the self-explored
+    tag takes their place. %>
+<% nav = (@home['nav'] || {})
+   dd  = nav['discoverDropdown'] || []
+   ft  = @home['footer'] || {}
+   pg  = @page || {}
+   gallery = (pg['galleryImages'] || []).reject { |g| g.to_s.empty? }
+%>
+
+<div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
+
+<%# Fixed nav (dark glass variant over the hero) %>
+<div class="mdet-nav-wrap">
+  <nav class="mdet-navbar">
+    <div class="mdet-nav-links">
+      <div class="mdet-nav-discover">
+        <a href="/" class="mdet-nav-link mdet-discover-btn" aria-expanded="false" aria-haspopup="true">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-link">Plan Your Visit</a>
+      <a href="/news"            class="mdet-nav-link">News</a>
+      <a href="https://pages.razorpay.com/pl_PWE9fVFc9oLCel/view" target="_blank" rel="noopener"      class="mdet-nav-link">Support Us</a>
+      <a href="/sabhyata"        class="mdet-nav-link">Sabhyata Foundation</a>
+    </div>
+    <button class="mdet-nav-hamburger" id="mdet-nav-hamburger-btn" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-book-btn">Book Tickets</a>
+  </nav>
+
+  <div class="mdet-nav-mobile-menu" id="mdet-nav-mobile-menu">
+    <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <a href="/" class="nav-mobile-wordmark" aria-label="Home">ORCHHA</a>
+    <div class="mdet-nav-mobile-links">
+      <div class="nav-mobile-group">
+        <button type="button" class="mdet-nav-mobile-link nav-mobile-group-btn" aria-expanded="false">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-mobile-group-items">
+          <% dd.each do |item| %>
+          <a href="<%= item['url'] %>" class="mdet-nav-mobile-link nav-mobile-sub-link"><%= item['label'] %></a>
+          <% end %>
+        </div>
+      </div>
+      <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
+      <a href="/news" class="mdet-nav-mobile-link">News</a>
+      <a href="https://pages.razorpay.com/pl_PWE9fVFc9oLCel/view" target="_blank" rel="noopener" class="mdet-nav-mobile-link">Support Us</a>
+      <a href="/sabhyata" class="mdet-nav-mobile-link">Sabhyata Foundation</a>
+    </div>
+    <div class="nav-mobile-cta-row">
+      <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="mdet-nav-mobile-book-btn">Book Tickets</a>
+      <a href="/hoho" class="mdet-nav-mobile-book-btn nav-mobile-hoho-btn">HOHO Service</a>
+    </div>
+  </div>
+
+  <div class="mdet-nav-dropdown" role="menu">
+    <% dd.each do |item| %>
+    <a href="<%= item['url'] %>" class="mdet-nav-dd-item" role="menuitem"><%= item['label'] %></a>
+    <% end %>
+  </div>
+</div>
+
+<div class="sbw-page">
+
+  <%# ── HERO (image or video) with centred title ───────────── %>
+  <section class="sbw-hero">
+    <%= hero_media_tag(pg['heroImage'].presence || '/images/exp_sunset_betwa.jpg', alt: pg['heading'].presence || 'Sunset At Betwa') %>
+    <div class="sbw-hero-overlay"></div>
+    <h1 class="sbw-title"><%= pg['heading'].presence || 'Sunset At Betwa' %></h1>
+    <div class="evd-hero-logos">
+      <img src="/images/mpt_logo.png" class="aw-logo-mpt" alt="MPT">
+      <img src="/images/incredible_india.png" class="aw-logo-ii" alt="Incredible India">
+    </div>
+  </section>
+
+  <%# ── Intro (optional CMS text) ──────────────────────────── %>
+  <% if pg['description'].present? %>
+  <p class="sbw-desc"><%= pg['description'] %></p>
+  <% end %>
+
+  <%# ── Slider carousel gallery ────────────────────────────── %>
+  <% if gallery.any? %>
+  <section class="sbw-gallery">
+    <div class="sbw-carousel">
+      <button type="button" class="sbw-car-arrow sbw-car-prev" aria-label="Previous photos">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M14.5 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="sbw-car-track" id="sbw-car-track">
+        <% gallery.each do |photo| %>
+        <div class="sbw-car-card">
+          <img src="<%= photo %>" alt="Sunset at Betwa — gallery photo" loading="lazy">
+          <div class="evd-hero-logos">
+            <img src="/images/mpt_logo.png" class="aw-logo-mpt" alt="MPT">
+            <img src="/images/incredible_india.png" class="aw-logo-ii" alt="Incredible India">
+          </div>
+        </div>
+        <% end %>
+      </div>
+      <button type="button" class="sbw-car-arrow sbw-car-next" aria-label="Next photos">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M9.5 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <p class="sbw-tag"><%= pg['tagLabel'].presence || 'To Be Self Explored' %></p>
+  </section>
+  <% end %>
+
+  <%# ── Footer ─────────────────────────────────────────────── %>
+<%= render 'shared/footer', ft: ft %>
+
+</div><%# /.sbw-page %>
+
+<%# CMS-toggled tabs (audio guide / virtual tour are off for this page) %>
+<%= render 'audio_tabs', tracks: @audio_tracks, label: 'Sunset At Betwa', config: pg %>
+
+<style>
+  .sbw-page { background: #e7ded5; min-height: 100vh; }
+  .sbw-hero { position: relative; height: 72vh; min-height: 420px; overflow: hidden; }
+  .sbw-hero > img, .sbw-hero > video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sbw-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 45%, rgba(0,0,0,0.35) 100%);
+  }
+  .sbw-title {
+    position: absolute; left: 50%; bottom: 8vh; transform: translateX(-50%);
+    font-family: 'Scotch Display', serif; font-weight: 600; font-size: 62px;
+    line-height: 1.05; color: #fff; margin: 0; text-align: center; width: 90%;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.35);
+  }
+  .sbw-desc {
+    max-width: 720px; margin: 0 auto; padding: 44px 24px 0; text-align: center;
+    font-family: 'Gambetta Variable', serif; font-weight: 500; font-size: 18px;
+    line-height: 1.45; color: #1a0e06;
+  }
+  .sbw-gallery { padding: 56px 0 64px; }
+  .sbw-carousel { position: relative; max-width: 1200px; margin: 0 auto; padding: 0 70px; }
+  .sbw-car-track {
+    display: flex; gap: 24px; overflow-x: auto;
+    scrollbar-width: none; scroll-snap-type: x mandatory;
+  }
+  .sbw-car-track::-webkit-scrollbar { display: none; }
+  .sbw-car-card {
+    position: relative; flex: 0 0 calc(50% - 12px);
+    aspect-ratio: 34 / 25; border-radius: 10px; overflow: hidden; scroll-snap-align: start;
+  }
+  .sbw-car-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sbw-car-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 42px; height: 42px; border-radius: 50%;
+    border: 1.5px solid #6e1603; background: transparent; color: #6e1603;
+    display: flex; align-items: center; justify-content: center; cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    z-index: 1;
+  }
+  .sbw-car-arrow:hover { background: #6e1603; color: #e7ded5; }
+  .sbw-car-arrow svg { width: 22px; height: 22px; }
+  .sbw-car-prev { left: 12px; }
+  .sbw-car-next { right: 12px; }
+  .sbw-tag {
+    width: fit-content; margin: 44px auto 0;
+    padding: 11px 26px;
+    border: 1.5px solid #6e1603; border-radius: 22px;
+    font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 16px;
+    color: #6e1603; text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  @media (max-width: 900px) {
+    .sbw-hero { height: 56vh; min-height: 320px; }
+    .sbw-title { font-size: 40px; bottom: 6vh; }
+    .sbw-desc { font-size: 16px; padding-top: 32px; }
+    .sbw-gallery { padding: 40px 0 52px; }
+    .sbw-carousel { padding: 0 54px; }
+    .sbw-car-card { flex: 0 0 100%; }
+    .sbw-car-prev { left: 6px; }
+    .sbw-car-next { right: 6px; }
+    .sbw-tag { margin-top: 32px; }
+  }
+</style>
+
+<script>
+(function() {
+  // ── Navbar dropdown ───────────────────────────────────────
+  const navBtn = document.querySelector('.mdet-discover-btn');
+  const navDd  = document.querySelector('.mdet-nav-dropdown');
+  if (navBtn && navDd) {
+    let navDdCloseTimer;
+    function openDd() {
+      clearTimeout(navDdCloseTimer);
+      const r = navBtn.getBoundingClientRect();
+      navDd.style.top  = (r.bottom + 8) + 'px';
+      navDd.style.left = r.left + 'px';
+      navDd.classList.add('open');
+      navBtn.classList.add('open');
+      navBtn.setAttribute('aria-expanded', 'true');
+    }
+    function closeDd() {
+      navDd.classList.remove('open');
+      navBtn.classList.remove('open');
+      navBtn.setAttribute('aria-expanded', 'false');
+    }
+    function scheduleCloseDd() { navDdCloseTimer = setTimeout(closeDd, 200); }
+    navBtn.addEventListener('mouseenter', openDd);
+    navBtn.addEventListener('mouseleave', scheduleCloseDd);
+    navDd.addEventListener('mouseenter', () => clearTimeout(navDdCloseTimer));
+    navDd.addEventListener('mouseleave', scheduleCloseDd);
+    navBtn.addEventListener('click', e => { if (navDd.classList.contains('open')) return; e.preventDefault(); openDd(); });
+    document.addEventListener('click', closeDd);
+    navDd.addEventListener('click', e => e.stopPropagation());
+  }
+
+  // ── Mobile hamburger menu ─────────────────────────────────
+  const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
+  const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
+  const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
+  if (mdetHamburgerBtn && mdetMobileMenu) {
+    function openMdetMobileMenu() {
+      mdetMobileMenu.classList.add('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMdetMobileMenu() {
+      mdetMobileMenu.classList.remove('open');
+      mdetHamburgerBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+    mdetHamburgerBtn.addEventListener('click', openMdetMobileMenu);
+    if (mdetMobileClose) mdetMobileClose.addEventListener('click', closeMdetMobileMenu);
+    mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
+  }
+
+  // ── Gallery carousel (JS easing; smooth scrolling is unreliable
+  //    on snap containers in several engines) ─────────────────
+  const track = document.getElementById('sbw-car-track');
+  if (track) {
+    const step = () => track.querySelector('.sbw-car-card').getBoundingClientRect().width + 24;
+    let animTimer = null;
+    function animateTo(target) {
+      const start = track.scrollLeft;
+      const delta = target - start;
+      const t0 = performance.now();
+      track.style.scrollSnapType = 'none';
+      track.style.scrollBehavior = 'auto';
+      clearInterval(animTimer);
+      animTimer = setInterval(() => {
+        const p = Math.min(1, (performance.now() - t0) / 400);
+        track.scrollLeft = start + delta * (1 - Math.pow(1 - p, 3));
+        if (p >= 1) {
+          clearInterval(animTimer);
+          track.style.scrollSnapType = '';
+          track.style.scrollBehavior = '';
+        }
+      }, 16);
+    }
+    function go(dir) {
+      const idx = Math.round(track.scrollLeft / step()) + dir;
+      const max = track.scrollWidth - track.clientWidth;
+      animateTo(Math.max(0, Math.min(idx * step(), max)));
+    }
+    document.querySelector('.sbw-car-prev').addEventListener('click', () => go(-1));
+    document.querySelector('.sbw-car-next').addEventListener('click', () => go(1));
+  }
+})();
+</script>

@@ -45,6 +45,8 @@ Rails.application.routes.draw do
   get "/experiences/sound-light-show", to: "pages#sound_light_show"
   get "/experiences/light-sound", to: redirect("/experiences/sound-light-show")
   get "/experiences/citadel-walk", to: "pages#citadel_walk"
+  get "/experiences/sunset-betwa", to: "pages#sunset_betwa"
+  get "/experiences/sunset-at-betwa", to: redirect("/experiences/sunset-betwa")
   get "/experiences/:id", to: "pages#experience_detail"
   get "/freedom-fighters", to: "pages#freedom_fighters"
   get "/freedom-fighters/:id", to: "pages#freedom_fighter"
