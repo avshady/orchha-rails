@@ -15,7 +15,15 @@
    has_subs = subs.any?
    extra_gallery = gallery.drop(1)
    # panelCount override allows per-monument control when DYK or Experiences panel widths differ
-   panel_count = @monument['panelCount'] || (3 + (@monument['didYouKnow'] || @monument['dykHtml'] ? 0.5 : 0) + (arti ? 2 : 0) + (has_subs ? 1.5 : 0) + (closeup.any? ? 1 : 0) + (paintings_imgs.any? ? 0.879 : 0) + (experiences.any? ? 1 : 0) + (extra_gallery.any? ? 1 : 0))
+   show = ->(key) { @monument[key] != false }   # per-section CMS toggles, default on
+   show_dyk        = (@monument['didYouKnow'] || @monument['dykHtml']) && show.('showDidYouKnow')
+   show_arti       = arti && show.('showArti')
+   show_subs       = has_subs && show.('showSubMonuments')
+   show_closeup    = closeup.any? && show.('showCloseUp')
+   show_paintings  = paintings_imgs.any? && show.('showPaintings')
+   show_exp        = experiences.any? && show.('showExperiences')
+   show_gallery    = extra_gallery.any? && show.('showGallery')
+   panel_count = @monument['panelCount'] || (3 + (show_dyk ? 0.5 : 0) + (show_arti ? 2 : 0) + (show_subs ? 1.5 : 0) + (show_closeup ? 1 : 0) + (show_paintings ? 0.879 : 0) + (show_exp ? 1 : 0) + (show_gallery ? 1 : 0))
 %>
 
 <%# HOHO sticky tab %>
@@ -139,7 +147,7 @@
       </section>
 
       <%# ══ PANEL: GALLERY — CMS-managed extra photos (galleryImages[1..]) ══ %>
-      <% if extra_gallery.any? %>
+      <% if show_gallery %>
       <section class="mdet-panel mdet-gallery">
         <div class="mdet-gallery-inner">
           <% extra_gallery.each do |photo| %>
@@ -156,7 +164,7 @@
       <% end %>
 
       <%# ══ PANEL 3: ARTI & BHOG SCHEDULE (2 viewports wide) ══ %>
-      <% if arti %>
+      <% if show_arti %>
       <section class="mdet-panel mdet-arti">
         <div class="mdet-arti-inner">
           <h2 class="mdet-arti-heading">Daily Arti &amp; Bhog Schedule</h2>
@@ -199,7 +207,7 @@
       <% end %>
 
       <%# ══ PANEL 4: DID YOU KNOW? ══════════════════════════ %>
-      <% if @monument['didYouKnow'] || @monument['dykHtml'] %>
+      <% if show_dyk %>
       <section class="mdet-panel mdet-dyk">
         <div class="mdet-dyk-inner">
           <h2 class="mdet-dyk-heading">Did you<br>Know?</h2>
@@ -227,7 +235,7 @@
       <% end %>
 
       <%# ══ PANEL: EXPERIENCES ═════════════════════════════ %>
-      <% if experiences.any? %>
+      <% if show_exp %>
       <section class="mdet-panel mdet-experiences">
         <div class="mdet-experiences-inner">
           <div class="mdet-exp-card">
@@ -262,7 +270,7 @@
       <% end %>
 
       <%# ══ PANEL 4: SUB-MONUMENTS ══════════════════════════ %>
-      <% if has_subs %>
+      <% if show_subs %>
       <section class="mdet-panel mdet-sub">
         <div class="mdet-sub-inner">
           <div class="mdet-sub-cards">
@@ -288,7 +296,7 @@
       <% end %>
 
       <%# ══ PANEL 5: CLOSE-UP DETAIL ════════════════════════ %>
-      <% if closeup.any? %>
+      <% if show_closeup %>
       <section class="mdet-panel mdet-closeup">
         <div class="mdet-closeup-inner">
           <h2 class="mdet-closeup-heading">In Focus</h2>
@@ -317,7 +325,7 @@
       <% end %>
 
       <%# ══ PANEL: PAINTINGS ═══════════════════════════════════ %>
-      <% if paintings_imgs.any? %>
+      <% if show_paintings %>
       <section class="mdet-panel mdet-paintings">
         <div class="mdet-paintings-inner">
           <h2 class="mdet-paintings-heading">Paintings</h2>

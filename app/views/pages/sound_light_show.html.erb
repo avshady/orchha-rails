@@ -115,6 +115,7 @@
         </div>
 
         <%# Show times column (Figma x1321 y160) %>
+        <% if p['showTimes'] != false %>
         <h2 class="lss-col-heading lss-times-heading">Show times</h2>
         <div class="lss-card lss-times-card">
           <div class="lss-times-col">
@@ -145,7 +146,9 @@
             </div>
           </div>
         </div>
+        <% end %>
 
+        <% if p['showPricing'] != false %>
         <h2 class="lss-col-heading lss-pricing-heading">Ticket Pricing</h2>
         <div class="lss-card lss-pricing-card">
           <div class="lss-price-col">
@@ -165,8 +168,10 @@
           <p><%= pricing['note2'] || 'Open-air venue' %></p>
           <p><%= pricing['note3'] || 'No assigned seating' %></p>
         </div>
+        <% end %>
 
         <%# Visitor Guideline column (Figma x1847 y154) %>
+        <% if p['showGuidelines'] != false %>
         <div class="lss-guideline-block">
           <h2 class="lss-guideline-heading">Visitor<br>Guideline</h2>
           <ul class="lss-guideline-list">
@@ -175,8 +180,10 @@
             <% end %>
           </ul>
         </div>
+        <% end %>
 
         <%# Gallery carousel (Figma x2314 y132) %>
+        <% if p['showGallery'] != false %>
         <h2 class="lss-gallery-heading">Glimpse of Experience</h2>
         <div class="lss-carousel" id="lss-carousel">
           <% gallery.each_with_index do |img, i| %>
@@ -192,6 +199,7 @@
           </div>
           <% end %>
         </div>
+        <% end %>
 
         <div class="mdet-scroll-hint lss-scroll-hint" id="mdet-scroll-hint">
           <span>Scroll to explore</span>

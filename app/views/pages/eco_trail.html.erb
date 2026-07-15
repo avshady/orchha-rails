@@ -64,7 +64,11 @@
   </div>
 </div>
 
-<div class="mdet-wrapper et-wrapper" data-panels="4">
+<% show_intro = pg['showIntro'] != false
+   show_dyk = pg['showDidYouKnow'] != false
+   show_outro = pg['showOutro'] != false
+   et_panels = 1 + (show_intro ? 1.2 : 0) + (show_dyk ? 0.8 : 0) + (show_outro ? 1 : 0) %>
+<div class="mdet-wrapper et-wrapper" data-panels="<%= et_panels %>">
   <div class="mdet-sticky">
     <div class="mdet-track" id="mdet-track">
 
@@ -81,6 +85,7 @@
       </section>
 
       <%# ══ PANEL 2 — ECO TRAIL CONTENT ══════════════════════════ %>
+      <% if show_intro %>
       <section class="mdet-panel et-content-panel">
 
         <%# Col 1: tall photo card + Book Tickets %>
@@ -121,8 +126,10 @@
         </div>
 
       </section><%# /et-content-panel %>
+      <% end %>
 
       <%# ══ PANEL 3 — DID YOU KNOW? ═══════════════════════════════ %>
+      <% if show_dyk %>
       <section class="mdet-panel et-know-panel">
 
         <%# Col 1: heading with a photo card below it %>
@@ -150,12 +157,15 @@
         </div>
 
       </section><%# /et-know-panel %>
+      <% end %>
 
       <%# ══ PANEL 4 — OUTRO ════════════════════════════════════════ %>
+      <% if show_outro %>
       <section class="mdet-panel et-outro-panel">
         <img src="<%= pg['outroImage'] || '/images/et_outro_v2.jpg' %>" class="et-outro-bg" alt="Aerial view of Orchha monuments">
         <a href="<%= pg['outroCtaLink'] || '/experiences' %>" class="aw-walk-cta"><%= pg['outroCtaLabel'] || 'View All Experiences & Walks' %></a>
       </section>
+      <% end %>
 
     </div><%# /mdet-track %>
   </div><%# /mdet-sticky %>
