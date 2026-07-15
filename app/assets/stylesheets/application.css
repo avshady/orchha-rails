@@ -660,6 +660,16 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   font-family: 'Chivo', sans-serif; font-weight: 500; font-size: 20px;
   line-height: 24.03px; color: #fff; text-decoration: none;
 }
+.footer-vt-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  align-self: flex-start;
+  margin-top: 10px; padding: 11px 26px;
+  background: rgba(255,255,255,0.06); border: 1.5px solid #fff; border-radius: 22px;
+  font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 16px;
+  color: #fff; text-transform: uppercase; text-decoration: none; white-space: nowrap;
+  transition: background 0.2s;
+}
+.footer-vt-btn:hover { background: rgba(255,255,255,0.16); color: #fff; }
 .footer-logos {
   display: flex; flex-direction: column; align-items: center;
   width: 174.187px; gap: 27px; flex-shrink: 0;
@@ -1700,12 +1710,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex; flex-direction: column; justify-content: flex-end;
   padding-bottom: 11.4vh;
 }
-/* Wildlife Sanctuary DYK: wider panel, elements shifted right (same 78px trailing gutter) */
-[data-monument="wildlife-sanctuary"] .mdet-dyk { width: 1507px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-heading { left: 652px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-card1 { left: 1076px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-card2 { left: 652px; }
-[data-monument="wildlife-sanctuary"] .mdet-dyk-text  { left: 1076px; max-width: 353px; }
+/* Wildlife Sanctuary DYK: cluster sits ~144px after the writeup per Figma
+   3255-6450 (was +586px further right); same 78px trailing gutter */
+[data-monument="wildlife-sanctuary"] .mdet-dyk { width: 921px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-heading { left: 66px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-card1 { left: 490px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-card2 { left: 66px; }
+[data-monument="wildlife-sanctuary"] .mdet-dyk-text  { left: 490px; max-width: 353px; }
 .mdet-desc {
   font-family: 'Gambetta Variable', serif; font-weight: 500;
   font-size: 20px; line-height: 23.9px; letter-spacing: -0.2px;
@@ -1876,8 +1887,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 .mdet-closeup-view360 {
   position: absolute;
-  /* just below the two-line 70px heading (top 26%), viewport-independent */
-  left: 241px; top: calc(26% + 153px);
+  /* just below the single-line "In Focus" heading (top 26%) */
+  left: 241px; top: calc(26% + 88px);
 }
 .mdet-closeup-main {
   position: absolute;
@@ -1891,16 +1902,30 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ═══════════════════════════════════════════════════════════
+   PANEL — GALLERY (CMS-managed extra photos)
+   ═══════════════════════════════════════════════════════════ */
+.mdet-gallery { background: #e7ded5; }
+.mdet-gallery-inner {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  gap: 44px; padding: 0 78px;
+}
+.mdet-gallery-photo {
+  width: 421px; height: 56.5%; max-width: 34vw;
+}
+
+/* ═══════════════════════════════════════════════════════════
    PANEL — EXPERIENCES
    ═══════════════════════════════════════════════════════════ */
-/* Fixed width (content ends 1066 + 78px gutter) so the gap to the next
-   section doesn't balloon on wide screens */
-.mdet-experiences { background: #e7ded5; width: 1144px; flex-shrink: 0; }
+/* Fixed width per Figma 3255-6450: card starts 140px after the DYK text
+   (78px of that is the DYK panel's trailing gutter), content 847 wide,
+   150px gap before the outro */
+.mdet-experiences { background: #e7ded5; width: 1059px; flex-shrink: 0; }
 .mdet-experiences-inner { position: absolute; inset: 0; }
 /* Card container — 847×301px per Figma spec */
 .mdet-exp-card {
   position: absolute;
-  left: 164px; top: calc(25vh - 9.5px);
+  left: 62px; top: calc(25vh - 9.5px);
   width: 847px; height: 301px;
   background: #ecdfd3;
   border: 0.944px solid rgba(110,22,3,0.25);
@@ -1908,10 +1933,10 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   /* no overflow:hidden — the Experiences pill straddles the top edge
      (translate -50%) and was getting its upper half clipped (Figma 3255-6679) */
 }
-/* "Experiences" pill — center at 507px from card left, straddles top edge */
+/* "Experiences" pill — centred on the card, straddles its top edge */
 .mdet-exp-label {
   position: absolute;
-  left: 507px; top: 0;
+  left: 50%; top: 0;
   transform: translate(-50%, -50%);
   display: inline-flex; justify-content: center; align-items: center;
   gap: 16.49px;
@@ -1922,13 +1947,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   border-radius: 65.959px;
   white-space: nowrap;
 }
-/* Experience items — absolutely positioned within 847×301 card */
-/* Left col icon at 98px→text at 168px; Right col icon at 567px→text at 640px */
-.mdet-exp-item { position: absolute; display: flex; align-items: flex-start; }
-.mdet-exp-item:nth-of-type(1) { left: 98px;  top: 47px; }  /* Nature Walks      */
-.mdet-exp-item:nth-of-type(2) { left: 567px; top: 47px; }  /* Bird Watching     */
-.mdet-exp-item:nth-of-type(3) { left: 98px;  top: 177px; } /* Riverside Trails  */
-.mdet-exp-item:nth-of-type(4) { left: 567px; top: 177px; } /* Sunrise Photography */
+/* Experience items — absolutely positioned within 847×301 card.
+   Figma 3255-6450: left col icon at 63px, text at 168px; right col icon at
+   488px, text at 584px */
+.mdet-exp-item { position: absolute; display: flex; align-items: flex-start; gap: 34px; }
+.mdet-exp-item:nth-of-type(1) { left: 63px;  top: 47px; }  /* Nature Walks      */
+.mdet-exp-item:nth-of-type(2) { left: 488px; top: 47px; }  /* Bird Watching     */
+.mdet-exp-item:nth-of-type(3) { left: 63px;  top: 177px; } /* Riverside Trails  */
+.mdet-exp-item:nth-of-type(4) { left: 488px; top: 177px; } /* Sunrise Photography */
 .mdet-exp-icon { width: 71.007px; height: 70px; flex-shrink: 0; margin-top: 13px; object-fit: contain; }
 .mdet-exp-text  { display: flex; flex-direction: column; gap: 4px; }
 .mdet-exp-title {
@@ -1949,8 +1975,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Four photos in a row below the card */
 .mdet-exp-photos {
   position: absolute;
-  /* 34px below the 301px experiences card (top 25vh - 9.5px) */
-  left: 164px; top: calc(25vh + 325.5px);
+  /* 34px below the 301px experiences card, spanning its full width */
+  left: 62px; top: calc(25vh + 325.5px);
   display: flex; gap: 34px;
 }
 .mdet-exp-photo {
@@ -1958,9 +1984,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   width: 186px; height: min(187px, 75vh - 329px); flex-shrink: 0;
   border-radius: 7px;
 }
-/* Extra gap between 2nd and 3rd photo (column break) */
-.mdet-exp-photo:nth-child(2) { margin-right: 56px; }
-
 /* ── Panel: Paintings ──────────────────────────────────── */
 .mdet-paintings {
   background: #e7ded5;
@@ -2006,8 +2029,11 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mdet-outro-bg {
   position: absolute; inset: 0;
 }
-.mdet-outro-bg img {
+.mdet-outro-bg img,
+.mdet-outro-bg video {
   width: 100%; height: 100%; object-fit: cover; display: block;
+  /* outro media dimmed 20% against the black panel per client request */
+  opacity: 0.8;
 }
 .mdet-outro-overlay {
   position: absolute; inset: 0;
@@ -2199,6 +2225,46 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* ═══════════════════════════════════════════════════════════
    EXPERIENCES & TRAILS PAGE
    ═══════════════════════════════════════════════════════════ */
+/* ═══════════════════════════════════════════════════════════
+   COMING SOON PAGE
+   ═══════════════════════════════════════════════════════════ */
+.cs-page {
+  background: #e7ded5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.cs-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 140px 20px 80px;
+}
+.cs-eyebrow {
+  font-family: 'Chivo', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6e1603;
+  margin: 0 0 18px;
+}
+.cs-heading {
+  font-family: 'Scotch Display', serif;
+  font-weight: 600;
+  font-size: 70px;
+  line-height: 1.043;
+  color: #6e1603;
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .cs-heading { font-size: 42px; }
+  .cs-content { padding: 110px 20px 60px; }
+}
+
 .exp-page {
   background: #e7ded5;
   min-height: 100vh;
@@ -2208,7 +2274,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Header */
 .exp-header {
   padding: 80px 120px 48px;
-  text-align: left;
+  text-align: center;
 }
 .exp-heading {
   font-family: 'Scotch Display', serif;
@@ -2217,17 +2283,17 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #6e1603;
   margin: 0 0 20px 0;
   line-height: 1.05;
-  text-align: left;
+  text-align: center;
 }
 .exp-subheading {
   font-family: 'Gambetta Variable', serif;
   font-weight: 500;
   font-size: 20px;
   color: #000;
-  margin: 0;
+  margin: 0 auto;
   max-width: 588px;
   line-height: 1.5;
-  text-align: left;
+  text-align: center;
 }
 
 /* Filter row */
@@ -2238,34 +2304,33 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   padding: 0 120px 40px;
   gap: 24px;
 }
+/* same filter-pill style as the other listing pages (.mon-tab) */
 .exp-filter-tabs {
   display: flex;
   align-items: center;
   gap: 8px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
+  flex-wrap: wrap;
 }
 .exp-tab {
   font-family: 'Chivo', sans-serif;
-  font-weight: 500;
-  font-size: 19.412px;
+  font-weight: 700;
+  font-size: 17px;
   color: #6e1603;
   text-transform: uppercase;
   background: none;
   border: none;
-  padding: 7px 18px;
-  border-radius: 37px;
+  padding: 8px 24px;
+  border-radius: 99px;
   cursor: pointer;
   letter-spacing: 0.02em;
-  transition: background 0.15s, color 0.15s;
+  transition: background 0.18s, color 0.18s;
   white-space: nowrap;
 }
 .exp-tab.active {
   background: #6e1603;
   color: #fff;
-  font-weight: 700;
-  font-size: 18.788px;
 }
+.exp-tab:not(.active):hover { background: rgba(110,22,3,0.08); }
 .exp-search {
   position: relative;
   width: 297px;
@@ -2481,7 +2546,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* "Art walk video" label (Figma: Scotch Display 61.3px white at 120,137) */
 .aw-video-label {
   position: absolute;
-  top: 16.7vh; left: 120px;
+  /* never slides under the fixed navbar on short viewports */
+  top: max(16.7vh, 124px); left: 120px;
   font-family: 'Scotch Display', serif;
   font-weight: 600;
   font-size: 61.311px;
@@ -2611,19 +2677,20 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 /* Card 2 — medium, top-right, offset down */
 .aw-gc2 {
   width: 228px; height: 229px;
-  top: 100px; left: 295px;
+  top: 107px; left: 320px;
 }
 /* Card 3 — medium, below card 1 */
 .aw-gc3 {
   width: 228px; height: 228px;
-  top: 290px; left: 40px;
+  top: 323px; left: 53px;
 }
 
 /* View Art Gallery button — below Card 2 */
 .aw-gallery-btn {
+  /* right of the bottom-left collage card, per Figma (2502,588 rel 2185,176) */
   position: absolute;
-  bottom: 68px;
-  right: 40px;
+  left: 317px;
+  top: 412px;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2636,6 +2703,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #0a0a0a;
 }
 .aw-walk-mural {
   position: absolute;
@@ -2646,6 +2714,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   object-position: center center;
   display: block;
   z-index: 0;
+  /* outro media dimmed 20% against the black panel per client request */
+  opacity: 0.8;
 }
 .aw-walk-overlay {
   position: absolute; inset: 0; z-index: 0;
@@ -2761,6 +2831,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   color: #000;
   margin: 4px 0 0;
 }
+/* CMS-managed mural card below "The Walk Through Time" (Figma 3612:6461) */
+.aw-walk-card {
+  position: relative;
+  margin-top: 14px;
+  width: 426px;
+  height: min(347px, 42.4vh);
+}
+.aw-walk-card > img:first-child { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Right column: step indicator + cards */
 .aw-tr-right {
@@ -2899,10 +2977,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .et-col-book {
   flex: 0 0 421px;
   justify-content: center;
-  align-items: center;
+  /* Book Tickets sits right-aligned under the tall card per Figma 3265:7033 */
+  align-items: flex-end;
   gap: clamp(24px, 5vh, 42px);
   padding-bottom: 4vh;
 }
+.et-col-book .et-card-tall { align-self: stretch; }
 .et-col-mid {
   flex: 0 0 353px;
   justify-content: flex-start;
@@ -3020,6 +3100,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #0a0a0a;
 }
 .et-outro-panel::after {
   content: '';
@@ -3037,6 +3118,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   object-position: center;
   display: block;
   z-index: 0;
+  /* outro media dimmed 20% against the black panel per client request */
+  opacity: 0.8;
 }
 
 /* ── River Kayaking: flowing collage panel (geometry from the 1440×818
@@ -3072,7 +3155,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .rkc-card4 { left: 138.19vw; top: 19.68vh; width: 20.35vw; aspect-ratio: 293 / 248; }
 .rkc-body {
   position: absolute;
-  left: 68.61vw; bottom: 26.65vh;
+  left: 68.61vw;
   width: 34.1vw;
   font-family: 'Gambetta Variable', serif;
   font-weight: 500;
@@ -3081,11 +3164,26 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   letter-spacing: -0.01em;
   color: #000;
 }
+/* two write-ups per Figma 3261-7802: rafting (upper) + boat ride (lower) */
+.rkc-body1 { bottom: 52.08vh; }
+.rkc-body2 { bottom: 28.61vh; }
+.rkc-note {
+  position: absolute;
+  left: 68.61vw; top: 86.07vh;
+  width: 34.1vw;
+  font-family: 'Gambetta Variable', serif;
+  font-weight: 500;
+  font-size: clamp(9px, 0.83vw, 12px);
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: #000;
+  margin: 0;
+}
 .rkc-body p { margin: 0 0 0.9em; }
 .rkc-body p:last-child { margin-bottom: 0; }
 .rkc-info {
   position: absolute;
-  left: 68.61vw; top: 76.04vh;
+  left: 68.61vw;
   width: 24.4vw;
   background: #704214;
   border-radius: 4px;
@@ -3094,6 +3192,8 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   flex-direction: column;
   gap: 0.55vh;
 }
+.rkc-info1 { top: 48.78vh; }
+.rkc-info2 { top: 73.59vh; }
 .rkc-info-row {
   font-family: 'Gambetta Variable', serif;
   font-size: clamp(9px, 0.99vw, 15px);
@@ -3103,7 +3203,12 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   white-space: nowrap;
 }
 .rkc-info-label { font-weight: 700; }
-.rkc-book { position: absolute; left: 25.28vw; top: 78.73vh; }
+.rkc-book {
+  position: absolute; left: 25.28vw;
+  /* Figma position, but never above card1's bottom edge (21.03vh tall
+     card + 29.79vw height) on wide/short viewports */
+  top: max(78.73vh, calc(21.03vh + 29.79vw + 30px));
+}
 .rkc-dyk-heading { left: 112.64vw; top: 26.41vh; width: auto; white-space: nowrap; }
 .rkc-dyk-text {
   position: absolute;
@@ -3235,7 +3340,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 /* ── River Kayaking: outro ── */
-.rk-outro-panel { position: relative; overflow: hidden; }
+.rk-outro-panel { position: relative; overflow: hidden; background: #0a0a0a; }
 .rk-outro-overlay { position: absolute; inset: 0; background: rgba(0, 0, 0, 0.31); }
 .rk-outro-cta {
   position: absolute; left: 39.51vw; top: 47.43vh;
@@ -3297,14 +3402,31 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transform: translateX(-100%);
   transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.nav-mobile-menu::before, .hist-nav-mobile-menu::before, .mdet-nav-mobile-menu::before {
-  content: 'ORCHHA';
+.nav-mobile-wordmark {
   position: absolute; top: 34px; left: 48px;
   font-family: 'Scotch Display', serif; font-weight: 600;
   font-size: 30px; line-height: 1;
   letter-spacing: 0.08em;
   color: #6e1603;
+  text-decoration: none;
 }
+/* Collapsible "Discover Orchha" group inside the drawer */
+.nav-mobile-group {
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+.nav-mobile-group-btn {
+  background: none; border: none; padding: 0; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-mobile-group-btn svg { width: 10px; height: 6px; flex-shrink: 0; transition: transform 0.2s; }
+.nav-mobile-group.open .nav-mobile-group-btn svg { transform: rotate(180deg); }
+.nav-mobile-group-items {
+  display: none;
+  flex-direction: column; align-items: flex-start; gap: 22px;
+  padding: 22px 0 0 18px;
+}
+.nav-mobile-group.open .nav-mobile-group-items { display: flex; }
+.nav-mobile-sub-link { font-size: 14px; font-weight: 600; }
 .nav-mobile-menu.open, .hist-nav-mobile-menu.open, .mdet-nav-mobile-menu.open {
   opacity: 1; pointer-events: auto; transform: translateX(0);
 }
@@ -3537,7 +3659,6 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
   .mdet-exp-photos { position: static; flex-wrap: wrap; gap: 12px; }
   .mdet-exp-photo { width: calc(50% - 6px); height: auto; aspect-ratio: 1; }
-  .mdet-exp-photo:nth-child(2) { margin-right: 0; }
 
   /* Panel: Sub-monuments — dashed connector removed, cards stack */
   .mdet-sub { width: 100% !important; }
@@ -3558,6 +3679,14 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   .mdet-closeup-view360 { position: static; align-self: flex-start; }
   .mdet-closeup-main { position: static; width: 100%; height: 62vw; max-height: 360px; }
   .mdet-closeup-side { position: static; width: 100%; height: 52vw; max-height: 280px; }
+
+  /* Panel: Gallery — side-by-side cards → stacked flow */
+  .mdet-gallery-inner {
+    position: static;
+    flex-direction: column; gap: 20px;
+    padding: 56px 20px;
+  }
+  .mdet-gallery-photo { width: 100%; max-width: none; height: 62vw; max-height: 360px; }
 
   /* Panel: Paintings — absolute → stacked flow */
   .mdet-paintings { width: 100% !important; }
@@ -3620,6 +3749,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   }
   .aw-transit-heading { font-size: 36px; line-height: 1.12; }
   .aw-transit-sub { font-size: 16px; margin-top: 10px; }
+  .aw-walk-card { width: 100%; height: auto; aspect-ratio: 426 / 347; margin-top: 20px; }
   .aw-tr-right { position: static; width: 100%; padding: 24px 20px 56px; }
   .aw-card-grid { flex-direction: column; gap: 24px; }
   .aw-card-grid::before { display: none; }
@@ -4379,7 +4509,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   position: absolute;
   border-radius: 10px;
   overflow: hidden;
-  background: #d9d9d9;
+  background: #6e1603;
   display: block;
   text-decoration: none;
   color: inherit;
@@ -5573,7 +5703,11 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 
 /* ── Outro panel ── */
 .lss-outro-panel { background: #0a0a0a; }
-.lss-outro-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.lss-outro-bg {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+  /* outro media dimmed 20% against the black panel per client request */
+  opacity: 0.8;
+}
 .lss-outro-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.31); }
 .lss-outro-cta {
   position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -5658,7 +5792,8 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 }
 
 .cw-strip {
-  width: 410.69vw;
+  /* was 410.69vw before the "Other places" divider was removed */
+  width: 397.56vw;
   background: #e7ded5;
 }
 
@@ -5695,10 +5830,14 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   font-size: 2.262vw; line-height: 1.21; color: #6e1603; white-space: nowrap;
 }
 
-/* ── Timeline line (card-1 center → card-10 center at y270) ── */
+/* ── Timeline line (card-1 center → card-10 center at y270) —
+      evenly spaced round dots per the Figma refinement ── */
 .cw-timeline-line {
-  position: absolute; left: 75.07vw; top: 33.01vh; width: 311.81vw;
-  border-top: 2px dashed rgba(141, 20, 12, 0.45);
+  position: absolute; left: 75.07vw; top: 33.01vh; width: 298.68vw;
+  height: 3px;
+  background-image: radial-gradient(circle, rgba(141, 20, 12, 0.55) 1.5px, transparent 1.6px);
+  background-size: 14px 3px;
+  background-repeat: repeat-x;
 }
 
 /* ── Numbered monument cards (row1 x888, row2 x3467, y248) ── */
@@ -5708,7 +5847,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   list-style: none; margin: 0; padding: 0;
 }
 .cw-cards-1 { left: 61.67vw; }
-.cw-cards-2 { left: 240.76vw; }
+.cw-cards-2 { left: 227.63vw; }
 .cw-card { width: 26.74vw; display: flex; flex-direction: column; align-items: center; }
 .cw-card-num {
   width: 3.056vw; height: 3.056vw; border-radius: 50%;
@@ -5737,16 +5876,6 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   margin: 0;
 }
 
-/* ── "Other places" rotated divider (center x3326 y457) ── */
-.cw-other-places {
-  position: absolute; left: 230.97vw; top: 55.87vh;
-  transform: translate(-50%, -50%) rotate(-90deg);
-  white-space: nowrap;
-  font-family: 'Chivo', sans-serif; font-weight: 700;
-  font-size: 2.907vw; text-transform: uppercase; text-align: center;
-  color: #8d140c; opacity: 0.22;
-}
-
 /* ── Mobile: vertical stack ─────────────────────────────── */
 @media (max-width: 900px) {
   .cw-strip {
@@ -5757,7 +5886,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   }
   .cw-strip > * { position: static !important; width: auto !important; }
 
-  .cw-timeline-line, .cw-other-places { display: none; }
+  .cw-timeline-line { display: none; }
 
   .cw-intro { gap: 14px; }
   .cw-heading { font-size: 38px; }
@@ -5795,18 +5924,18 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   text-align: center;
 }
 .pyv-hero-title {
+  /* matches the listing-page title style (.exp-heading / .mon-heading) */
   font-family: 'Scotch Display', serif;
   font-weight: 600;
-  font-size: clamp(57px, 6.4vw, 93px);
-  letter-spacing: -1px;
-  line-height: 1;
+  font-size: 62px;
+  line-height: 1.05;
   color: #6e1603;
   margin: 0;
   opacity: 0;
   transform: translateY(28px);
   transition: opacity .8s cubic-bezier(.4,0,.2,1), transform .8s cubic-bezier(.4,0,.2,1);
 }
-.pyv-hero-title em { font-style: italic; }
+.pyv-hero-title em { font-style: normal; }
 .pyv-hero-sub {
   font-family: 'Gambetta Variable', serif;
   font-weight: 500;
@@ -5926,7 +6055,6 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 .pyv-img-wrap {
   position: relative;
   aspect-ratio: 4 / 3;
-  border: 6px solid #6e1603;
   background: #d1bfae;
   overflow: hidden;
 }
@@ -6030,7 +6158,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
 /* ── Mobile ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .pyv-hero { padding: 56px 24px 16px; }
-  .pyv-hero-title { font-size: clamp(38px, 10.4vw, 70px); letter-spacing: -0.5px; }
+  .pyv-hero-title { font-size: 40px; }
   .pyv-hero-sub { margin-top: 16px; max-width: 40ch; font-size: clamp(12px, 2.9vw, 15px); line-height: 1.35; }
   .pyv-slider-wrap { padding: 16px 24px 28px; }
   .pyv-labels { padding: 0; }

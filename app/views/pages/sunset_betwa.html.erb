@@ -1,14 +1,17 @@
-<%# Event detail page — Figma 3272-13548: centred title + description,
-    hero card, visitors/date stats, Archived Gallery carousel, Visit Orchha. %>
+<%# Sunset At Betwa — hero + slider carousel gallery + "To Be Self Explored"
+    tag. CMS-first (sunsetBetwaPage section), mobile-first. The audio guide /
+    virtual tour tabs are CMS-toggled off for this page; the self-explored
+    tag takes their place. %>
 <% nav = (@home['nav'] || {})
    dd  = nav['discoverDropdown'] || []
    ft  = @home['footer'] || {}
-   vs  = @home['visit']  || {}
-   gallery = (@event['galleryImages'] || []).reject { |g| g.to_s.empty? }
+   pg  = @page || {}
+   gallery = (pg['galleryImages'] || []).reject { |g| g.to_s.empty? }
 %>
 
 <div class="sticky-hoho"><a href="/hoho">HOHO Service</a></div>
 
+<%# Fixed nav (dark glass variant over the hero) %>
 <div class="mdet-nav-wrap">
   <nav class="mdet-navbar">
     <div class="mdet-nav-links">
@@ -64,63 +67,35 @@
   </div>
 </div>
 
-<div class="evd-page">
+<div class="sbw-page">
 
-  <%# ── Title + description (centred) ─────────────────────── %>
-  <header class="evd-header">
-    <h1 class="evd-title"><%= @event['name'] %></h1>
-    <% if @event['description'].present? %>
-    <p class="evd-sub"><%= @event['description'] %></p>
-    <% end %>
-  </header>
-
-  <%# ── Hero card ──────────────────────────────────────────── %>
-  <div class="evd-hero">
-    <%= render 'hero_media', config: @event, fallback: @event['image'], alt: @event['name'] %>
+  <%# ── HERO (image or video) with centred title ───────────── %>
+  <section class="sbw-hero">
+    <%= render 'hero_media', config: pg, fallback: '/images/exp_sunset_betwa.jpg', alt: pg['heading'].presence || 'Sunset At Betwa' %>
+    <div class="sbw-hero-overlay"></div>
+    <h1 class="sbw-title"><%= pg['heading'].presence || 'Sunset At Betwa' %></h1>
     <div class="evd-hero-logos">
       <img src="/images/mpt_logo.png" class="aw-logo-mpt" alt="MPT">
       <img src="/images/incredible_india.png" class="aw-logo-ii" alt="Incredible India">
     </div>
-  </div>
+  </section>
 
-  <%# ── Stats row: visitors + date ─────────────────────────── %>
-  <div class="evd-stats">
-    <% if @event['estimatedVisitors'].present? %>
-    <div class="evd-stat">
-      <span class="evd-stat-icon">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="8.5" r="3.5" stroke="#6e1603" stroke-width="1.6"/><path d="M5.5 19c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5" stroke="#6e1603" stroke-width="1.6" stroke-linecap="round"/></svg>
-      </span>
-      <div class="evd-stat-text">
-        <span class="evd-stat-lbl">Estimated Visitors:</span>
-        <span class="evd-stat-val"><%= @event['estimatedVisitors'] %></span>
-      </div>
-    </div>
-    <% end %>
-    <% if @event['date'].present? %>
-    <div class="evd-stat">
-      <span class="evd-stat-icon">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="4" y="6" width="16" height="14" rx="2" stroke="#6e1603" stroke-width="1.6"/><path d="M4 10h16M8 3.5V7M16 3.5V7" stroke="#6e1603" stroke-width="1.6" stroke-linecap="round"/></svg>
-      </span>
-      <div class="evd-stat-text">
-        <span class="evd-stat-lbl">Date:</span>
-        <span class="evd-stat-val"><%= @event['date'] %></span>
-      </div>
-    </div>
-    <% end %>
-  </div>
+  <%# ── Intro (optional CMS text) ──────────────────────────── %>
+  <% if pg['description'].present? %>
+  <p class="sbw-desc"><%= pg['description'] %></p>
+  <% end %>
 
-  <%# ── Archived Gallery carousel ──────────────────────────── %>
+  <%# ── Slider carousel gallery ────────────────────────────── %>
   <% if gallery.any? %>
-  <section class="evd-gallery-band">
-    <h2 class="evd-gallery-heading">Archived Gallery</h2>
-    <div class="evd-carousel">
-      <button type="button" class="evd-car-arrow evd-car-prev" aria-label="Previous photos">
+  <section class="sbw-gallery">
+    <div class="sbw-carousel">
+      <button type="button" class="sbw-car-arrow sbw-car-prev" aria-label="Previous photos">
         <svg viewBox="0 0 24 24" fill="none"><path d="M14.5 6l-6 6 6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      <div class="evd-car-track" id="evd-car-track">
+      <div class="sbw-car-track" id="sbw-car-track">
         <% gallery.each do |photo| %>
-        <div class="evd-car-card">
-          <img src="<%= photo %>" alt="<%= @event['name'] %> — archive photo" loading="lazy">
+        <div class="sbw-car-card">
+          <img src="<%= photo %>" alt="Sunset at Betwa — gallery photo" loading="lazy">
           <div class="evd-hero-logos">
             <img src="/images/mpt_logo.png" class="aw-logo-mpt" alt="MPT">
             <img src="/images/incredible_india.png" class="aw-logo-ii" alt="Incredible India">
@@ -128,100 +103,88 @@
         </div>
         <% end %>
       </div>
-      <button type="button" class="evd-car-arrow evd-car-next" aria-label="Next photos">
+      <button type="button" class="sbw-car-arrow sbw-car-next" aria-label="Next photos">
         <svg viewBox="0 0 24 24" fill="none"><path d="M9.5 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
     </div>
+    <p class="sbw-tag"><%= pg['tagLabel'].presence || 'To Be Self Explored' %></p>
   </section>
   <% end %>
-
-  <%# ── Visit Orchha (shared component) ────────────────────── %>
-  <div class="visit-wrap">
-    <div class="visit-section">
-      <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
-      <div class="visit-content">
-        <h2 class="visit-heading"><em>Visit</em> Orchha</h2>
-        <div class="visit-links">
-          <% (vs['links'] || [{'label'=>'How to Reach Orchha','url'=>'/reach'},{'label'=>'Travel Options','url'=>'/travel'},{'label'=>'Stay Options','url'=>'/stay'}]).each do |lnk| %>
-          <a href="<%= lnk['url'] %>" class="visit-link"><%= lnk['label'] %></a>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <%# ── Footer ─────────────────────────────────────────────── %>
 <%= render 'shared/footer', ft: ft %>
 
-</div><%# /.evd-page %>
+</div><%# /.sbw-page %>
+
+<%# CMS-toggled tabs (audio guide / virtual tour are off for this page) %>
+<%= render 'audio_tabs', tracks: @audio_tracks, label: 'Sunset At Betwa', config: pg %>
 
 <style>
-  .evd-page { background: #e7ded5; min-height: 100vh; }
-  .evd-header { max-width: 720px; margin: 0 auto; padding: 140px 24px 34px; text-align: center; }
-  .evd-title {
+  .sbw-page { background: #e7ded5; min-height: 100vh; }
+  .sbw-hero { position: relative; height: 72vh; min-height: 420px; overflow: hidden; }
+  .sbw-hero > img, .sbw-hero > video { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sbw-hero-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 45%, rgba(0,0,0,0.35) 100%);
+  }
+  .sbw-title {
+    position: absolute; left: 50%; bottom: 8vh; transform: translateX(-50%);
     font-family: 'Scotch Display', serif; font-weight: 600; font-size: 62px;
-    line-height: 1.05; color: #6e1603; margin: 0 0 14px; text-transform: capitalize;
+    line-height: 1.05; color: #fff; margin: 0; text-align: center; width: 90%;
+    text-shadow: 0 2px 24px rgba(0,0,0,0.35);
   }
-  .evd-sub {
+  .sbw-desc {
+    max-width: 720px; margin: 0 auto; padding: 44px 24px 0; text-align: center;
     font-family: 'Gambetta Variable', serif; font-weight: 500; font-size: 18px;
-    line-height: 1.45; color: #1a0e06; margin: 0;
+    line-height: 1.45; color: #1a0e06;
   }
-  .evd-hero { position: relative; max-width: 1200px; margin: 0 auto; border-radius: 14px; overflow: hidden; aspect-ratio: 2 / 1; }
-  .evd-hero > img, .evd-hero > video { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .evd-hero-logos { position: absolute; top: 14px; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 18px; }
-  .evd-stats { display: flex; justify-content: center; gap: 90px; padding: 34px 24px 60px; flex-wrap: wrap; }
-  .evd-stat { display: flex; align-items: center; gap: 14px; }
-  .evd-stat-icon {
-    width: 46px; height: 46px; border: 1.5px solid #6e1603; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  }
-  .evd-stat-icon svg { width: 24px; height: 24px; }
-  .evd-stat-text { display: flex; flex-direction: column; }
-  .evd-stat-lbl { font-family: 'Gambetta Variable', serif; font-size: 15px; color: #6e1603; }
-  .evd-stat-val { font-family: 'Gambetta Variable', serif; font-weight: 700; font-size: 24px; color: #2a1000; }
-  .evd-gallery-band { background: #ded3c4; padding: 56px 0 64px; }
-  .evd-gallery-heading {
-    font-family: 'Scotch Display', serif; font-weight: 600; font-size: 44px;
-    color: #8d140c; text-align: center; margin: 0 0 36px;
-  }
-  .evd-carousel { position: relative; max-width: 1200px; margin: 0 auto; padding: 0 70px; }
-  .evd-car-track {
-    display: flex; gap: 24px; overflow-x: auto; scroll-behavior: smooth;
+  .sbw-gallery { padding: 56px 0 64px; }
+  .sbw-carousel { position: relative; max-width: 1200px; margin: 0 auto; padding: 0 70px; }
+  .sbw-car-track {
+    display: flex; gap: 24px; overflow-x: auto;
     scrollbar-width: none; scroll-snap-type: x mandatory;
   }
-  .evd-car-track::-webkit-scrollbar { display: none; }
-  .evd-car-card {
+  .sbw-car-track::-webkit-scrollbar { display: none; }
+  .sbw-car-card {
     position: relative; flex: 0 0 calc(50% - 12px);
     aspect-ratio: 34 / 25; border-radius: 10px; overflow: hidden; scroll-snap-align: start;
   }
-  .evd-car-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .evd-car-arrow {
+  .sbw-car-card > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .sbw-car-arrow {
     position: absolute; top: 50%; transform: translateY(-50%);
     width: 42px; height: 42px; border-radius: 50%;
-    border: 1.5px solid #8d140c; background: transparent; color: #8d140c;
+    border: 1.5px solid #6e1603; background: transparent; color: #6e1603;
     display: flex; align-items: center; justify-content: center; cursor: pointer;
     transition: background 0.2s, color 0.2s;
+    z-index: 1;
   }
-  .evd-car-arrow:hover { background: #8d140c; color: #ded3c4; }
-  .evd-car-arrow svg { width: 22px; height: 22px; }
-  .evd-car-prev { left: 12px; }
-  .evd-car-next { right: 12px; }
+  .sbw-car-arrow:hover { background: #6e1603; color: #e7ded5; }
+  .sbw-car-arrow svg { width: 22px; height: 22px; }
+  .sbw-car-prev { left: 12px; }
+  .sbw-car-next { right: 12px; }
+  .sbw-tag {
+    width: fit-content; margin: 44px auto 0;
+    padding: 11px 26px;
+    border: 1.5px solid #6e1603; border-radius: 22px;
+    font-family: 'Chivo', sans-serif; font-weight: 600; font-size: 16px;
+    color: #6e1603; text-transform: uppercase; letter-spacing: 0.04em;
+  }
   @media (max-width: 900px) {
-    .evd-header { padding: 110px 20px 24px; }
-    .evd-title { font-size: 40px; }
-    .evd-sub { font-size: 16px; }
-    .evd-hero { margin: 0 20px; aspect-ratio: 4 / 3; }
-    .evd-stats { gap: 28px; flex-direction: column; align-items: center; padding: 28px 20px 44px; }
-    .evd-gallery-heading { font-size: 32px; }
-    .evd-carousel { padding: 0 54px; }
-    .evd-car-card { flex: 0 0 100%; }
-    .evd-car-prev { left: 6px; }
-    .evd-car-next { right: 6px; }
+    .sbw-hero { height: 56vh; min-height: 320px; }
+    .sbw-title { font-size: 40px; bottom: 6vh; }
+    .sbw-desc { font-size: 16px; padding-top: 32px; }
+    .sbw-gallery { padding: 40px 0 52px; }
+    .sbw-carousel { padding: 0 54px; }
+    .sbw-car-card { flex: 0 0 100%; }
+    .sbw-car-prev { left: 6px; }
+    .sbw-car-next { right: 6px; }
+    .sbw-tag { margin-top: 32px; }
   }
 </style>
 
 <script>
 (function() {
+  // ── Navbar dropdown ───────────────────────────────────────
   const navBtn = document.querySelector('.mdet-discover-btn');
   const navDd  = document.querySelector('.mdet-nav-dropdown');
   if (navBtn && navDd) {
@@ -250,6 +213,7 @@
     navDd.addEventListener('click', e => e.stopPropagation());
   }
 
+  // ── Mobile hamburger menu ─────────────────────────────────
   const mdetHamburgerBtn = document.getElementById('mdet-nav-hamburger-btn');
   const mdetMobileMenu   = document.getElementById('mdet-nav-mobile-menu');
   const mdetMobileClose  = document.getElementById('mdet-nav-mobile-close-btn');
@@ -269,19 +233,18 @@
     mdetMobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMdetMobileMenu));
   }
 
-  // ── Archived Gallery carousel ─────────────────────────────
-  // rAF animation instead of native smooth scrolling: scroll-snap containers
-  // ignore programmatic smooth scrolls in several engines.
-  const track = document.getElementById('evd-car-track');
+  // ── Gallery carousel (JS easing; smooth scrolling is unreliable
+  //    on snap containers in several engines) ─────────────────
+  const track = document.getElementById('sbw-car-track');
   if (track) {
-    const step = () => track.querySelector('.evd-car-card').getBoundingClientRect().width + 24;
+    const step = () => track.querySelector('.sbw-car-card').getBoundingClientRect().width + 24;
     let animTimer = null;
     function animateTo(target) {
       const start = track.scrollLeft;
       const delta = target - start;
       const t0 = performance.now();
       track.style.scrollSnapType = 'none';
-      track.style.scrollBehavior = 'auto'; /* let the JS easing own the motion */
+      track.style.scrollBehavior = 'auto';
       clearInterval(animTimer);
       animTimer = setInterval(() => {
         const p = Math.min(1, (performance.now() - t0) / 400);
@@ -298,8 +261,8 @@
       const max = track.scrollWidth - track.clientWidth;
       animateTo(Math.max(0, Math.min(idx * step(), max)));
     }
-    document.querySelector('.evd-car-prev').addEventListener('click', () => go(-1));
-    document.querySelector('.evd-car-next').addEventListener('click', () => go(1));
+    document.querySelector('.sbw-car-prev').addEventListener('click', () => go(-1));
+    document.querySelector('.sbw-car-next').addEventListener('click', () => go(1));
   }
 })();
 </script>

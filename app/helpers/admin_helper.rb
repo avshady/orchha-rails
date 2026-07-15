@@ -6,7 +6,7 @@ module AdminHelper
     "monumentsPage"     => "Monuments Page Settings",
     "monuments"         => "Monuments",
     "experiencesPage"   => "Experiences Page Settings",
-    "experienceItems"   => "Experiences & Trails",
+    "experienceItems"   => "Experiences & Walks",
     "cuisineItems"      => "Cuisine Items",
     "eventsPage"        => "Events Page Settings",
     "events"            => "Events",
@@ -17,6 +17,7 @@ module AdminHelper
     "artWalkPage"       => "Art Walk Page",
     "ecoTrailPage"      => "Eco Trail Page",
     "riverKayakingPage" => "River Kayaking Page",
+    "sunsetBetwaPage"   => "Sunset At Betwa Page",
     "religiousWalkPage" => "Religious Walk Page",
     "supportUsPage"     => "Support Us Page Settings",
     "sabhyataPage"      => "Sabhyata Foundation Page",
@@ -64,13 +65,15 @@ module AdminHelper
             { label: "All Monuments", path: admin_collection_path("monuments"), match: %r{/collections/monuments} },
             { label: "Page Settings", path: admin_edit_section_path("monumentsPage"), match: %r{/sections/monumentsPage} }
           ] },
-        { label: "Experiences", path: admin_collection_path("experienceItems"), match: %r{/(collections/(experienceItems|cuisineItems)|sections/(experiencesPage|artWalkPage|ecoTrailPage|riverKayakingPage|religiousWalkPage))},
+        { label: "Experiences", path: admin_collection_path("experienceItems"), match: %r{/(collections/(experienceItems|cuisineItems)|sections/(experiencesPage|artWalkPage|ecoTrailPage|riverKayakingPage|religiousWalkPage|citadelWalkPage))},
           children: [
             { label: "All Experiences", path: admin_collection_path("experienceItems"), match: %r{/collections/experienceItems} },
             { label: "Art Walk Page", path: admin_edit_section_path("artWalkPage"), match: %r{/sections/artWalkPage} },
+            { label: "Citadel Walk Page", path: admin_edit_section_path("citadelWalkPage"), match: %r{/sections/citadelWalkPage} },
             { label: "Eco Trail Page", path: admin_edit_section_path("ecoTrailPage"), match: %r{/sections/ecoTrailPage} },
             { label: "River Kayaking Page", path: admin_edit_section_path("riverKayakingPage"), match: %r{/sections/riverKayakingPage} },
             { label: "Religious Walk Page", path: admin_edit_section_path("religiousWalkPage"), match: %r{/sections/religiousWalkPage} },
+            { label: "Sunset At Betwa Page", path: admin_edit_section_path("sunsetBetwaPage"), match: %r{/sections/sunsetBetwaPage} },
             { label: "Cuisine Items", path: admin_collection_path("cuisineItems"), match: %r{/collections/cuisineItems} },
             { label: "Page Settings", path: admin_edit_section_path("experiencesPage"), match: %r{/sections/experiencesPage} }
           ] },
@@ -85,7 +88,6 @@ module AdminHelper
             { label: "Page Settings", path: admin_edit_section_path("accommodationPage"), match: %r{/sections/accommodationPage} }
           ] },
         { label: "Light & Sound Show", path: admin_edit_section_path("soundLightShowPage"), match: %r{/sections/soundLightShowPage} },
-        { label: "Citadel Walk", path: admin_edit_section_path("citadelWalkPage"), match: %r{/sections/citadelWalkPage} },
         { label: "Plan Your Visit", path: admin_edit_section_path("planYourVisitPage"), match: %r{/(sections/planYourVisitPage|collections/itineraries)},
           children: [
             { label: "Page Content", path: admin_edit_section_path("planYourVisitPage"), match: %r{/sections/planYourVisitPage} },
@@ -122,6 +124,19 @@ module AdminHelper
 
   def key_label(key)
     KEY_LABELS[key] || key
+  end
+
+  # Friendly labels for individual fields inside section/record editors.
+  # Hero and outro media fields accept an image OR a video path.
+  FIELD_LABELS = {
+    "heroImage"  => "Hero (image or video)",
+    "heroVideo"  => "Hero Video (optional — plays instead of Hero)",
+    "outroImage" => "Outro (image or video)",
+    "outroVideo" => "Outro Video (optional — plays instead of Outro)"
+  }.freeze
+
+  def field_label(name)
+    FIELD_LABELS[name.to_s] || name
   end
 
   def live_path_for(key, record)

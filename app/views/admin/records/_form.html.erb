@@ -4,7 +4,7 @@
   <% record.each do |field, value| %>
     <div style="margin-bottom:16px;">
       <label style="display:block; font-size:13px; font-weight:600; color:#6e1603; margin-bottom:5px;">
-        <%= field %>
+        <%= field_label(field) %>
       </label>
       <% case value
          when TrueClass, FalseClass %>

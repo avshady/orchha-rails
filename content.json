@@ -40,6 +40,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Orchha Fort Complex",
       "category": "BUNDELI",
       "year": "1501",
@@ -78,6 +79,9 @@
         {
           "name": "Rai Praveen Mahal",
           "image": "/images/sub_rai_praveen.jpg",
+          "heroImage": "/images/sub_rai_praveen.jpg",
+          "detailImage": "/images/sub_rai_praveen.jpg",
+          "galleryImages": [],
           "id": "rai-praveen-mahal"
         }
       ],
@@ -95,6 +99,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "https://www.ramrajatemple.mp.gov.in/Home/Service?ServiceId=4",
+      "showBookTickets": true,
       "name": "Ram Raja Temple",
       "category": "BUNDELI",
       "description": "The only temple in India where Ram is worshipped as a king. The temple was originally a palace and is the centre of devotion in Orchha, where Lord Ram holds the title of the reigning king.",
@@ -107,11 +112,11 @@
       "year": "17th Century",
       "heroImage": "/images/heritage_raja_ram.jpg",
       "detailImage": "/images/rrm_info1.jpg",
-      "detailDescriptionHtml": "<p>In the early 17th century, Maharani Kunwar Ganesh - a deeply devoted follower of Ram Ji - set out from Orchha on foot for Ayodhya, determined to bring Ram Lalla back to her kingdom. Ram Ji appeared to her and agreed, but on three conditions she would have to honour completely.</p><p>First, he would travel only during the auspicious Pushya Nakshatra - halting whenever it ended, resuming only when it returned. Second, upon reaching Orchha, he would not be the consort of the queen or a guest of her husband, King Madhukar Shah. He would be the sovereign - Ram Raja Sarkar, the King of Orchha. Third, the very first place the queen seated him upon arrival would be his permanent home. He would not be moved from it, ever. Maharani Kunwar Ganesh accepted.</p><p>The journey - slow, sacred, bound by the rhythms of the stars - eventually brought Ram Lalla to Orchha in 1631 CE. On arriving, the queen placed the idol in her own palace quarters, the Nau Chaukiya Mahal, intending it to be temporary while the grand Chaturbhuj Temple was made ready. But a condition is a condition. Ram Ji had been seated. He would not move. The palace became his court, and Orchha became his kingdom. The Chaturbhuj Temple, built with such care and anticipation, stands empty to this day. And in the Nau Chaukiya Mahal - now Raja Ram Temple - a king still holds court, just as he has for nearly four hundred years.</p>",
+      "detailDescriptionHtml": "<p>In the early 17th century, Maharani Kunwar Ganesh - a deeply devoted follower of Ram Ji - set out from Orchha on foot for Ayodhya, determined to bring Ram Lalla back to her kingdom. Ram Ji appeared to her and agreed, but on three conditions she would have to honour completely.</p><p>First, he would travel only during the auspicious Pushya Nakshatra - halting whenever it ended, resuming only when it returned. Second, upon reaching Orchha, he would not be the consort of the queen or a guest of her husband, King Madhukar Shah. He would be the sovereign - Ram Raja Sarkar, the King of Orchha. Third, the very first place the queen seated him upon arrival would be his permanent home. He would not be moved from it, ever. Maharani Kunwar Ganesh accepted.</p><p>The journey - slow, sacred, bound by the rhythms of the stars - eventually brought Ram Lalla to Orchha in 1631 CE. On arriving, the queen placed the idol in her own palace quarters, the Nau Chaukiya Mahal, intending it to be temporary while the grand Chaturbhuj Temple was made ready. But a condition is a condition. Ram Ji had been seated. He would not move. The palace became his court, and Orchha became his kingdom. The Chaturbhuj Temple, built with such care and anticipation, stands empty to this day. And in the Nau Chaukiya Mahal - now Ram Raja Temple - a king still holds court, just as he has for nearly four hundred years.</p>",
       "galleryImages": [
         "/images/rrm_info2.jpg"
       ],
-      "didYouKnow": "Raja Ram Temple follows the daily schedule of a royal court, not a house of worship. The temple opens and closes at the hours a king would receive his subjects. Armed sentries stand guard at the gates around the clock, a guard of honor is offered at every aarti, and no one — including any head of state — ranks above Ram Raja Sarkar within Orchha. This royal protocol has been observed without interruption since 1631 CE.",
+      "didYouKnow": "Ram Raja Temple follows the daily schedule of a royal court, not a house of worship. The temple opens and closes at the hours a king would receive his subjects. Armed sentries stand guard at the gates around the clock, a guard of honor is offered at every aarti, and no one — including any head of state — ranks above Ram Raja Sarkar within Orchha. This royal protocol has been observed without interruption since 1631 CE.",
       "dykImages": [
         "/images/rrm_dyk2.jpg",
         "/images/rrm_dyk1.jpg"
@@ -229,6 +234,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Chaturbhuj Temple",
       "category": "BUNDELI",
       "description": "Built to receive a god who chose to stay elsewhere. The Chaturbhuj Temple - named after the four-armed Vishnu - stands as Orchha's most magnificent monument and its most poignant one.",
@@ -263,6 +269,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Raja Mahal",
       "category": "BUNDELI",
       "description": "Orchha's first palace, built in 1501. Its ceilings are painted with murals spanning all twenty-four avatars of Vishnu — among the oldest surviving frescoes in Orchha.",
@@ -301,6 +308,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Jahangir Mahal",
       "category": "MUGHAL",
       "description": "Built by Bir Singh Deo in 1605 to welcome Emperor Jahangir, this five-storeyed palace blends Mughal arches with Rajput balconies across 236 rooms.",
@@ -335,10 +343,14 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": false,
       "name": "Sundar Mahal",
       "category": "BUNDELI",
       "description": "A palace used by Dhurjban, son of Jhujhar Singh, after he converted to Islam. It later became a centre of Sufi culture in Orchha, and pilgrims still visit the dargah within.",
       "image": "/images/history_new_orchha.jpg",
+      "heroImage": "/images/history_new_orchha.jpg",
+      "detailImage": "/images/history_new_orchha.jpg",
+      "galleryImages": [],
       "heroVideo": "",
       "outroVideo": "",
       "detailPage": "monument-detail.html",
@@ -353,6 +365,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Lakshmi Narayan Temple",
       "category": "BUNDELI",
       "image": "/images/lnt_info_main.jpg",
@@ -390,6 +403,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Orchha Chhatris",
       "nameSubtitle": "(Cenotaphs)",
       "year": "1970",
@@ -424,10 +438,14 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Hanuman Mandir",
       "category": "BUNDELI",
       "description": "An ancient temple dedicated to Lord Hanuman located within the town of Orchha. The temple is an important centre of worship and attracts devotees from across the region.",
       "image": "/images/exp_sunset.jpg",
+      "heroImage": "/images/exp_sunset.jpg",
+      "detailImage": "/images/exp_sunset.jpg",
+      "galleryImages": [],
       "heroVideo": "",
       "outroVideo": "",
       "detailPage": "monument-detail.html",
@@ -442,6 +460,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Rai Praveen Mahal",
       "category": "BUNDELI",
       "year": "1618",
@@ -475,6 +494,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Teen Dasiyon Ki Haveli",
       "category": "BUNDELI",
       "year": "1618",
@@ -508,10 +528,14 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Sheesh Mahal",
       "category": "BUNDELI",
       "description": "The Palace of Mirrors, now converted into a heritage hotel by Madhya Pradesh Tourism. Its rooms are decorated with mirror work and offer a royal experience overlooking the Orchha Fort.",
       "image": "/images/history_tl_1783.jpg",
+      "heroImage": "/images/history_tl_1783.jpg",
+      "detailImage": "/images/history_tl_1783.jpg",
+      "galleryImages": [],
       "heroVideo": "",
       "outroVideo": "",
       "detailPage": "monument-detail.html",
@@ -526,6 +550,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Shiva Temple",
       "category": "BUNDELI",
       "year": "1618",
@@ -559,6 +584,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Baroodkhana",
       "category": "BUNDELI",
       "year": "1508",
@@ -592,6 +618,7 @@
       "showTranslate": true,
       "virtualTourUrl": "",
       "bookUrl": "",
+      "showBookTickets": true,
       "name": "Wildlife Sanctuary",
       "category": "NATURE",
       "panelCount": 5,
@@ -792,6 +819,10 @@
       "month": "january",
       "category": "upcoming",
       "image": "/images/evt_new_year.jpg",
+      "heroImage": "",
+      "description": "The New Year period brings a vibrant festive atmosphere to Orchha, with visitors gathering at temples, heritage sites and the Betwa riverfront for prayers, evening aartis and cultural experiences.",
+      "estimatedVisitors": "~1,00,000 Annually",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -801,6 +832,10 @@
       "month": "",
       "category": "ongoing",
       "image": "/images/evt_pushya_nakshatra.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -810,6 +845,10 @@
       "month": "january",
       "category": "upcoming",
       "image": "/images/evt_makar_sankranti.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -819,6 +858,10 @@
       "month": "march",
       "category": "upcoming",
       "image": "/images/evt_ram_janmotsav.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -828,6 +871,10 @@
       "month": "august",
       "category": "upcoming",
       "image": "/images/evt_sawan_teej.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -837,6 +884,10 @@
       "month": "november",
       "category": "upcoming",
       "image": "/images/evt_deepawali.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -846,6 +897,10 @@
       "month": "december",
       "category": "upcoming",
       "image": "/images/evt_ram_vivah_mandap.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     },
     {
@@ -855,6 +910,10 @@
       "month": "december",
       "category": "upcoming",
       "image": "/images/evt_ram_vivah_yatra.jpg",
+      "heroImage": "",
+      "description": "",
+      "estimatedVisitors": "",
+      "galleryImages": [],
       "visible": true
     }
   ],
@@ -1008,6 +1067,7 @@
     "galleryCtaLabel": "View Art Gallery",
     "galleryCtaLink": "/experiences",
     "transitHeading": "The Walk<br>Through Time",
+    "vignetteImage": "/images/aw_walkcard.jpg",
     "transitSub": "A journey through four icon monuments.<br>One artistic legacy.",
     "stops": [
       { "num": 1, "image": "/images/aw_stop1.jpg", "name": "Raja Mahal", "link": "/monuments/raja-mahal" },
@@ -1030,6 +1090,7 @@
     "cardImage1": "/images/et_card1_v2.jpg",
     "cardImage2": "/images/et_card2_v2.jpg",
     "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
+    "showBookTickets": true,
     "paragraphs": [
       "Just beyond the monuments, the forest begins.\nThe Orchha Wildlife Sanctuary runs along the Betwa River, a stretch of forest that borders the heritage complex and offers a very different kind of encounter with Orchha. Here, the river does not frame palaces — it winds through trees, opens onto islands, and carries the sounds of birds rather than history. The sanctuary is home to around ten eco points, each offering its own view of the Betwa and the forested landscape around it, guided by the forest department team stationed within.",
       "Two of these eco points stand out. Jahaz Mahal sits in the middle of the Betwa — a structure shaped like a ship, with the river flowing on both sides, visible only from within the forest. Panchmadhi, also set within the Betwa, is a cluster of five riverside huts and one of the sanctuary's principal picnic spots. Across from the Orchha Chhatris, a dedicated birdwatching point draws visitors who come to spot the domestic and migratory birds that gather along this stretch of the river.",
@@ -1042,6 +1103,22 @@
     "outroCtaLabel": "View All Experiences & Walks",
     "outroCtaLink": "/experiences"
   },
+  "sunsetBetwaPage": {
+    "showAudioGuide": false,
+    "showVirtualTour": false,
+    "showTranslate": false,
+    "virtualTourUrl": "",
+    "heroVideo": "",
+    "heading": "Sunset At Betwa",
+    "description": "The sunset at Orchha is not merely an event — it is a daily ceremony. As the light fades, the royal chhatris on the banks of the Betwa River are silhouetted against a sky ablaze with colour, their reflections trembling in the water.",
+    "heroImage": "/images/exp_sunset_betwa.jpg",
+    "galleryImages": [
+      "/images/exp_sunset.jpg",
+      "/images/rk_card_kayak_sunset.jpg",
+      "/images/acc_mpt_betwa.jpg"
+    ],
+    "tagLabel": "To Be Self Explored"
+  },
   "riverKayakingPage": {
     "showAudioGuide": true,
     "showVirtualTour": true,
@@ -1052,12 +1129,17 @@
     "heading": "River Kayaking",
     "cardImage1": "/images/rk_hero_raft.jpg",
     "cardImage2": "/images/rk_card_kayak_sunset.jpg",
-    "text1": "The Betwa River has been the lifeblood of Orchha for centuries — a sacred artery that shaped the city's geography and spirit. River Kayaking offers you the most intimate way to experience this ancient landscape: from the water itself, surrounded by the reflections of temples and the sounds of the forest.",
-    "text2": "Beginners and experienced paddlers are both welcome. Your guide will lead you through calm stretches dotted with wildlife, past the magnificent Orchha Chhatris, and through sections of gentle rapids that add a touch of adventure to the journey.",
-    "cost": "Indian: 899 INR&nbsp;&nbsp;|&nbsp;&nbsp;Foreigner: 2000 INR",
-    "bestTime": "9AM to 2PM",
-    "passengers": "6 People",
+    "text1": "Enjoy beginner-friendly rafting on Grade I–II rapids, ideal for families, first-time rafters and adventure enthusiasts seeking a scenic river experience.\nDuration: Approx. 1–1.5 hours",
+    "text2": "Relax with a tranquil boat ride along the Betwa River and witness breathtaking views of Orchha's iconic chhatris and riverside heritage.",
+    "cost": "Approx. ₹100 – ₹500",
+      "raftPrice": "Approx. ₹550 – ₹2,000 per person",
+      "raftTimings": "Typically 10:00 AM – 4:00 PM",
+      "raftPassengers": "Upto 6 persons per raft",
+      "note": "*October to March is considered the ideal time to enjoy river activities in Orchha. Activities are subject to weather conditions and river water levels.",
+    "bestTime": "Sunrise & Sunset",
+    "passengers": "4–8 persons",
     "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
+    "showBookTickets": true,
     "cardImage3": "/images/rk_card_rafting_ruins.jpg",
     "cardImage4": "/images/rk_card_rafting_wide.jpg",
     "didYouKnow": "Visitors have recorded sightings of the Indian skimmer, sarus crane, river tern, white-rumped vulture, and various kingfisher and egret species along the riverbanks.",
@@ -1100,6 +1182,7 @@
     "venue": "Near Jehangir Mahal",
     "capacity": "150 - 200",
     "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
+    "showBookTickets": true,
     "showTimes": {
       "summer": { "label": "Summer Time", "english": "7:00 pm to 8:00 pm", "hindi": "8:15 to 9:15 pm" },
       "winter": { "label": "Winter Time", "english": "6:30 pm to 7:30 pm", "hindi": "7:45 pm to 8:45 pm" }
@@ -1252,7 +1335,7 @@
       "heading": "Reflection of Heritage",
       "subtitle": "Each Monument in Orchha is a Chapter. Together, they tell the Story of a Kingdom.",
       "bigCard": {
-        "name": "Raja Ram Temple",
+        "name": "Ram Raja Temple",
         "date": "Est. 1589 CE",
         "description": "The only temple in India where Ram is worshipped as a king — and where a queen's devotion became a timeless tale.",
         "image": "/images/heritage_raja_ram.jpg",
@@ -1490,6 +1573,7 @@
       "org": "SABHYATA Foundation",
       "email": "contact@orchha.com",
       "phone": "+91 87963 83600",
+      "virtualTourUrl": "#",
       "links": [
         {
           "label": "Media & News",
@@ -1691,7 +1775,7 @@
       {
         "year": "2026",
         "heading": "Modern Day Revival",
-        "body": "Today, Orchha is one of Madhya Pradesh's most significant heritage towns — a living site where daily aarti at Raja Ram Temple, stone carving traditions, and centuries-old festival observances continue uninterrupted. With Sabhyata Foundation's stewardship and a commitment to honouring this inheritance thoughtfully, Orchha marks a new chapter.",
+        "body": "Today, Orchha is one of Madhya Pradesh's most significant heritage towns — a living site where daily aarti at Ram Raja Temple, stone carving traditions, and centuries-old festival observances continue uninterrupted. With Sabhyata Foundation's stewardship and a commitment to honouring this inheritance thoughtfully, Orchha marks a new chapter.",
         "image": "/images/history_tl_2026.jpg"
       }
     ],
@@ -1723,7 +1807,7 @@
     }
   },
   "experiencesPage": {
-    "heading": "Experiences and Walks",
+    "heading": "Experiences & Walks",
     "subheading": "Walk through the corridors of time. Each structure in Orchha tells a unique story of devotion, power, and architectural brilliance.",
     "filterCategories": [
       {

@@ -37,6 +37,9 @@ class PagesController < ApplicationController
     @fighter = all.find { |f| f["id"] == params[:id] }
     redirect_to "/freedom-fighters" and return unless @fighter
     @home = raw["homePage"] || {}
+    # Individual martyr pages are not part of the current mandate.
+    @title = @fighter["name"]
+    render "coming_soon"
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     redirect_to "/freedom-fighters"
@@ -169,12 +172,41 @@ class PagesController < ApplicationController
     all = raw["experienceItems"] || []
     @exp  = all.find { |e| e["id"] == params[:id] }
     redirect_to "/experiences" and return unless @exp
-    @page = raw["artWalkPage"] || {}
     @home = raw["homePage"] || {}
+    # This template holds the Art Walk content; experiences without their own
+    # dedicated route (e.g. Night Walk) get a Coming Soon page instead.
+    unless params[:id] == "art-walk"
+      @title = @exp["name"]
+      render "coming_soon" and return
+    end
+    @page = raw["artWalkPage"] || {}
     @audio_tracks = audio_tracks_for(raw, @exp["id"])
   rescue => e
     Rails.logger.error "CMS content read failed: #{e.message}"
     redirect_to "/experiences"
+  end
+
+  def sunset_betwa
+    raw = ContentStore.raw
+    @page = raw["sunsetBetwaPage"] || {}
+    @home = raw["homePage"] || {}
+    @audio_tracks = audio_tracks_for(raw, "sunset-betwa")
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    @page = {}; @home = {}; @audio_tracks = []
+  end
+
+  def museum
+    raw = ContentStore.raw
+    all = raw["museums"] || []
+    museum = all.find { |m| m["id"] == params[:id] }
+    redirect_to "/museums" and return unless museum
+    @home  = raw["homePage"] || {}
+    @title = museum["name"]
+    render "coming_soon"
+  rescue => e
+    Rails.logger.error "CMS content read failed: #{e.message}"
+    redirect_to "/museums"
   end
 
   def eco_trail

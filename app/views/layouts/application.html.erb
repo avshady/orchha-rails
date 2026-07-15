@@ -14,6 +14,15 @@
     <%= render 'shared/qr_scanner' %>
 
     <script>
+      // Mobile drawer: "Discover Orchha" expands/collapses its sub-links.
+      document.addEventListener('click', function (e) {
+        var btn = e.target.closest('.nav-mobile-group-btn');
+        if (!btn) return;
+        var group = btn.closest('.nav-mobile-group');
+        var open = group.classList.toggle('open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+
       // Auto-hide the nav on every page: visible briefly on load, then
       // tucked away — reveal by moving the cursor to the top edge or
       // hovering the bar. Pointer-only, so touch devices keep it visible.
