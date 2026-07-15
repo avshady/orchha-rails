@@ -2159,6 +2159,7 @@
   "accommodations": [
     {
       "id": "mpt-betwa-retreat",
+      "bookUrl": "https://mpstdc.mponline.gov.in/hotel-in-city-orchha/mpt-betwa-retreat-orchha",
       "name": "MPT Betwa Retreat, Orchha",
       "category": "private",
       "rating": 5.0,
@@ -2169,6 +2170,7 @@
     },
     {
       "id": "mpt-sheesh-mahal",
+      "bookUrl": "https://mpstdc.mponline.gov.in/hotel-in-city-orchha/mpt-sheesh-mahal-orchha",
       "name": "MPT Sheesh Mahal, Orchha",
       "category": "private",
       "rating": 5.0,
@@ -2179,6 +2181,7 @@
     },
     {
       "id": "orchha-palace",
+      "bookUrl": "",
       "name": "Orchha Palace",
       "category": "private",
       "rating": 5.0,
@@ -2189,6 +2192,7 @@
     },
     {
       "id": "orchha-resort",
+      "bookUrl": "https://www.orchharesort.com",
       "name": "Orchha Resort",
       "category": "private",
       "rating": 4.0,
@@ -2199,6 +2203,7 @@
     },
     {
       "id": "hotel-bundelkhand",
+      "bookUrl": "",
       "name": "Hotel Bundelkhand",
       "category": "homestays",
       "rating": 3.0,
@@ -2209,6 +2214,7 @@
     },
     {
       "id": "raj-vilas-palace",
+      "bookUrl": "",
       "name": "Raj Vilas Palace Orchha",
       "category": "private",
       "rating": 4.0,
@@ -2219,6 +2225,7 @@
     },
     {
       "id": "amar-mahal",
+      "bookUrl": "https://www.amarmahal.com",
       "name": "Amar Mahal",
       "category": "private",
       "rating": 3.0,
@@ -2229,6 +2236,7 @@
     },
     {
       "id": "hotel-rajmahal-1",
+      "bookUrl": "",
       "name": "Hotel Rajmahal",
       "category": "private",
       "rating": 4.0,
@@ -2239,6 +2247,7 @@
     },
     {
       "id": "chander-kothi",
+      "bookUrl": "",
       "name": "Chander Kothi",
       "category": "homestays",
       "rating": 4.0,
@@ -2249,6 +2258,7 @@
     },
     {
       "id": "hotel-rajmahal-2",
+      "bookUrl": "",
       "name": "Hotel Rajmahal",
       "category": "private",
       "rating": 3.0,
@@ -2259,6 +2269,7 @@
     },
     {
       "id": "ratangarhi-by-richa",
+      "bookUrl": "",
       "name": "Ratangarhi by Richa",
       "category": "homestays",
       "rating": 3.0,

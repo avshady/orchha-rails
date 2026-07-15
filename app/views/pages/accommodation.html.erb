@@ -149,7 +149,9 @@
               <span><%= h['address'] %></span>
             </div>
           </div>
-          <a href="https://www.tezticket.com/tickets/buy?event=SF" target="_blank" rel="noopener" class="acc-book-btn">Book Now</a>
+          <% if h['bookUrl'].present? %>
+          <a href="<%= h['bookUrl'] %>" target="_blank" rel="noopener" class="acc-book-btn">Book Now</a>
+          <% end %>
         </div>
       </div>
       <% end %>
