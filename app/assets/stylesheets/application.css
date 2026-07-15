@@ -1689,28 +1689,22 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 .mdet-name {
   font-family: 'Scotch Display', serif; font-weight: 600;
   font-size: 70px; line-height: 1.043; color: #6e1603; margin: 0;
-  width: 412px;
+  /* wraps inside the column so long names never crowd the description */
+  width: 353px;
 }
 .mdet-name-subtitle {
   font-size: 65px;
 }
 .mdet-photo-second { width: 100%; height: 37.4vh; }
-/* Col 3: description aligned with top of photo card in col 1 */
-.mdet-info-col3 { padding-top: 21vh; padding-left: 40px; }
-/* Baroodkhana: bottom-aligned description (secondary card uses the
-   standard 37.4vh height like every other monument) */
-[data-monument="baroodkhana"] .mdet-info-col3 {
-  padding-top: 0;
+/* Col 3: description bottom-aligned so it sits low beside the photo,
+   clear of the heading (also protects very long texts from clipping) */
+.mdet-info-col3 {
+  padding-left: 40px;
   display: flex; flex-direction: column; justify-content: flex-end;
   padding-bottom: 11.4vh;
 }
 /* Wildlife Sanctuary info: taller secondary card + bottom-aligned description */
 [data-monument="wildlife-sanctuary"] .mdet-photo-second { height: 42.7vh; }
-[data-monument="wildlife-sanctuary"] .mdet-info-col3 {
-  padding-top: 0;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding-bottom: 11.4vh;
-}
 /* Wildlife Sanctuary DYK: cluster sits ~144px after the writeup per Figma
    3255-6450 (was +586px further right); same 78px trailing gutter */
 [data-monument="wildlife-sanctuary"] .mdet-dyk { width: 921px; }
@@ -2951,7 +2945,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
    ═══════════════════════════════════════════════════════════════════════ */
 /* Darwazas writeup: the long heading wraps inside its column instead of
    overhanging into the description */
-.dz-info .mdet-name { width: 353px; }
+/* (mdet-name wraps at 353px globally) */
 
 .dz-body {
   font-family: 'Gambetta Variable', serif; font-weight: 500;
@@ -3773,8 +3767,7 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   [data-monument="baroodkhana"] .mdet-photo-second,
   [data-monument="wildlife-sanctuary"] .mdet-photo-second { height: 55vw; max-height: 300px; }
   [data-monument="baroodkhana"] .mdet-info-col3,
-  [data-monument="wildlife-sanctuary"] .mdet-info-col3 { padding-top: 0; padding-bottom: 0; display: contents; }
-  [data-monument="wildlife-sanctuary"] .mdet-dyk { width: 100% !important; }
+    [data-monument="wildlife-sanctuary"] .mdet-dyk { width: 100% !important; }
   [data-monument="wildlife-sanctuary"] .mdet-dyk-heading { left: auto; }
   [data-monument="wildlife-sanctuary"] .mdet-dyk-card1 { left: auto; }
   [data-monument="wildlife-sanctuary"] .mdet-dyk-card2 { left: auto; }
