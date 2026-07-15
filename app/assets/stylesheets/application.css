@@ -3369,14 +3369,31 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
   transform: translateX(-100%);
   transition: opacity 0.25s ease, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.nav-mobile-menu::before, .hist-nav-mobile-menu::before, .mdet-nav-mobile-menu::before {
-  content: 'ORCHHA';
+.nav-mobile-wordmark {
   position: absolute; top: 34px; left: 48px;
   font-family: 'Scotch Display', serif; font-weight: 600;
   font-size: 30px; line-height: 1;
   letter-spacing: 0.08em;
   color: #6e1603;
+  text-decoration: none;
 }
+/* Collapsible "Discover Orchha" group inside the drawer */
+.nav-mobile-group {
+  display: flex; flex-direction: column; align-items: flex-start;
+}
+.nav-mobile-group-btn {
+  background: none; border: none; padding: 0; cursor: pointer;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-mobile-group-btn svg { width: 10px; height: 6px; flex-shrink: 0; transition: transform 0.2s; }
+.nav-mobile-group.open .nav-mobile-group-btn svg { transform: rotate(180deg); }
+.nav-mobile-group-items {
+  display: none;
+  flex-direction: column; align-items: flex-start; gap: 22px;
+  padding: 22px 0 0 18px;
+}
+.nav-mobile-group.open .nav-mobile-group-items { display: flex; }
+.nav-mobile-sub-link { font-size: 14px; font-weight: 600; }
 .nav-mobile-menu.open, .hist-nav-mobile-menu.open, .mdet-nav-mobile-menu.open {
   opacity: 1; pointer-events: auto; transform: translateX(0);
 }

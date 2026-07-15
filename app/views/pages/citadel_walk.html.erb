@@ -33,11 +33,19 @@
     <button class="mdet-nav-mobile-close" id="mdet-nav-mobile-close-btn" aria-label="Close menu">
       <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
     </button>
+    <a href="/" class="nav-mobile-wordmark" aria-label="Home">ORCHHA</a>
     <div class="mdet-nav-mobile-links">
-      <a href="/" class="mdet-nav-mobile-link">Home</a>
-      <% dd.each do |item| %>
-      <a href="<%= item['url'] %>" class="mdet-nav-mobile-link"><%= item['label'] %></a>
-      <% end %>
+      <div class="nav-mobile-group">
+        <button type="button" class="mdet-nav-mobile-link nav-mobile-group-btn" aria-expanded="false">
+          Discover Orchha
+          <svg viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-mobile-group-items">
+          <% dd.each do |item| %>
+          <a href="<%= item['url'] %>" class="mdet-nav-mobile-link nav-mobile-sub-link"><%= item['label'] %></a>
+          <% end %>
+        </div>
+      </div>
       <a href="/plan-your-visit" class="mdet-nav-mobile-link">Plan Your Visit</a>
       <a href="/news" class="mdet-nav-mobile-link">News</a>
       <a href="https://pages.razorpay.com/pl_PWE9fVFc9oLCel/view" target="_blank" rel="noopener" class="mdet-nav-mobile-link">Support Us</a>
