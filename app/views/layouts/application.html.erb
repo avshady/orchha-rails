@@ -67,5 +67,46 @@
         hideTimer = setTimeout(function () { if (!hovering) nav.classList.add('nav-autohidden'); }, 2200);
       })();
     </script>
+    <script>
+      // ── Video sound: try to start heroes with sound; when the browser
+      // blocks unmuted autoplay, stay muted and offer a one-tap speaker. ──
+      (function () {
+        var ICON_ON  = '<svg viewBox="0 0 24 24" fill="none"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z" fill="currentColor"/><path d="M15 9c1 .8 1.6 1.8 1.6 3S16 14.2 15 15M17.5 6.5C19.4 8 20.5 9.9 20.5 12s-1.1 4-3 5.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+        var ICON_OFF = '<svg viewBox="0 0 24 24" fill="none"><path d="M11 5 6.5 9H3v6h3.5L11 19V5Z" fill="currentColor"/><path d="m15.5 9.5 5 5m0-5-5 5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>';
+
+        function setup(v) {
+          var host = v.parentElement;
+          if (!host) return;
+          if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.className = 'video-sound-btn';
+          btn.setAttribute('aria-label', 'Toggle sound');
+          function paint() { btn.innerHTML = v.muted ? ICON_OFF : ICON_ON; }
+          btn.addEventListener('click', function (e) {
+            e.preventDefault(); e.stopPropagation();
+            v.muted = !v.muted;
+            if (!v.muted) { v.volume = 1; v.play().catch(function () {}); }
+            paint();
+          });
+          host.appendChild(btn);
+
+          // attempt sound-on playback straight away
+          v.muted = false;
+          var attempt = v.play();
+          if (attempt && attempt.catch) {
+            attempt.then(paint).catch(function () {
+              v.muted = true;              // browser refused sound — stay silent
+              v.play().catch(function () {});
+              paint();
+            });
+          } else {
+            paint();
+          }
+        }
+
+        document.querySelectorAll('video[data-sound-video]').forEach(setup);
+      })();
+    </script>
   </body>
 </html>

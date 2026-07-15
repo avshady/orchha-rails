@@ -14,7 +14,7 @@
     <div class="hero-slide<%= i == 0 ? ' active' : '' %>" data-index="<%= i %>">
       <% if slide['type'] == 'video' %>
       <% ext = File.extname(slide['src'].to_s.split('?').first.to_s).delete('.').presence %>
-      <video class="hero-slide-media" autoplay muted playsinline preload="auto">
+      <video class="hero-slide-media" autoplay muted playsinline preload="auto" data-sound-video>
         <source src="<%= slide['src'] %>" <%= "type=\"video/#{ext == 'mov' ? 'mp4' : ext}\"".html_safe if ext %>>
       </video>
       <% else %>

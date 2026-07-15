@@ -6374,3 +6374,20 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   }
   .vo-card { flex: none; width: 100%; max-width: 420px; min-height: 0; }
 }
+
+/* ── Video sound toggle (videos try to start with sound; browsers that
+   block unmuted autoplay fall back to muted + this one-tap button) ── */
+.video-sound-btn {
+  position: absolute;
+  right: 18px; bottom: 18px;
+  width: 46px; height: 46px; border-radius: 50%;
+  background: rgba(20, 8, 2, 0.55);
+  border: 1.5px solid rgba(255, 255, 255, 0.75);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; z-index: 40;
+  transition: background 0.15s;
+  pointer-events: auto;
+}
+.video-sound-btn:hover { background: rgba(20, 8, 2, 0.8); }
+.video-sound-btn svg { width: 22px; height: 22px; }

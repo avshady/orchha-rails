@@ -19,7 +19,7 @@ module ApplicationHelper
   # Extra html attributes (class, style, alt, ...) apply to either tag.
   def hero_media_tag(src, alt: "", **attrs)
     if video_path?(src)
-      content_tag(:video, autoplay: true, muted: true, loop: true, playsinline: true, **attrs) do
+      content_tag(:video, autoplay: true, muted: true, loop: true, playsinline: true, "data-sound-video": "", **attrs) do
         tag(:source, src: src, type: "video/mp4")
       end
     else

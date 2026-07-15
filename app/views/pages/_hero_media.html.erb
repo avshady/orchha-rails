@@ -10,7 +10,7 @@
      image = fallback
    end %>
 <% if video.present? %>
-  <video autoplay muted loop playsinline preload="metadata" poster="<%= image %>">
+  <video autoplay muted loop playsinline preload="metadata" data-sound-video poster="<%= image %>">
     <source src="<%= video %>">
   </video>
 <% else %>
