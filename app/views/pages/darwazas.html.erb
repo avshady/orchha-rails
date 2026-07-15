@@ -197,11 +197,12 @@
   const hint    = document.getElementById('mdet-scroll-hint');
   const tabs    = document.getElementById('mdet-action-tabs');
 
-  if (wrapper && sticky && !isMobile) {
+  if (wrapper && sticky) {
+    const scrollJackMq = window.matchMedia('(max-width: 900px)');
     const panels = parseFloat(wrapper.dataset.panels || '6');
-    wrapper.style.height = (panels * 100) + 'vh';
-
     function updateHoriz() {
+      if (scrollJackMq.matches) { wrapper.style.height = ''; return; }
+      wrapper.style.height = (panels * 100) + 'vh';
       const wrapperTop  = wrapper.offsetTop;
       const totalScroll = wrapper.offsetHeight - window.innerHeight;
       const progress    = Math.max(0, Math.min(1, (window.scrollY - wrapperTop) / totalScroll));
@@ -213,6 +214,7 @@
     }
 
     window.addEventListener('scroll', updateHoriz, { passive: true });
+    window.addEventListener('resize', updateHoriz, { passive: true });
     updateHoriz();
   }
 
