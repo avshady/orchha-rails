@@ -124,6 +124,19 @@ module AdminHelper
     KEY_LABELS[key] || key
   end
 
+  # Friendly labels for individual fields inside section/record editors.
+  # Hero and outro media fields accept an image OR a video path.
+  FIELD_LABELS = {
+    "heroImage"  => "Hero (image or video)",
+    "heroVideo"  => "Hero Video (optional — plays instead of Hero)",
+    "outroImage" => "Outro (image or video)",
+    "outroVideo" => "Outro Video (optional — plays instead of Outro)"
+  }.freeze
+
+  def field_label(name)
+    FIELD_LABELS[name.to_s] || name
+  end
+
   def live_path_for(key, record)
     base = LIVE_PATHS[key]
     return nil unless base && record.is_a?(Hash) && record["id"].present?

@@ -76,7 +76,7 @@
 
         <%# Hero photo card (Figma x120 y172 631x564) %>
         <div class="lss-hero-card">
-          <img src="<%= p['heroImage'] || '/images/lss_hero.jpg' %>" alt="Orchha Fort illuminated at night">
+          <%= hero_media_tag(p['heroImage'].presence || '/images/lss_hero.jpg', alt: 'Orchha Fort illuminated at night') %>
           <div class="lss-hero-card-gradient"></div>
           <div class="lss-hero-feature-row">
             <div class="lss-hero-feature">

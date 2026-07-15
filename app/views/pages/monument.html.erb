@@ -9,10 +9,10 @@
    experiences   = @monument['experiences'] || []
    exp_photos    = @monument['experiencePhotos'] || []
    arti     = @monument['artiSchedule']
-   hero_img    = @monument['heroImage']   || @monument['image'] || '/images/aerial_orchha.jpg'
+   hero_img    = @monument['heroImage'].presence || @monument['image'].presence || '/images/aerial_orchha.jpg'
    hero_video  = @monument['heroVideo'].presence
    outro_video = @monument['outroVideo'].presence
-   main_img    = @monument['detailImage'] || @monument['image'] || '/images/history_new_orchha.jpg'
+   main_img    = @monument['detailImage'].presence || @monument['image'].presence || '/images/history_new_orchha.jpg'
    detail_desc = @monument['detailDescriptionHtml'] || h(@monument['detailDescription'] || @monument['description'] || '')
    has_subs = subs.any?
    # panelCount override allows per-monument control when DYK or Experiences panel widths differ
@@ -79,13 +79,8 @@
       <%# ══ PANEL 1: HERO (full-bleed cinematic) ════════════ %>
       <section class="mdet-panel mdet-hero">
         <div class="mdet-hero-bg">
-          <% if hero_video.present? %>
-            <video autoplay muted loop playsinline>
-              <source src="<%= hero_video %>" type="video/mp4">
-            </video>
-          <% else %>
-            <img src="<%= hero_img %>" alt="<%= @monument['name'] %>">
-          <% end %>
+          <%# heroVideo (legacy field) wins; otherwise heroImage may hold an image or a video %>
+          <%= hero_media_tag(hero_video || hero_img, alt: @monument['name']) %>
           <div class="mdet-hero-overlay"></div>
         </div>
 
@@ -322,13 +317,7 @@
       <%# ══ PANEL 6: OUTRO — VIEW ALL MONUMENTS ══════════════ %>
       <section class="mdet-panel mdet-outro">
         <div class="mdet-outro-bg">
-          <% if outro_video.present? %>
-            <video autoplay muted loop playsinline>
-              <source src="<%= outro_video %>" type="video/mp4">
-            </video>
-          <% else %>
-            <img src="<%= @monument['outroImage'] || '/images/aerial_orchha.jpg' %>" alt="Orchha">
-          <% end %>
+          <%= hero_media_tag(outro_video || @monument['outroImage'].presence || '/images/aerial_orchha.jpg', alt: 'Orchha') %>
           <div class="mdet-outro-overlay"></div>
         </div>
         <a href="/monuments" class="mdet-outro-btn">View All Monuments</a>

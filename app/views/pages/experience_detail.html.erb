@@ -70,7 +70,7 @@
       <%# ══ PANEL 1 — HERO (full-bleed mural) ═════════════════ %>
       <section class="mdet-panel aw-hero-panel">
         <div class="aw-hero-bg">
-          <img src="<%= pg['heroImage'] || '/images/aw_hero.jpg' %>" alt="Art Walk — Bundela fresco mural">
+          <%= hero_media_tag(pg['heroImage'].presence || '/images/aw_hero.jpg', alt: 'Art Walk — Bundela fresco mural') %>
           <div class="aw-hero-overlay"></div>
         </div>
         <p class="aw-video-label"><%= pg['heroLabel'] || 'Art walk video' %></p>
