@@ -8,7 +8,8 @@
    title_italic = @page['heroTitleItalic'].presence || 'Your'
    title_post   = @page['heroTitlePost'].presence   || 'Visit'
    hero_sub     = @page['heroSub'].presence || 'Based On The Number Of Days You Want To Explore The Hidden Gems And Cultural Tapestry Of Orchha.'
-   day_labels   = @page['dayLabels'].presence || [ '1 DAY', '2 DAYS', '3+ DAYS' ]
+   day_labels   = @page['dayLabels'].presence || [ '1 DAY', '2 DAYS', '3 DAYS', '4 DAYS', '5 DAYS', '6 DAYS' ]
+   day_keys     = (1..day_labels.length).map { |n| "day-#{n}" }
    card_btn     = @page['cardButtonLabel'].presence || 'Explore'
    visit_italic = @page['visitHeadingItalic'].presence || 'Visit'
    visit_rest   = @page['visitHeadingRest'].presence   || 'Orchha'
@@ -108,12 +109,12 @@
   <section class="pyv-planner">
 
     <div class="pyv-slider-wrap">
-      <div class="pyv-slider" id="pyv-slider" role="slider" aria-valuemin="1" aria-valuemax="3" aria-valuenow="1" tabindex="0" aria-label="Select number of days">
+      <div class="pyv-slider" id="pyv-slider" role="slider" aria-valuemin="1" aria-valuemax="<%= day_labels.length %>" aria-valuenow="1" tabindex="0" aria-label="Select number of days">
         <div class="pyv-sl-track"></div>
         <div class="pyv-sl-fill" id="pyv-sl-fill"></div>
-        <div class="pyv-sl-dot" data-dot="0"></div>
-        <div class="pyv-sl-dot" data-dot="1"></div>
-        <div class="pyv-sl-dot" data-dot="2"></div>
+        <% day_labels.each_index do |i| %>
+        <div class="pyv-sl-dot" data-dot="<%= i %>" style="left: <%= (i * 100.0 / (day_labels.length - 1)).round(3) %>%;"></div>
+        <% end %>
         <div class="pyv-sl-thumb" id="pyv-sl-thumb"></div>
       </div>
       <div class="pyv-labels">
@@ -124,7 +125,7 @@
     </div>
 
     <div class="pyv-grid-wrap">
-      <% [ 'day-1', 'day-2', 'day-3' ].each_with_index do |day_key, i| %>
+      <% day_keys.each_with_index do |day_key, i| %>
       <div class="pyv-grid" data-step="<%= i %>" <%= 'hidden'.html_safe unless i.zero? %>>
         <% (@itineraries[day_key] || []).each do |it| %>
         <a class="pyv-card-link" href="<%= itinerary_href.call(it) %>">
@@ -144,17 +145,21 @@
 
   </section>
 
-  <%# ── VISIT ORCHHA CARD ──────────────────────────────── %>
-  <section class="pyv-visit">
-    <div class="pyv-visit-card" id="pyv-visit-card">
-      <div class="pyv-visit-links">
-        <% visit_links.each do |lnk| %>
-        <a href="<%= lnk['url'] %>" class="pyv-visit-link"><%= lnk['label'] %></a>
-        <% end %>
+  <%# ── VISIT ORCHHA (standard band, same as other pages) ── %>
+  <% vs = (@home['visit'] || {}) %>
+  <div class="visit-wrap">
+    <div class="visit-section">
+      <div class="visit-bg-img" style="background-image: url('<%= vs['bgImage'] || '/images/visit_orchha_bg.jpg' %>')"></div>
+      <div class="visit-content">
+        <h2 class="visit-heading"><em>Visit</em> Orchha</h2>
+        <div class="visit-links">
+          <% (vs['links'] || [{'label'=>'How to Reach Orchha','url'=>'/reach'},{'label'=>'Travel Options','url'=>'/travel'},{'label'=>'Stay Options','url'=>'/stay'}]).each do |lnk| %>
+          <a href="<%= lnk['url'] %>" class="visit-link"><%= lnk['label'] %></a>
+          <% end %>
+        </div>
       </div>
-      <h2 class="pyv-visit-heading"><em><%= visit_italic %></em><br><%= visit_rest %></h2>
     </div>
-  </section>
+  </div>
 
   <%# ── FOOTER ─────────────────────────────────────────── %>
 <%= render 'shared/footer', ft: ft %>
@@ -172,11 +177,12 @@
     const grids   = Array.from(document.querySelectorAll('.pyv-grid'));
     if (!slider) return;
 
+    const maxStep = Math.max(1, grids.length - 1);
     let currentStep = 0;
     let isDragging  = false;
 
     function paintTrack(step, animate) {
-      const percent = step * 50;
+      const percent = step * (100 / maxStep);
       thumb.style.transition = animate ? 'left 0.25s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
       fill.style.transition  = animate ? 'width 0.25s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
       thumb.style.left = percent + '%';
@@ -198,7 +204,7 @@
     }
 
     function setStep(step, animate = true) {
-      currentStep = Math.max(0, Math.min(step, 2));
+      currentStep = Math.max(0, Math.min(step, maxStep));
       slider.setAttribute('aria-valuenow', String(currentStep + 1));
       paintTrack(currentStep, animate);
       labels.forEach((btn, idx) => btn.classList.toggle('active', idx === currentStep));
@@ -224,13 +230,13 @@
       const pct = dragPct(e);
       thumb.style.left = (pct * 100) + '%';
       fill.style.width = (pct * 100) + '%';
-      dots.forEach((dot, i) => dot.classList.toggle('filled', i <= Math.round(pct * 2)));
+      dots.forEach((dot, i) => dot.classList.toggle('filled', i <= Math.round(pct * maxStep)));
     });
     slider.addEventListener('pointerup', e => {
       if (!isDragging) return;
       isDragging = false;
       slider.releasePointerCapture(e.pointerId);
-      setStep(Math.round(dragPct(e) * 2), true);
+      setStep(Math.round(dragPct(e) * maxStep), true);
     });
     slider.addEventListener('keydown', e => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); setStep(currentStep + 1); }

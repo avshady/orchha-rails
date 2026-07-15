@@ -1725,6 +1725,75 @@
         "href": "/experiences/sunset-betwa",
         "desc": "Conclude your expansive trip with the unforgettable sunset views over the Betwa River and Chhatris."
       }
+    ],
+    "day-4": [
+      {
+        "id": "i4-1",
+        "title": "Museums of Orchha",
+        "image": "/images/museum_topchi_haveli.jpg",
+        "href": "/museums",
+        "desc": "Spend the morning at Topchi Ki Haveli, Baroodkhana, and the Azad memorial — museums that keep Orchha's past close at hand."
+      },
+      {
+        "id": "i4-2",
+        "title": "Art of Orchha Gallery",
+        "image": "/images/art_fresco_1.jpg",
+        "href": "/art-frescoes",
+        "desc": "Study the Bundela frescoes of Raja Mahal and Lakshmi Narayan Temple up close in the curated gallery of Orchha's painted heritage."
+      },
+      {
+        "id": "i4-3",
+        "title": "Light & Sound Show",
+        "image": "/images/exp_light_sound.jpg",
+        "href": "/experiences/sound-light-show",
+        "desc": "End the day with the fort brought alive after dark — dramatic light projections and immersive sound across the 16th-century ramparts."
+      }
+    ],
+    "day-5": [
+      {
+        "id": "i5-1",
+        "title": "HOHO Sightseeing Circuit",
+        "image": "/images/hoho_ebus.jpg",
+        "href": "/hoho",
+        "desc": "Hop on the electric bus circuit and cover Orchha's landmarks at your own pace, hopping off wherever a monument calls."
+      },
+      {
+        "id": "i5-2",
+        "title": "Freedom Fighters of Orchha",
+        "image": "/images/museum_azad_memorial.jpg",
+        "href": "/freedom-fighters",
+        "desc": "Trace the stories of the region's martyrs and the memorial sites that honour Bundelkhand's role in India's independence movement."
+      },
+      {
+        "id": "i5-3",
+        "title": "Night Walk",
+        "image": "/images/ct_night.jpg",
+        "href": "/experiences/night-walk",
+        "desc": "See the citadel in a different light on a guided evening walk, when the crowds thin and the stone glows under the night sky."
+      }
+    ],
+    "day-6": [
+      {
+        "id": "i6-1",
+        "title": "Festivals & Events",
+        "image": "/images/card_events.jpg",
+        "href": "/events",
+        "desc": "Check what's on during your stay — Orchha's calendar of festivals and cultural events adds a living layer to the heritage."
+      },
+      {
+        "id": "i6-2",
+        "title": "Riverside Morning",
+        "image": "/images/eco_trail.webp",
+        "href": "/experiences/eco-trail",
+        "desc": "Return to the sanctuary for an early birdwatching session along the Betwa before the town wakes up."
+      },
+      {
+        "id": "i6-3",
+        "title": "Unhurried Orchha",
+        "image": "/images/heritage_walk.webp",
+        "href": "/accommodation",
+        "desc": "Keep the last day slow — revisit a favourite courtyard, browse the bazaar, and unwind at your hotel or homestay."
+      }
     ]
   },
   "historyPage": {
@@ -2265,7 +2334,7 @@
     "heroTitleItalic": "Your",
     "heroTitlePost": "Visit",
     "heroSub": "Based On The Number Of Days You Want To Explore The Hidden Gems And Cultural Tapestry Of Orchha.",
-    "dayLabels": [ "1 DAY", "2 DAYS", "3+ DAYS" ],
+    "dayLabels": ["1 DAY", "2 DAYS", "3 DAYS", "4 DAYS", "5 DAYS", "6 DAYS"],
     "cardButtonLabel": "Explore",
     "visitHeadingItalic": "Visit",
     "visitHeadingRest": "Orchha",

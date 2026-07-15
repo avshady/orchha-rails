@@ -5992,9 +5992,7 @@ a.msm-card:hover .msm-card-img { transform: scale(1.04); }
   transition: background-color .25s;
 }
 .pyv-sl-dot.filled { background: #6e1603; }
-.pyv-sl-dot[data-dot="0"] { left: 0%; }
-.pyv-sl-dot[data-dot="1"] { left: 50%; }
-.pyv-sl-dot[data-dot="2"] { left: 100%; }
+/* dot positions are inline (computed from the day count) */
 .pyv-sl-thumb {
   position: absolute;
   top: 50%;
