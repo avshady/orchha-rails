@@ -63,7 +63,7 @@
       <%# ══ PANEL 1 — HERO ════════════════════════════════════════ %>
       <section class="mdet-panel et-hero-panel">
         <div class="et-hero-bg">
-          <img src="<%= pg['heroImage'] || '/images/et_hero.png' %>" alt="Eco Trail — aerial view of Orchha and Betwa River">
+          <%= render 'hero_media', config: pg, fallback: '/images/et_hero.png', alt: 'Eco Walk — aerial view of Orchha and Betwa River' %>
           <div class="et-hero-overlay"></div>
         </div>
         <div class="mdet-scroll-hint" id="mdet-scroll-hint">

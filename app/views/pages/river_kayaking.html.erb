@@ -65,7 +65,7 @@
       <%# ══ PANEL 1 — HERO (blue raft close-up) ═══════════════════ %>
       <section class="mdet-panel et-hero-panel">
         <div class="et-hero-bg">
-          <img src="<%= pg['heroImage'] || '/images/rk_hero_raft.jpg' %>" alt="River rafting on the Betwa with Orchha's chhatris behind">
+          <%= render 'hero_media', config: pg, fallback: '/images/rk_hero_raft.jpg', alt: "River rafting on the Betwa with Orchha's chhatris behind" %>
           <div class="et-hero-overlay"></div>
         </div>
         <div class="mdet-scroll-hint" id="mdet-scroll-hint">

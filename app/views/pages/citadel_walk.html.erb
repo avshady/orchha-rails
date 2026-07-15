@@ -65,7 +65,7 @@
       <%# ══ PANEL 1 — HERO (Kateela Darwaza) ═══════════════════ %>
       <section class="mdet-panel et-hero-panel">
         <div class="et-hero-bg">
-          <img src="<%= p['heroImage'] || '/images/ct_entrance.jpg' %>" alt="Kateela Darwaza — the entrance to Orchha's fort complex">
+          <%= render 'hero_media', config: p, fallback: '/images/ct_entrance.jpg', alt: "Kateela Darwaza — the entrance to Orchha's fort complex" %>
           <div class="cw-hero-overlay"></div>
         </div>
         <div class="mdet-scroll-hint" id="mdet-scroll-hint">

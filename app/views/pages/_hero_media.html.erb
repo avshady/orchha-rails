@@ -1,0 +1,18 @@
+<%# Hero media: renders an autoplaying background video when the page has a
+    heroVideo — or when a video file was uploaded into the heroImage field —
+    otherwise the hero image. Locals: config (page hash), fallback (image
+    path), alt, image_style (optional). %>
+<% image_style ||= nil
+   video = config['heroVideo'].presence
+   image = config['heroImage'].presence || fallback
+   if video.blank? && image.to_s =~ /\.(mp4|webm|mov|m4v)(\?.*)?$/i
+     video = image
+     image = fallback
+   end %>
+<% if video.present? %>
+  <video autoplay muted loop playsinline preload="metadata" poster="<%= image %>">
+    <source src="<%= video %>">
+  </video>
+<% else %>
+  <img src="<%= image %>" alt="<%= alt %>"<% if image_style %> style="<%= image_style %>"<% end %>>
+<% end %>
