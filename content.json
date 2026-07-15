@@ -640,7 +640,7 @@
       "experiences": [
         {
           "title": "Nature Walks",
-          "description": "Walk through forest trails and discover the wilderness at a gentle pace.",
+          "description": "Walk through forest walks and discover the wilderness at a gentle pace.",
           "icon": "/images/ws_exp_icon1.svg"
         },
         {
@@ -649,8 +649,8 @@
           "icon": "/images/ws_exp_icon2.svg"
         },
         {
-          "title": "Riverside Trails",
-          "description": "Enjoy peaceful trails along the Betwa with scenic natural views.",
+          "title": "Riverside Walks",
+          "description": "Enjoy peaceful walks along the Betwa with scenic natural views.",
           "icon": "/images/ws_exp_icon3.svg"
         },
         {
@@ -692,17 +692,17 @@
     },
     {
       "id": "eco-trail",
-      "name": "Eco Trail",
-      "category": "trails",
+      "name": "Eco Walk",
+      "category": "walks",
       "description": "Step into the lush wilderness of the Orchha Wildlife Sanctuary and discover a rich tapestry of flora and fauna along the banks of the Betwa River.",
       "image": "Website Assets/Images/Home Page/Exp & Trails/Ecological Walk.png",
       "detailPage": "experience-template.html?id=eco-trail",
       "visible": true,
       "photo1": "Website Assets/Images/Home Page/Exp & Trails/Ecological Walk.png",
       "photo2": "Website Assets/Images/Home Page/Exp & Trails/Ecological Walk.png",
-      "text1": "The Orchha Wildlife Sanctuary stretches across the forested banks of the Betwa River, sheltering a remarkable diversity of wildlife including leopards, sloth bears, deer, and hundreds of migratory birds. The Eco Trail is a guided walk through this natural haven, designed to immerse you in the rhythms of the wild.",
+      "text1": "The Orchha Wildlife Sanctuary stretches across the forested banks of the Betwa River, sheltering a remarkable diversity of wildlife including leopards, sloth bears, deer, and hundreds of migratory birds. The Eco Walk is a guided walk through this natural haven, designed to immerse you in the rhythms of the wild.",
       "text2": "Your naturalist guide will help you spot the Indian vulture — one of the last viable nesting populations in central India — as well as painted storks, kingfishers, and gharials basking on the riverbanks. Every season brings a different spectacle.",
-      "text3": "The trail is gentle and suitable for all ages. Early morning walks are recommended to catch the forest at its most vibrant and the river mist at its most magical.",
+      "text3": "The walk is gentle and suitable for all ages. Early morning walks are recommended to catch the forest at its most vibrant and the river mist at its most magical.",
       "didYouKnow": "The Orchha Wildlife Sanctuary is one of the few places in Madhya Pradesh where you can spot the critically endangered Indian vulture nesting in the wild. The forests here are part of an important wildlife corridor connecting central India's protected areas.",
       "cuPhoto1": "Website Assets/Images/Home Page/Exp & Trails/Ecological Walk.png",
       "cuPhoto2": "Website Assets/Images/Home Page/Exp & Trails/Ecological Walk.png",
@@ -713,7 +713,7 @@
     {
       "id": "river-kayaking",
       "name": "River Kayaking",
-      "category": "trails",
+      "category": "walks",
       "description": "Paddle through the heart of Orchha as the Betwa River carries you past ancient chhatris, forested cliffs, and the timeless silhouettes of its great monuments.",
       "image": "Website Assets/Images/Home Page/Exp & Trails/RIver Rafting.png",
       "detailPage": "experience-template.html?id=river-kayaking",
@@ -793,7 +793,7 @@
     {
       "id": "sunset-at-betwa",
       "name": "Sunset At Betwa",
-      "category": "trails",
+      "category": "walks",
       "description": "Witness the sky turn gold and crimson over the Betwa River as Orchha's Chhatris cast their long shadows across the water in one of India's most serene sunsets.",
       "image": "Website Assets/Images/Home Page/Orchha Through Lenses/Sunset.png",
       "detailPage": "experience-template.html?id=sunset-at-betwa",
@@ -996,7 +996,7 @@
   ],
   "audioGuides": [
     { "id": "citadel-walk", "title": "Citadel Walk", "tracks": [], "visible": true },
-    { "id": "eco-trail", "title": "Eco Trail", "tracks": [], "visible": true },
+    { "id": "eco-trail", "title": "Eco Walk", "tracks": [], "visible": true },
     { "id": "river-kayaking", "title": "River Kayaking", "tracks": [], "visible": true },
     { "id": "religious-walk", "title": "Religious Walk", "tracks": [], "visible": true },
     { "id": "art-walk", "title": "Art Walk", "tracks": [], "visible": true },
@@ -1074,7 +1074,7 @@
       { "num": 4, "image": "/images/aw_stop4.jpg", "name": "Lakshmi Temple", "link": "/monuments/lakshmi-narayan-temple" }
     ],
     "outroImage": "/images/aw_outro_mural.jpg",
-    "outroCtaLabel": "View All Experiences & Trails",
+    "outroCtaLabel": "View All Experiences & Walks",
     "outroCtaLink": "/experiences"
   },
   "ecoTrailPage": {
@@ -1083,7 +1083,7 @@
     "showTranslate": true,
     "virtualTourUrl": "",
     "heroImage": "/images/et_hero.png",
-    "heading": "Eco Trail",
+    "heading": "Eco Walk",
     "cardImage1": "/images/et_card1_v2.jpg",
     "cardImage2": "/images/et_card2_v2.jpg",
     "bookUrl": "https://www.tezticket.com/tickets/buy?event=SF",
@@ -1091,13 +1091,13 @@
     "paragraphs": [
       "Just beyond the monuments, the forest begins.\nThe Orchha Wildlife Sanctuary runs along the Betwa River, a stretch of forest that borders the heritage complex and offers a very different kind of encounter with Orchha. Here, the river does not frame palaces — it winds through trees, opens onto islands, and carries the sounds of birds rather than history. The sanctuary is home to around ten eco points, each offering its own view of the Betwa and the forested landscape around it, guided by the forest department team stationed within.",
       "Two of these eco points stand out. Jahaz Mahal sits in the middle of the Betwa — a structure shaped like a ship, with the river flowing on both sides, visible only from within the forest. Panchmadhi, also set within the Betwa, is a cluster of five riverside huts and one of the sanctuary's principal picnic spots. Across from the Orchha Chhatris, a dedicated birdwatching point draws visitors who come to spot the domestic and migratory birds that gather along this stretch of the river.",
-      "The eco trail is best experienced in the early morning or at dusk, when the Betwa is at its quietest and the forest at its most alive. The forest department team guides visitors through the sanctuary and to the eco points throughout the day."
+      "The eco walk is best experienced in the early morning or at dusk, when the Betwa is at its quietest and the forest at its most alive. The forest department team guides visitors through the sanctuary and to the eco points throughout the day."
     ],
     "dykImage": "/images/et_card3_v2.jpg",
     "dykImage2": "/images/et_card4.jpg",
     "dykText": "Visitors have recorded sightings of the Indian skimmer, sarus crane, river tern, white-rumped vulture, and various kingfisher and egret species along the riverbanks.",
     "outroImage": "/images/et_outro_v2.jpg",
-    "outroCtaLabel": "View All Experiences & Trails",
+    "outroCtaLabel": "View All Experiences & Walks",
     "outroCtaLink": "/experiences"
   },
   "sunsetBetwaPage": {
@@ -1139,7 +1139,7 @@
     "cardImage4": "/images/rk_card_rafting_wide.jpg",
     "didYouKnow": "Visitors have recorded sightings of the Indian skimmer, sarus crane, river tern, white-rumped vulture, and various kingfisher and egret species along the riverbanks.",
     "outroImage": "/images/rk_hero.jpg",
-    "outroCtaLabel": "View All Experiences & Trails",
+    "outroCtaLabel": "View All Experiences & Walks",
     "outroCtaLink": "/experiences"
   },
   "religiousWalkPage": {
@@ -1162,7 +1162,7 @@
       { "n": 6, "name": "Kalpvriksha", "image": "/images/rt_stop6.jpg" }
     ],
     "outroImage": "/images/rt_stop2.jpg",
-    "outroCtaLabel": "View All Experiences & Trails",
+    "outroCtaLabel": "View All Experiences & Walks",
     "outroCtaLink": "/experiences"
   },
   "soundLightShowPage": {
@@ -1388,30 +1388,30 @@
     },
     "trails": {
       "heading": "Walk Through Timeless Orchha",
-      "subtitle": "Follow thoughtfully curated walking trails that reveal Orchha's iconic landmarks, hidden gems, riverside views, and centuries of living heritage.",
+      "subtitle": "Follow thoughtfully curated walks that reveal Orchha's iconic landmarks, hidden gems, riverside views, and centuries of living heritage.",
       "cards": [
         {
           "name": "Citadel Walk",
           "image": "/images/aerial_orchha.jpg",
-          "link": "/trails/citadel"
+          "link": "/experiences/citadel-walk"
         },
         {
           "name": "Religious Walk",
           "image": "/images/heritage_raja_ram.jpg",
-          "link": "/trails/religious"
+          "link": "/experiences/religious-walk"
         },
         {
           "name": "Ecological Walk",
           "image": "/images/heritage_wildlife2.jpg",
-          "link": "/trails/ecological"
+          "link": "/experiences/eco-trail"
         },
         {
           "name": "Art Walk",
           "image": "/images/art_walk.jpg",
-          "link": "/trails/art"
+          "link": "/experiences/art-walk"
         }
       ],
-      "ctaLink": "/trails"
+      "ctaLink": "/experiences"
     },
     "visit": {
       "bgImage": "/images/visit_orchha_bg.jpg",
@@ -1692,7 +1692,7 @@
       },
       {
         "id": "i3-2",
-        "title": "Eco Trail Nature Walk",
+        "title": "Eco Nature Walk",
         "image": "/images/eco_trail.webp",
         "href": "/experiences/eco-trail",
         "desc": "Step into the Orchha Wildlife Sanctuary across the river for a tranquil walk amidst flora and fauna."
@@ -1830,7 +1830,7 @@
     },
     {
       "id": "eco-trail",
-      "name": "Eco Trail",
+      "name": "Eco Walk",
       "image": "/images/ws_exp_photo1.jpg",
       "category": "walks"
     },

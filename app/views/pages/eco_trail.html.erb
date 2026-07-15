@@ -99,7 +99,7 @@
 
         <%# Col 2: heading above the second photo card %>
         <div class="et-col et-col-mid">
-          <h1 class="et-heading"><%= pg['heading'] || 'Eco Trail' %></h1>
+          <h1 class="et-heading"><%= pg['heading'] || 'Eco Walk' %></h1>
           <div class="et-card et-card-short">
             <img src="<%= pg['cardImage2'] || '/images/et_card2_v2.jpg' %>" alt="Orchha gardens and Betwa River from above">
             <div class="et-card-logos">
@@ -114,7 +114,7 @@
           <% (pg['paragraphs'].presence || [
                "Just beyond the monuments, the forest begins.\nThe Orchha Wildlife Sanctuary runs along the Betwa River, a stretch of forest that borders the heritage complex and offers a very different kind of encounter with Orchha. Here, the river does not frame palaces — it winds through trees, opens onto islands, and carries the sounds of birds rather than history. The sanctuary is home to around ten eco points, each offering its own view of the Betwa and the forested landscape around it, guided by the forest department team stationed within.",
                "Two of these eco points stand out. Jahaz Mahal sits in the middle of the Betwa — a structure shaped like a ship, with the river flowing on both sides, visible only from within the forest. Panchmadhi, also set within the Betwa, is a cluster of five riverside huts and one of the sanctuary's principal picnic spots. Across from the Orchha Chhatris, a dedicated birdwatching point draws visitors who come to spot the domestic and migratory birds that gather along this stretch of the river.",
-               "The eco trail is best experienced in the early morning or at dusk, when the Betwa is at its quietest and the forest at its most alive. The forest department team guides visitors through the sanctuary and to the eco points throughout the day."
+               "The eco walk is best experienced in the early morning or at dusk, when the Betwa is at its quietest and the forest at its most alive. The forest department team guides visitors through the sanctuary and to the eco points throughout the day."
              ]).each do |para| %>
           <p class="et-body"><%= paragraph_html(para) %></p>
           <% end %>
@@ -154,7 +154,7 @@
       <%# ══ PANEL 4 — OUTRO ════════════════════════════════════════ %>
       <section class="mdet-panel et-outro-panel">
         <img src="<%= pg['outroImage'] || '/images/et_outro_v2.jpg' %>" class="et-outro-bg" alt="Aerial view of Orchha monuments">
-        <a href="<%= pg['outroCtaLink'] || '/experiences' %>" class="aw-walk-cta"><%= pg['outroCtaLabel'] || 'View All Experiences & Trails' %></a>
+        <a href="<%= pg['outroCtaLink'] || '/experiences' %>" class="aw-walk-cta"><%= pg['outroCtaLabel'] || 'View All Experiences & Walks' %></a>
       </section>
 
     </div><%# /mdet-track %>
@@ -162,7 +162,7 @@
 </div><%# /mdet-wrapper %>
 
 <%# Fixed bottom action bar %>
-<%= render 'audio_tabs', tracks: @audio_tracks, label: 'Eco Trail', config: @page %>
+<%= render 'audio_tabs', tracks: @audio_tracks, label: 'Eco Walk', config: @page %>
 
 <script>
 (function() {
