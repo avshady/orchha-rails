@@ -68,6 +68,27 @@
       })();
     </script>
     <script>
+      // ── Fit long monument names: if a single unbreakable word overflows
+      // the heading column, step the font size down until it fits. ──
+      (function () {
+        function fit() {
+          document.querySelectorAll('.mdet-name').forEach(function (el) {
+            el.style.fontSize = '';
+            var size = parseFloat(getComputedStyle(el).fontSize);
+            var guard = 0;
+            while (size > 38 && el.scrollWidth > el.clientWidth + 1 && guard < 20) {
+              size -= 2;
+              el.style.fontSize = size + 'px';
+              guard++;
+            }
+          });
+        }
+        fit();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+        window.addEventListener('resize', fit);
+      })();
+    </script>
+    <script>
       // ── Video sound: try to start heroes with sound; when the browser
       // blocks unmuted autoplay, stay muted and offer a one-tap speaker. ──
       (function () {
